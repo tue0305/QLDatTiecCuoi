@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="74.0" prefWidth="870.0" styleClass="one">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../FXML/images/search.png" />
+               </image>
+            </ImageView>
+            <HBox prefHeight="69.0" prefWidth="848.0" styleClass="one">
+               <children>
+                  <Label prefHeight="62.0" prefWidth="848.0" styleClass="title" text="TRA CỨU" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <VBox prefHeight="366.0" prefWidth="924.0">
+         <children>
+            <HBox prefHeight="66.0" prefWidth="924.0">
+               <children>
+                  <TextField prefHeight="98.0" prefWidth="449.0" promptText="Nhập câu tìm kiếm..." />
+                  <VBox prefHeight="106.0" prefWidth="260.0">
+                     <children>
+                        <DatePicker promptText="Từ ngày" styleClass="two">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                        <DatePicker promptText="Đến ngày" styleClass="two">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="106.0" prefWidth="199.0" styleClass="edit">
+                     <children>
+                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" styleClass="edit" text="Sửa">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../FXML/images/edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="20.0" prefWidth="3.0" text="Xóa">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../FXML/images/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="0.0" prefWidth="924.0" styleClass="tow">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="Theo tên" />
+                  <RadioButton mnemonicParsing="false" text="Theo SĐT" />
+                  <RadioButton mnemonicParsing="false" text="Theo sảnh">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </RadioButton>
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="220.0" styleClass="edit" text="Tìm kiếm">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../FXML/images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="125.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <TableView prefHeight="361.0" prefWidth="924.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>

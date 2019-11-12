@@ -5,3 +5,59 @@
 .mainFxmlClass {
 
 }
+
+VBox {
+    
+    -fx-background-color: lightblue;
+}
+Label.title {
+    
+  -fx-text-fill: orangered;
+  
+  -fx-font-size: 40;
+
+  -fx-font-weight: bold;
+  -fx-label-padding: 5;
+ 
+}  
+HBox.one {
+    -fx-background-color: white;
+    -fx-alignment: CENTER;
+    
+}
+
+GridPane {
+    -fx-vgap: 15;
+    -fx-hgap: 25;
+}
+GridPane > Label  {
+    
+     -fx-halignment: right;
+    
+}
+RadioButton {
+    
+  
+    -fx-padding: 10;
+    
+}
+HBox.edit {
+    -fx-spacing: 10;
+    -fx-padding: 10;    
+}
+HBox.login {
+    
+    -fx-alignment: CENTER;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+
+}
+GridPane.dangnnhap {
+    -fx-vgap: 10;
+    -fx-hgap: 15;
+}
+
+
+
