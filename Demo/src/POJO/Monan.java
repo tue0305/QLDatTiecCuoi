@@ -7,7 +7,7 @@ package POJO;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,7 +50,7 @@ public class Monan implements Serializable {
     @Column(name = "Price")
     private BigDecimal price;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "monan")
-    private Collection<MonanMenu> monanMenuCollection;
+    private List<MonanMenu> monanMenuList;
 
     public Monan() {
     }
@@ -90,12 +90,12 @@ public class Monan implements Serializable {
     }
 
     @XmlTransient
-    public Collection<MonanMenu> getMonanMenuCollection() {
-        return monanMenuCollection;
+    public List<MonanMenu> getMonanMenuList() {
+        return monanMenuList;
     }
 
-    public void setMonanMenuCollection(Collection<MonanMenu> monanMenuCollection) {
-        this.monanMenuCollection = monanMenuCollection;
+    public void setMonanMenuList(List<MonanMenu> monanMenuList) {
+        this.monanMenuList = monanMenuList;
     }
 
     @Override

@@ -6,11 +6,13 @@
 package POJO;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -38,6 +40,7 @@ public class Dichvu implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "MaDV")
+    @GeneratedValue(strategy = GenerationType.AUTO  )
     private Integer maDV;
     @Column(name = "MC")
     private String mc;
@@ -46,11 +49,10 @@ public class Dichvu implements Serializable {
     @Column(name = "BanhKem")
     private String banhKem;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maDV")
-    private Collection<Booking> bookingCollection;
+    private List<Booking> bookingList;
 
     public Dichvu() {
     }
-
     public Dichvu(Integer maDV) {
         this.maDV = maDV;
     }
@@ -88,12 +90,12 @@ public class Dichvu implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Booking> getBookingCollection() {
-        return bookingCollection;
+    public List<Booking> getBookingList() {
+        return bookingList;
     }
 
-    public void setBookingCollection(Collection<Booking> bookingCollection) {
-        this.bookingCollection = bookingCollection;
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 
     @Override

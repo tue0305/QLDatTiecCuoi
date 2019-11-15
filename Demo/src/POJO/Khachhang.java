@@ -6,7 +6,7 @@
 package POJO;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -45,7 +45,7 @@ public class Khachhang implements Serializable {
     @Column(name = "SDT")
     private int sdt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maKH")
-    private Collection<Booking> bookingCollection;
+    private List<Booking> bookingList;
 
     public Khachhang() {
     }
@@ -85,12 +85,12 @@ public class Khachhang implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Booking> getBookingCollection() {
-        return bookingCollection;
+    public List<Booking> getBookingList() {
+        return bookingList;
     }
 
-    public void setBookingCollection(Collection<Booking> bookingCollection) {
-        this.bookingCollection = bookingCollection;
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 
     @Override

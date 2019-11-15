@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
@@ -13,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="460.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="460.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.FXMLDangNhapController">
    <children>
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="460.0" styleClass="one">
          <children>
@@ -45,8 +50,8 @@
               </rowConstraints>
                <children>
                   <Label text="Tên đăng nhập" GridPane.columnIndex="1" />
-                  <TextField prefHeight="31.0" prefWidth="499.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="txtUsername" prefHeight="31.0" prefWidth="499.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                   <Label text="Mật khẩu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
@@ -63,7 +68,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="login">
                <children>
-                  <Button mnemonicParsing="false" text="Quản lý">
+                  <Button mnemonicParsing="false" onAction="#Login" text="Quản lý">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>

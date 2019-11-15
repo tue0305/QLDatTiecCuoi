@@ -7,8 +7,8 @@ package POJO;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -50,9 +50,9 @@ public class Menu implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date ngayTao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maMenu")
-    private Collection<Booking> bookingCollection;
+    private List<Booking> bookingList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
-    private Collection<MonanMenu> monanMenuCollection;
+    private List<MonanMenu> monanMenuList;
 
     public Menu() {
     }
@@ -91,21 +91,21 @@ public class Menu implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Booking> getBookingCollection() {
-        return bookingCollection;
+    public List<Booking> getBookingList() {
+        return bookingList;
     }
 
-    public void setBookingCollection(Collection<Booking> bookingCollection) {
-        this.bookingCollection = bookingCollection;
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 
     @XmlTransient
-    public Collection<MonanMenu> getMonanMenuCollection() {
-        return monanMenuCollection;
+    public List<MonanMenu> getMonanMenuList() {
+        return monanMenuList;
     }
 
-    public void setMonanMenuCollection(Collection<MonanMenu> monanMenuCollection) {
-        this.monanMenuCollection = monanMenuCollection;
+    public void setMonanMenuList(List<MonanMenu> monanMenuList) {
+        this.monanMenuList = monanMenuList;
     }
 
     @Override

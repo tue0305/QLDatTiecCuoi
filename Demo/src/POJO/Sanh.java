@@ -7,7 +7,7 @@ package POJO;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,7 +53,7 @@ public class Sanh implements Serializable {
     @Column(name = "GhiChu")
     private String ghiChu;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maSanh")
-    private Collection<Booking> bookingCollection;
+    private List<Booking> bookingList;
 
     public Sanh() {
     }
@@ -109,12 +109,12 @@ public class Sanh implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Booking> getBookingCollection() {
-        return bookingCollection;
+    public List<Booking> getBookingList() {
+        return bookingList;
     }
 
-    public void setBookingCollection(Collection<Booking> bookingCollection) {
-        this.bookingCollection = bookingCollection;
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
     }
 
     @Override
