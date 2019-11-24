@@ -47,7 +47,7 @@ public class Nhanvien implements Serializable {
     @Column(name = "TenNV")
     private String tenNV;
     @Basic(optional = false)
-    @Column(name = "UserName")
+    @Column(name = "UserName",unique = true)
     private String userName;
     @Basic(optional = false)
     @Column(name = "Password")

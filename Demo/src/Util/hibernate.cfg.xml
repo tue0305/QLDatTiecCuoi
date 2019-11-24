@@ -46,11 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/qltieccuoi?zeroDateTimeBehavior=convertToNull</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">123456</property>
-    <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="Author.hbm.xml"/>
     
-    /* Mapping class annotation */
-    <mapping class="com.QuanLyTiecCuoi.POJOS.DichVu"/>
-
   </session-factory>
 </hibernate-configuration>

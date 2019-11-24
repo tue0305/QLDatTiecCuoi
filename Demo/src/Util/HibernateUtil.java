@@ -1,10 +1,9 @@
 package Util;
 
-import org.hibernate.HibernateException;
+import POJO.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 /**
  * Hibernate Utility class with a convenient method to get Session Factory
@@ -18,7 +17,18 @@ public class HibernateUtil {
 
     static {
         Configuration configure = new Configuration();
-        configure.configure("hibernate.cfg.xml");
+        
+        configure.addAnnotatedClass(Booking.class);
+        configure.addAnnotatedClass(Khachhang.class);
+        configure.addAnnotatedClass(Nhanvien.class);
+        configure.addAnnotatedClass(Sanh.class);
+        configure.addAnnotatedClass(Dichvu.class);
+        configure.addAnnotatedClass(Monan.class);
+        configure.addAnnotatedClass(Menu.class);
+        
+        
+        
+        configure.configure("Util.hibernate.cfg.xml");
         StandardServiceRegistryBuilder builder
                 = new StandardServiceRegistryBuilder()
                         .applySettings(configure.getProperties());

@@ -2,8 +2,10 @@
 
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
+<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -18,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="460.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.FXMLDangNhapController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="460.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.DangNhapController">
    <children>
       <HBox alignment="CENTER" prefHeight="42.0" prefWidth="460.0" styleClass="one">
          <children>
@@ -51,14 +53,14 @@
                <children>
                   <Label text="Tên đăng nhập" GridPane.columnIndex="1" />
                   <TextField fx:id="txtUsername" prefHeight="31.0" prefWidth="499.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <TextField fx:id="textField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                   <Label text="Mật khẩu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <PasswordField fx:id="pfPassword" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                </children>
             </GridPane>
             <HBox alignment="CENTER" prefHeight="28.0" prefWidth="460.0" style="-fx-spacing: 10;">
                <children>
-                  <CheckBox mnemonicParsing="false" />
-                  <Label text="Duy trì đăng nhập" />
+                  <ToggleButton mnemonicParsing="false" onAction="#showPW" text="Hiển thị mật khẩu" />
                   <Label text="|" />
                   <Label text="Quên mật khẩu" />
                </children>
@@ -68,7 +70,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="login">
                <children>
-                  <Button mnemonicParsing="false" onAction="#Login" text="Quản lý">
+                  <Button mnemonicParsing="false" onAction="#Login" text="Đăng nhập">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
