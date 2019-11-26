@@ -12,6 +12,7 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
@@ -22,7 +23,8 @@ import org.hibernate.criterion.Restrictions;
 public class Utils {
 
     public static List<Monan> getMonAn() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
 
         Criteria cr = session.createCriteria(Monan.class);
         List<Monan> MonAns = cr.list();
@@ -33,32 +35,32 @@ public class Utils {
     }
 
     public static Boolean KiemtraTKandMK(String u, String p) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
         try {
-      
+
             Criteria cr = session.createCriteria(Nhanvien.class);
 
-            String user = String.format("%%%s%%", u);
-            Criterion c1 = Restrictions.eq("UserName", u);
-            String pass = String.format("%%%s%%", p);
-            Criterion c2 = Restrictions.eq("Password", p);
-            cr.add(Restrictions.and(c1, c2));
-            session.close();
-            if (cr.list().size() != 0) {
+            Criterion cr1 = Restrictions.eq("userName", u);
+            Criterion cr2 = Restrictions.eq("password", p);
+            cr.add(Restrictions.and(cr1, cr2));
+            List nv = cr.list();
+
+            if (nv.size() != 0) {
+
                 return true;
-            } else            
-            {
+            } else {
+
                 return false;
-                
             }
-            
-     
+
         } catch (Exception ex) {
             System.err.print(ex.getMessage());
 
         }
+        session.close();
         return false;
+
     }
 
     public static Alert getAlertTC(String content, Alert.AlertType type) {

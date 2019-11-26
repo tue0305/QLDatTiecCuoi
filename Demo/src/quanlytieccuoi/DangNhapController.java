@@ -77,7 +77,7 @@ public class DangNhapController implements Initializable {
 
     @FXML
     public void Login(ActionEvent event) throws IOException {
-        pfPassword.setText(textField.getText());
+        
         pfPassword.setVisible(true);
         textField.setVisible(false);
         String u = txtUsername.getText();

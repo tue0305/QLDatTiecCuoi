@@ -17,18 +17,19 @@ public class HibernateUtil {
 
     static {
         Configuration configure = new Configuration();
+
+        configure.configure("Util/hibernate.cfg.xml");
         
-        configure.addAnnotatedClass(Booking.class);
-        configure.addAnnotatedClass(Khachhang.class);
+        
         configure.addAnnotatedClass(Nhanvien.class);
-        configure.addAnnotatedClass(Sanh.class);
-        configure.addAnnotatedClass(Dichvu.class);
-        configure.addAnnotatedClass(Monan.class);
-        configure.addAnnotatedClass(Menu.class);
-        
-        
-        
-        configure.configure("Util.hibernate.cfg.xml");
+//        configure.addAnnotatedClass(Booking.class);
+//        configure.addAnnotatedClass(Khachhang.class);
+//        
+//        configure.addAnnotatedClass(Sanh.class);
+//        configure.addAnnotatedClass(Dichvu.class);
+//        configure.addAnnotatedClass(Monan.class);
+//        configure.addAnnotatedClass(Menu.class);
+
         StandardServiceRegistryBuilder builder
                 = new StandardServiceRegistryBuilder()
                         .applySettings(configure.getProperties());
@@ -40,5 +41,5 @@ public class HibernateUtil {
         return FACTORY;
     }
     //---------------
-   
+
 }

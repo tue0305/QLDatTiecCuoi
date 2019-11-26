@@ -7,15 +7,7 @@ package POJO;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -52,14 +44,19 @@ public class Nhanvien implements Serializable {
     @Basic(optional = false)
     @Column(name = "Password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "maNV")
-    private List<Booking> bookingList;
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "maNV")
+//    private List<Booking> bookingList;
 
     public Nhanvien() {
     }
 
     public Nhanvien(String maNV) {
         this.maNV = maNV;
+    }
+    
+    public Nhanvien(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 
     public Nhanvien(String maNV, String chucVu, String tenNV, String userName, String password) {
@@ -110,14 +107,14 @@ public class Nhanvien implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public List<Booking> getBookingList() {
-        return bookingList;
-    }
-
-    public void setBookingList(List<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
+//    @XmlTransient
+//    public List<Booking> getBookingList() {
+//        return bookingList;
+//    }
+//
+//    public void setBookingList(List<Booking> bookingList) {
+//        this.bookingList = bookingList;
+//    }
 
     @Override
     public int hashCode() {
