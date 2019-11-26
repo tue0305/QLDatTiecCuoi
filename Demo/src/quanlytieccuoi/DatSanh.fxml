@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="893.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="893.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.DatSanhController">
    <children>
       <VBox layoutY="-7.0" prefHeight="593.0" prefWidth="893.0">
          <children>
@@ -117,7 +117,7 @@
                         <Label text="Ghi chú" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                         <TextArea prefHeight="80.0" prefWidth="359.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2" />
                         <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" />
-                        <Button layoutX="778.0" layoutY="166.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="BACK" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Button layoutX="778.0" layoutY="166.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="31.0" prefWidth="127.0" text="BACK" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                      </children>
                      <padding>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuController">
    <children>
       <HBox prefHeight="74.0" prefWidth="870.0" styleClass="one">
          <children>
@@ -50,7 +50,7 @@
                   </VBox>
                   <HBox prefHeight="106.0" prefWidth="199.0" styleClass="edit">
                      <children>
-                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" styleClass="edit" text="Sửa">
+                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="51.0" styleClass="edit" text="Sửa">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -59,11 +59,20 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="20.0" prefWidth="3.0" text="Xóa">
+                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="65.0" prefWidth="51.0" text="Xóa">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../FXML/images/delete.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button contentDisplay="TOP" layoutX="80.0" layoutY="20.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="65.0" prefWidth="51.0" text="Back">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../FXML/images/left-arrow.png" />
                                  </image>
                               </ImageView>
                            </graphic>

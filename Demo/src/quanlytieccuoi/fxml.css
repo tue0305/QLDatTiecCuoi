@@ -21,7 +21,7 @@ Label.title {
  
 }  
 HBox.one {
-    -fx-background-color: white;
+    -fx-background-color: whitesmoke;
     -fx-alignment: CENTER;
     
 }
@@ -58,6 +58,9 @@ GridPane.dangnnhap {
     -fx-vgap: 10;
     -fx-hgap: 15;
 }
-
-
+VBox.category {
+    
+    -fx-spacing: 10;
+    
+}
 
