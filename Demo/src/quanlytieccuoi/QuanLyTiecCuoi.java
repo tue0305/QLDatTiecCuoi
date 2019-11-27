@@ -19,7 +19,7 @@ public class QuanLyTiecCuoi extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("DatSanh.fxml"));
         
         Scene scene = new Scene(root);
         

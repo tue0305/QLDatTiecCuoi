@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -18,7 +24,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="893.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.DatSanhController">
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="893.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.DatSanhController">
    <children>
       <VBox layoutY="-7.0" prefHeight="593.0" prefWidth="893.0">
          <children>
@@ -45,8 +51,9 @@
                     <columnConstraints>
                         <ColumnConstraints minWidth="10.0" prefWidth="80.0" />
                       <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
-                      <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
+                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" />
+                        <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="170.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="1.0" prefWidth="2.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -56,23 +63,20 @@
                         <RowConstraints maxHeight="40.0" minHeight="30.0" prefHeight="40.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints />
                       <RowConstraints />
                         <RowConstraints />
                     </rowConstraints>
                      <children>
                         <Label styleClass="two" text="Sảnh" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" style="-fx-padding: 5;" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                         <Label text="Ngày" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                         <DatePicker prefHeight="31.0" prefWidth="263.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
                         <Label text="Loại tiệc" GridPane.halignment="RIGHT" />
                         <ListView prefHeight="30.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.columnSpan="2" />
                         <Label GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Label text="Số bàn" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                        <TextField prefHeight="31.0" prefWidth="207.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
                         <RadioButton mnemonicParsing="false" text="Trưa" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <RadioButton mnemonicParsing="false" text="Tối" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <RadioButton mnemonicParsing="false" text="Tối" GridPane.rowIndex="3" />
+                        <ComboBox fx:id="cbSanh" prefHeight="31.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                      </children>
                      <padding>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -86,7 +90,7 @@
             <VBox prefHeight="256.0" prefWidth="893.0">
                <children>
                   <HBox prefHeight="35.0" prefWidth="893.0" />
-                  <GridPane prefHeight="300.0" prefWidth="893.0">
+                  <GridPane prefHeight="282.0" prefWidth="893.0">
                      <columnConstraints>
                         <ColumnConstraints minWidth="10.0" prefWidth="80.0" />
                         <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="170.0" />
@@ -94,8 +98,10 @@
                         <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="200.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -110,14 +116,14 @@
                               <Insets />
                            </GridPane.margin>
                         </Label>
-                        <Label text="Email" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="NEXT" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <Label text="Email" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                        <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" text="NEXT" GridPane.columnIndex="6" GridPane.rowIndex="3" />
                         <Label text="Ghi chú" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                         <TextArea prefHeight="80.0" prefWidth="359.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2" />
                         <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" />
-                        <Button layoutX="778.0" layoutY="166.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="31.0" prefWidth="127.0" text="BACK" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Button layoutX="778.0" layoutY="166.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="31.0" prefWidth="127.0" text="BACK" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                      </children>
                      <padding>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

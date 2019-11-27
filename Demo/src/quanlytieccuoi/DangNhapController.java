@@ -13,13 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  *
@@ -93,17 +90,9 @@ public class DangNhapController implements Initializable {
                 a.showAndWait();
 //Hàm kiểm trà đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
-
-                Node source = (Node) event.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-
                 Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
-
-                stage.hide();
-                stage.setScene(sce);
-                stage.show();
-
+                Utils.switchStage(sce, event);
+                
             } else {
                 a = Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR);
                 a.showAndWait();

@@ -44,8 +44,7 @@ public class Sanh implements Serializable {
     private Character loaiSanh;
     @Column(name = "GhiChu")
     private String ghiChu;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "maSanh")
-    private List<Booking> bookingList;
+
 
     public Sanh() {
     }
@@ -54,10 +53,11 @@ public class Sanh implements Serializable {
         this.maSanh = maSanh;
     }
 
-    public Sanh(Integer maSanh, BigDecimal gia, Character loaiSanh) {
+    public Sanh(Integer maSanh, String tenSanh , BigDecimal gia, Character loaiSanh) {
         this.maSanh = maSanh;
         this.gia = gia;
         this.loaiSanh = loaiSanh;
+        this.tenSanh = tenSanh;
     }
 
     public Integer getMaSanh() {
@@ -100,38 +100,13 @@ public class Sanh implements Serializable {
         this.ghiChu = ghiChu;
     }
 
-    @XmlTransient
-    public List<Booking> getBookingList() {
-        return bookingList;
-    }
+//   
 
-    public void setBookingList(List<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (maSanh != null ? maSanh.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Sanh)) {
-            return false;
-        }
-        Sanh other = (Sanh) object;
-        if ((this.maSanh == null && other.maSanh != null) || (this.maSanh != null && !this.maSanh.equals(other.maSanh))) {
-            return false;
-        }
-        return true;
-    }
+   
 
     @Override
     public String toString() {
-        return "POJO.Sanh[ maSanh=" + maSanh + " ]";
+        return this.loaiSanh.toString();
     }
     
 }

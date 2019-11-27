@@ -4,12 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/POJO/Booking.java</file>
+            <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/POJO/Sanh.java</file>
             <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/POJO/Nhanvien.java</file>
+            <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/quanlytieccuoi/SanhController.java</file>
+            <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/quanlytieccuoi/DatSanhController.java</file>
             <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/Util/Utils.java</file>
             <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/POJO/Dichvu.java</file>
             <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/Util/HibernateUtil.java</file>
             <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/quanlytieccuoi/QuanLyTiecCuoi.java</file>
-            <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/quanlytieccuoi/DangNhapController.java</file>
+            <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/quanlytieccuoi/MainMenuController.java</file>
+            <file>file:/C:/Users/cohotech/Desktop/VisualVault/Test/QLDatTiecCuoi/Demo/src/quanlytieccuoi/Sanh.fxml</file>
         </group>
     </open-files>
 </project-private>

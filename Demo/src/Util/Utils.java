@@ -7,9 +7,17 @@ package Util;
 
 import POJO.Monan;
 import POJO.Nhanvien;
-
+import POJO.Sanh;
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
+import java.lang.Class;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -33,6 +41,7 @@ public class Utils {
 
         return MonAns;
     }
+//Hàm kiểm tra đăng nhập
 
     public static Boolean KiemtraTKandMK(String u, String p) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -62,12 +71,56 @@ public class Utils {
         return false;
 
     }
+//Hàm thông báo Alert
 
     public static Alert getAlertTC(String content, Alert.AlertType type) {
         Alert a = new Alert(type);
         a.setContentText(content);
 
         return a;
+    }
+//Hàm chuyển Stage
+
+    public static void switchStage(Scene sce, ActionEvent e) {
+        try {
+            Node source = (Node) e.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+
+            stage.hide();
+            stage.setScene(sce);
+            stage.show();
+
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+        }
+
+    }
+
+    public static List<Sanh> getSanh() {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Sanh.class);
+        List<Sanh> sanh = cr.list();
+
+        session.close();
+
+        return sanh;
+    }
+
+    public static boolean deleteSanh(Sanh s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        try {
+
+            session.delete(s);
+            
+            return true;
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+            return false;
+        }
     }
 
 }

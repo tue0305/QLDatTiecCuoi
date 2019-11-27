@@ -5,6 +5,7 @@
  */
 package quanlytieccuoi;
 
+import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,84 +28,85 @@ public class MainMenuController implements Initializable {
 
     /**
      * Initializes the controller class.
-        */
-       @Override
+     */
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
-        
-       
-    }    
-     public void ActionExit(ActionEvent event){
-         Platform.exit();
-         System.exit(0);
-         
-        }
-   @FXML
-   private void ActionSignOut(javafx.event.ActionEvent event) throws IOException
-   {
-       
-               Parent blah = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
-               Scene scene = new Scene(blah);
-               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               appStage.hide();
-               appStage.setScene(scene);
-               appStage.show();
-       
-      
-   }
+
+    }
+
+    public void ActionExit(ActionEvent event) {
+        Platform.exit();
+        System.exit(0);
+
+    }
+
     @FXML
-   private void ActionDatSanh(javafx.event.ActionEvent event) throws IOException
-   {
-       
-               Parent blah = FXMLLoader.load(getClass().getResource("DatSanh.fxml"));
-               Scene scene = new Scene(blah);
-               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               appStage.hide();
-               appStage.setScene(scene);
-               appStage.show();
-       
-      
-   }
+    private void ActionSignOut(javafx.event.ActionEvent event) throws IOException {
+
+        Parent blah = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Scene scene = new Scene(blah);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(scene);
+        appStage.show();
+
+    }
+
     @FXML
-   private void ActionTraCuu(javafx.event.ActionEvent event) throws IOException
-   {
-       
-               Parent blah = FXMLLoader.load(getClass().getResource("TraCuu.fxml"));
-               Scene scene = new Scene(blah);
-               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               appStage.hide();
-               appStage.setScene(scene);
-               appStage.show();
-       
-      
-   }
+    private void ActionDatSanh(javafx.event.ActionEvent event) throws IOException {
+
+        Parent blah = FXMLLoader.load(getClass().getResource("DatSanh.fxml"));
+        Scene scene = new Scene(blah);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(scene);
+        appStage.show();
+
+    }
+
     @FXML
-   private void ActionThanhToan(javafx.event.ActionEvent event) throws IOException
-   {
-       
-               Parent blah = FXMLLoader.load(getClass().getResource("HoaDonThanhToan.fxml"));
-               Scene scene = new Scene(blah);
-               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               appStage.hide();
-               appStage.setScene(scene);
-               appStage.show();
-       
-      
-   }
-   @FXML
-   private void ActionBaoCao(javafx.event.ActionEvent event) throws IOException
-   {
-       
-               Parent blah = FXMLLoader.load(getClass().getResource("LapBaoCao.fxml"));
-               Scene scene = new Scene(blah);
-               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               appStage.hide();
-               appStage.setScene(scene);
-               appStage.show();
-       
-      
-   }
- 
-    
+    private void ActionTraCuu(javafx.event.ActionEvent event) throws IOException {
+
+        Parent blah = FXMLLoader.load(getClass().getResource("TraCuu.fxml"));
+        Scene scene = new Scene(blah);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(scene);
+        appStage.show();
+
+    }
+
+    @FXML
+    private void ActionThanhToan(javafx.event.ActionEvent event) throws IOException {
+
+        Parent blah = FXMLLoader.load(getClass().getResource("HoaDonThanhToan.fxml"));
+        Scene scene = new Scene(blah);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(scene);
+        appStage.show();
+
+    }
+
+    @FXML
+    private void ActionBaoCao(javafx.event.ActionEvent event) throws IOException {
+
+        Parent blah = FXMLLoader.load(getClass().getResource("LapBaoCao.fxml"));
+        Scene scene = new Scene(blah);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(scene);
+        appStage.show();
+
+    }
+
+    @FXML
+    private void ActionQLSanh(javafx.event.ActionEvent event) throws IOException {
+
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("Sanh.fxml")));
+        Utils.switchStage(sce, event);
+
+    }
+
 }
