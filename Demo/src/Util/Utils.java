@@ -96,7 +96,7 @@ public class Utils {
         }
 
     }
-
+    
     public static List<Sanh> getSanh() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
