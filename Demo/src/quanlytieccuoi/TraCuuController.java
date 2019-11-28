@@ -5,6 +5,7 @@
  */
 package quanlytieccuoi;
 
+import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,26 +32,15 @@ public class TraCuuController implements Initializable {
         // TODO
     }    
     
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     @FXML
    private void ActionBack(javafx.event.ActionEvent event) throws IOException
    {
        
-               Parent blah = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-               Scene scene = new Scene(blah);
-               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               appStage.hide();
-               appStage.setScene(scene);
-               appStage.show();
+              Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
+        Utils.switchStage(sce, event);
        
       
    }

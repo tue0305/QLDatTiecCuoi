@@ -37,15 +37,15 @@ public class DatSanhController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cbSanh.getItems().addAll(Utils.getSanh());
-        
-
+      
+     
     }
-
+ 
     public void ActionBack(ActionEvent event) throws IOException {
 
         Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
         Utils.switchStage(sce, event);
 
     }
-
+    
 }

@@ -24,6 +24,7 @@ public class QuanLyTiecCuoi extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
@@ -33,5 +34,5 @@ public class QuanLyTiecCuoi extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+   
 }
