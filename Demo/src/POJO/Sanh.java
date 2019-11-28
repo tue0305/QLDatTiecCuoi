@@ -30,6 +30,7 @@ public class Sanh implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "MaSanh")
     private Integer maSanh;
@@ -53,8 +54,14 @@ public class Sanh implements Serializable {
         this.maSanh = maSanh;
     }
 
-    public Sanh(Integer maSanh, String tenSanh , BigDecimal gia, Character loaiSanh) {
-        this.maSanh = maSanh;
+    public Sanh( String tenSanh , BigDecimal gia, Character loaiSanh) {
+        
+        this.gia = gia;
+        this.loaiSanh = loaiSanh;
+        this.tenSanh = tenSanh;
+    }
+    public Sanh( String tenSanh , BigDecimal gia, Character loaiSanh, String ghiChu ) {
+        this.ghiChu = ghiChu;
         this.gia = gia;
         this.loaiSanh = loaiSanh;
         this.tenSanh = tenSanh;

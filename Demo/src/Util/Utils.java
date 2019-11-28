@@ -114,11 +114,37 @@ public class Utils {
         Session session = factory.openSession();
         try {
 
+            session.beginTransaction();
+
             session.delete(s);
-            
+            session.getTransaction().commit();
+
             return true;
         } catch (Exception ex) {
             System.err.print(ex.getMessage());
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    public static Boolean ktTrungLoaiSanh(Sanh s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        try {
+
+            Criteria cr = session.createCriteria(Sanh.class);
+           
+            
+            cr.add(Restrictions.eq("tenSanh", s.getTenSanh()));
+            List <Sanh> ls = cr.list();
+            if(ls.isEmpty())
+                return true;
+            else 
+                return false;
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+            session.getTransaction().rollback();
             return false;
         }
     }
