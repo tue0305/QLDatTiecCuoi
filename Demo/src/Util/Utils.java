@@ -127,7 +127,25 @@ public class Utils {
         }
     }
 
-    public static Boolean ktTrungLoaiSanh(Sanh s) {
+    public static boolean addOrUpdateSanh(Sanh s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        try {
+
+            session.beginTransaction();
+
+            session.saveOrUpdate(s);
+            session.getTransaction().commit();
+             session.close();
+            return true;
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+            session.getTransaction().rollback();
+            return false;
+        }
+    }
+
+    public static Boolean ktTrungTenSanh(Sanh s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
 

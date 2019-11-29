@@ -8,6 +8,7 @@ package quanlytieccuoi;
 import POJO.Sanh;
 import Util.Utils;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -46,7 +47,7 @@ public class SanhController implements Initializable {
     @FXML
     private TextField txtGiaSanh;
     @FXML
-    private ComboBox<Sanh> cbSanh;
+    private ComboBox cbSanh;
     @FXML
     private GridPane addPane;
     @FXML
@@ -60,6 +61,12 @@ public class SanhController implements Initializable {
 
     public void init() {
 // Load danh sách sảnh
+        this.cbSanh.getItems().add("A");
+        this.cbSanh.getItems().add("B");
+        this.cbSanh.getItems().add("C");
+        this.cbSanh.getItems().add("D");
+        this.cbSanh.getItems().add("E");
+
         TableColumn clTenSanh = new TableColumn("Tên sảnh");
         clTenSanh.setCellValueFactory(new PropertyValueFactory("tenSanh"));
         TableColumn clLoaiSanh = new TableColumn("Loại sảnh");
@@ -76,22 +83,74 @@ public class SanhController implements Initializable {
     }
 
     public void themSanh(ActionEvent event) throws IOException {
+        addPane.setVisible(false);
+        tbSanh.getSelectionModel().clearSelection();
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
             Alert b = Utils.getAlertTC("Hãy điền thông tin sảnh cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
-            if(txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty())
-            {
+            if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty()) {
                 Alert b = Utils.getAlertTC("Bắt buộc điền tên sảnh và giá sảnh!!!", Alert.AlertType.ERROR);
                 b.show();
-            }
-            else
-            {
-               // Sanh s = new Sanh(txtTenSanh.getText(), txtGiaSanh.getTextFormatter(),acter.MIN_VALUE, ghiChu)
-                
+            } else {
+                Sanh s = new Sanh(txtTenSanh.getText(), BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())),
+                        cbSanh.getSelectionModel().getSelectedItem().toString(), txtNote.getText());
+
+                if (Utils.ktTrungTenSanh(s)) {
+                    if (Utils.addOrUpdateSanh(s)) {
+                        Alert b = Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION);
+                        b.show();
+                        this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
+                        addPane.setVisible(false);
+                    } else {
+                        Alert b = Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR);
+                        b.show();
+                    }
+
+                } else {
+                    Alert b = Utils.getAlertTC("Tên sảnh đã có!!!", Alert.AlertType.ERROR);
+                    b.show();
+                }
+
             }
         }
+
+    }
+
+    public void suaSanh(ActionEvent event) throws IOException {
+        Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
+        if (s == null) {
+            Alert b = Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR);
+            b.show();
+        } else if (!addPane.isVisible()) {
+            addPane.setVisible(true);
+            txtTenSanh.setText(s.getTenSanh());
+            txtNote.setText(s.getGhiChu());
+            cbSanh.getSelectionModel().select(s.getLoaiSanh());
+            txtGiaSanh.setText(s.getGia().toString());
+            Alert b = Utils.getAlertTC("Hãy điền thông tin sảnh cần sửa!!!", Alert.AlertType.INFORMATION);
+            b.show();
+        } else {
+            if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty()) {
+                Alert b = Utils.getAlertTC("Bắt buộc điền tên sảnh và giá sảnh!!!", Alert.AlertType.ERROR);
+                b.show();
+            } else {
+                s = new Sanh(txtTenSanh.getText(), BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())),
+                        cbSanh.getSelectionModel().getSelectedItem().toString(), txtNote.getText());
+                if (cbSanh.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdateSanh(s) == true) {
+                    Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
+                    b.show();
+                    addPane.setVisible(false);
+                    this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
+                } else {
+                    Alert b = Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR);
+                    b.show();
+                }
+
+            }
+        }
+
     }
 
     public void backAction(ActionEvent event) throws IOException {
@@ -103,6 +162,7 @@ public class SanhController implements Initializable {
 
     public void xoaSanh(ActionEvent event) throws IOException {
         Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
+        addPane.setVisible(false);
         if (s == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
             b.show();
@@ -132,10 +192,4 @@ public class SanhController implements Initializable {
         }
     }
 
-    public void suaSanh(ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
-        Utils.switchStage(sce, event);
-
-    }
 }

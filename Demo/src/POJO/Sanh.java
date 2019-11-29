@@ -41,8 +41,8 @@ public class Sanh implements Serializable {
     @Column(name = "Gia")
     private BigDecimal gia;
     @Basic(optional = false)
-    @Column(name = "LoaiSanh")
-    private Character loaiSanh;
+    @Column(name = "LoaiSanh",length=1, columnDefinition="CHAR")
+    private String loaiSanh;
     @Column(name = "GhiChu")
     private String ghiChu;
 
@@ -54,13 +54,13 @@ public class Sanh implements Serializable {
         this.maSanh = maSanh;
     }
 
-    public Sanh( String tenSanh , BigDecimal gia, Character loaiSanh) {
+    public Sanh( String tenSanh , BigDecimal gia, String loaiSanh) {
         
         this.gia = gia;
         this.loaiSanh = loaiSanh;
         this.tenSanh = tenSanh;
     }
-    public Sanh( String tenSanh , BigDecimal gia, Character loaiSanh, String ghiChu ) {
+    public Sanh( String tenSanh , BigDecimal gia, String loaiSanh, String ghiChu ) {
         this.ghiChu = ghiChu;
         this.gia = gia;
         this.loaiSanh = loaiSanh;
@@ -71,10 +71,7 @@ public class Sanh implements Serializable {
         return maSanh;
     }
 
-    public void setMaSanh(Integer maSanh) {
-        this.maSanh = maSanh;
-    }
-
+   
     public String getTenSanh() {
         return tenSanh;
     }
@@ -91,13 +88,7 @@ public class Sanh implements Serializable {
         this.gia = gia;
     }
 
-    public Character getLoaiSanh() {
-        return loaiSanh;
-    }
-
-    public void setLoaiSanh(Character loaiSanh) {
-        this.loaiSanh = loaiSanh;
-    }
+    
 
     public String getGhiChu() {
         return ghiChu;
@@ -113,7 +104,21 @@ public class Sanh implements Serializable {
 
     @Override
     public String toString() {
-        return this.loaiSanh.toString();
+        return this.getLoaiSanh().toString();
+    }
+
+    /**
+     * @return the loaiSanh
+     */
+    public String getLoaiSanh() {
+        return loaiSanh;
+    }
+
+    /**
+     * @param loaiSanh the loaiSanh to set
+     */
+    public void setLoaiSanh(String loaiSanh) {
+        this.loaiSanh = loaiSanh;
     }
     
 }
