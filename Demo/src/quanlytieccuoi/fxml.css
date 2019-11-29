@@ -8,7 +8,11 @@
 
 VBox {
     
-    -fx-background-color: lightblue;
+    -fx-background-color:  #2F2B43;
+}
+Label {
+    -fx-text-fill: white;
+    
 }
 Label.title {
     
@@ -27,8 +31,8 @@ HBox.one {
 }
 
 GridPane {
-    -fx-vgap: 15;
-    -fx-hgap: 25;
+    -fx-vgap: 10;
+    -fx-hgap: 15;
 }
 GridPane > Label  {
     
@@ -64,3 +68,39 @@ VBox.category {
     
 }
 
+GridPane.test {
+    -fx-border-color: red;
+    
+}
+Label.H1{
+     -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+Button.button4{
+    -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
+    -fx-background-radius :  30 30 30 30;
+}
+Button.button4:hover {
+    -fx-background-color :linear-gradient(to top left, #D4CEE3, #41951C);
+    -fx-background-radius :  30 30 30 30;
+}
+.button4:pressed
+{
+    -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
+    -fx-background-radius :  30 30 30 30;
+}
+Button.button2{
+
+ -fx-background-color: #393351;
+ -fx-background-radius: 20;
+
+}
+.button2:hover{
+    -fx-background-color:  #524A7B;
+    -fx-background-radius: 20;
+}
+.button2:pressed{
+   -fx-background-color : #2F2B43 ;
+   -fx-background-radius :  20;
+   
+}

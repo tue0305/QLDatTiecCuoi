@@ -16,9 +16,9 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="460.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.DangNhapController">
    <children>
-      <HBox alignment="CENTER" prefHeight="42.0" prefWidth="460.0" styleClass="one">
+      <HBox alignment="CENTER" prefHeight="0.0" prefWidth="460.0" styleClass="one">
          <children>
-            <ImageView fitHeight="68.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="87.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../FXML/images/logo_transparent.png" />
                </image>
@@ -26,9 +26,9 @@
          </children></HBox>
       <VBox prefHeight="330.0" prefWidth="491.0">
          <children>
-            <HBox prefHeight="12.0" prefWidth="460.0" styleClass="login">
+            <HBox prefHeight="4.0" prefWidth="460.0" styleClass="login">
                <children>
-                  <Label text="Đăng nhập">
+                  <Label text="Đăng nhập" textFill="#234a11">
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin></Label>
@@ -36,9 +36,9 @@
             </HBox>
             <GridPane prefHeight="170.0" prefWidth="460.0" styleClass="dangnnhap">
               <columnConstraints>
-                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="80.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
               </columnConstraints>
               <rowConstraints>
@@ -50,11 +50,11 @@
               </rowConstraints>
                <children>
                   <Label text="Tên đăng nhập" GridPane.columnIndex="1" />
-                  <TextField fx:id="txtUsername" prefHeight="31.0" prefWidth="499.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtUsername" prefHeight="31.0" prefWidth="86.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                   <TextField fx:id="textField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                   <Label text="Mật khẩu" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <PasswordField fx:id="pfPassword" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                  <ToggleButton mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showPW" prefHeight="31.0" prefWidth="146.0" text="Hiển thị mật khẩu" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
+                  <ToggleButton mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showPW" prefHeight="31.0" prefWidth="156.0" text="Hiển thị mật khẩu" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets></ToggleButton>
@@ -67,7 +67,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" styleClass="login">
                <children>
-                  <Button mnemonicParsing="false" onAction="#Login" text="Đăng nhập">
+                  <Button mnemonicParsing="false" onAction="#Login" styleClass="button4" text="Đăng nhập">
                      <graphic>
                         <ImageView fitHeight="41.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
