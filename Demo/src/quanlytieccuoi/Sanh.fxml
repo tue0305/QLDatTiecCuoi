@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
@@ -8,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="921.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.SanhController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="921.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.SanhController">
    <children>
       <HBox prefHeight="74.0" prefWidth="870.0" styleClass="one">
          <children>
@@ -26,11 +30,13 @@
       </HBox>
       <VBox prefHeight="366.0" prefWidth="924.0">
          <children>
-            <HBox prefHeight="66.0" prefWidth="924.0">
+            <HBox prefHeight="120.0" prefWidth="921.0">
                <children>
-                  <HBox prefHeight="85.0" prefWidth="327.0" styleClass="edit">
+                  <HBox prefHeight="120.0" prefWidth="304.0" styleClass="edit">
                      <children>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="65.0" prefWidth="58.0" text="Thêm">
+
+                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themSanh" prefHeight="65.0" prefWidth="62.0" text="Thêm">
+
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -39,7 +45,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="65.0" prefWidth="58.0" styleClass="edit" text="Sửa">
+                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#suaSanh" prefHeight="65.0" prefWidth="58.0" styleClass="edit" text="Sửa">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -48,7 +54,9 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="65.0" prefWidth="58.0" text="Xóa">
+
+                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaSanh" prefHeight="65.0" prefWidth="51.0" text="Xóa">
+
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -68,11 +76,36 @@
                         </Button>
                      </children>
                   </HBox>
+                  <HBox prefHeight="120.0" prefWidth="617.0">
+                     <children>
+                        <GridPane fx:id="addPane" prefHeight="120.0" prefWidth="544.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="88.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="75.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="236.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TextField fx:id="txtTenSanh" GridPane.columnIndex="1" GridPane.columnSpan="2" />
+                              <TextField fx:id="txtGiaSanh" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                              <TextArea fx:id="txtNote" prefHeight="108.0" prefWidth="295.0" promptText="Ghi chú...." GridPane.columnIndex="3" GridPane.rowSpan="3" />
+                              <ComboBox fx:id="cbSanh" prefHeight="31.0" prefWidth="72.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label text="Tên sảnh:" />
+                              <Label text="Giá sảnh:" GridPane.rowIndex="1" />
+                              <Label text="Loại sảnh:" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                     </children>
+                  </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="0.0" prefWidth="924.0" styleClass="tow" />
          </children>
       </VBox>
-      <TableView fx:id="tbSanh" prefHeight="621.0" prefWidth="924.0" />
+      <TableView fx:id="tbSanh" prefHeight="607.0" prefWidth="921.0" />
    </children>
 </VBox>
