@@ -18,9 +18,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import org.hibernate.Criteria;
+ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
@@ -96,7 +97,7 @@ public class Utils {
         }
 
     }
-    
+
     public static List<Sanh> getSanh() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -127,39 +128,72 @@ public class Utils {
         }
     }
 
-    public static boolean addOrUpdateSanh(Sanh s) {
+    public static boolean addSanh(Sanh s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
+        Transaction trans = null;
         try {
 
-            session.beginTransaction();
+            trans = session.beginTransaction();
 
-            session.saveOrUpdate(s);
-            session.getTransaction().commit();
-             session.close();
-            return true;
+            session.save(s);
+            trans.commit();
         } catch (Exception ex) {
+            if (trans != null) {
+                trans.rollback();
+            }
             System.err.print(ex.getMessage());
-            session.getTransaction().rollback();
             return false;
+        } finally {
+            session.close();
         }
-    }
+        return true;
 
-    public static Boolean ktTrungTenSanh(Sanh s) {
+    }
+    public static boolean UpdateSanh(Sanh s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction trans = null;
+        try {
+            
+            trans = session.beginTransaction();
+            Sanh q = (Sanh) session.get(Sanh.class, s.getMaSanh());
+            q.setGhiChu(s.getGhiChu());
+            q.setGia(s.getGia());
+            q.setLoaiSanh(s.getLoaiSanh());
+            q.setTenSanh(s.getTenSanh());
+            
+            session.saveOrUpdate(q);
+            trans.commit();
+        } catch (Exception ex) {
+            if (trans != null) {
+                trans.rollback();
+            }
+            System.err.print(ex.getMessage());
+            return false;
+        } finally {
+            session.close();
+        }
+        return true;
+
+    }
+    
+
+    public static boolean ktTrungTenSanh(Sanh s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
 
         try {
 
             Criteria cr = session.createCriteria(Sanh.class);
-           
-            
+
             cr.add(Restrictions.eq("tenSanh", s.getTenSanh()));
-            List <Sanh> ls = cr.list();
-            if(ls.isEmpty())
+            List<Sanh> ls = cr.list();
+            if (ls.isEmpty()) {
                 return true;
-            else 
+            } else {
                 return false;
+            }
         } catch (Exception ex) {
             System.err.print(ex.getMessage());
             session.getTransaction().rollback();

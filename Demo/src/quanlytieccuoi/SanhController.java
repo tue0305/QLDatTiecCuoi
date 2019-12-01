@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -83,7 +80,7 @@ public class SanhController implements Initializable {
     }
 
     public void themSanh(ActionEvent event) throws IOException {
-        addPane.setVisible(false);
+
         tbSanh.getSelectionModel().clearSelection();
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
@@ -98,7 +95,7 @@ public class SanhController implements Initializable {
                         cbSanh.getSelectionModel().getSelectedItem().toString(), txtNote.getText());
 
                 if (Utils.ktTrungTenSanh(s)) {
-                    if (Utils.addOrUpdateSanh(s)) {
+                    if (Utils.addSanh(s)) {
                         Alert b = Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION);
                         b.show();
                         this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
@@ -120,10 +117,11 @@ public class SanhController implements Initializable {
 
     public void suaSanh(ActionEvent event) throws IOException {
         Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
-        if (s == null) {
+        if (tbSanh.getSelectionModel().getSelectedItem() == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR);
             b.show();
         } else if (!addPane.isVisible()) {
+
             addPane.setVisible(true);
             txtTenSanh.setText(s.getTenSanh());
             txtNote.setText(s.getGhiChu());
@@ -132,13 +130,17 @@ public class SanhController implements Initializable {
             Alert b = Utils.getAlertTC("Hãy điền thông tin sảnh cần sửa!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
+
             if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty()) {
                 Alert b = Utils.getAlertTC("Bắt buộc điền tên sảnh và giá sảnh!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
-                s = new Sanh(txtTenSanh.getText(), BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())),
-                        cbSanh.getSelectionModel().getSelectedItem().toString(), txtNote.getText());
-                if (cbSanh.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdateSanh(s) == true) {
+
+                s.setTenSanh(txtTenSanh.getText());
+                s.setLoaiSanh(cbSanh.getSelectionModel().getSelectedItem().toString());
+                s.setGia(BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())));
+                s.setGhiChu(txtNote.getText());
+                if (cbSanh.getSelectionModel().getSelectedItem() != null && Utils.UpdateSanh(s) == true) {
                     Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
                     b.show();
                     addPane.setVisible(false);
@@ -162,7 +164,7 @@ public class SanhController implements Initializable {
 
     public void xoaSanh(ActionEvent event) throws IOException {
         Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
-        addPane.setVisible(false);
+        
         if (s == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
             b.show();
