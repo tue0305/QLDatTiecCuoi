@@ -39,7 +39,7 @@
                   </HBox>
                </children>
             </HBox>
-            <VBox prefHeight="266.0" prefWidth="893.0">
+            <VBox prefHeight="266.0" prefWidth="893.0" style="-fx-background-color: #393351;">
                <children>
                   <GridPane prefHeight="277.0" prefWidth="893.0">
                      <columnConstraints>

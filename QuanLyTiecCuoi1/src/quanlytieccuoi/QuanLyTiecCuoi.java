@@ -24,7 +24,7 @@ public class QuanLyTiecCuoi extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        stage.initStyle(StageStyle.TRANSPARENT);
+       // stage.initStyle(StageStyle.TRANSPARENT);
          //Lay Vi tri 
              root.setOnMousePressed((MouseEvent event) -> {
                  xOffset = event.getSceneX();
@@ -38,7 +38,7 @@ public class QuanLyTiecCuoi extends Application {
         });
         Scene scene = new Scene(root);
          //set transparent
-        scene.setFill(Color.TRANSPARENT);
+        //scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

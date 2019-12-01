@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `qltieccuoi` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `qltieccuoi`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: qltieccuoi
@@ -30,19 +32,17 @@ CREATE TABLE `booking` (
   `NgayDat` date NOT NULL,
   `NgayThanhToan` date DEFAULT NULL,
   `Price` decimal(11,2) NOT NULL,
-  `Ca` char(1) COLLATE utf8_unicode_ci NOT NULL,
-  `GhiChu` text COLLATE utf8_unicode_ci,
-  `MaNV` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `MaKH` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `Ca` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `GhiChu` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `MaNV` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaKH` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaBooking`),
-  KEY `fk_booking_menu_idx` (`MaMenu`),
-  KEY `fk_booking_sanh_idx` (`MaSanh`),
-  KEY `fk_booking_dichvu_idx` (`MaDV`),
   KEY `fk_booking_nhanvien` (`MaNV`),
   KEY `fk_booking_khachhang` (`MaKH`),
+  KEY `fk_booking_sanh_idx` (`MaSanh`),
+  KEY `fk_booking_dichvu_idx` (`MaDV`),
   CONSTRAINT `fk_booking_dichvu` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`),
   CONSTRAINT `fk_booking_khachhang` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
-  CONSTRAINT `fk_booking_menu` FOREIGN KEY (`MaMenu`) REFERENCES `menu` (`MaMenu`),
   CONSTRAINT `fk_booking_nhanvien` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`),
   CONSTRAINT `fk_booking_sanh` FOREIGN KEY (`MaSanh`) REFERENCES `sanh` (`MaSanh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -65,7 +65,7 @@ DROP TABLE IF EXISTS `dichvu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dichvu` (
-  `MaDV` int(5) NOT NULL,
+  `MaDV` int(5) NOT NULL AUTO_INCREMENT,
   `MC` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `CaSi` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `BanhKem` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -90,7 +90,7 @@ DROP TABLE IF EXISTS `khachhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `khachhang` (
-  `MaKH` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MaKH` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `TenKH` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `SDT` int(11) NOT NULL,
   PRIMARY KEY (`MaKH`)
@@ -114,7 +114,7 @@ DROP TABLE IF EXISTS `menu`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menu` (
-  `MaMenu` int(5) NOT NULL,
+  `MaMenu` int(5) NOT NULL AUTO_INCREMENT,
   `Price` decimal(11,2) NOT NULL,
   `NgayTao` date DEFAULT NULL,
   PRIMARY KEY (`MaMenu`)
@@ -164,7 +164,7 @@ DROP TABLE IF EXISTS `monan_menu`;
 CREATE TABLE `monan_menu` (
   `MaMA` int(10) NOT NULL,
   `MaMenu` int(5) NOT NULL,
-  `SoLuong` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `SoLuong` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaMA`,`MaMenu`),
   KEY `fk_monan_menu_idx` (`MaMenu`),
   CONSTRAINT `fk_menu_monan` FOREIGN KEY (`MaMA`) REFERENCES `monan` (`MaMA`),
@@ -189,11 +189,11 @@ DROP TABLE IF EXISTS `nhanvien`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nhanvien` (
-  `MaNV` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MaNV` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ChucVu` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `TenNV` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `UserName` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `Password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `UserName` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaNV`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,6 +204,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
+INSERT INTO `nhanvien` VALUES ('fdsfdsf568','Admin','Nguyễn Văn A','tue123','123456');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,13 +216,13 @@ DROP TABLE IF EXISTS `sanh`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sanh` (
-  `MaSanh` int(5) NOT NULL,
+  `MaSanh` int(5) NOT NULL AUTO_INCREMENT,
   `TenSanh` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `Gia` decimal(11,2) NOT NULL,
-  `LoaiSanh` enum('A','B','C','D','E') COLLATE utf8_unicode_ci NOT NULL,
-  `GhiChu` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `LoaiSanh` enum('A','B','C','D','E') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `GhiChu` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`MaSanh`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,6 +231,7 @@ CREATE TABLE `sanh` (
 
 LOCK TABLES `sanh` WRITE;
 /*!40000 ALTER TABLE `sanh` DISABLE KEYS */;
+INSERT INTO `sanh` VALUES (1,'Diamond',50000.00,'D','dsaffsa');
 /*!40000 ALTER TABLE `sanh` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -242,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-05 17:27:33
+-- Dump completed on 2019-12-01 10:41:09

@@ -31,7 +31,8 @@
                   <Label text="Đăng nhập" textFill="#234a11">
                      <HBox.margin>
                         <Insets top="5.0" />
-                     </HBox.margin></Label>
+                     </HBox.margin>
+                  </Label>
                </children>
             </HBox>
             <GridPane prefHeight="170.0" prefWidth="460.0" styleClass="dangnnhap">
@@ -57,15 +58,11 @@
                   <ToggleButton mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showPW" prefHeight="31.0" prefWidth="156.0" text="Hiển thị mật khẩu" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                      <opaqueInsets>
                         <Insets />
-                     </opaqueInsets></ToggleButton>
+                     </opaqueInsets>
+                  </ToggleButton>
                </children>
             </GridPane>
-            <HBox alignment="CENTER" prefHeight="28.0" prefWidth="460.0" style="-fx-spacing: 10;">
-               <padding>
-                  <Insets right="40.0" />
-               </padding>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="login">
+            <HBox prefHeight="112.0" prefWidth="460.0" styleClass="login">
                <children>
                   <Button mnemonicParsing="false" onAction="#Login" styleClass="button4" text="Đăng nhập">
                      <graphic>

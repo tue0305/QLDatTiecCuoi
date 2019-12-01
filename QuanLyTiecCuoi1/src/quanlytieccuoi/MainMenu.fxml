@@ -17,9 +17,9 @@
    <children>
       <BorderPane prefHeight="592.0" prefWidth="890.0">
          <left>
-            <Pane prefHeight="559.0" prefWidth="232.0" style="-fx-background-color: #393351;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="612.0" prefWidth="232.0" style="-fx-background-color: #393351;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane layoutX="-3.0" layoutY="50.0" prefHeight="53.0" prefWidth="238.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                  <Pane layoutX="-3.0" layoutY="50.0" prefHeight="53.0" prefWidth="237.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
                      <children>
                         <Label layoutX="14.0" layoutY="8.0" text="Quản Lý" textFill="WHITE">
                            <font>
@@ -28,7 +28,19 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="14.0" layoutY="126.0" prefHeight="51.0" prefWidth="219.0" />
+                  <Button alignment="BASELINE_LEFT" layoutY="117.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="233.0" styleClass="button1" text="NAME user" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="39.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../FXML/images/boy.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="-11.0" layoutY="556.0" mnemonicParsing="false" onAction="#ActionSignOut" opacity="0.47" prefHeight="38.0" prefWidth="114.0" styleClass="button2" text="Sigout" textFill="WHITE">
+                     <font>
+                        <Font size="21.0" />
+                     </font></Button>
                </children>
             </Pane>
          </left>
@@ -37,8 +49,8 @@
                <children>
                   <Pane layoutX="53.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionDatSanh" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionDatSanh" onZoomStarted="#ActionQLSanh" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseDatSanh" radius="50.0" strokeType="INSIDE">
                            <stroke>
                               <LinearGradient endX="1.0" endY="1.0">
                                  <stops>
@@ -173,7 +185,7 @@
                   </Pane>
                   <Pane layoutX="458.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLDichVu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
                         <Circle layoutX="78.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
                            <stroke>
                               <LinearGradient endX="1.0" endY="1.0">

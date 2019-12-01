@@ -17,6 +17,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -26,6 +28,8 @@ import javafx.stage.Stage;
  */
 public class MainMenuController implements Initializable {
 
+     @FXML
+    private Button btNameUer;
     /**
      * Initializes the controller class.
      */
@@ -34,12 +38,18 @@ public class MainMenuController implements Initializable {
         // TODO
 
     }
+    
+//     public void setNameUser(){
+//   
+//         btNameUer.setText();
+//         
+//     }
 
-    public void ActionExit(ActionEvent event) {
-        Platform.exit();
-        System.exit(0);
-
-    }
+//    public void ActionExit(ActionEvent event) {
+//        Platform.exit();
+//        System.exit(0);
+//
+//    }
 
     @FXML
     private void ActionSignOut(javafx.event.ActionEvent event) throws IOException {
@@ -87,5 +97,25 @@ public class MainMenuController implements Initializable {
         Utils.switchStage(sce, event);
 
     }
+    
+    @FXML
+    private void ActionQLDichVu(javafx.event.ActionEvent event) throws IOException {
 
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DichVu.fxml")));
+        Utils.switchStage(sce, event);
+
+    }
+  
+    @FXML
+    private void ActionMouseDatSanh(MouseEvent event) throws IOException {
+        
+            Parent blah = FXMLLoader.load(getClass().getResource("DatSanh.fxml"));
+               Scene scene = new Scene(blah);
+               Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+               appStage.hide();
+               appStage.setScene(scene);
+               appStage.show();
+      
+
+    }
 }
