@@ -39,18 +39,17 @@ public class Monan implements Serializable {
     @Basic(optional = false)
     @Column(name = "Price")
     private BigDecimal price;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "monan")
-    private List<MonanMenu> monanMenuList;
+    @Column(name = "GhiChu")
+    private String ghiChu;
+   
 
     public Monan() {
     }
 
-    public Monan(Integer maMA) {
-        this.maMA = maMA;
-    }
+    
 
-    public Monan(Integer maMA, String tenMA, BigDecimal price) {
-        this.maMA = maMA;
+    public Monan( String tenMA, BigDecimal price, String ghiChu) {
+        this.ghiChu = ghiChu;
         this.tenMA = tenMA;
         this.price = price;
     }
@@ -59,10 +58,7 @@ public class Monan implements Serializable {
         return maMA;
     }
 
-    public void setMaMA(Integer maMA) {
-        this.maMA = maMA;
-    }
-
+    
     public String getTenMA() {
         return tenMA;
     }
@@ -79,14 +75,7 @@ public class Monan implements Serializable {
         this.price = price;
     }
 
-    @XmlTransient
-    public List<MonanMenu> getMonanMenuList() {
-        return monanMenuList;
-    }
-
-    public void setMonanMenuList(List<MonanMenu> monanMenuList) {
-        this.monanMenuList = monanMenuList;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -111,6 +100,20 @@ public class Monan implements Serializable {
     @Override
     public String toString() {
         return "POJO.Monan[ maMA=" + maMA + " ]";
+    }
+
+    /**
+     * @return the ghiChu
+     */
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    /**
+     * @param ghiChu the ghiChu to set
+     */
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
     }
     
 }

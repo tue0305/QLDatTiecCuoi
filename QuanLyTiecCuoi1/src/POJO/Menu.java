@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,8 +42,10 @@ public class Menu implements Serializable {
     private Date ngayTao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "maMenu")
     private List<Booking> bookingList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "menu")
-    private List<MonanMenu> monanMenuList;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "monan_menu", joinColumns = {@JoinColumn(name = "MaMenu")},
+            inverseJoinColumns = {@JoinColumn(name = "MaMA")} )
+    private Set<Monan> monanMenuList;
 
     public Menu() {
     }
@@ -89,14 +92,7 @@ public class Menu implements Serializable {
         this.bookingList = bookingList;
     }
 
-    @XmlTransient
-    public List<MonanMenu> getMonanMenuList() {
-        return monanMenuList;
-    }
-
-    public void setMonanMenuList(List<MonanMenu> monanMenuList) {
-        this.monanMenuList = monanMenuList;
-    }
+    
 
     @Override
     public int hashCode() {
@@ -122,5 +118,24 @@ public class Menu implements Serializable {
     public String toString() {
         return "POJO.Menu[ maMenu=" + maMenu + " ]";
     }
+
+    /**
+     * @return the monanMenuList
+     */
+    public Set<Monan> getMonanMenuList() {
+        return monanMenuList;
+    }
+
+    /**
+     * @param monanMenuList the monanMenuList to set
+     */
+    public void setMonanMenuList(Set<Monan> monanMenuList) {
+        this.monanMenuList = monanMenuList;
+    }
+
+    /**
+     * @return the monanMenuList
+     */
+    
     
 }

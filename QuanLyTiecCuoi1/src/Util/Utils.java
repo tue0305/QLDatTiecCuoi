@@ -18,9 +18,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import org.hibernate.Criteria;
+ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
@@ -30,17 +31,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class Utils {
 
-    public static List<Monan> getMonAn() {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-
-        Criteria cr = session.createCriteria(Monan.class);
-        List<Monan> MonAns = cr.list();
-
-        session.close();
-
-        return MonAns;
-    }
+   
 //Hàm kiểm tra đăng nhập
 
     public static Boolean KiemtraTKandMK(String u, String p) {
@@ -97,6 +88,18 @@ public class Utils {
 
     }
     
+     public static List<Monan> getMonAn() {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Monan.class);
+        List<Monan> MonAn = cr.list();
+
+        session.close();
+
+        return MonAn;
+    }
+
     public static List<Sanh> getSanh() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -109,7 +112,7 @@ public class Utils {
         return sanh;
     }
 
-    public static boolean deleteSanh(Sanh s) {
+    public static boolean deleteObject(Object s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         try {
@@ -127,44 +130,75 @@ public class Utils {
         }
     }
 
-    public static boolean addOrUpdateSanh(Sanh s) {
+    
+    public static boolean addOrUpdate(Object o)
+    {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
+        Transaction trans = null;
         try {
-
-            session.beginTransaction();
-
-            session.saveOrUpdate(s);
-            session.getTransaction().commit();
-             session.close();
-            return true;
+            
+            trans = session.beginTransaction();
+            session.saveOrUpdate(o);
+            trans.commit();
         } catch (Exception ex) {
+            if (trans != null) {
+                trans.rollback();
+            }
             System.err.print(ex.getMessage());
-            session.getTransaction().rollback();
             return false;
+        } finally {
+            session.close();
         }
+        return true;
     }
+    
 
-    public static Boolean ktTrungTenSanh(Sanh s) {
+    public static boolean ktTrungTenSanh(Sanh s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
-
+        
         try {
 
             Criteria cr = session.createCriteria(Sanh.class);
-           
-            
+
             cr.add(Restrictions.eq("tenSanh", s.getTenSanh()));
-            List <Sanh> ls = cr.list();
-            if(ls.isEmpty())
+            List<Sanh> ls = cr.list();
+            if (ls.isEmpty()) {
                 return true;
-            else 
+            } else {
                 return false;
+            }
         } catch (Exception ex) {
             System.err.print(ex.getMessage());
             session.getTransaction().rollback();
             return false;
         }
+        
     }
+    
+    public static boolean ktTrungTenMonAn(Monan s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        
+        try {
 
+            Criteria cr = session.createCriteria(Monan.class);
+
+            cr.add(Restrictions.eq("tenMA", s.getTenMA()));
+            List<Monan> ls = cr.list();
+            if (ls.isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+            session.getTransaction().rollback();
+            return false;
+        }
+        
+    }
+    
+    
 }
