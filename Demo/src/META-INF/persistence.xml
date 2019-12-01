@@ -8,7 +8,6 @@
     <class>POJO.Nhanvien</class>
     <class>POJO.Monan</class>
     <class>POJO.Dichvu</class>
-    <class>POJO.MonanMenu</class>
     <class>POJO.Menu</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/qltieccuoi?zeroDateTimeBehavior=convertToNull"/>

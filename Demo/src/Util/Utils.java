@@ -31,17 +31,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class Utils {
 
-    public static List<Monan> getMonAn() {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-
-        Criteria cr = session.createCriteria(Monan.class);
-        List<Monan> MonAns = cr.list();
-
-        session.close();
-
-        return MonAns;
-    }
+   
 //Hàm kiểm tra đăng nhập
 
     public static Boolean KiemtraTKandMK(String u, String p) {
@@ -97,6 +87,18 @@ public class Utils {
         }
 
     }
+    
+     public static List<Monan> getMonAn() {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Monan.class);
+        List<Monan> MonAn = cr.list();
+
+        session.close();
+
+        return MonAn;
+    }
 
     public static List<Sanh> getSanh() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -110,7 +112,7 @@ public class Utils {
         return sanh;
     }
 
-    public static boolean deleteSanh(Sanh s) {
+    public static boolean deleteObject(Object s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         try {
@@ -128,15 +130,16 @@ public class Utils {
         }
     }
 
-    public static boolean addSanh(Sanh s) {
+    
+    public static boolean addOrUpdate(Object o)
+    {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction trans = null;
         try {
-
+            
             trans = session.beginTransaction();
-
-            session.save(s);
+            session.saveOrUpdate(o);
             trans.commit();
         } catch (Exception ex) {
             if (trans != null) {
@@ -148,41 +151,13 @@ public class Utils {
             session.close();
         }
         return true;
-
-    }
-    public static boolean UpdateSanh(Sanh s) {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
-        Session session = factory.openSession();
-        Transaction trans = null;
-        try {
-            
-            trans = session.beginTransaction();
-            Sanh q = (Sanh) session.get(Sanh.class, s.getMaSanh());
-            q.setGhiChu(s.getGhiChu());
-            q.setGia(s.getGia());
-            q.setLoaiSanh(s.getLoaiSanh());
-            q.setTenSanh(s.getTenSanh());
-            
-            session.saveOrUpdate(q);
-            trans.commit();
-        } catch (Exception ex) {
-            if (trans != null) {
-                trans.rollback();
-            }
-            System.err.print(ex.getMessage());
-            return false;
-        } finally {
-            session.close();
-        }
-        return true;
-
     }
     
 
     public static boolean ktTrungTenSanh(Sanh s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
-
+        
         try {
 
             Criteria cr = session.createCriteria(Sanh.class);
@@ -199,6 +174,31 @@ public class Utils {
             session.getTransaction().rollback();
             return false;
         }
+        
     }
+    
+    public static boolean ktTrungTenMonAn(Monan s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        
+        try {
 
+            Criteria cr = session.createCriteria(Monan.class);
+
+            cr.add(Restrictions.eq("tenMA", s.getTenMA()));
+            List<Monan> ls = cr.list();
+            if (ls.isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+            session.getTransaction().rollback();
+            return false;
+        }
+        
+    }
+    
+    
 }
