@@ -26,7 +26,7 @@ public class HibernateUtil {
 //        configure.addAnnotatedClass(Khachhang.class);
 //        
         configure.addAnnotatedClass(Sanh.class);
-//        configure.addAnnotatedClass(Dichvu.class);
+        configure.addAnnotatedClass(Dichvu.class);
         configure.addAnnotatedClass(Monan.class);
 //        configure.addAnnotatedClass(Menu.class);
 

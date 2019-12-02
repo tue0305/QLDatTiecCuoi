@@ -50,9 +50,7 @@ public class Sanh implements Serializable {
     public Sanh() {
     }
 
-    public Sanh(Integer maSanh) {
-        this.maSanh = maSanh;
-    }
+    
 
     public Sanh( String tenSanh , BigDecimal gia, String loaiSanh) {
         

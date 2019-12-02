@@ -40,9 +40,11 @@ CREATE TABLE `booking` (
   KEY `fk_booking_nhanvien` (`MaNV`),
   KEY `fk_booking_khachhang` (`MaKH`),
   KEY `fk_booking_sanh_idx` (`MaSanh`),
+  KEY `fk_booking_menu_idx` (`MaMenu`),
   KEY `fk_booking_dichvu_idx` (`MaDV`),
   CONSTRAINT `fk_booking_dichvu` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`),
   CONSTRAINT `fk_booking_khachhang` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
+  CONSTRAINT `fk_booking_menu` FOREIGN KEY (`MaMenu`) REFERENCES `menu` (`MaMenu`),
   CONSTRAINT `fk_booking_nhanvien` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`),
   CONSTRAINT `fk_booking_sanh` FOREIGN KEY (`MaSanh`) REFERENCES `sanh` (`MaSanh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -66,11 +68,12 @@ DROP TABLE IF EXISTS `dichvu`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dichvu` (
   `MaDV` int(5) NOT NULL AUTO_INCREMENT,
-  `MC` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `CaSi` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `BanhKem` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `TenDV` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `Gia` decimal(11,2) DEFAULT NULL,
+  `LoaiDV` enum('Ca sĩ','MC','Bánh kem') COLLATE utf8_unicode_ci NOT NULL,
+  `GhiChu` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`MaDV`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -117,6 +120,7 @@ CREATE TABLE `menu` (
   `MaMenu` int(5) NOT NULL AUTO_INCREMENT,
   `Price` decimal(11,2) NOT NULL,
   `NgayTao` date DEFAULT NULL,
+  `TenMenu` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`MaMenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -141,8 +145,9 @@ CREATE TABLE `monan` (
   `MaMA` int(10) NOT NULL AUTO_INCREMENT,
   `TenMA` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Price` decimal(11,2) NOT NULL,
+  `GhiChu` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`MaMA`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,6 +156,7 @@ CREATE TABLE `monan` (
 
 LOCK TABLES `monan` WRITE;
 /*!40000 ALTER TABLE `monan` DISABLE KEYS */;
+INSERT INTO `monan` VALUES (4,'Diaa',6000.00,'1000');
 /*!40000 ALTER TABLE `monan` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +172,7 @@ CREATE TABLE `monan_menu` (
   `MaMenu` int(5) NOT NULL,
   `SoLuong` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaMA`,`MaMenu`),
-  KEY `fk_monan_menu_idx` (`MaMenu`),
+  KEY `fk-monan_menu_idx` (`MaMenu`),
   CONSTRAINT `fk_menu_monan` FOREIGN KEY (`MaMA`) REFERENCES `monan` (`MaMA`),
   CONSTRAINT `fk_monan_menu` FOREIGN KEY (`MaMenu`) REFERENCES `menu` (`MaMenu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -222,7 +228,7 @@ CREATE TABLE `sanh` (
   `LoaiSanh` enum('A','B','C','D','E') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `GhiChu` longtext COLLATE utf8_unicode_ci,
   PRIMARY KEY (`MaSanh`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +237,7 @@ CREATE TABLE `sanh` (
 
 LOCK TABLES `sanh` WRITE;
 /*!40000 ALTER TABLE `sanh` DISABLE KEYS */;
-INSERT INTO `sanh` VALUES (1,'Diamond',50000.00,'D','dsaffsa');
+INSERT INTO `sanh` VALUES (1,'A',50000.00,'D','dsaffsa'),(5,'LOL',30000.00,'B','12323'),(6,'sdasds',6000.00,'D','dsdsads');
 /*!40000 ALTER TABLE `sanh` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -244,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-01 10:41:09
+-- Dump completed on 2019-12-02 22:21:52

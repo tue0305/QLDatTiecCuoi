@@ -41,14 +41,17 @@ public class Monan implements Serializable {
     private BigDecimal price;
     @Column(name = "GhiChu")
     private String ghiChu;
-   
 
     public Monan() {
     }
 
-    
+    public Monan(String tenMA, BigDecimal price) {
 
-    public Monan( String tenMA, BigDecimal price, String ghiChu) {
+        this.tenMA = tenMA;
+        this.price = price;
+    }
+
+    public Monan(String tenMA, BigDecimal price, String ghiChu) {
         this.ghiChu = ghiChu;
         this.tenMA = tenMA;
         this.price = price;
@@ -58,7 +61,6 @@ public class Monan implements Serializable {
         return maMA;
     }
 
-    
     public String getTenMA() {
         return tenMA;
     }
@@ -75,31 +77,9 @@ public class Monan implements Serializable {
         this.price = price;
     }
 
-    
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (maMA != null ? maMA.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Monan)) {
-            return false;
-        }
-        Monan other = (Monan) object;
-        if ((this.maMA == null && other.maMA != null) || (this.maMA != null && !this.maMA.equals(other.maMA))) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
-        return "POJO.Monan[ maMA=" + maMA + " ]";
+        return this.getTenMA();
     }
 
     /**
@@ -115,5 +95,5 @@ public class Monan implements Serializable {
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
-    
+
 }
