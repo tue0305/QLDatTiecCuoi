@@ -85,6 +85,24 @@ public class Utils {
 
     }
     
+//    
+//       public static void switchStageWithC(Scene sce, ActionEvent e) {
+//        try {
+//            Node source = (Node) e.getSource();
+//            Stage stage = (Stage) source.getScene().getWindow();
+//            stage.close();
+//
+//            stage.hide();
+//            stage.setScene(sce);
+//            stage.show();
+//
+//        } catch (Exception ex) {
+//            System.err.print(ex.getMessage());
+//        }
+//
+//    }
+    
+    
      public static List<Monan> getMonAn() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();

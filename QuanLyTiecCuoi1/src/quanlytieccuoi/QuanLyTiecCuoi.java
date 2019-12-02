@@ -1,4 +1,5 @@
 
+
 package quanlytieccuoi;
 
 import javafx.application.Application;
@@ -24,10 +25,8 @@ public class QuanLyTiecCuoi extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        stage.initStyle(StageStyle.TRANSPARENT);
-
+        Parent root = FXMLLoader.load(getClass().getResource("TEsst.fxml"));
+       // stage.initStyle(StageStyle.TRANSPARENT);
 
          //Lay Vi tri 
              root.setOnMousePressed((MouseEvent event) -> {
@@ -55,4 +54,5 @@ public class QuanLyTiecCuoi extends Application {
         launch(args);
     }
    
+
 }

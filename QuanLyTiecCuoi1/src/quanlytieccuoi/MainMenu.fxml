@@ -7,19 +7,18 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="980.0" style="-fx-background-color: #2F2B43;" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.MainMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="980.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.MainMenuController">
    <children>
-      <BorderPane prefHeight="592.0" prefWidth="890.0">
+      <BorderPane prefHeight="641.0" prefWidth="980.0">
          <left>
-            <Pane prefHeight="612.0" prefWidth="232.0" style="-fx-background-color: #393351;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="631.0" prefWidth="232.0" style="-fx-background-color: #FC95BB;" BorderPane.alignment="CENTER">
                <children>
-                  <Pane layoutX="-3.0" layoutY="50.0" prefHeight="53.0" prefWidth="237.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                  <Pane layoutX="-3.0" layoutY="50.0" prefHeight="53.0" prefWidth="237.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
                      <children>
                         <Label layoutX="14.0" layoutY="8.0" text="Quản Lý" textFill="WHITE">
                            <font>
@@ -37,9 +36,9 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="TOP_LEFT" layoutX="-11.0" layoutY="556.0" mnemonicParsing="false" onAction="#ActionSignOut" opacity="0.47" prefHeight="38.0" prefWidth="114.0" styleClass="button2" text="Sigout" textFill="WHITE">
+                  <Button alignment="CENTER" layoutX="-52.0" layoutY="570.0" mnemonicParsing="false" onAction="#ActionSignOut" opacity="0.67" prefHeight="45.0" prefWidth="213.0" styleClass="button2" text="Đăng Xuất!">
                      <font>
-                        <Font size="21.0" />
+                        <Font size="18.0" />
                      </font></Button>
                </children>
             </Pane>
@@ -47,24 +46,21 @@
          <center>
             <Pane prefHeight="559.0" prefWidth="707.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane layoutX="53.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0">
+                  <ImageView fitHeight="503.0" fitWidth="503.0" layoutX="245.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../FXML/images/—Pngtree—vector%20watercolor%20japanese%20cherry%20blossoms_3094823.png" />
+                     </image>
+                  </ImageView>
+                  <Pane layoutX="53.0" layoutY="75.0" onMouseClicked="#ActionMouseDatSanh" prefHeight="165.0" prefWidth="154.0">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionDatSanh" onZoomStarted="#ActionQLSanh" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseDatSanh" radius="50.0" strokeType="INSIDE">
-                           <stroke>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="WHITE" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </stroke>
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onZoomStarted="#ActionQLSanh" opacity="0.7" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
-                              <RadialGradient centerX="0.48863636363636365" centerY="0.48058252427184467" radius="0.5">
+                              <RadialGradient centerX="0.48863636363636365" centerY="0.44660194174757284" radius="0.5">
                                  <stops>
                                     <Stop color="WHITE" />
-                                    <Stop color="#ebebeb" offset="0.4934640522875817" />
-                                    <Stop color="#dada58" offset="1.0" />
+                                    <Stop color="WHITE" offset="0.25" />
+                                    <Stop color="#ffff54" offset="1.0" />
                                  </stops>
                               </RadialGradient>
                            </fill>
@@ -84,15 +80,7 @@
                   <Pane layoutX="259.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
                         <Button layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionTraCuu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
-                           <stroke>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="WHITE" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </stroke>
+                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                                  <stops>
@@ -118,15 +106,7 @@
                   <Pane layoutX="53.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
                         <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionBaoCao" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
-                           <stroke>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="BLACK" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </stroke>
+                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
                                  <stops>
@@ -151,16 +131,8 @@
                   </Pane>
                   <Pane layoutX="259.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLSanh" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
-                           <stroke>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="#a43737" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </stroke>
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLSanh" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" textFill="WHITE" />
+                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
                                  <stops>
@@ -185,16 +157,8 @@
                   </Pane>
                   <Pane layoutX="458.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLDichVu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="78.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
-                           <stroke>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="#463232" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </stroke>
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Circle layoutX="78.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.48863636363636365" centerY="0.48058252427184467" radius="0.5">
                                  <stops>
@@ -220,15 +184,7 @@
                   <Pane layoutX="458.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0">
                      <children>
                         <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionThanhToan" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" strokeType="INSIDE">
-                           <stroke>
-                              <LinearGradient endX="1.0" endY="1.0">
-                                 <stops>
-                                    <Stop color="BLACK" />
-                                    <Stop color="#363636" offset="1.0" />
-                                 </stops>
-                              </LinearGradient>
-                           </stroke>
+                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
                                  <stops>
@@ -251,7 +207,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="-172.0" layoutY="-118.0" prefHeight="146.0" prefWidth="867.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
+                  <Pane layoutX="-172.0" layoutY="-118.0" prefHeight="146.0" prefWidth="867.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 70;" />
                </children>
             </Pane>
          </center>
