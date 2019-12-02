@@ -8,16 +8,16 @@
 
 VBox {
     
-    -fx-background-color:  pink;
+    -fx-background-color:  #FFD5DC  ;
 }
 Label {
-    -fx-text-fill: white;
+    -fx-text-fill:   #000000;
     
 }
 Label.title {
     
   -fx-text-fill: orangered;
-  
+ 
   -fx-font-size: 40;
 
   -fx-font-weight: bold;
@@ -41,7 +41,7 @@ GridPane > Label  {
 }
 RadioButton {
     
-  
+   -fx-text-fill: black;
     -fx-padding: 10;
     
 }
@@ -79,37 +79,54 @@ Label.H1{
     -fx-font-weight: bold;
 }
 Button.button4{
-    -fx-background-color :linear-gradient(to top left, #7256BE, #D4CEE3);
+    -fx-background-color :linear-gradient(to top left, #FC95BB, #FFFFFF);
     -fx-background-radius :  30 30 30 30;
 }
 Button.button4:hover {
-    -fx-background-color :linear-gradient(to top left, #D4CEE3, #7256BE);
+    -fx-background-color :linear-gradient(to top left, #FFFFFF, #FC95BB);
     -fx-background-radius :  30 30 30 30;
 }
 .button4:pressed
 {
-    -fx-background-color :linear-gradient(to top left, #7256BE, #D4CEE3);
+    -fx-background-color :linear-gradient(to top left, #FC95BB, #FFFFFF);
     -fx-background-radius :  30 30 30 30;
 }
 Button.button2{
 
- -fx-background-color: #393351;
+ -fx-background-color:#FC95BB ;
  -fx-background-radius: 20;
 
 }
 .button2:hover{
-    -fx-background-color:  #524A7B;
+    -fx-background-color:  #FFFFFF;
     -fx-background-radius: 20;
+    -fx-text-fill: black;
 }
 .button2:pressed{
-   -fx-background-color : #2F2B43 ;
+   -fx-background-color :  #FC95BB;
+   -fx-background-radius :  20;
+   
+}
+.button3{
+
+ -fx-background-color:#FC95BB ;
+ 
+
+}
+.button3:hover{
+    -fx-background-color:  #F7B3C8;
+    -fx-text-fill: black;
+}
+.button3:pressed{
+   -fx-background-color :  #FC95BB;
    -fx-background-radius :  20;
    
 }
 .button1
 {
--fx-background-color : #393351;
+-fx-background-color :#FFFFFF  ;
 -fx-background-radius :  30 0 0 30;
+-fx-text-fill: #000000; 
 }
 .button1:hover
 {
@@ -126,7 +143,7 @@ Button.button2{
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size : 20;
-    -fx-background-color:   #393351;
+    -fx-background-color:   #FC95BB;
 }
 .table-view .column-header .label{
 
@@ -146,8 +163,4 @@ Button.button2{
  .table-row-cell:selected .text {
         -fx-fill : white ;
 
- }
- RadioButton {
-     
-     -fx-text-fill:  white;
  }
