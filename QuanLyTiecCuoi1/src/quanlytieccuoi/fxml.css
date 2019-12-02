@@ -8,7 +8,7 @@
 
 VBox {
     
-    -fx-background-color:  #2F2B43;
+    -fx-background-color:  pink;
 }
 Label {
     -fx-text-fill: white;
@@ -58,7 +58,9 @@ HBox.login {
     -fx-text-fill: white;
 
 }
+ 
 GridPane.dangnnhap {
+  
     -fx-vgap: 10;
     -fx-hgap: 15;
 }
@@ -77,16 +79,16 @@ Label.H1{
     -fx-font-weight: bold;
 }
 Button.button4{
-    -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
+    -fx-background-color :linear-gradient(to top left, #7256BE, #D4CEE3);
     -fx-background-radius :  30 30 30 30;
 }
 Button.button4:hover {
-    -fx-background-color :linear-gradient(to top left, #D4CEE3, #41951C);
+    -fx-background-color :linear-gradient(to top left, #D4CEE3, #7256BE);
     -fx-background-radius :  30 30 30 30;
 }
 .button4:pressed
 {
-    -fx-background-color :linear-gradient(to top left, #41951C, #D4CEE3);
+    -fx-background-color :linear-gradient(to top left, #7256BE, #D4CEE3);
     -fx-background-radius :  30 30 30 30;
 }
 Button.button2{
@@ -104,3 +106,48 @@ Button.button2{
    -fx-background-radius :  20;
    
 }
+.button1
+{
+-fx-background-color : #393351;
+-fx-background-radius :  30 0 0 30;
+}
+.button1:hover
+{
+-fx-background-color : #524A7B ;
+-fx-background-radius :  30 0 0 30;
+}
+.button1:pressed
+{
+-fx-background-color : #2F2B43 ;
+-fx-background-radius :  30 0 0 30;
+}
+
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color:   #393351;
+}
+.table-view .column-header .label{
+
+   -fx-text-fill: white;
+   -fx-font-weight: bold;
+   -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+   -fx-cell-size: 30;
+  -fx-alignment: center-left;
+  -fx-text-fill: #000000;
+}
+
+.table-row-cell:selected {
+    -fx-background-color:  rgb(127, 172, 243);
+ }
+ .table-row-cell:selected .text {
+        -fx-fill : white ;
+
+ }
+ RadioButton {
+     
+     -fx-text-fill:  white;
+ }
