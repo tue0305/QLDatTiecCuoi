@@ -5,7 +5,7 @@
  */
 package quanlytieccuoi;
 
-import POJO.Monan;
+import POJO.Dichvu;
 import POJO.Sanh;
 import Util.Utils;
 import java.io.IOException;
@@ -33,18 +33,19 @@ import javafx.scene.layout.GridPane;
  *
  * @author cohotech
  */
-public class MonAnController implements Initializable {
+public class DichVuController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @FXML
-    private TableView tbMonAn;
+    private TableView tbDichVu;
     @FXML
-    private TextField txtTenMonAn;
+    private TextField txtTenDV;
     @FXML
-    private TextField txtGiaMonAn;
-
+    private TextField txtGiaDV;
+    @FXML
+    private ComboBox cbLoaiDv;
     @FXML
     private GridPane addPane;
     @FXML
@@ -57,40 +58,46 @@ public class MonAnController implements Initializable {
     }
 
     public void init() {
+// Load danh sách sảnh
+        this.cbLoaiDv.getItems().add("Ca sĩ");
+        this.cbLoaiDv.getItems().add("MC");
+        this.cbLoaiDv.getItems().add("Bánh kem");
 
-        TableColumn clTenMA = new TableColumn("Tên món ăn");
-        clTenMA.setCellValueFactory(new PropertyValueFactory("tenMA"));
-        TableColumn clGiaMA = new TableColumn("Giá");
-        clGiaMA.setCellValueFactory(new PropertyValueFactory("price"));
-
+        TableColumn clTenDV = new TableColumn("Tên dịch vụ");
+        clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
+        TableColumn clLoaiDV = new TableColumn("Loại sảnh");
+        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clPrice = new TableColumn("Giá");
+        clPrice.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbMonAn.getColumns().addAll(clTenMA, clGiaMA, clNote);
-        this.tbMonAn.setItems(FXCollections.observableArrayList(Utils.getMonAn()));
+        this.tbDichVu.getColumns().addAll(clTenDV, clLoaiDV, clPrice, clNote);
+        this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
 // Load form thêm
         addPane.setVisible(false);
     }
 
-    public void themMonAn(ActionEvent event) throws IOException {
+    public void themDV(ActionEvent event) throws IOException {
 
-        tbMonAn.getSelectionModel().clearSelection();
+        tbDichVu.getSelectionModel().clearSelection();
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
-            Alert b = Utils.getAlertTC("Hãy điền thông tin món ăn cần thêm!!!", Alert.AlertType.INFORMATION);
+            Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
-            if (txtTenMonAn.getText().isEmpty() || txtGiaMonAn.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên món ăn và giá món ăn!!!", Alert.AlertType.ERROR);
+            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
+                Alert b = Utils.getAlertTC("Bắt buộc điền tên dịch vụ và giá!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
-                Monan s = new Monan(txtTenMonAn.getText(), BigDecimal.valueOf(Double.parseDouble(txtGiaMonAn.getText())), txtNote.getText());
+                Dichvu s = new Dichvu(txtTenDV.getText(),  cbLoaiDv.getSelectionModel().getSelectedItem().toString(),
+                        BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())),txtNote.getText());
 
-                if (Utils.ktTrungTenMonAn(s)) {
+                if (Utils.ktTrungTenDichvu(s)) {
                     if (Utils.addOrUpdate(s)) {
                         Alert b = Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION);
                         b.show();
-                        this.tbMonAn.setItems(FXCollections.observableArrayList(Utils.getMonAn()));
+                        this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
                         addPane.setVisible(false);
                     } else {
                         Alert b = Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR);
@@ -98,7 +105,7 @@ public class MonAnController implements Initializable {
                     }
 
                 } else {
-                    Alert b = Utils.getAlertTC("Tên món ăn đã có!!!", Alert.AlertType.ERROR);
+                    Alert b = Utils.getAlertTC("Tên dịch vụ đã có!!!", Alert.AlertType.ERROR);
                     b.show();
                 }
 
@@ -107,41 +114,40 @@ public class MonAnController implements Initializable {
 
     }
 
-    public void suaMonAn(ActionEvent event) throws IOException {
-        Monan s = (Monan) tbMonAn.getSelectionModel().getSelectedItem();
-        if (tbMonAn.getSelectionModel().getSelectedItem() == null) {
+    public void suaDV(ActionEvent event) throws IOException {
+        Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
+        if (tbDichVu.getSelectionModel().getSelectedItem() == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR);
             b.show();
         } else if (!addPane.isVisible()) {
 
             addPane.setVisible(true);
-            txtTenMonAn.setText(s.getTenMA());
+            txtTenDV.setText(s.getTenDV());
             txtNote.setText(s.getGhiChu());
-            
-            txtGiaMonAn.setText(s.getPrice().toString());
-            Alert b = Utils.getAlertTC("Hãy điền thông tin món ăn cần sửa!!!", Alert.AlertType.INFORMATION);
+            cbLoaiDv.getSelectionModel().select(s.getLoaiDV());
+            txtGiaDV.setText(s.getGia().toString());
+            Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần sửa!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
 
-            if (txtTenMonAn.getText().isEmpty() || txtGiaMonAn.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên món ăn và giá món ăn!!!", Alert.AlertType.ERROR);
+            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
+                Alert b = Utils.getAlertTC("Bắt buộc điền tên dịch vụ và giá!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
 
-                s.setTenMA(txtTenMonAn.getText());
-               
-                s.setPrice(BigDecimal.valueOf(Double.parseDouble(txtGiaMonAn.getText())));
+                s.setTenDV(txtTenDV.getText());
+                s.setLoaiDV(cbLoaiDv.getSelectionModel().getSelectedItem().toString());
+                s.setGia(BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())));
                 s.setGhiChu(txtNote.getText());
-                if ( Utils.addOrUpdate(s) == true) {
+                if (cbLoaiDv.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdate(s) == true) {
                     Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
                     b.show();
                     addPane.setVisible(false);
-                    this.tbMonAn.setItems(FXCollections.observableArrayList(Utils.getMonAn()));
+                    this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
                 } else {
                     Alert b = Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR);
                     b.show();
                 }
-                
 
             }
         }
@@ -155,8 +161,8 @@ public class MonAnController implements Initializable {
 
     }
 
-    public void xoaMonAn(ActionEvent event) throws IOException {
-        Monan s = (Monan) tbMonAn.getSelectionModel().getSelectedItem();
+    public void xoaSanh(ActionEvent event) throws IOException {
+        Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
 
         if (s == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
@@ -173,12 +179,12 @@ public class MonAnController implements Initializable {
 
                         Alert b = Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION);
                         b.show();
-                        this.tbMonAn.setItems(FXCollections.observableArrayList(Utils.getMonAn()));
+
                     } else {
                         Alert b = Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION);
                         a.show();
                     }
-                    
+                    this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
 
                 } else if (rs == ButtonType.NO) {
                     return;
@@ -186,4 +192,5 @@ public class MonAnController implements Initializable {
             });
         }
     }
+
 }

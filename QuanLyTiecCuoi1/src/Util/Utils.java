@@ -5,16 +5,13 @@
  */
 package Util;
 
+import POJO.Dichvu;
 import POJO.Monan;
 import POJO.Nhanvien;
 import POJO.Sanh;
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
-import java.lang.Class;
 import java.util.List;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
@@ -111,11 +108,11 @@ public class Utils {
         Session session = factory.openSession();
 
         Criteria cr = session.createCriteria(Monan.class);
-        List<Monan> MonAn = cr.list();
+        List<Monan> ls = cr.list();
 
         session.close();
 
-        return MonAn;
+        return ls;
     }
 
     public static List<Sanh> getSanh() {
@@ -123,11 +120,23 @@ public class Utils {
         Session session = factory.openSession();
 
         Criteria cr = session.createCriteria(Sanh.class);
-        List<Sanh> sanh = cr.list();
+        List<Sanh> ls = cr.list();
 
         session.close();
 
-        return sanh;
+        return ls;
+    }
+    
+    public static List<Dichvu> getDichVu() {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Dichvu.class);
+        List<Dichvu> ls = cr.list();
+
+        session.close();
+
+        return ls;
     }
 
     public static boolean deleteObject(Object s) {
@@ -182,6 +191,28 @@ public class Utils {
 
             cr.add(Restrictions.eq("tenSanh", s.getTenSanh()));
             List<Sanh> ls = cr.list();
+            if (ls.isEmpty()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+            session.getTransaction().rollback();
+            return false;
+        }
+        
+    }
+    public static boolean ktTrungTenDichvu(Dichvu s) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        
+        try {
+
+            Criteria cr = session.createCriteria(Dichvu.class);
+
+            cr.add(Restrictions.eq("tenDV", s.getTenDV()));
+            List<Dichvu> ls = cr.list();
             if (ls.isEmpty()) {
                 return true;
             } else {

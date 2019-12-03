@@ -1,4 +1,5 @@
 
+
 package quanlytieccuoi;
 
 import javafx.application.Application;
@@ -24,7 +25,9 @@ public class QuanLyTiecCuoi extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("MonAn.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("Sanh.fxml"));
+
        // stage.initStyle(StageStyle.TRANSPARENT);
 
          //Lay Vi tri 
@@ -53,4 +56,5 @@ public class QuanLyTiecCuoi extends Application {
         launch(args);
     }
    
+
 }
