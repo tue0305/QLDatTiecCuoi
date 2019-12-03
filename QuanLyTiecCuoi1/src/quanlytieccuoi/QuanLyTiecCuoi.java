@@ -25,7 +25,9 @@ public class QuanLyTiecCuoi extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+
         Parent root = FXMLLoader.load(getClass().getResource("ThucPham.fxml"));
+
        // stage.initStyle(StageStyle.TRANSPARENT);
 
          //Lay Vi tri 
