@@ -27,8 +27,8 @@ public class HibernateUtil {
 //        
         configure.addAnnotatedClass(Sanh.class);
         configure.addAnnotatedClass(Dichvu.class);
-        configure.addAnnotatedClass(Monan.class);
-//        configure.addAnnotatedClass(Menu.class);
+        configure.addAnnotatedClass(Thucpham.class);
+//       configure.addAnnotatedClass(Menu.class);
 
         StandardServiceRegistryBuilder builder
                 = new StandardServiceRegistryBuilder()

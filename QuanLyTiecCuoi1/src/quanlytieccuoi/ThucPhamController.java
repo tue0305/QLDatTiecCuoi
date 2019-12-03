@@ -7,6 +7,7 @@ package quanlytieccuoi;
 
 import POJO.Dichvu;
 import POJO.Sanh;
+import POJO.Thucpham;
 import Util.Utils;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -33,19 +34,19 @@ import javafx.scene.layout.GridPane;
  *
  * @author cohotech
  */
-public class DichVuController implements Initializable {
+public class ThucPhamController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @FXML
-    private TableView tbDichVu;
+    private TableView tbThucPham;
     @FXML
-    private TextField txtTenDV;
+    private TextField txtTenTP;
     @FXML
-    private TextField txtGiaDV;
+    private TextField txtGia;
     @FXML
-    private ComboBox cbLoaiDv;
+    private ComboBox clLoaiTP;
     @FXML
     private GridPane addPane;
     @FXML
@@ -59,45 +60,46 @@ public class DichVuController implements Initializable {
 
     public void init() {
 // Load danh sách sảnh
-        this.cbLoaiDv.getItems().add("Ca sĩ");
-        this.cbLoaiDv.getItems().add("MC");
-        this.cbLoaiDv.getItems().add("Bánh kem");
+        this.clLoaiTP.getItems().add("Khai vị");
+        this.clLoaiTP.getItems().add("Món chính");
+        this.clLoaiTP.getItems().add("Tráng miệng");
+        this.clLoaiTP.getItems().add("Nước uống");
 
-        TableColumn clTenDV = new TableColumn("Tên dịch vụ");
-        clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
-        TableColumn clLoaiDV = new TableColumn("Loại sảnh");
-        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clTenTP = new TableColumn("Tên");
+        clTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
+        TableColumn clLoaiTp = new TableColumn("Loại");
+        clLoaiTp.setCellValueFactory(new PropertyValueFactory("loaiTP"));
         TableColumn clPrice = new TableColumn("Giá");
-        clPrice.setCellValueFactory(new PropertyValueFactory("gia"));
+        clPrice.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbDichVu.getColumns().addAll(clTenDV, clLoaiDV, clPrice, clNote);
-        this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
+        this.tbThucPham.getColumns().addAll(clTenTP, clLoaiTp, clPrice, clNote);
+        this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
 // Load form thêm
         addPane.setVisible(false);
     }
 
-    public void themDV(ActionEvent event) throws IOException {
+    public void themTP(ActionEvent event) throws IOException {
 
-        tbDichVu.getSelectionModel().clearSelection();
+        tbThucPham.getSelectionModel().clearSelection();
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
-            Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần thêm!!!", Alert.AlertType.INFORMATION);
+            Alert b = Utils.getAlertTC("Hãy điền thông tin cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
-            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên dịch vụ và giá!!!", Alert.AlertType.ERROR);
+            if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty()) {
+                Alert b = Utils.getAlertTC("Bắt buộc điền tên và giá!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
-                Dichvu s = new Dichvu(txtTenDV.getText(),  cbLoaiDv.getSelectionModel().getSelectedItem().toString(),
-                        BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())),txtNote.getText());
+                Thucpham s = new Thucpham(txtTenTP.getText(),  clLoaiTP.getSelectionModel().getSelectedItem().toString(),
+                        BigDecimal.valueOf(Double.parseDouble(txtGia.getText())),txtNote.getText());
 
-                if (Utils.ktTrungTenDichvu(s)) {
+                if (Utils.ktTrungTenThucPham(s)) {
                     if (Utils.addOrUpdate(s)) {
                         Alert b = Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION);
                         b.show();
-                        this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
+                        this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
                         addPane.setVisible(false);
                     } else {
                         Alert b = Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR);
@@ -105,7 +107,7 @@ public class DichVuController implements Initializable {
                     }
 
                 } else {
-                    Alert b = Utils.getAlertTC("Tên dịch vụ đã có!!!", Alert.AlertType.ERROR);
+                    Alert b = Utils.getAlertTC("Tên thực phẩm đã tồn tại!!!", Alert.AlertType.ERROR);
                     b.show();
                 }
 
@@ -114,36 +116,36 @@ public class DichVuController implements Initializable {
 
     }
 
-    public void suaDV(ActionEvent event) throws IOException {
-        Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
-        if (tbDichVu.getSelectionModel().getSelectedItem() == null) {
+    public void suaTP(ActionEvent event) throws IOException {
+        Thucpham s = (Thucpham) tbThucPham.getSelectionModel().getSelectedItem();
+        if (tbThucPham.getSelectionModel().getSelectedItem() == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR);
             b.show();
         } else if (!addPane.isVisible()) {
 
             addPane.setVisible(true);
-            txtTenDV.setText(s.getTenDV());
+            txtTenTP.setText(s.getTenTP());
             txtNote.setText(s.getGhiChu());
-            cbLoaiDv.getSelectionModel().select(s.getLoaiDV());
-            txtGiaDV.setText(s.getGia().toString());
-            Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần sửa!!!", Alert.AlertType.INFORMATION);
+            clLoaiTP.getSelectionModel().select(s.getLoaiTP());
+            txtGia.setText(s.getPrice().toString());
+            Alert b = Utils.getAlertTC("Hãy điền thông tin cần sửa!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
 
-            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên dịch vụ và giá!!!", Alert.AlertType.ERROR);
+            if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty()) {
+                Alert b = Utils.getAlertTC("Bắt buộc điền tên và giá!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
 
-                s.setTenDV(txtTenDV.getText());
-                s.setLoaiDV(cbLoaiDv.getSelectionModel().getSelectedItem().toString());
-                s.setGia(BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())));
+                s.setTenTP(txtTenTP.getText());
+                s.setLoaiTP(clLoaiTP.getSelectionModel().getSelectedItem().toString());
+                s.setPrice(BigDecimal.valueOf(Double.parseDouble(txtGia.getText())));
                 s.setGhiChu(txtNote.getText());
-                if (cbLoaiDv.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdate(s) == true) {
+                if (clLoaiTP.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdate(s) == true) {
                     Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
                     b.show();
                     addPane.setVisible(false);
-                    this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
+                    this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
                 } else {
                     Alert b = Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR);
                     b.show();
@@ -162,7 +164,7 @@ public class DichVuController implements Initializable {
     }
 
     public void xoaSanh(ActionEvent event) throws IOException {
-        Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
+        Thucpham s = (Thucpham ) tbThucPham.getSelectionModel().getSelectedItem();
 
         if (s == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
@@ -184,7 +186,7 @@ public class DichVuController implements Initializable {
                         Alert b = Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION);
                         a.show();
                     }
-                    this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
+                    this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
 
                 } else if (rs == ButtonType.NO) {
                     return;
