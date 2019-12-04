@@ -6,9 +6,10 @@
 package Util;
 
 import POJO.Dichvu;
-import POJO.Monan;
+
 import POJO.Nhanvien;
 import POJO.Sanh;
+import POJO.Thucpham;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -85,30 +86,15 @@ public class Utils {
 
     }
     
-//    
-//       public static void switchStageWithC(Scene sce, ActionEvent e) {
-//        try {
-//            Node source = (Node) e.getSource();
-//            Stage stage = (Stage) source.getScene().getWindow();
-//            stage.close();
-//
-//            stage.hide();
-//            stage.setScene(sce);
-//            stage.show();
-//
-//        } catch (Exception ex) {
-//            System.err.print(ex.getMessage());
-//        }
-//
-//    }
+
     
     
-     public static List<Monan> getMonAn() {
+     public static List<Thucpham> getThucPham() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
 
-        Criteria cr = session.createCriteria(Monan.class);
-        List<Monan> ls = cr.list();
+        Criteria cr = session.createCriteria(Thucpham.class);
+        List<Thucpham> ls = cr.list();
 
         session.close();
 
@@ -226,16 +212,16 @@ public class Utils {
         
     }
     
-    public static boolean ktTrungTenMonAn(Monan s) {
+    public static boolean ktTrungTenThucPham(Thucpham s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         
         try {
 
-            Criteria cr = session.createCriteria(Monan.class);
+            Criteria cr = session.createCriteria(Thucpham.class);
 
-            cr.add(Restrictions.eq("tenMA", s.getTenMA()));
-            List<Monan> ls = cr.list();
+            cr.add(Restrictions.eq("tenTP", s.getTenTP()));
+            List<Thucpham> ls = cr.list();
             if (ls.isEmpty()) {
                 return true;
             } else {
