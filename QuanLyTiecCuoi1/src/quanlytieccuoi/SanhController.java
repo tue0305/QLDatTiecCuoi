@@ -149,8 +149,8 @@ public class SanhController implements Initializable {
             b.show();
         } else {
 
-            if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên sảnh và giá sảnh!!!", Alert.AlertType.ERROR);
+            if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty() || cbSanh.getSelectionModel().getSelectedItem() == null) {
+                Alert b = Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
 

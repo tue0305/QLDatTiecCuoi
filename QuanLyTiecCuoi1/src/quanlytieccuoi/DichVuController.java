@@ -154,8 +154,8 @@ public class DichVuController implements Initializable {
             b.show();
         } else {
 
-            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên dịch vụ và giá!!!", Alert.AlertType.ERROR);
+            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty() || cbLoaiDv.getSelectionModel().getSelectedItem() == null) {
+                Alert b = Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
 

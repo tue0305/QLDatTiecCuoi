@@ -55,7 +55,7 @@
                            </graphic>
                         </Button>
 
-                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaSanh" prefHeight="65.0" prefWidth="51.0" text="Xóa">
+                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaTP" prefHeight="65.0" prefWidth="51.0" text="Xóa">
 
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
