@@ -1,4 +1,3 @@
- 
 
 
 package quanlytieccuoi;
@@ -57,4 +56,5 @@ public class QuanLyTiecCuoi extends Application {
         launch(args);
     }
    
+
 }
