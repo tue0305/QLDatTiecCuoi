@@ -23,10 +23,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -78,6 +80,23 @@ public class ThucPhamController implements Initializable {
         this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
 // Load form thêm
         addPane.setVisible(false);
+
+        this.tbThucPham.setRowFactory(tv -> {
+            TableRow<Thucpham> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
+                        && event.getClickCount() == 1) {
+
+                    Thucpham clickedRow = row.getItem();
+                    txtTenTP.setText(clickedRow.getTenTP());
+                    clLoaiTP.getSelectionModel().select(clickedRow.getLoaiTP());
+                    txtGia.setText(clickedRow.getPrice().toString());
+                    txtNote.setText(clickedRow.getGhiChu());
+
+                }
+            });
+            return row;
+        });
     }
 
     public void themTP(ActionEvent event) throws IOException {
@@ -88,12 +107,12 @@ public class ThucPhamController implements Initializable {
             Alert b = Utils.getAlertTC("Hãy điền thông tin cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
-            if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên và giá!!!", Alert.AlertType.ERROR);
+            if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty() || clLoaiTP.getSelectionModel().getSelectedItem() == null) {
+                Alert b = Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
-                Thucpham s = new Thucpham(txtTenTP.getText(),  clLoaiTP.getSelectionModel().getSelectedItem().toString(),
-                        BigDecimal.valueOf(Double.parseDouble(txtGia.getText())),txtNote.getText());
+                Thucpham s = new Thucpham(txtTenTP.getText(), clLoaiTP.getSelectionModel().getSelectedItem().toString(),
+                        BigDecimal.valueOf(Double.parseDouble(txtGia.getText())), txtNote.getText());
 
                 if (Utils.ktTrungTenThucPham(s)) {
                     if (Utils.addOrUpdate(s)) {
@@ -107,8 +126,12 @@ public class ThucPhamController implements Initializable {
                     }
 
                 } else {
-                    Alert b = Utils.getAlertTC("Tên thực phẩm đã tồn tại!!!", Alert.AlertType.ERROR);
+                    Alert b = Utils.getAlertTC("Tên thực phẩm đã tồn tại, mời nhập mới!!!", Alert.AlertType.ERROR);
                     b.show();
+                    txtTenTP.clear();
+                    clLoaiTP.getSelectionModel().clearSelection();
+                    txtGia.clear();
+                    txtNote.clear();
                 }
 
             }
@@ -164,7 +187,7 @@ public class ThucPhamController implements Initializable {
     }
 
     public void xoaSanh(ActionEvent event) throws IOException {
-        Thucpham s = (Thucpham ) tbThucPham.getSelectionModel().getSelectedItem();
+        Thucpham s = (Thucpham) tbThucPham.getSelectionModel().getSelectedItem();
 
         if (s == null) {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
