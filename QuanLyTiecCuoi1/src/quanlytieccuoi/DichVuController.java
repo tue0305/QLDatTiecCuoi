@@ -22,10 +22,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -76,6 +78,23 @@ public class DichVuController implements Initializable {
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
 // Load form thêm
         addPane.setVisible(false);
+
+        this.tbDichVu.setRowFactory(tv -> {
+            TableRow<Dichvu> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
+                        && event.getClickCount() == 1) {
+
+                    Dichvu clickedRow = row.getItem();
+                    txtTenDV.setText(clickedRow.getTenDV());
+                    cbLoaiDv.getSelectionModel().select(clickedRow.getLoaiDV());
+                    txtGiaDV.setText(clickedRow.getGia().toString());
+                    txtNote.setText(clickedRow.getGhiChu());
+
+                }
+            });
+            return row;
+        });
     }
 
     public void themDV(ActionEvent event) throws IOException {
@@ -86,12 +105,12 @@ public class DichVuController implements Initializable {
             Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
-            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên dịch vụ và giá!!!", Alert.AlertType.ERROR);
+            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty() || cbLoaiDv.getSelectionModel().getSelectedItem() == null) {
+                Alert b = Utils.getAlertTC("Hãy điền đẩy đủ thông tin!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
-                Dichvu s = new Dichvu(txtTenDV.getText(),  cbLoaiDv.getSelectionModel().getSelectedItem().toString(),
-                        BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())),txtNote.getText());
+                Dichvu s = new Dichvu(txtTenDV.getText(), cbLoaiDv.getSelectionModel().getSelectedItem().toString(),
+                        BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())), txtNote.getText());
 
                 if (Utils.ktTrungTenDichvu(s)) {
                     if (Utils.addOrUpdate(s)) {
@@ -105,8 +124,13 @@ public class DichVuController implements Initializable {
                     }
 
                 } else {
-                    Alert b = Utils.getAlertTC("Tên dịch vụ đã có!!!", Alert.AlertType.ERROR);
+                    Alert b = Utils.getAlertTC("Tên dịch vụ đã có, hãy nhập thông tin mới!!!", Alert.AlertType.ERROR);
                     b.show();
+                    txtTenDV.clear();
+                    cbLoaiDv.getSelectionModel().clearSelection();
+                    txtGiaDV.clear();
+                    txtNote.clear();
+
                 }
 
             }
