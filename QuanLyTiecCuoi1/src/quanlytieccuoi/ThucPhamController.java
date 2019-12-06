@@ -5,8 +5,6 @@
  */
 package quanlytieccuoi;
 
-import POJO.Dichvu;
-import POJO.Sanh;
 import POJO.Thucpham;
 import Util.Utils;
 import java.io.IOException;
@@ -78,8 +76,9 @@ public class ThucPhamController implements Initializable {
 
         this.tbThucPham.getColumns().addAll(clTenTP, clLoaiTp, clPrice, clNote);
         this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
-// Load form thêm
         addPane.setVisible(false);
+// Load form thêm
+        
 
         this.tbThucPham.setRowFactory(tv -> {
             TableRow<Thucpham> row = new TableRow<>();
@@ -102,8 +101,9 @@ public class ThucPhamController implements Initializable {
     public void themTP(ActionEvent event) throws IOException {
 
         tbThucPham.getSelectionModel().clearSelection();
+        addPane.setVisible(true);
         if (!addPane.isVisible()) {
-            addPane.setVisible(true);
+            
             Alert b = Utils.getAlertTC("Hãy điền thông tin cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
@@ -155,8 +155,8 @@ public class ThucPhamController implements Initializable {
             b.show();
         } else {
 
-            if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Bắt buộc điền tên và giá!!!", Alert.AlertType.ERROR);
+            if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty() || clLoaiTP.getSelectionModel().getSelectedItem() == null) {
+                Alert b = Utils.getAlertTC("!Hãy điền đầy đủ thông tin!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
 
@@ -186,7 +186,7 @@ public class ThucPhamController implements Initializable {
 
     }
 
-    public void xoaSanh(ActionEvent event) throws IOException {
+    public void xoaTP(ActionEvent event) throws IOException {
         Thucpham s = (Thucpham) tbThucPham.getSelectionModel().getSelectedItem();
 
         if (s == null) {

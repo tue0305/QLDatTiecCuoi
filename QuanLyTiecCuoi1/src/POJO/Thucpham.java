@@ -119,29 +119,12 @@ public class Thucpham implements Serializable {
 //        this.thucphamMenuSet = thucphamMenuSet;
 //    }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (maTP != null ? maTP.hashCode() : 0);
-        return hash;
-    }
+   
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Thucpham)) {
-            return false;
-        }
-        Thucpham other = (Thucpham) object;
-        if ((this.maTP == null && other.maTP != null) || (this.maTP != null && !this.maTP.equals(other.maTP))) {
-            return false;
-        }
-        return true;
-    }
-
+    
     @Override
     public String toString() {
-        return this.getLoaiTP();
+        return this.getLoaiTP().toString();
     }
     
 }
