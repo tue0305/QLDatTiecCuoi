@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -12,11 +13,11 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="980.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.MainMenuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="724.0" prefWidth="1034.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.MainMenuController">
    <children>
-      <BorderPane prefHeight="641.0" prefWidth="980.0">
+      <BorderPane prefHeight="737.0" prefWidth="1034.0">
          <left>
-            <Pane prefHeight="631.0" prefWidth="232.0" style="-fx-background-color: #FC95BB;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="671.0" prefWidth="232.0" style="-fx-background-color: #FC95BB;" BorderPane.alignment="CENTER">
                <children>
                   <Pane layoutX="-3.0" layoutY="50.0" prefHeight="53.0" prefWidth="237.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 5;">
                      <children>
@@ -36,25 +37,28 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="CENTER" layoutX="-52.0" layoutY="570.0" mnemonicParsing="false" onAction="#ActionSignOut" opacity="0.67" prefHeight="45.0" prefWidth="213.0" styleClass="button2" text="Đăng Xuất!">
+                  <Button alignment="CENTER" layoutX="-48.0" layoutY="679.0" mnemonicParsing="false" onAction="#ActionSignOut" opacity="0.67" prefHeight="45.0" prefWidth="205.0" styleClass="button2" text="Đăng Xuất!">
                      <font>
                         <Font size="18.0" />
-                     </font></Button>
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </Pane>
          </left>
          <center>
             <Pane prefHeight="559.0" prefWidth="707.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="503.0" fitWidth="503.0" layoutX="245.0" layoutY="364.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="503.0" fitWidth="493.0" layoutX="309.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../FXML/images/—Pngtree—vector%20watercolor%20japanese%20cherry%20blossoms_3094823.png" />
                      </image>
                   </ImageView>
-                  <Pane layoutX="53.0" layoutY="75.0" onMouseClicked="#ActionMouseDatSanh" prefHeight="165.0" prefWidth="154.0">
+                  <Pane layoutX="53.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onZoomStarted="#ActionQLSanh" opacity="0.7" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionDatSanh" opacity="0.7" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseDatSanh" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.48863636363636365" centerY="0.44660194174757284" radius="0.5">
                                  <stops>
@@ -70,23 +74,23 @@
                               <Image url="@../FXML/images/datsanh.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="51.0" layoutY="130.0" text="Đặt sảnh" textFill="WHITE">
+                        <Label layoutX="51.0" layoutY="130.0" onMouseClicked="#ActionMouseDatSanh" text="Đặt sảnh" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="259.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0">
+                  <Pane layoutX="259.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
                         <Button layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionTraCuu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseTraCuu" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
-                              <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                              <RadialGradient centerX="0.4602272727272727" centerY="0.5" radius="0.5">
                                  <stops>
                                     <Stop color="WHITE" />
-                                    <Stop color="WHITE" offset="0.1459221369707303" />
-                                    <Stop color="#c7ffc9" offset="1.0" />
+                                    <Stop color="WHITE" offset="0.13867576015913613" />
+                                    <Stop color="#a3ffa6" offset="1.0" />
                                  </stops>
                               </RadialGradient>
                            </fill>
@@ -96,17 +100,17 @@
                               <Image url="@../FXML/images/searchmain.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="51.0" layoutY="130.0" text="Tra cứu" textFill="WHITE">
+                        <Label layoutX="51.0" layoutY="130.0" onMouseClicked="#ActionTraCuu" text="Tra cứu" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="53.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
+                  <Pane layoutX="53.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
                         <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionBaoCao" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseBaoCao" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
                                  <stops>
@@ -122,23 +126,23 @@
                               <Image url="@../FXML/images/BaoCao.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="51.0" layoutY="130.0" text="Báo cáo" textFill="WHITE">
+                        <Label layoutX="51.0" layoutY="130.0" onMouseClicked="#ActionMouseBaoCao" text="Báo cáo" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="259.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
+                  <Pane layoutX="259.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
                         <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLSanh" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" textFill="WHITE" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseSanh" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
                                  <stops>
                                     <Stop color="WHITE" />
-                                    <Stop color="WHITE" offset="0.007246376811594203" />
-                                    <Stop color="#e15353" offset="1.0" />
+                                    <Stop color="WHITE" offset="0.2391304347826087" />
+                                    <Stop color="#e05353" offset="1.0" />
                                  </stops>
                               </RadialGradient>
                            </fill>
@@ -148,17 +152,17 @@
                               <Image url="@../FXML/images/QuanLypng.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="33.0" layoutY="126.0" text="Quản lý sảnh" textFill="WHITE">
+                        <Label layoutX="33.0" layoutY="126.0" onMouseClicked="#ActionMouseSanh" text="Quản lý sảnh" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="458.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0">
+                  <Pane layoutX="458.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="78.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLDichVu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Circle layoutX="78.0" layoutY="66.0" onMouseClicked="#ActionMouseDichVu" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.48863636363636365" centerY="0.48058252427184467" radius="0.5">
                                  <stops>
@@ -174,22 +178,22 @@
                               <Image url="@../FXML/images/QuanLypng.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="26.0" layoutY="127.0" text="Quản lý dịch vụ" textFill="WHITE">
+                        <Label layoutX="26.0" layoutY="127.0" onMouseClicked="#ActionMouseDichVu" text="Quản lý dịch vụ" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="458.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0">
+                  <Pane layoutX="458.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
                         <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionThanhToan" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseHoaDon" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
-                              <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
+                              <RadialGradient centerX="0.5284090909090908" centerY="0.4951456310679611" radius="0.5">
                                  <stops>
                                     <Stop color="WHITE" />
-                                    <Stop color="WHITE" offset="0.2536231884057971" />
+                                    <Stop color="WHITE" offset="0.322463768115942" />
                                     <Stop color="#5da8c6" offset="1.0" />
                                  </stops>
                               </RadialGradient>
@@ -200,7 +204,7 @@
                               <Image url="@../FXML/images/billlist.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="39.0" layoutY="127.0" text="Thanh toán" textFill="WHITE">
+                        <Label layoutX="39.0" layoutY="127.0" onMouseClicked="#ActionMouseHoaDon" text="Thanh toán" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
@@ -208,6 +212,32 @@
                      </children>
                   </Pane>
                   <Pane layoutX="-172.0" layoutY="-118.0" prefHeight="146.0" prefWidth="867.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 70;" />
+                  <Pane layoutX="53.0" layoutY="495.0" onMouseClicked="#ActionMouseThucPham" prefHeight="165.0" prefWidth="159.0" styleClass="BtPane">
+                     <children>
+                        <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLThucPham" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseThucPham" radius="50.0" stroke="WHITE" strokeType="INSIDE">
+                           <fill>
+                              <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
+                                 <stops>
+                                    <Stop color="WHITE" />
+                                    <Stop color="WHITE" offset="0.20652173913043478" />
+                                    <Stop color="#c63fcc" offset="1.0" />
+                                 </stops>
+                              </RadialGradient>
+                           </fill>
+                        </Circle>
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../FXML/images/QuanLypng.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="17.0" layoutY="128.0" onMouseClicked="#ActionMouseBaoCao" text="Quản lý thực phẩm" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
          </center>

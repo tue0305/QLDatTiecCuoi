@@ -60,7 +60,7 @@ public class DichVuController implements Initializable {
     }
 
     public void init() {
-// Load danh sách sảnh
+// Load danh sách Dich Vu
         this.cbLoaiDv.getItems().add("Ca sĩ");
         this.cbLoaiDv.getItems().add("MC");
         this.cbLoaiDv.getItems().add("Bánh kem");

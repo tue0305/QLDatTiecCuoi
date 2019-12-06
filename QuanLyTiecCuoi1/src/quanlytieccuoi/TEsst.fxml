@@ -7,9 +7,15 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -23,13 +29,16 @@
    <children>
       <VBox prefHeight="718.0" prefWidth="294.0" style="-fx-background-color: #FC95BB;">
          <children>
-            <Pane prefHeight="161.0" prefWidth="294.0">
+            <Pane prefHeight="152.0" prefWidth="294.0" style="-fx-background-color: rgb(251, 91, 151);">
                <children>
                   <FontAwesomeIcon iconName="XING" layoutX="51.0" layoutY="76.0" size="3em" text="" wrappingWidth="41.7857141494751" />
-                  <Label graphicTextGap="10.0" layoutX="93.0" layoutY="39.0" prefHeight="42.0" prefWidth="65.0" text="JAVAFX">
+                  <Label graphicTextGap="10.0" layoutX="93.0" layoutY="36.0" prefHeight="93.0" prefWidth="196.0" styleClass="title" text="JAVAFX">
                      <font>
                         <Font size="19.0" />
                      </font>
+                     <effect>
+                        <Shadow height="19.83" radius="4.4575" width="0.0" />
+                     </effect>
                   </Label>
                </children>
             </Pane>
@@ -95,7 +104,7 @@
          </children></VBox>
       <VBox alignment="TOP_RIGHT" layoutX="294.0" prefHeight="719.0" prefWidth="858.0">
          <children>
-            <VBox fx:id="vboxStatus" alignment="CENTER_LEFT" prefHeight="152.0" prefWidth="858.0" style="-fx-background-color: white;">
+            <VBox fx:id="vboxStatus" alignment="CENTER_LEFT" prefHeight="175.0" prefWidth="858.0" style="-fx-background-color: white;">
                <children>
                   <Label fx:id="lbStatusMIn" text="/home/thongtin">
                      <font>
@@ -123,6 +132,15 @@
             </VBox>
             <StackPane>
                <children>
+                  <VBox fx:id="vboxXacNhan" alignment="CENTER">
+                     <children>
+                        <Label text="Xác nhận">
+                           <font>
+                              <Font size="88.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                   <VBox fx:id="vboxThongTin">
                      <children>
                         <VBox prefHeight="283.0" prefWidth="893.0">
@@ -196,7 +214,7 @@
                                     <DatePicker prefHeight="31.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                                     <Label prefHeight="21.0" prefWidth="278.0" styleClass="H1" text="Thông tin đặt sảnh" GridPane.columnSpan="3" />
                                     <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" styleClass="button4" text="NEXT" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" styleClass="button4" text="NEXT" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -208,29 +226,98 @@
                   </VBox>
                   <VBox fx:id="vboxMonAn" alignment="CENTER">
                      <children>
-                        <Label text="Mon AN">
-                           <font>
-                              <Font size="88.0" />
-                           </font>
-                        </Label>
+                        <BorderPane prefHeight="584.0" prefWidth="839.0">
+                           <left>
+                              <TableView prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </left>
+                           <right>
+                              <TableView prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn prefWidth="75.0" text="C1" />
+                                  <TableColumn prefWidth="75.0" text="C2" />
+                                </columns>
+                              </TableView>
+                           </right>
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" text="Huỷ" />
+                                    <Button mnemonicParsing="false" text="Chọn" />
+                                 </children>
+                              </VBox>
+                           </center>
+                           <bottom>
+                              <Button mnemonicParsing="false" text="Lưu" BorderPane.alignment="TOP_RIGHT" />
+                           </bottom>
+                           <top>
+                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="17.0" text="Danh sách món ăn" />
+                                    <Label layoutX="660.0" layoutY="17.0" text="Món đã chọn" />
+                                 </children>
+                              </Pane>
+                           </top>
+                        </BorderPane>
                      </children>
                   </VBox>
                   <VBox fx:id="VboxDichVu" alignment="CENTER">
                      <children>
-                        <Label text="Dịch vụ">
-                           <font>
-                              <Font size="88.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vboxXacNhan" alignment="CENTER">
-                     <children>
-                        <Label text="Xác nhận">
-                           <font>
-                              <Font size="88.0" />
-                           </font>
-                        </Label>
+                        <BorderPane prefHeight="584.0" prefWidth="839.0">
+                           <left>
+                              <TableView fx:id="tbDichVu" prefHeight="257.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="61.0" prefWidth="63.0" text="Huỷ">
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/cancel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" text="Chọn">
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/right-arrow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </center>
+                           <bottom>
+                              <Button mnemonicParsing="false" text="Lưu" BorderPane.alignment="TOP_RIGHT" />
+                           </bottom>
+                           <right>
+                              <TableView prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER">
+                                 <columns>
+                                    <TableColumn prefWidth="75.0" text="C1" />
+                                    <TableColumn prefWidth="75.0" text="C2" />
+                                 </columns>
+                              </TableView>
+                           </right>
+                           <top>
+                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="17.0" styleClass="text" text="Danh sách dịch vụ" />
+                                    <Label layoutX="660.0" layoutY="17.0" text="Dịch vụ đã chọn" />
+                                 </children>
+                              </Pane>
+                           </top>
+                        </BorderPane>
                      </children>
                   </VBox>
                </children>

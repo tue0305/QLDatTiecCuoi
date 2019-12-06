@@ -5,10 +5,12 @@
  */
 package quanlytieccuoi;
 
+import POJO.Dichvu;
 import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,11 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -65,12 +72,14 @@ public class TEsstController implements Initializable {
 
     @FXML
     private VBox vboxXacNhan;
-
+    @FXML
+    private TableView tbDichVu;
+ 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
-
+        init();
     }    
     @FXML
     private void handleClicks(ActionEvent event){
@@ -117,5 +126,43 @@ public class TEsstController implements Initializable {
        
       
    }
+   
+    public void init() {
+// Load danh sách DichVu
+ 
+
+        TableColumn clTenDV = new TableColumn("Tên dịch vụ");
+        clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
+        TableColumn clLoaiDV = new TableColumn("Loại sảnh");
+        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clPrice = new TableColumn("Giá");
+        clPrice.setCellValueFactory(new PropertyValueFactory("gia"));
+        TableColumn clNote = new TableColumn("Ghi chú");
+        clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+
+        this.tbDichVu.getColumns().addAll(clTenDV, clLoaiDV, clPrice, clNote);
+        this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
+// Load form thêm
+//        addPane.setVisible(false);
+
+//        this.tbDichVu.setRowFactory(tv -> {
+//            TableRow<Dichvu> row = new TableRow<>();
+//            row.setOnMouseClicked(event -> {
+//                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
+//                        && event.getClickCount() == 1) {
+//
+//                    Dichvu clickedRow = row.getItem();
+//                    txtTenDV.setText(clickedRow.getTenDV());
+//                    cbLoaiDv.getSelectionModel().select(clickedRow.getLoaiDV());
+//                    txtGiaDV.setText(clickedRow.getGia().toString());
+//                    txtNote.setText(clickedRow.getGhiChu());
+//
+//                }
+//            });
+//            return row;
+//        });
+    }
+   
+   
     
 }
