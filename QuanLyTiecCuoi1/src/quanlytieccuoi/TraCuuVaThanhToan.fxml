@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
@@ -12,7 +17,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuVaThanhToanController">
    <children>
       <HBox prefHeight="74.0" prefWidth="870.0" styleClass="one">
          <children>
@@ -23,7 +28,7 @@
             </ImageView>
             <HBox prefHeight="69.0" prefWidth="848.0" styleClass="one">
                <children>
-                  <Label prefHeight="62.0" prefWidth="848.0" styleClass="title" text="TRA CỨU" />
+                  <Label prefHeight="62.0" prefWidth="848.0" styleClass="title" text="TRA CỨU VÀ THANH TOÁN" />
                </children>
             </HBox>
          </children>
@@ -32,15 +37,15 @@
          <children>
             <HBox prefHeight="66.0" prefWidth="924.0">
                <children>
-                  <TextField prefHeight="98.0" prefWidth="449.0" promptText="Nhập câu tìm kiếm..." />
+                  <TextField fx:id="txtTC" prefHeight="37.0" prefWidth="449.0" promptText="Tên hoặc số điện thoại khách hàng..." />
                   <VBox prefHeight="106.0" prefWidth="260.0">
                      <children>
-                        <DatePicker promptText="Từ ngày" styleClass="two">
+                        <DatePicker fx:id="dpStart" promptText="Từ ngày" styleClass="two">
                            <VBox.margin>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </DatePicker>
-                        <DatePicker promptText="Đến ngày" styleClass="two">
+                        <DatePicker fx:id="dpEnd" promptText="Đến ngày" styleClass="two">
                            <VBox.margin>
                               <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -49,7 +54,7 @@
                   </VBox>
                   <HBox prefHeight="106.0" prefWidth="199.0" styleClass="edit">
                      <children>
-                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="51.0" styleClass="edit" text="Sửa">
+                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#suaBooking" prefHeight="65.0" prefWidth="51.0" styleClass="edit" text="Sửa">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -58,7 +63,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="65.0" prefWidth="51.0" text="Xóa">
+                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaBooking" prefHeight="65.0" prefWidth="51.0" text="Xóa">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -67,7 +72,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" layoutX="80.0" layoutY="20.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="65.0" prefWidth="51.0" text="Back">
+                        <Button contentDisplay="TOP" layoutX="80.0" layoutY="20.0" mnemonicParsing="false" onAction="#backAction" prefHeight="65.0" prefWidth="51.0" text="Back">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -82,13 +87,6 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="924.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Theo tên" />
-                  <RadioButton mnemonicParsing="false" text="Theo SĐT" />
-                  <RadioButton mnemonicParsing="false" text="Theo sảnh">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </RadioButton>
                   <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="220.0" styleClass="edit" text="Tìm kiếm">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -101,10 +99,11 @@
                         <Insets left="125.0" />
                      </HBox.margin>
                   </Button>
+                  <Button mnemonicParsing="false" text="Thanh toán" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <TableView prefHeight="575.0" prefWidth="924.0" />
+      <TableView fx:id="tbBooking" prefHeight="575.0" prefWidth="924.0" />
    </children>
 </VBox>

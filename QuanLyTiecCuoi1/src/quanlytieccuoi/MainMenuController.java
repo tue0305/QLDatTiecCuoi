@@ -5,6 +5,7 @@
  */
 package quanlytieccuoi;
 
+import POJO.Nhanvien;
 import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
@@ -29,7 +30,7 @@ import javafx.stage.Stage;
 public class MainMenuController implements Initializable {
 
      @FXML
-    private Button btNameUer;
+    private Button btNameUser;
     /**
      * Initializes the controller class.
      */
@@ -70,7 +71,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private void ActionTraCuu(javafx.event.ActionEvent event) throws IOException {
 
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuu.fxml")));
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
         Utils.switchStage(sce, event);
     }
 
@@ -117,5 +118,12 @@ public class MainMenuController implements Initializable {
                appStage.show();
       
 
+    }
+    
+//Lấy username từ form đăng nhập
+    @FXML
+    public void setLoginName(String usename)
+    {
+           btNameUser.setText(usename);
     }
 }

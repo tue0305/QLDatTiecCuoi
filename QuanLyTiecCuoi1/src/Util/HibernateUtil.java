@@ -19,16 +19,15 @@ public class HibernateUtil {
         Configuration configure = new Configuration();
 
         configure.configure("Util/hibernate.cfg.xml");
-        
-        
+
         configure.addAnnotatedClass(Nhanvien.class);
-//        configure.addAnnotatedClass(Booking.class);
-//        configure.addAnnotatedClass(Khachhang.class);
-//        
+        configure.addAnnotatedClass(Booking.class);
+        configure.addAnnotatedClass(Khachhang.class);
+
         configure.addAnnotatedClass(Sanh.class);
         configure.addAnnotatedClass(Dichvu.class);
         configure.addAnnotatedClass(Thucpham.class);
-//       configure.addAnnotatedClass(Menu.class);
+        configure.addAnnotatedClass(Menu.class);
 
         StandardServiceRegistryBuilder builder
                 = new StandardServiceRegistryBuilder()

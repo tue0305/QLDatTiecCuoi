@@ -7,10 +7,10 @@
     <class>POJO.Sanh</class>
     <class>POJO.Nhanvien</class>
     <class>POJO.Monan</class>
-    <class>POJO.Menu</class>
     <class>POJO.Dichvu</class>
     <class>POJO.ThucphamMenu</class>
     <class>POJO.Thucpham</class>
+    <class>POJO.Menu</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/qltieccuoi?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
