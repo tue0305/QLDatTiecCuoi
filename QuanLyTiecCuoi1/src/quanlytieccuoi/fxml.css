@@ -164,3 +164,9 @@ Button.button2{
         -fx-fill : white ;
 
  }
+ 
+ 
+ Pane.BtPane{
+     -fx-cursor: hand;
+     
+ }

@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.persistence.criteria.CriteriaBuilder;
 import org.hibernate.Criteria;
@@ -32,6 +34,11 @@ import org.hibernate.criterion.Restrictions;
  * @author cohotech
  */
 public class Utils {
+
+
+    private static Parent blah;
+
+   
 
 //Hàm kiểm tra đăng nhập
     public static Boolean KiemtraTKandMK(String u, String p) {
@@ -88,7 +95,27 @@ public class Utils {
 
     }
 
-    public static List<Thucpham> getThucPham() {
+    //Hàm chuyển Stage action MouseClick
+
+    public static void switchStageMouseClick(Scene sce,MouseEvent e) {
+        try { 
+              Node source = (Node) e.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+
+            stage.hide();
+            stage.setScene(sce);
+            stage.show();
+          
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+        }
+    }
+    
+    
+
+    
+     public static List<Thucpham> getThucPham() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
 
@@ -99,6 +126,9 @@ public class Utils {
 
         return ls;
     }
+     
+     
+     
 
     public static List<Booking> getBooking() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
