@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
@@ -36,21 +37,26 @@ public class MainMenuController implements Initializable {
 
      @FXML
     private Button btNameUser;
+
     /**
      * Initializes the controller class.
      */
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         String u = null;
+
+
         // TODO
-        
+     
     
-      
-   
+     
     }
     
-    
+//    public void setUserName(Nhanvien dangNhap){
+//        btNameUser.setText(String.valueOf(Nhanvien.class.getName()));
+//        
+//}
+//    
 
 //    public void ActionExit(ActionEvent event) {
 //        Platform.exit();
@@ -162,6 +168,15 @@ public class MainMenuController implements Initializable {
           Utils.switchStageMouseClick(sce, event);
     }
 
+    void setUserName(TextField txtUsername) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setUserName(String u) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
-  
+    
 }
+

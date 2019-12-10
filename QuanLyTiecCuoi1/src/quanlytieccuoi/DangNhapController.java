@@ -13,10 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  *
@@ -35,6 +37,7 @@ public class DangNhapController implements Initializable {
     Alert a;
     @FXML
     private TextField txtPassword;
+    private DangNhapController DangNhapController;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -46,7 +49,7 @@ public class DangNhapController implements Initializable {
     public void init() {
         try {
             String password = "";
-            txtUsername.setPromptText("Enter your username...");
+            getTxtUsername().setPromptText("Enter your username...");
 
             pfPassword.setPromptText("Enter your password...");
 
@@ -77,7 +80,7 @@ public class DangNhapController implements Initializable {
         
         pfPassword.setVisible(true);
         textField.setVisible(false);
-        String u = txtUsername.getText();
+        String u = getTxtUsername().getText();
         String p = pfPassword.getText();
         
         try {
@@ -90,7 +93,9 @@ public class DangNhapController implements Initializable {
                 a.showAndWait();
 //Hàm kiểm trà đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
+
                 Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
+                
                 Utils.switchStage(sce, event);
                 
             } else {
@@ -101,6 +106,23 @@ public class DangNhapController implements Initializable {
         } catch (Exception e) {
             System.err.print(e.getMessage());
         }
+        
+        
+ 
+    }
+
+    /**
+     * @return the txtUsername
+     */
+    public TextField getTxtUsername() {
+        return txtUsername;
+    }
+
+    /**
+     * @param txtUsername the txtUsername to set
+     */
+    public void setTxtUsername(TextField txtUsername) {
+        this.txtUsername = txtUsername;
     }
 
 }
