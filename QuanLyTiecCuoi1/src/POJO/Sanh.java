@@ -121,5 +121,9 @@ public class Sanh implements Serializable {
     public void setLoaiSanh(String loaiSanh) {
         this.loaiSanh = loaiSanh;
     }
+
+    public Object[] getTenSanh(List<Sanh> sanh) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

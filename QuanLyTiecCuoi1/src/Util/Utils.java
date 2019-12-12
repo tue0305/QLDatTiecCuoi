@@ -363,6 +363,16 @@ public final class Utils {
         }
 
     }
+    // Hàm trả về true nếu chuỗi không phải là số
+     public static boolean isNumeric(String str)
+        {
+            for (char c : str.toCharArray())
+            {
+                if (!Character.isDigit(c)) return false;
+            }
+            return true;
+        }
+
 
     //Tìm đơn hàng
     public static Booking findBooking(String q) {

@@ -42,7 +42,7 @@ public class Khachhang implements Serializable {
     public Khachhang() {
     }
 
-    
+
 
     public Khachhang(String tenKH, int sdt) {
        
@@ -81,6 +81,10 @@ public class Khachhang implements Serializable {
     @Override
     public String toString() {
         return String.format("%s, %s", this.tenKH, this.sdt);
+    }
+
+    public Object getTenTP() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

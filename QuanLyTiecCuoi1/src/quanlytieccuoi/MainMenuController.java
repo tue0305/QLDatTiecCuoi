@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -27,25 +28,22 @@ public class MainMenuController implements Initializable {
 
     @FXML
     private Button btNameUser;
+
     /**
      * Initializes the controller class.
      */
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         
         btNameUser.setText(Utils.getUsernameText());
       
    
+
     }
     
-    
-
-//    public void ActionExit(ActionEvent event) {
-//        Platform.exit();
-//        System.exit(0);
-//
-//    }
+//   
 
     @FXML
     private void ActionSignOut(javafx.event.ActionEvent event) throws IOException {
@@ -151,9 +149,5 @@ public class MainMenuController implements Initializable {
           Utils.switchStageMouseClick(sce, event);
     }
 
-    
-//Lấy username từ form đăng nhập
-  
-    
 
 }
