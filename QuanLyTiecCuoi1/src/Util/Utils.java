@@ -33,12 +33,32 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author cohotech
  */
-public class Utils {
+public final class Utils {
+    
+//Lưu thông tin nhân viên xuyên suốt chương trình
+    private static String usernameText;
 
+    private Utils() {
+    }  // Private constructor to prevent instantiation
 
-    private static Parent blah;
+    public static String getUsernameText() {
+        return usernameText;
+    }
 
-   
+    public static void setUsernameText(String usernameText) {
+        Utils.usernameText = usernameText;
+    }
+//
+    
+    private static Booking payingBooking;
+    public static Booking getPayBooking() {
+        return payingBooking;
+    }
+
+    public static void setPayBooking(Booking b) {
+        Utils.payingBooking = b;
+    }
+    
 
 //Hàm kiểm tra đăng nhập
     public static Boolean KiemtraTKandMK(String u, String p) {
@@ -96,26 +116,51 @@ public class Utils {
     }
 
     //Hàm chuyển Stage action MouseClick
-
-    public static void switchStageMouseClick(Scene sce,MouseEvent e) {
-        try { 
-              Node source = (Node) e.getSource();
+    public static void switchStageMouseClick(Scene sce, MouseEvent e) {
+        try {
+            Node source = (Node) e.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
 
             stage.hide();
             stage.setScene(sce);
             stage.show();
-          
+
         } catch (Exception ex) {
             System.err.print(ex.getMessage());
         }
     }
-    
-    
 
-    
-     public static List<Thucpham> getThucPham() {
+    public static void hideStage(Scene sce, ActionEvent e) {
+        try {
+            Node source = (Node) e.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+
+            stage.hide();
+
+            Stage s = new Stage();
+            s.setScene(sce);
+            s.show();
+
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+        }
+
+    }
+
+    // Tìm nhần viên
+    public static Nhanvien findStaff(String user) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Nhanvien.class);
+        cr.add(Restrictions.eq("userName", user));
+        Nhanvien k = (Nhanvien) cr.uniqueResult();
+        return k;
+    }
+
+    public static List<Thucpham> getThucPham() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
 
@@ -126,9 +171,6 @@ public class Utils {
 
         return ls;
     }
-     
-     
-     
 
     public static List<Booking> getBooking() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -142,6 +184,7 @@ public class Utils {
         return ls;
     }
 // tìm kiếm theo listener form TracuuVaThanhToan
+
     public static List<Booking> getBookingSearch(String kw) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -283,7 +326,7 @@ public class Utils {
 
             Criteria cr = session.createCriteria(Dichvu.class);
 
-            cr.add(Restrictions.eq("tenDV", s.getTenDV()));
+            cr.add(Restrictions.like("loaiDV", s.getLoaiDV()));
             List<Dichvu> ls = cr.list();
             if (ls.isEmpty()) {
                 return true;
@@ -306,7 +349,7 @@ public class Utils {
 
             Criteria cr = session.createCriteria(Thucpham.class);
 
-            cr.add(Restrictions.eq("tenTP", s.getTenTP()));
+            cr.add(Restrictions.like("tenTP", s.getTenTP()));
             List<Thucpham> ls = cr.list();
             if (ls.isEmpty()) {
                 return true;
@@ -319,6 +362,17 @@ public class Utils {
             return false;
         }
 
+    }
+
+    //Tìm đơn hàng
+    public static Booking findBooking(String q) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Booking.class);
+        cr.add(Restrictions.eq("maBooking", q));
+        Booking k = (Booking) cr.uniqueResult();
+        return k;
     }
 
 }

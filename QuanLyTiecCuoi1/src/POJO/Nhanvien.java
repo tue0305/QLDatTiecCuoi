@@ -7,6 +7,7 @@ package POJO;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -59,8 +60,8 @@ public class Nhanvien implements Serializable {
         this.password = password;
     }
 
-    public Nhanvien(String maNV, String chucVu, String tenNV, String userName, String password) {
-        this.maNV = maNV;
+    public Nhanvien(String chucVu, String tenNV, String userName, String password) {
+        this.maNV = UUID.randomUUID().toString();
         this.chucVu = chucVu;
         this.tenNV = tenNV;
         this.userName = userName;

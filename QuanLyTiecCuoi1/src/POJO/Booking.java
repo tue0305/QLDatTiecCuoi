@@ -5,9 +5,13 @@
  */
 package POJO;
 
+import com.sun.javafx.binding.StringFormatter;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -29,7 +33,7 @@ public class Booking implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-   
+
     @Basic(optional = false)
     @Column(name = "MaBooking")
     private String maBooking;
@@ -50,21 +54,29 @@ public class Booking implements Serializable {
     @Lob
     @Column(name = "GhiChu")
     private String ghiChu;
-    @JoinColumn(name = "MaDV", referencedColumnName = "MaDV")
-    @ManyToOne(optional = false)
-    private Dichvu maDV;
+    @JoinTable(
+            name = "booking_dichvu",
+            joinColumns = {
+                @JoinColumn(name = "Mabooking")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "MaDV")
+            }
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Dichvu> dichVu;
     @JoinColumn(name = "MaKH", referencedColumnName = "MaKH")
     @ManyToOne(optional = false)
     private Khachhang khachHang;
     @JoinColumn(name = "MaMenu", referencedColumnName = "MaMenu")
     @ManyToOne(optional = false)
-    private Menu maMenu;
+    private Menu menu;
     @JoinColumn(name = "MaNV", referencedColumnName = "MaNV")
     @ManyToOne(optional = false)
-    private Nhanvien maNV;
+    private Nhanvien nhanVien;
     @JoinColumn(name = "MaSanh", referencedColumnName = "MaSanh")
     @ManyToOne(optional = false)
-    private Sanh maSanh;
+    private Sanh sanh;
 
     public Booking() {
     }
@@ -73,23 +85,31 @@ public class Booking implements Serializable {
         this.maBooking = maBooking;
     }
 
-    public Booking(String maBooking, Date ngayDat, BigDecimal price, Character ca) {
-        this.maBooking = maBooking;
+    public Booking(Date ngayDat, BigDecimal price, Character ca, Nhanvien nhanVien,
+            Khachhang maKH, Sanh sanh, Menu menu, List<Dichvu> dichVu, Date ngayThanhToan,
+            String note) {
+
+        this.maBooking = UUID.randomUUID().toString();
         this.ngayDat = ngayDat;
+        this.ngayThanhToan = ngayThanhToan;
+        this.dichVu = dichVu;
+        this.menu = menu;
+        this.nhanVien = nhanVien;
+        this.khachHang = maKH;
+        this.ghiChu = note;
         this.price = price;
         this.ca = ca;
+        this.sanh = sanh;
     }
-    
-    public String getNameCus()
-    {
+
+    public String getNameCus() {
         return this.khachHang.getTenKH().toString();
     }
-     
-    public String getPhoneCus()
-    {
+
+    public String getPhoneCus() {
         return String.format("%s", this.khachHang.getSdt());
     }
-    
+
     public Date getNgayDat() {
         return ngayDat;
     }
@@ -130,13 +150,7 @@ public class Booking implements Serializable {
         this.ghiChu = ghiChu;
     }
 
-    public Dichvu getMaDV() {
-        return maDV;
-    }
-
-    public void setMaDV(Dichvu maDV) {
-        this.maDV = maDV;
-    }
+   
 
     public Khachhang getKhachHang() {
         return khachHang;
@@ -146,28 +160,28 @@ public class Booking implements Serializable {
         this.khachHang = khachHang;
     }
 
-    public Menu getMaMenu() {
-        return maMenu;
+    public Menu getMenu() {
+        return menu;
     }
 
-    public void setMaMenu(Menu maMenu) {
-        this.maMenu = maMenu;
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
-    public Nhanvien getMaNV() {
-        return maNV;
+    public Nhanvien getNhanVien() {
+        return nhanVien;
     }
 
-    public void setMaNV(Nhanvien maNV) {
-        this.maNV = maNV;
+    public void setNhanVien(Nhanvien nhanVien) {
+        this.nhanVien = nhanVien;
     }
 
-    public Sanh getMaSanh() {
-        return maSanh;
+    public Sanh getSanh() {
+        return sanh;
     }
 
-    public void setMaSanh(Sanh maSanh) {
-        this.maSanh = maSanh;
+    public void setSanh(Sanh sanh) {
+        this.sanh = sanh;
     }
 
     @Override
@@ -208,5 +222,24 @@ public class Booking implements Serializable {
     public void setMaBooking(String maBooking) {
         this.maBooking = maBooking;
     }
-    
+
+    /**
+     * @return the dichVu
+     */
+    public List<Dichvu> getDichVu() {
+        return dichVu;
+    }
+
+    /**
+     * @param dichVu the dichVu to set
+     */
+    public void setDichVu(List<Dichvu> dichVu) {
+        this.dichVu = dichVu;
+    }
+    public String formatDate(Date t)
+    {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        return f.format(t);
+    }
+
 }

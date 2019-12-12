@@ -103,7 +103,10 @@ public class Sanh implements Serializable {
     @Override
     public String toString() {
         return this.getLoaiSanh().toString();
+        
     }
+    
+   
 
     /**
      * @return the loaiSanh

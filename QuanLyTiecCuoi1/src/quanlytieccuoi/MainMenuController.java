@@ -6,6 +6,7 @@
 package quanlytieccuoi;
 
 
+
 import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +25,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class MainMenuController implements Initializable {
 
-     @FXML
+    @FXML
     private Button btNameUser;
     /**
      * Initializes the controller class.
@@ -32,10 +33,8 @@ public class MainMenuController implements Initializable {
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         String u = null;
-        // TODO
         
-    
+        btNameUser.setText(Utils.getUsernameText());
       
    
     }
@@ -154,10 +153,7 @@ public class MainMenuController implements Initializable {
 
     
 //Lấy username từ form đăng nhập
-    @FXML
-    public void setLoginName(String usename)
-    {
-           btNameUser.setText(usename);
-    }
+  
+    
 
 }

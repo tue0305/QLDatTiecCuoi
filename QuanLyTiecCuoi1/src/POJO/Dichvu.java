@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Dichvu.findAll", query = "SELECT d FROM Dichvu d")
     , @NamedQuery(name = "Dichvu.findByMaDV", query = "SELECT d FROM Dichvu d WHERE d.maDV = :maDV")
-    , @NamedQuery(name = "Dichvu.findByTenDV", query = "SELECT d FROM Dichvu d WHERE d.tenDV = :tenDV")
+    
     , @NamedQuery(name = "Dichvu.findByGia", query = "SELECT d FROM Dichvu d WHERE d.gia = :gia")
     , @NamedQuery(name = "Dichvu.findByLoaiDV", query = "SELECT d FROM Dichvu d WHERE d.loaiDV = :loaiDV")})
 public class Dichvu implements Serializable {
@@ -40,8 +40,6 @@ public class Dichvu implements Serializable {
     @Basic(optional = false)
     @Column(name = "MaDV")
     private Integer maDV;
-    @Column(name = "TenDV")
-    private String tenDV;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "Gia")
     private BigDecimal gia;
@@ -55,15 +53,10 @@ public class Dichvu implements Serializable {
     public Dichvu() {
     }
 
-    public Dichvu(String tenDV, String loaiDV, BigDecimal gia) {
-        this.maDV = maDV;
-        this.loaiDV = loaiDV;
-        this.gia = gia;
+    
 
-    }
-
-    public Dichvu(String tenDV, String loaiDV, BigDecimal gia, String ghiChu) {
-        this.tenDV = tenDV;
+    public Dichvu( String loaiDV, BigDecimal gia, String ghiChu) {
+        
         this.loaiDV = loaiDV;
         this.gia = gia;
         this.ghiChu = ghiChu;
@@ -77,14 +70,7 @@ public class Dichvu implements Serializable {
         this.maDV = maDV;
     }
 
-    public String getTenDV() {
-        return tenDV;
-    }
-
-    public void setTenDV(String tenDV) {
-        this.tenDV = tenDV;
-    }
-
+  
     public BigDecimal getGia() {
         return gia;
     }

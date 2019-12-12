@@ -66,7 +66,7 @@ public class SanhController implements Initializable {
         this.cbSanh.getItems().add("C");
         this.cbSanh.getItems().add("D");
         this.cbSanh.getItems().add("E");
-
+            
         TableColumn clTenSanh = new TableColumn("Tên sảnh");
         clTenSanh.setCellValueFactory(new PropertyValueFactory("tenSanh"));
         TableColumn clLoaiSanh = new TableColumn("Loại sảnh");

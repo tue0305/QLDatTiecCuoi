@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -17,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuVaThanhToanController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="924.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuVaThanhToanController">
    <children>
       <HBox prefHeight="74.0" prefWidth="870.0" styleClass="one">
          <children>
@@ -87,7 +81,7 @@
             </HBox>
             <HBox prefHeight="0.0" prefWidth="924.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="220.0" styleClass="edit" text="Tìm kiếm">
+                  <Button mnemonicParsing="false" onAction="#payAction" prefHeight="41.0" prefWidth="220.0" styleClass="edit" text="Thanh Toán">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -99,7 +93,6 @@
                         <Insets left="125.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Thanh toán" />
                </children>
             </HBox>
          </children>

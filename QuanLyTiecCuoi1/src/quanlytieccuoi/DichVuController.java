@@ -47,8 +47,6 @@ public class DichVuController implements Initializable {
     @FXML
     private TextField txtGiaDV;
     @FXML
-    private ComboBox cbLoaiDv;
-    @FXML
     private GridPane addPane;
     @FXML
     private TextArea txtNote;
@@ -61,20 +59,15 @@ public class DichVuController implements Initializable {
 
     public void init() {
 // Load danh sách Dich Vu
-        this.cbLoaiDv.getItems().add("Ca sĩ");
-        this.cbLoaiDv.getItems().add("MC");
-        this.cbLoaiDv.getItems().add("Bánh kem");
 
-        TableColumn clTenDV = new TableColumn("Tên dịch vụ");
-        clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
-        TableColumn clLoaiDV = new TableColumn("Loại sảnh");
-        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");
+        clTenLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
         TableColumn clPrice = new TableColumn("Giá");
         clPrice.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbDichVu.getColumns().addAll(clTenDV, clLoaiDV, clPrice, clNote);
+        this.tbDichVu.getColumns().addAll(clTenLoaiDV, clPrice, clNote);
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
 // Load form thêm
         addPane.setVisible(false);
@@ -86,8 +79,8 @@ public class DichVuController implements Initializable {
                         && event.getClickCount() == 1) {
 
                     Dichvu clickedRow = row.getItem();
-                    txtTenDV.setText(clickedRow.getTenDV());
-                    cbLoaiDv.getSelectionModel().select(clickedRow.getLoaiDV());
+                    txtTenDV.setText(clickedRow.getLoaiDV());
+
                     txtGiaDV.setText(clickedRow.getGia().toString());
                     txtNote.setText(clickedRow.getGhiChu());
 
@@ -105,11 +98,11 @@ public class DichVuController implements Initializable {
             Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
-            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty() || cbLoaiDv.getSelectionModel().getSelectedItem() == null) {
+            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
                 Alert b = Utils.getAlertTC("Hãy điền đẩy đủ thông tin!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
-                Dichvu s = new Dichvu(txtTenDV.getText(), cbLoaiDv.getSelectionModel().getSelectedItem().toString(),
+                Dichvu s = new Dichvu(txtTenDV.getText(),
                         BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())), txtNote.getText());
 
                 if (Utils.ktTrungTenDichvu(s)) {
@@ -127,7 +120,7 @@ public class DichVuController implements Initializable {
                     Alert b = Utils.getAlertTC("Tên dịch vụ đã có, hãy nhập thông tin mới!!!", Alert.AlertType.ERROR);
                     b.show();
                     txtTenDV.clear();
-                    cbLoaiDv.getSelectionModel().clearSelection();
+
                     txtGiaDV.clear();
                     txtNote.clear();
 
@@ -146,24 +139,24 @@ public class DichVuController implements Initializable {
         } else if (!addPane.isVisible()) {
 
             addPane.setVisible(true);
-            txtTenDV.setText(s.getTenDV());
+            txtTenDV.setText(s.getLoaiDV());
             txtNote.setText(s.getGhiChu());
-            cbLoaiDv.getSelectionModel().select(s.getLoaiDV());
+
             txtGiaDV.setText(s.getGia().toString());
             Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần sửa!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
 
-            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty() || cbLoaiDv.getSelectionModel().getSelectedItem() == null) {
+            if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
                 Alert b = Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR);
                 b.show();
             } else {
 
-                s.setTenDV(txtTenDV.getText());
-                s.setLoaiDV(cbLoaiDv.getSelectionModel().getSelectedItem().toString());
+                s.setLoaiDV(txtTenDV.getText());
+
                 s.setGia(BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())));
                 s.setGhiChu(txtNote.getText());
-                if (cbLoaiDv.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdate(s) == true) {
+                if (Utils.addOrUpdate(s) == true) {
                     Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
                     b.show();
                     addPane.setVisible(false);

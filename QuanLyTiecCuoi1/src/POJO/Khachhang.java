@@ -7,6 +7,7 @@ package POJO;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -41,12 +42,11 @@ public class Khachhang implements Serializable {
     public Khachhang() {
     }
 
-    public Khachhang(String maKH) {
-        this.maKH = maKH;
-    }
+    
 
     public Khachhang(String tenKH, int sdt) {
        
+        this.maKH = UUID.randomUUID().toString();
         this.tenKH = tenKH;
         this.sdt = sdt;
     }

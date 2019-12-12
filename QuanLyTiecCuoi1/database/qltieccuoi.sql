@@ -23,12 +23,11 @@ DROP TABLE IF EXISTS `booking`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `booking` (
-  `MaBooking` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `MaBooking` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `MaSanh` int(5) NOT NULL,
   `MaMenu` int(5) NOT NULL,
-  `MaDV` int(5) NOT NULL,
-  `MaNV` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `MaKH` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaNV` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaKH` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `NgayDat` date DEFAULT NULL,
   `NgayThanhToan` date DEFAULT NULL,
   `SoBan` int(100) DEFAULT NULL,
@@ -40,8 +39,6 @@ CREATE TABLE `booking` (
   KEY `fk_booking_khachhang` (`MaKH`),
   KEY `fk_booking_sanh_idx` (`MaSanh`),
   KEY `fk_booking_menu_idx` (`MaMenu`),
-  KEY `fk_booking_dichvu_idx` (`MaDV`),
-  CONSTRAINT `fk_booking_dichvu` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`),
   CONSTRAINT `fk_booking_khachhang` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
   CONSTRAINT `fk_booking_menu` FOREIGN KEY (`MaMenu`) REFERENCES `menu` (`MaMenu`),
   CONSTRAINT `fk_booking_nhanvien` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`),
@@ -55,8 +52,34 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES ('DSADA44444',5,44,4,'fdsfdsf568','23156QQQQ','2019-06-08',NULL,6,'1','',9900000.00),('DSAE123123',5,44,4,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
+INSERT INTO `booking` VALUES ('DSADA44444',5,44,'fdsfdsf568','23156QQQQ','2019-06-08',NULL,6,'1','',9900000.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `booking_dichvu`
+--
+
+DROP TABLE IF EXISTS `booking_dichvu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `booking_dichvu` (
+  `MaBooking` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaDV` int(5) NOT NULL,
+  PRIMARY KEY (`MaBooking`,`MaDV`),
+  KEY `fk_booking_dichvu_idx` (`MaDV`),
+  CONSTRAINT `fk_booking_dichvu` FOREIGN KEY (`MaDV`) REFERENCES `dichvu` (`MaDV`),
+  CONSTRAINT `fk_dichvu_booking` FOREIGN KEY (`MaBooking`) REFERENCES `booking` (`MaBooking`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `booking_dichvu`
+--
+
+LOCK TABLES `booking_dichvu` WRITE;
+/*!40000 ALTER TABLE `booking_dichvu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `booking_dichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -68,12 +91,11 @@ DROP TABLE IF EXISTS `dichvu`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dichvu` (
   `MaDV` int(5) NOT NULL AUTO_INCREMENT,
-  `TenDV` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `Gia` decimal(11,2) DEFAULT NULL,
-  `LoaiDV` enum('Ca sĩ','MC','Bánh kem') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `GhiChu` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `LoaiDV` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`MaDV`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -82,7 +104,7 @@ CREATE TABLE `dichvu` (
 
 LOCK TABLES `dichvu` WRITE;
 /*!40000 ALTER TABLE `dichvu` DISABLE KEYS */;
-INSERT INTO `dichvu` VALUES (4,'Sơn Tùng',1000000.00,'Ca sĩ','32123');
+INSERT INTO `dichvu` VALUES (4,1000000.00,'32123','ca si');
 /*!40000 ALTER TABLE `dichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +116,7 @@ DROP TABLE IF EXISTS `khachhang`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `khachhang` (
-  `MaKH` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaKH` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `TenKH` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `SDT` int(11) NOT NULL,
   PRIMARY KEY (`MaKH`)
@@ -145,7 +167,7 @@ DROP TABLE IF EXISTS `nhanvien`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nhanvien` (
-  `MaNV` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaNV` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ChucVu` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `TenNV` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `UserName` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -254,4 +276,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-08 16:24:51
+-- Dump completed on 2019-12-12 19:01:35

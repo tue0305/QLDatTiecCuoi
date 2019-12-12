@@ -51,51 +51,45 @@ public class TraCuuVaThanhToanController implements Initializable {
     @FXML
     private TableView tbBooking;
     
-    
+    @FXML
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         init();
-    }    
+    }
     
     public void init() {
         txtTC.setPromptText("Nhập tên hoặc số điện thoại khách...");
-       
-
+        
         TableColumn clMaDatTiec = new TableColumn("Mã đặt tiệc");
         clMaDatTiec.setCellValueFactory(new PropertyValueFactory("maBooking"));
         TableColumn clTenKH = new TableColumn("Tên khách hàng");
-       clTenKH.setCellValueFactory(new PropertyValueFactory("nameCus"));
+        clTenKH.setCellValueFactory(new PropertyValueFactory("nameCus"));
         TableColumn clSDT = new TableColumn("Số điện thoại");
         clSDT.setCellValueFactory(new PropertyValueFactory("phoneCus"));
         TableColumn clNgayDat = new TableColumn("Ngày đặt");
         clNgayDat.setCellValueFactory(new PropertyValueFactory("ngayDat"));
-        TableColumn clNgayThanhToan=  new TableColumn("Ngày thanh toán");
+        TableColumn clNgayThanhToan = new TableColumn("Ngày thanh toán");
         clNgayThanhToan.setCellValueFactory(new PropertyValueFactory("ngayThanhToan"));
-        TableColumn clGia= new TableColumn("Tổng tiền");
+        TableColumn clGia = new TableColumn("Tổng tiền");
         clGia.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
         
-        
-
         this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clNgayThanhToan, clGia, clNote);
         this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
         // Tìm kiếm booking theo tên và số điện thoại khách hàng
-        this.txtTC.textProperty().addListener(et ->{
+        this.txtTC.textProperty().addListener(et -> {
             this.tbBooking.getItems().clear();
             this.tbBooking.setItems(FXCollections.observableArrayList(
                     Utils.getBookingSearch(this.txtTC.getText())));
             
         });
-        
-// Load form thêm
 
-        
+// Load form thêm
     }
 
-    
     // => chưa hoàn thành
     public void suaBooking(ActionEvent event) throws IOException {
         TextField txttenKH = new TextField();
@@ -109,39 +103,56 @@ public class TraCuuVaThanhToanController implements Initializable {
         s.setTitle("Cập nhập thông tin");
         
     }
-
+    
     public void backAction(ActionEvent event) throws IOException {
-
+        
         Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
         Utils.switchStage(sce, event);
-
+        
     }
 
+    //Thanh toan
+    public void payAction(ActionEvent event) throws IOException {
+        Booking s = (Booking) tbBooking.getSelectionModel().getSelectedItem();
+        try {
+            if (s == null) {
+                Utils.getAlertTC("Hãy chọn giá trị bên dưới!!!", Alert.AlertType.ERROR).show();
+            } else if (s.getNgayThanhToan() != null) {
+                Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
+            } else {
+                Utils.setPayBooking(s);
+                Scene sce = new Scene(FXMLLoader.load(getClass().getResource("ThanhToan.fxml")));
+                Utils.switchStage(sce, event);
+            }
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        
+    }
+    
     public void xoaBooking(ActionEvent event) throws IOException {
         Booking s = (Booking) tbBooking.getSelectionModel().getSelectedItem();
-
+        
         if (s == null) {
-            Alert b = Utils.getAlertTC("Hãy chọn giá trị bên dưới!!", Alert.AlertType.ERROR);
-            b.show();
+            Utils.getAlertTC("Hãy chọn giá trị bên dưới!!", Alert.AlertType.ERROR).show();
+            
         } else {
             Alert a = Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION);
             a.showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
-
+                    
                     if (s == null) {
-                        Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
-                        b.show();
+                        Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
                     } else if (Utils.deleteObject(s)) {
-
-                        Alert b = Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION);
-                        b.show();
-
+                        
+                        Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
+                        
                     } else {
-                        Alert b = Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION);
-                        a.show();
+                        Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION).show();
+                        
                     }
                     this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
-
+                    
                 } else if (rs == ButtonType.NO) {
                     return;
                 }

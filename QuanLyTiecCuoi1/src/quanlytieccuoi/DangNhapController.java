@@ -5,7 +5,7 @@
  */
 package quanlytieccuoi;
 
-import POJO.Nhanvien;
+
 import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
@@ -75,33 +75,29 @@ public class DangNhapController implements Initializable {
 
     @FXML
     public void Login(ActionEvent event) throws IOException {
-        
+
         pfPassword.setVisible(true);
         textField.setVisible(false);
         String u = txtUsername.getText();
         String p = pfPassword.getText();
-        
+
         try {
             if (u.isEmpty()) {
-                a = Utils.getAlertTC("Tài khoản trống!!!", Alert.AlertType.ERROR);
-                a.showAndWait();
+                Utils.getAlertTC("Tài khoản trống!!!", Alert.AlertType.ERROR).showAndWait();
+                
 
             } else if (p.isEmpty()) {
-                a = Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR);
-                a.showAndWait();
+                
+                
 //Hàm kiểm tra đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
-                
-                Scene sce = new Scene(loader.load());
-                
-                MainMenuController controller = loader.getController();
-                controller.setLoginName(txtUsername.getText());
+                Utils.setUsernameText(u);
+                Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
                 Utils.switchStage(sce, event);
-                
+
             } else {
-                a = Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR);
-                a.showAndWait();
+                Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR).showAndWait();
+                
             }
 
         } catch (Exception e) {
