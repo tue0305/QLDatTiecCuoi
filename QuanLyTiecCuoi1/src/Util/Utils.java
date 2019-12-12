@@ -5,11 +5,14 @@
  */
 package Util;
 
+import POJO.Booking;
 import POJO.Dichvu;
+import POJO.Khachhang;
 
 import POJO.Nhanvien;
 import POJO.Sanh;
 import POJO.Thucpham;
+import java.util.ArrayList;
 import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
@@ -18,7 +21,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
- import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -31,11 +35,12 @@ import org.hibernate.criterion.Restrictions;
  */
 public class Utils {
 
+
     private static Parent blah;
 
    
-//Hàm kiểm tra đăng nhập
 
+//Hàm kiểm tra đăng nhập
     public static Boolean KiemtraTKandMK(String u, String p) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -89,6 +94,7 @@ public class Utils {
         }
 
     }
+
     //Hàm chuyển Stage action MouseClick
 
     public static void switchStageMouseClick(Scene sce,MouseEvent e) {
@@ -124,6 +130,65 @@ public class Utils {
      
      
 
+    public static List<Booking> getBooking() {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Booking.class);
+        List<Booking> ls = cr.list();
+
+        session.close();
+
+        return ls;
+    }
+// tìm kiếm theo listener form TracuuVaThanhToan
+    public static List<Booking> getBookingSearch(String kw) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Booking.class);
+        List<Booking> a = cr.list();
+        List<Booking> ls = new ArrayList<>();
+        a.forEach((b) -> {
+            if (b.getKhachHang().getTenKH().toLowerCase().contains(kw.toLowerCase())
+                    || String.format("%s", b.getKhachHang().getSdt()).contains(kw)) {
+                ls.add(b);
+            }
+
+        });
+
+        session.close();
+
+        return ls;
+    }
+
+//    public static List<Object> getBookingDetails() {
+//
+//        try {
+//            SessionFactory factory = HibernateUtil.getSessionFactory();
+//            Session session = factory.openSession();
+//            CriteriaBuilder builder ;
+//            Criteria cr = session.createCriteria(Booking.class);
+//            Criterion c1 = Restrictions.List < Booking > ls = cr.list();
+//
+//            session.close();
+//
+//            return ls
+//        } catch (Exception e) {
+//            System.err.print(e.getMessage());
+//        }
+//
+//    }
+    public static Khachhang getCusByBooking(Booking q) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Khachhang.class);
+        cr.add(Restrictions.eq("maKH", q.getKhachHang().getMaKH()));
+        Khachhang k = (Khachhang) cr.uniqueResult();
+        return k;
+    }
+
     public static List<Sanh> getSanh() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -135,7 +200,7 @@ public class Utils {
 
         return ls;
     }
-    
+
     public static List<Dichvu> getDichVu() {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -166,14 +231,12 @@ public class Utils {
         }
     }
 
-    
-    public static boolean addOrUpdate(Object o)
-    {
+    public static boolean addOrUpdate(Object o) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction trans = null;
         try {
-            
+
             trans = session.beginTransaction();
             session.saveOrUpdate(o);
             trans.commit();
@@ -188,12 +251,11 @@ public class Utils {
         }
         return true;
     }
-    
 
     public static boolean ktTrungTenSanh(Sanh s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
-        
+
         try {
 
             Criteria cr = session.createCriteria(Sanh.class);
@@ -210,12 +272,13 @@ public class Utils {
             session.getTransaction().rollback();
             return false;
         }
-        
+
     }
+
     public static boolean ktTrungTenDichvu(Dichvu s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
-        
+
         try {
 
             Criteria cr = session.createCriteria(Dichvu.class);
@@ -232,13 +295,13 @@ public class Utils {
             session.getTransaction().rollback();
             return false;
         }
-        
+
     }
-    
+
     public static boolean ktTrungTenThucPham(Thucpham s) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
-        
+
         try {
 
             Criteria cr = session.createCriteria(Thucpham.class);
@@ -255,12 +318,17 @@ public class Utils {
             session.getTransaction().rollback();
             return false;
         }
-        
-    }
-    
-    
- 
 
-  
-    
+    }
+    // Hàm trả về true nếu chuỗi không phải là số
+     public static boolean isNumeric(String str)
+        {
+            for (char c : str.toCharArray())
+            {
+                if (!Character.isDigit(c)) return false;
+            }
+            return true;
+        }
+
+
 }

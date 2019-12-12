@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package quanlytieccuoi;
-
-import POJO.Dichvu;
+import POJO.Sanh;
 import Util.Utils;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,13 +20,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -60,7 +65,7 @@ public class TEsstController implements Initializable {
 
     @FXML
     private Label lbStatus;
-    
+
     @FXML
     private VBox vboxThongTin;
 
@@ -74,20 +79,27 @@ public class TEsstController implements Initializable {
     private VBox vboxXacNhan;
     @FXML
     private TableView tbDichVu;
- 
+
+    @FXML
+    private ComboBox cbSanh;
+    @FXML
+    private TextField txtTenKH;
+    @FXML
+    private TextField txtSDT;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
+
         init();
-    }    
+    }
     @FXML
     private void handleClicks(ActionEvent event){
-        
+
         if(event.getSource() ==btThongtin)
         {
             lbStatusMIn.setText("/home/thongtin");
-            lbStatus.setText("Thông tin chung");            
+            lbStatus.setText("Thông tin chung");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY) ));
             vboxThongTin.toFront();
         }
@@ -95,45 +107,55 @@ public class TEsstController implements Initializable {
         if(event.getSource() ==btMonAn)
         {
             lbStatusMIn.setText("/home/monan");
-            lbStatus.setText("Món ăn");            
+            lbStatus.setText("Món ăn");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
             vboxMonAn.toFront();
-            
+
         }
         else if(event.getSource() ==btDichVu)
         {
             lbStatusMIn.setText("/home/dichvu");
-            lbStatus.setText("Dịch vụ");            
+            lbStatus.setText("Dịch vụ");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY) ));
             VboxDichVu.toFront();
         }
         else if(event.getSource() ==BtXacNhan)
-        {   
+        {
             lbStatusMIn.setText("/home/xacnhan");
-            lbStatus.setText("Xác nhận");            
+            lbStatus.setText("Xác nhận");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(251, 15, 80), CornerRadii.EMPTY, Insets.EMPTY) ));
             vboxXacNhan.toFront();
-            
+
         }
-       
+
     }
        @FXML
    private void ActionBack(javafx.event.ActionEvent event) throws IOException
    {
-       
+
               Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
         Utils.switchStage(sce, event);
-       
-      
+
+
    }
-   
+
     public void init() {
 // Load danh sách DichVu
- 
+
+        // load Sanh "Thong tin dat tiec"
+        List<Sanh> s = Utils.getSanh();
+        for(Sanh q : s)
+        {
+            this.cbSanh.getItems().add(q.getTenSanh());
+        }
+
+        
+
+
 
         TableColumn clTenDV = new TableColumn("Tên dịch vụ");
         clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
-        TableColumn clLoaiDV = new TableColumn("Loại sảnh");
+        TableColumn clLoaiDV = new TableColumn("Loại dịch vụ");
         clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
         TableColumn clPrice = new TableColumn("Giá");
         clPrice.setCellValueFactory(new PropertyValueFactory("gia"));
@@ -142,27 +164,53 @@ public class TEsstController implements Initializable {
 
         this.tbDichVu.getColumns().addAll(clTenDV, clLoaiDV, clPrice, clNote);
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
-// Load form thêm
-//        addPane.setVisible(false);
+        
+        
 
-//        this.tbDichVu.setRowFactory(tv -> {
-//            TableRow<Dichvu> row = new TableRow<>();
-//            row.setOnMouseClicked(event -> {
-//                if (!row.isEmpty() && event.getButton() == MouseButton.PRIMARY
-//                        && event.getClickCount() == 1) {
-//
-//                    Dichvu clickedRow = row.getItem();
-//                    txtTenDV.setText(clickedRow.getTenDV());
-//                    cbLoaiDv.getSelectionModel().select(clickedRow.getLoaiDV());
-//                    txtGiaDV.setText(clickedRow.getGia().toString());
-//                    txtNote.setText(clickedRow.getGhiChu());
-//
-//                }
-//            });
-//            return row;
-//        });
     }
-   
-   
-    
-}
+
+     public void kiemTraThemTTKH(ActionEvent event) throws IOException {
+
+            // kiem tra sdt
+            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty() ) {
+                Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR); 
+                b.show();
+                } else{
+ 
+                                       Alert b = Utils.getAlertTC("XONG Buoc thêm!!!", Alert.AlertType.INFORMATION);
+                                       b.show();
+ 
+                    }
+        }
+             
+     // kiem trA SDT
+     public void   TextFieldKeyPressed(javafx.scene.input.KeyEvent evt){
+                    
+                    String str = txtSDT.getText();
+                    int lengthstr = str.length();
+                    // lang nghe va chi chon so nguyen
+                     ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
+                            if (!newValue.matches("\\d*"))
+                              ((StringProperty) observable).set(oldValue);
+                        };
+                    txtSDT.textProperty().addListener(forceNumberListener);   // forceNumberListener se duoc goi neu co thay doi
+                    
+                    if(lengthstr<11){          //gioi han 11 so
+                       txtSDT.setEditable(true);
+                       }  
+                     else{
+                    txtSDT.setEditable(false);                            
+                              if(evt.getCode()==KeyCode.DELETE || evt.getCode()==KeyCode.BACK_SPACE)                            
+                                  txtSDT.setEditable(true);
+                               else
+                                  txtSDT.setEditable(false);                               
+                         }
+                    
+              }
+ }
+     
+     
+     
+     
+     
+

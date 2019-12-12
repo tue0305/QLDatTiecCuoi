@@ -141,89 +141,6 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxThongTin">
-                     <children>
-                        <VBox prefHeight="283.0" prefWidth="893.0">
-                           <children>
-                              <GridPane prefHeight="299.0" prefWidth="893.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints minWidth="10.0" prefWidth="82.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="225.0" />
-                                    <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="80.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="200.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label styleClass="two" text="SĐT" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-                                    <Label text="Tên KH" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <TextField prefHeight="31.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label text="Địa chỉ" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Email" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                    <Label text="Ghi chú" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                    <TextArea prefHeight="55.0" prefWidth="346.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="2" />
-                                    <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="3" />
-                                    <TextField layoutX="121.0" layoutY="29.0" prefHeight="31.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField prefHeight="31.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <Label styleClass="H1" text="Thông tin khách hàng" GridPane.columnSpan="2" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                 </padding>
-                              </GridPane>
-                           </children>
-                        </VBox>
-                        <VBox prefHeight="307.0" prefWidth="858.0" style=": ;">
-                           <children>
-                              <GridPane prefHeight="358.0" prefWidth="858.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints minWidth="10.0" prefWidth="55.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="20.0" />
-                                    <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="20.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label text="Loại tiệc" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <Label styleClass="two" text="Sảnh" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-                                    <Label text="Ngày" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                    <RadioButton mnemonicParsing="false" text="Trưa" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <RadioButton mnemonicParsing="false" text="Tối" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                    <ComboBox prefHeight="19.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                                    <DatePicker prefHeight="31.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                                    <Label prefHeight="21.0" prefWidth="278.0" styleClass="H1" text="Thông tin đặt sảnh" GridPane.columnSpan="3" />
-                                    <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="127.0" styleClass="button4" text="NEXT" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                 </padding>
-                              </GridPane>
-                           </children>
-                        </VBox>
-                     </children>
-                  </VBox>
                   <VBox fx:id="vboxMonAn" alignment="CENTER">
                      <children>
                         <BorderPane prefHeight="584.0" prefWidth="839.0">
@@ -318,6 +235,85 @@
                               </Pane>
                            </top>
                         </BorderPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vboxThongTin">
+                     <children>
+                        <VBox prefHeight="283.0" prefWidth="893.0">
+                           <children>
+                              <GridPane prefHeight="299.0" prefWidth="893.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints minWidth="10.0" prefWidth="82.0" />
+                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="225.0" />
+                                    <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="80.0" />
+                                    <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="200.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label styleClass="two" text="SĐT" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+                                    <Label text="Tên KH" wrapText="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                    <TextField fx:id="txtTenKH" prefHeight="31.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Label text="Địa chỉ" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                                       <GridPane.margin>
+                                          <Insets />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="3" />
+                                    <TextField fx:id="txtSDT" layoutX="121.0" layoutY="29.0" onKeyPressed="#TextFieldKeyPressed" prefHeight="31.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <Label styleClass="H1" text="Thông tin khách hàng" GridPane.columnSpan="2" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </GridPane>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="307.0" prefWidth="858.0" style=": ;">
+                           <children>
+                              <GridPane prefHeight="358.0" prefWidth="858.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints minWidth="10.0" prefWidth="55.0" />
+                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="20.0" />
+                                    <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="20.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="Loại tiệc" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                    <Label styleClass="two" text="Sảnh" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+                                    <Label text="Ngày" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                    <RadioButton mnemonicParsing="false" text="Trưa" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <RadioButton mnemonicParsing="false" text="Tối" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                    <ComboBox fx:id="cbSanh" prefHeight="19.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <DatePicker prefHeight="31.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                                    <Label prefHeight="21.0" prefWidth="278.0" styleClass="H1" text="Thông tin đặt sảnh" GridPane.columnSpan="3" />
+                                    <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                                    <Button mnemonicParsing="false" onAction="#kiemTraThemTTKH" prefHeight="31.0" prefWidth="127.0" styleClass="button4" text="NEXT" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                                 </padding>
+                              </GridPane>
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                </children>

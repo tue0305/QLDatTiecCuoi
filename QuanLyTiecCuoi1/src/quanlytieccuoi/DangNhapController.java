@@ -5,6 +5,7 @@
  */
 package quanlytieccuoi;
 
+import POJO.Nhanvien;
 import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
@@ -91,14 +92,17 @@ public class DangNhapController implements Initializable {
             } else if (p.isEmpty()) {
                 a = Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR);
                 a.showAndWait();
-//Hàm kiểm trà đăng nhập
+//Hàm kiểm tra đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
+
 
                 Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
                 
                 Utils.switchStage(sce, event);
                 
             } else {
+                
+                
                 a = Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR);
                 a.showAndWait();
             }

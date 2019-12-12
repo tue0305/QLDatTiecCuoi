@@ -29,10 +29,10 @@ public class Booking implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   
     @Basic(optional = false)
     @Column(name = "MaBooking")
-    private Integer maBooking;
+    private String maBooking;
     @Basic(optional = false)
     @Column(name = "NgayDat")
     @Temporal(TemporalType.DATE)
@@ -55,7 +55,7 @@ public class Booking implements Serializable {
     private Dichvu maDV;
     @JoinColumn(name = "MaKH", referencedColumnName = "MaKH")
     @ManyToOne(optional = false)
-    private Khachhang maKH;
+    private Khachhang khachHang;
     @JoinColumn(name = "MaMenu", referencedColumnName = "MaMenu")
     @ManyToOne(optional = false)
     private Menu maMenu;
@@ -69,25 +69,27 @@ public class Booking implements Serializable {
     public Booking() {
     }
 
-    public Booking(Integer maBooking) {
+    public Booking(String maBooking) {
         this.maBooking = maBooking;
     }
 
-    public Booking(Integer maBooking, Date ngayDat, BigDecimal price, Character ca) {
+    public Booking(String maBooking, Date ngayDat, BigDecimal price, Character ca) {
         this.maBooking = maBooking;
         this.ngayDat = ngayDat;
         this.price = price;
         this.ca = ca;
     }
-
-    public Integer getMaBooking() {
-        return maBooking;
+    
+    public String getNameCus()
+    {
+        return this.khachHang.getTenKH().toString();
     }
-
-    public void setMaBooking(Integer maBooking) {
-        this.maBooking = maBooking;
+     
+    public String getPhoneCus()
+    {
+        return String.format("%s", this.khachHang.getSdt());
     }
-
+    
     public Date getNgayDat() {
         return ngayDat;
     }
@@ -136,12 +138,12 @@ public class Booking implements Serializable {
         this.maDV = maDV;
     }
 
-    public Khachhang getMaKH() {
-        return maKH;
+    public Khachhang getKhachHang() {
+        return khachHang;
     }
 
-    public void setMaKH(Khachhang maKH) {
-        this.maKH = maKH;
+    public void setKhachHang(Khachhang khachHang) {
+        this.khachHang = khachHang;
     }
 
     public Menu getMaMenu() {
@@ -171,7 +173,7 @@ public class Booking implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (maBooking != null ? maBooking.hashCode() : 0);
+        hash += (getMaBooking() != null ? getMaBooking().hashCode() : 0);
         return hash;
     }
 
@@ -182,7 +184,7 @@ public class Booking implements Serializable {
             return false;
         }
         Booking other = (Booking) object;
-        if ((this.maBooking == null && other.maBooking != null) || (this.maBooking != null && !this.maBooking.equals(other.maBooking))) {
+        if ((this.getMaBooking() == null && other.getMaBooking() != null) || (this.getMaBooking() != null && !this.maBooking.equals(other.maBooking))) {
             return false;
         }
         return true;
@@ -190,7 +192,21 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return "POJO.Booking[ maBooking=" + maBooking + " ]";
+        return this.price.toString();
+    }
+
+    /**
+     * @return the maBooking
+     */
+    public String getMaBooking() {
+        return maBooking;
+    }
+
+    /**
+     * @param maBooking the maBooking to set
+     */
+    public void setMaBooking(String maBooking) {
+        this.maBooking = maBooking;
     }
     
 }

@@ -5,28 +5,18 @@
  */
 package quanlytieccuoi;
 
-import POJO.Nhanvien;
-import Util.HibernateUtil;
+
 import Util.Utils;
-import com.mysql.cj.util.Util;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 /**
  * FXML Controller class
@@ -48,6 +38,9 @@ public class MainMenuController implements Initializable {
 
         // TODO
      
+        
+               
+        
     
      
     }
@@ -89,7 +82,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private void ActionTraCuu(javafx.event.ActionEvent event) throws IOException {
 
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuu.fxml")));
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
         Utils.switchStage(sce, event);
     }
       @FXML
@@ -168,15 +161,4 @@ public class MainMenuController implements Initializable {
           Utils.switchStageMouseClick(sce, event);
     }
 
-    void setUserName(TextField txtUsername) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setUserName(String u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
 }
-

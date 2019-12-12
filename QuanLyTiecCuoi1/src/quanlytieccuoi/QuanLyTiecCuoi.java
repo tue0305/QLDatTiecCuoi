@@ -26,7 +26,7 @@ public class QuanLyTiecCuoi extends Application {
     public void start(Stage stage) throws Exception {
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("TEsst.fxml"));
 
        // stage.initStyle(StageStyle.TRANSPARENT);
 
@@ -56,5 +56,6 @@ public class QuanLyTiecCuoi extends Application {
         launch(args);
     }
    
+
 
 }

@@ -7,6 +7,7 @@ package POJO;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -36,18 +37,15 @@ public class Khachhang implements Serializable {
     @Basic(optional = false)
     @Column(name = "SDT")
     private int sdt;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "maKH")
-    private List<Booking> bookingList;
+    
 
     public Khachhang() {
     }
 
-    public Khachhang(String maKH) {
-        this.maKH = maKH;
-    }
+  
 
-    public Khachhang(String maKH, String tenKH, int sdt) {
-        this.maKH = maKH;
+    public Khachhang(String tenKH, int sdt) {
+       
         this.tenKH = tenKH;
         this.sdt = sdt;
     }
@@ -76,38 +74,16 @@ public class Khachhang implements Serializable {
         this.sdt = sdt;
     }
 
-    @XmlTransient
-    public List<Booking> getBookingList() {
-        return bookingList;
-    }
-
-    public void setBookingList(List<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (maKH != null ? maKH.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Khachhang)) {
-            return false;
-        }
-        Khachhang other = (Khachhang) object;
-        if ((this.maKH == null && other.maKH != null) || (this.maKH != null && !this.maKH.equals(other.maKH))) {
-            return false;
-        }
-        return true;
-    }
+    
+    
 
     @Override
     public String toString() {
-        return "POJO.Khachhang[ maKH=" + maKH + " ]";
+        return String.format("%s, %s", this.tenKH, this.sdt);
+    }
+
+    public Object getTenTP() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
