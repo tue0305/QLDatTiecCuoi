@@ -8,12 +8,17 @@ package POJO;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -52,6 +57,17 @@ public class Menu implements Serializable {
     @Column(name = "TenMenu")
     private String tenMenu;
 
+    @JoinTable(
+            name = "thucpham_menu",
+            joinColumns = {
+                @JoinColumn(name = "maMenu")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "maTP")
+            }
+    )
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Thucpham> thucPham;
     public Menu() {
     }
 
@@ -96,29 +112,20 @@ public class Menu implements Serializable {
         this.tenMenu = tenMenu;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (maMenu != null ? maMenu.hashCode() : 0);
-        return hash;
+   
+  
+    /**
+     * @return the thucPham
+     */
+    public List<Thucpham> getThucPham() {
+        return thucPham;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Menu)) {
-            return false;
-        }
-        Menu other = (Menu) object;
-        if ((this.maMenu == null && other.maMenu != null) || (this.maMenu != null && !this.maMenu.equals(other.maMenu))) {
-            return false;
-        }
-        return true;
+    /**
+     * @param thucPham the thucPham to set
+     */
+    public void setThucPham(List<Thucpham> thucPham) {
+        this.thucPham = thucPham;
     }
 
-    @Override
-    public String toString() {
-        return "POJO.Menu[ maMenu=" + maMenu + " ]";
-    }
-    
 }

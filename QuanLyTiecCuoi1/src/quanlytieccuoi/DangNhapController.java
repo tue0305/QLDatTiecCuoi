@@ -13,12 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  *
@@ -33,12 +31,7 @@ public class DangNhapController implements Initializable {
     @FXML
     private TextField textField;
 
-    //
-    Alert a;
-    @FXML
-    private TextField txtPassword;
-    private DangNhapController DangNhapController;
-
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -49,7 +42,7 @@ public class DangNhapController implements Initializable {
     public void init() {
         try {
             String password = "";
-            getTxtUsername().setPromptText("Enter your username...");
+            txtUsername.setPromptText("Enter your username...");
 
             pfPassword.setPromptText("Enter your password...");
 
@@ -80,7 +73,7 @@ public class DangNhapController implements Initializable {
 
         pfPassword.setVisible(true);
         textField.setVisible(false);
-        String u = getTxtUsername().getText();
+        String u = txtUsername.getText();
         String p = pfPassword.getText();
 
         try {
@@ -88,8 +81,8 @@ public class DangNhapController implements Initializable {
                 Utils.getAlertTC("Tài khoản trống!!!", Alert.AlertType.ERROR).showAndWait();
 
             } else if (p.isEmpty()) {
-                a = Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR);
-                a.showAndWait();
+                Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR).showAndWait();
+                
                 //Hàm kiểm tra đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
                 Utils.setUsernameText(u);
@@ -110,18 +103,5 @@ public class DangNhapController implements Initializable {
 
     }
 
-    /**
-     * @return the txtUsername
-     */
-    public TextField getTxtUsername() {
-        return txtUsername;
-    }
-
-    /**
-     * @param txtUsername the txtUsername to set
-     */
-    public void setTxtUsername(TextField txtUsername) {
-        this.txtUsername = txtUsername;
-    }
-
+    
 }

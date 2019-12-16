@@ -57,10 +57,10 @@ public class Booking implements Serializable {
     @JoinTable(
             name = "booking_dichvu",
             joinColumns = {
-                @JoinColumn(name = "Mabooking")
+                @JoinColumn(name = "maBooking")
             },
             inverseJoinColumns = {
-                @JoinColumn(name = "MaDV")
+                @JoinColumn(name = "maDV")
             }
     )
     @ManyToMany(cascade = CascadeType.ALL)
@@ -101,7 +101,7 @@ public class Booking implements Serializable {
         this.ca = ca;
         this.sanh = sanh;
     }
-
+    
     public String getNameCus() {
         return this.khachHang.getTenKH().toString();
     }
@@ -241,5 +241,6 @@ public class Booking implements Serializable {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         return f.format(t);
     }
-
+    
+   
 }

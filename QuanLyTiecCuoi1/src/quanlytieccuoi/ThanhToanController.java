@@ -6,10 +6,12 @@
 package quanlytieccuoi;
 
 import POJO.Booking;
-import POJO.Nhanvien;
+import POJO.Dichvu;
+import POJO.Thucpham;
 import Util.Utils;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -21,8 +23,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -36,8 +40,8 @@ public class ThanhToanController implements Initializable {
      *
      */
     // phí khi thanh toán trễ
-    private final double CHARGE = 0.1;
-    
+    private final static double CHARGE = 0.01;
+
     @FXML
     private TextField txtNV;
     @FXML
@@ -63,8 +67,15 @@ public class ThanhToanController implements Initializable {
     @FXML
     private TableView tbDichVu;
 
-    Date d = new Date();
-    public Booking b = Utils.getPayBooking();
+    private Date d = new Date();
+    private Booking b = Utils.getPayBooking();
+    private Long diff;
+    private Double fee;
+    //  tổng tiền thực phẩm và dịch vụ
+    private Double TienTP = Utils.getPriceOfFoods();
+    private Double TienDV = Utils.getPriceOfServices();
+    private Double Tong;
+    private Double thanhTien = TienTP + TienDV + b.getSanh().getGia().doubleValue();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -74,7 +85,16 @@ public class ThanhToanController implements Initializable {
     }
 
     public void init() {
+        //công thức thành tiền
         
+
+        // Trả về số ngày trễ
+        diff = (d.getTime() - b.getNgayDat().getTime()) / (24 * 60 * 60 * 1000);
+        // phí
+        fee = diff.doubleValue() * CHARGE;
+        //Tổng tiền (Tiền đã tính phí trễ hẹn)
+        Tong = fee * thanhTien;
+
         txtNV.setText(b.getNhanVien().getTenNV());
         txtCa.setText(b.getCa().toString());
         txtNgayDat.setText(b.formatDate(b.getNgayDat()));
@@ -82,11 +102,40 @@ public class ThanhToanController implements Initializable {
         txtMaDat.setText(b.getMaBooking());
         txtSanh.setText(b.getSanh().getLoaiSanh());
 
-//       
-//        txtTongTien;
-//        txtThanhTien;
-//        txtPhi.setText(b.formatDate((d - b.getNgayThanhToan())));
-//        txtKhachTra;
+        txtPhi.setText(String.format("%.2f", fee));
+        txtKhachTra.setText(String.format("%d", diff));
+
+//      Load bảng thực phẩm
+        TableColumn clMaTP = new TableColumn("Mã");
+        clMaTP.setCellValueFactory(new PropertyValueFactory("maTP"));
+        TableColumn clTenTP = new TableColumn("Tên");
+        clTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
+        TableColumn clLoaiTP = new TableColumn("loại");
+        clLoaiTP.setCellValueFactory(new PropertyValueFactory("loaiTP"));
+        TableColumn clPrice = new TableColumn("Giá");
+        clPrice.setCellValueFactory(new PropertyValueFactory("price"));
+        TableColumn clNote = new TableColumn("Ghi chú");
+        clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+
+        this.tbThucPham.getColumns().addAll(clMaTP, clTenTP, clLoaiTP, clPrice, clNote);
+        this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getFoodsOfBooking(b)));
+
+        //      Load bảng dịch vụ
+        TableColumn clMaDV = new TableColumn("Mã");
+        clMaDV.setCellValueFactory(new PropertyValueFactory("maDV"));
+
+        TableColumn clLoaiDV = new TableColumn("loại");
+        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clGiaDV = new TableColumn("Giá");
+        clGiaDV.setCellValueFactory(new PropertyValueFactory("gia"));
+        TableColumn clGhiChu = new TableColumn("Ghi chú");
+        clGhiChu.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+
+        this.tbDichVu.getColumns().addAll(clMaDV, clLoaiDV, clGiaDV, clGhiChu);
+        this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getServicesOfBooking(b)));
+
+        txtThanhTien.setText(String.format( Utils.formatCurrency(thanhTien)));
+        txtTongTien.setText(String.format( Utils.formatCurrency(Tong)));
     }
 
     public void backAction(ActionEvent event) throws IOException {
@@ -108,12 +157,14 @@ public class ThanhToanController implements Initializable {
                         Alert c = Utils.getAlertTC("Tiến hành in hóa đơn ?", Alert.AlertType.CONFIRMATION);
                         c.showAndWait().ifPresent(rs2 -> {
                             if (rs2 == ButtonType.OK) {
-                                
+                                System.out.print(txtTongTien.getText());
                             }
                             Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).show();
                             b.setNgayThanhToan(d);
                             b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText())));
-//                            b.setGhiChu(String.format("Khách thanh toán trễ: %s\r\nTiền cộng thêm : %.2f", )); --->
+                            String q = String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f %", diff, diff * CHARGE);
+                            b.setGhiChu(String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f %", diff, diff * CHARGE));
+                            System.out.print(q);
                         });
                     } else if (rs1 == ButtonType.NO) {
                         return;

@@ -52,7 +52,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES ('DSADA44444',5,44,'fdsfdsf568','23156QQQQ','2019-06-08',NULL,6,'1','',9900000.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
+INSERT INTO `booking` VALUES ('DSADA44444',5,44,'fdsfdsf568','23156QQQQ','2019-06-08',NULL,60,'1','',0.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,6 +79,7 @@ CREATE TABLE `booking_dichvu` (
 
 LOCK TABLES `booking_dichvu` WRITE;
 /*!40000 ALTER TABLE `booking_dichvu` DISABLE KEYS */;
+INSERT INTO `booking_dichvu` VALUES ('DSADA44444',4),('DSADA44444',5),('DSADA44444',6);
 /*!40000 ALTER TABLE `booking_dichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +105,7 @@ CREATE TABLE `dichvu` (
 
 LOCK TABLES `dichvu` WRITE;
 /*!40000 ALTER TABLE `dichvu` DISABLE KEYS */;
-INSERT INTO `dichvu` VALUES (4,1000000.00,'32123','ca si');
+INSERT INTO `dichvu` VALUES (4,1000000.00,'32123','ca si'),(5,1100006.00,NULL,'Bánh kem'),(6,4546456.11,NULL,'MC');
 /*!40000 ALTER TABLE `dichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +183,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES ('fdsfdsf568','Admin','Nguyễn Văn A','tue123','123456');
+INSERT INTO `nhanvien` VALUES ('fdsfdsf568','Admin','Nguyễn Văn A','tue123','123456'),('ưewqee99','Staff','Nguyễn Thị B','thanh123','123456');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -227,7 +228,7 @@ CREATE TABLE `thucpham` (
   `GhiChu` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `LoaiTP` enum('Khai vị','Món chính','Tráng miệng','Nước uống') CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`MaTP`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -236,7 +237,7 @@ CREATE TABLE `thucpham` (
 
 LOCK TABLES `thucpham` WRITE;
 /*!40000 ALTER TABLE `thucpham` DISABLE KEYS */;
-INSERT INTO `thucpham` VALUES (7,'bún thịt nướng',60000.00,'dsads','Nước uống');
+INSERT INTO `thucpham` VALUES (7,'bún thịt nướng',60000.00,'dsads','Nước uống'),(8,'Nho',60000.61,NULL,'Tráng miệng'),(9,'Bánh mì',71111.00,NULL,'Khai vị');
 /*!40000 ALTER TABLE `thucpham` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,7 +251,6 @@ DROP TABLE IF EXISTS `thucpham_menu`;
 CREATE TABLE `thucpham_menu` (
   `MaTP` int(10) NOT NULL,
   `MaMenu` int(5) NOT NULL,
-  `SoLuong` varchar(45) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`MaTP`,`MaMenu`),
   KEY `fk_thucpham_menu_idx` (`MaMenu`),
   CONSTRAINT `fk_menu_thucpham` FOREIGN KEY (`MaTP`) REFERENCES `thucpham` (`MaTP`),
@@ -264,6 +264,7 @@ CREATE TABLE `thucpham_menu` (
 
 LOCK TABLES `thucpham_menu` WRITE;
 /*!40000 ALTER TABLE `thucpham_menu` DISABLE KEYS */;
+INSERT INTO `thucpham_menu` VALUES (7,44),(8,44),(9,44);
 /*!40000 ALTER TABLE `thucpham_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -276,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-12 19:01:35
+-- Dump completed on 2019-12-17  0:46:39

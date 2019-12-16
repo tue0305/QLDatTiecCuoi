@@ -56,9 +56,7 @@ public class Thucpham implements Serializable {
     private String ghiChu;
     @Column(name = "LoaiTP")
     private String loaiTP;
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "thucpham")
-//    private Set<ThucphamMenu> thucphamMenuSet;
-
+//   
     public Thucpham() {
     }
 
@@ -110,14 +108,7 @@ public class Thucpham implements Serializable {
         this.loaiTP = loaiTP;
     }
 
-//    @XmlTransient
-//    public Set<ThucphamMenu> getThucphamMenuSet() {
-//        return thucphamMenuSet;
-//    }
-//
-//    public void setThucphamMenuSet(Set<ThucphamMenu> thucphamMenuSet) {
-//        this.thucphamMenuSet = thucphamMenuSet;
-//    }
+//  
 
    
 
