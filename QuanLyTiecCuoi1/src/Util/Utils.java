@@ -42,40 +42,50 @@ import org.hibernate.criterion.Restrictions;
  */
 public final class Utils {
 
+    private Utils(){};
 //Lưu thông tin nhân viên xuyên suốt chương trình
     private static String usernameText;
-
+    
     public static String getUsernameText() {
         return usernameText;
     }
 
+
     public static void setUsernameText(String usernameText) {
         Utils.usernameText = usernameText;
     }
-    // Lưu thông tin về các dịch vụ và thức ăn để thanh toán
+    
+    public static void resetBooking()
+    {
+        Utils.payingBooking = null;
+        Utils.tienDV = 0.0;
+        Utils.tienTP = 0.0;
+    }
+    
+   
+    private static Booking payingBooking;
     private static Double tienTP = 0.0;
     private static Double tienDV = 0.0;
-    private static Double tienSanh = 0.0;
-    private static Booking payingBooking;
 
-    public static Double getPriceOfFoods() {
-        return tienTP;
-    }
-
-    public static Double getPriceOfServices() {
-        return tienDV;
-    }
-
+    
     public static Booking getPayBooking() {
         return payingBooking;
     }
-
+    
+    public static Double getPriceOfFoods() {
+        return tienTP;
+    }
+    
+    public static Double getPriceOfServices() {
+        return tienDV;
+    }
+    
     public static void setPayBooking(Booking b) {
         Utils.payingBooking = b;
-        for (Thucpham t : Utils.getFoodsOfBooking(b)) {
-            tienTP += t.getPrice().doubleValue();
+        for (Thucpham t : getFoodsOfBooking(b)) {
+            tienTP += t.getPrice().doubleValue() * b.getSoBan();
         }
-        for (Dichvu d : Utils.getServicesOfBooking(b)) {
+        for (Dichvu d : getServicesOfBooking(b)) {
             tienDV += d.getGia().doubleValue();
         }
 
@@ -427,12 +437,6 @@ public final class Utils {
         cr.add(Restrictions.eq("maBooking", b.getMaBooking()));
         Booking k = (Booking) cr.uniqueResult();
         return k.getDichVu();
-    }
-
-    // Công thức tính hóa đơn  không phí
-    public static BigDecimal calBooking(BigDecimal a, BigDecimal b, BigDecimal c) {
-
-        return a.add(b).add(c);
     }
 
     //Format Tiền tệ

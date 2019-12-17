@@ -26,7 +26,7 @@ CREATE TABLE `booking` (
   `MaBooking` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `MaSanh` int(5) NOT NULL,
   `MaMenu` int(5) NOT NULL,
-  `MaNV` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `MaNV` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `MaKH` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `NgayDat` date DEFAULT NULL,
   `NgayThanhToan` date DEFAULT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES ('DSADA44444',5,44,'fdsfdsf568','23156QQQQ','2019-06-08',NULL,60,'1','',0.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
+INSERT INTO `booking` VALUES ('DSADA44444',5,44,'ưewqee99','23156QQQQ','2019-06-08','2019-12-17',60,'1','dsadsa',52978023.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17  0:46:39
+-- Dump completed on 2019-12-17 23:13:06

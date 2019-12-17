@@ -7,6 +7,7 @@ package quanlytieccuoi;
 
 import POJO.Booking;
 import POJO.Dichvu;
+import POJO.Nhanvien;
 import POJO.Thucpham;
 import Util.Utils;
 import java.io.IOException;
@@ -61,6 +62,8 @@ public class ThanhToanController implements Initializable {
     @FXML
     private TextField txtPhi;
     @FXML
+    private TextField txtSoBan;
+    @FXML
     private TextField txtKhachTra;
     @FXML
     private TableView tbThucPham;
@@ -68,14 +71,16 @@ public class ThanhToanController implements Initializable {
     private TableView tbDichVu;
 
     private Date d = new Date();
-    private Booking b = Utils.getPayBooking();
     private Long diff;
     private Double fee;
-    //  tổng tiền thực phẩm và dịch vụ
-    private Double TienTP = Utils.getPriceOfFoods();
-    private Double TienDV = Utils.getPriceOfServices();
-    private Double Tong;
-    private Double thanhTien = TienTP + TienDV + b.getSanh().getGia().doubleValue();
+    //
+    private Booking b = Utils.getPayBooking();
+
+    private Double tienTP = Utils.getPriceOfFoods();
+    private Double tienDV = Utils.getPriceOfServices();
+    private Double tongTIen;
+
+    private Nhanvien n = Utils.findStaff(Utils.getUsernameText());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -86,16 +91,15 @@ public class ThanhToanController implements Initializable {
 
     public void init() {
         //công thức thành tiền
-        
-
+        Double thanhTien = tienTP + tienDV + b.getSanh().getGia().doubleValue();
         // Trả về số ngày trễ
         diff = (d.getTime() - b.getNgayDat().getTime()) / (24 * 60 * 60 * 1000);
         // phí
         fee = diff.doubleValue() * CHARGE;
         //Tổng tiền (Tiền đã tính phí trễ hẹn)
-        Tong = fee * thanhTien;
+        tongTIen = fee * thanhTien + thanhTien;
 
-        txtNV.setText(b.getNhanVien().getTenNV());
+        txtNV.setText(n.getTenNV());
         txtCa.setText(b.getCa().toString());
         txtNgayDat.setText(b.formatDate(b.getNgayDat()));
         txtTenKhach.setText(b.getNameCus());
@@ -104,67 +108,99 @@ public class ThanhToanController implements Initializable {
 
         txtPhi.setText(String.format("%.2f", fee));
         txtKhachTra.setText(String.format("%d", diff));
+        txtSoBan.setText(b.getSoBan().toString());
 
 //      Load bảng thực phẩm
         TableColumn clMaTP = new TableColumn("Mã");
-        clMaTP.setCellValueFactory(new PropertyValueFactory("maTP"));
-        TableColumn clTenTP = new TableColumn("Tên");
-        clTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
-        TableColumn clLoaiTP = new TableColumn("loại");
-        clLoaiTP.setCellValueFactory(new PropertyValueFactory("loaiTP"));
-        TableColumn clPrice = new TableColumn("Giá");
-        clPrice.setCellValueFactory(new PropertyValueFactory("price"));
-        TableColumn clNote = new TableColumn("Ghi chú");
-        clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbThucPham.getColumns().addAll(clMaTP, clTenTP, clLoaiTP, clPrice, clNote);
+        clMaTP.setCellValueFactory(
+                new PropertyValueFactory("maTP"));
+        TableColumn clTenTP = new TableColumn("Tên");
+
+        clTenTP.setCellValueFactory(
+                new PropertyValueFactory("tenTP"));
+        TableColumn clLoaiTP = new TableColumn("loại");
+
+        clLoaiTP.setCellValueFactory(
+                new PropertyValueFactory("loaiTP"));
+        TableColumn clPrice = new TableColumn("Giá");
+
+        clPrice.setCellValueFactory(
+                new PropertyValueFactory("price"));
+        TableColumn clNote = new TableColumn("Ghi chú");
+
+        clNote.setCellValueFactory(
+                new PropertyValueFactory("ghiChu"));
+
+        this.tbThucPham.getColumns()
+                .addAll(clMaTP, clTenTP, clLoaiTP, clPrice, clNote);
+
         this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getFoodsOfBooking(b)));
 
         //      Load bảng dịch vụ
         TableColumn clMaDV = new TableColumn("Mã");
-        clMaDV.setCellValueFactory(new PropertyValueFactory("maDV"));
+
+        clMaDV.setCellValueFactory(
+                new PropertyValueFactory("maDV"));
 
         TableColumn clLoaiDV = new TableColumn("loại");
-        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
-        TableColumn clGiaDV = new TableColumn("Giá");
-        clGiaDV.setCellValueFactory(new PropertyValueFactory("gia"));
-        TableColumn clGhiChu = new TableColumn("Ghi chú");
-        clGhiChu.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbDichVu.getColumns().addAll(clMaDV, clLoaiDV, clGiaDV, clGhiChu);
+        clLoaiDV.setCellValueFactory(
+                new PropertyValueFactory("loaiDV"));
+        TableColumn clGiaDV = new TableColumn("Giá");
+
+        clGiaDV.setCellValueFactory(
+                new PropertyValueFactory("gia"));
+        TableColumn clGhiChu = new TableColumn("Ghi chú");
+
+        clGhiChu.setCellValueFactory(
+                new PropertyValueFactory("ghiChu"));
+
+        this.tbDichVu.getColumns()
+                .addAll(clMaDV, clLoaiDV, clGiaDV, clGhiChu);
+
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getServicesOfBooking(b)));
 
-        txtThanhTien.setText(String.format( Utils.formatCurrency(thanhTien)));
-        txtTongTien.setText(String.format( Utils.formatCurrency(Tong)));
+        txtThanhTien.setText(String.format(Utils.formatCurrency(thanhTien)));
+        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen)));
     }
 
     public void backAction(ActionEvent event) throws IOException {
 
         Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
         Utils.switchStage(sce, event);
-
+        Utils.resetBooking();
     }
 
     public void confirmkAction(ActionEvent event) throws IOException {
-
+      
         try {
             if (txtKhachTra.getText().isEmpty()) {
-                Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR).show();
+                Utils.getAlertTC("Nhập số tiền khách trả!!", Alert.AlertType.ERROR).show();
             } else {
-                Alert a = Utils.getAlertTC("Xác nhận thanh toán ?", Alert.AlertType.CONFIRMATION);
-                a.showAndWait().ifPresent(rs1 -> {
+                Utils.getAlertTC("Hãy kiểm tra kĩ thông tin và xác nhận thanh toán ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs1 -> {
+
                     if (rs1 == ButtonType.OK) {
-                        Alert c = Utils.getAlertTC("Tiến hành in hóa đơn ?", Alert.AlertType.CONFIRMATION);
-                        c.showAndWait().ifPresent(rs2 -> {
+                        Utils.getAlertTC("Tiến hành in hóa đơn ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs2 -> {
+
                             if (rs2 == ButtonType.OK) {
-                                System.out.print(txtTongTien.getText());
+                                System.out.print(txtTongTien.getText());// chỗ in hóa đơn
                             }
-                            Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).show();
+                            
                             b.setNgayThanhToan(d);
-                            b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText())));
-                            String q = String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f %", diff, diff * CHARGE);
-                            b.setGhiChu(String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f %", diff, diff * CHARGE));
-                            System.out.print(q);
+                            b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText().replace(",", ""))));
+                            if(!fee.equals(0))
+                                b.setGhiChu(String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
+                            else
+                                b.setGhiChu(String.format("Thanh toán đúng hẹn."));
+                            b.setNhanVien(n);
+                            if( Utils.addOrUpdate(b))
+                            {
+                                Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).show();
+                            }
+                            else
+                                Utils.getAlertTC("Thanh toán thất bại!!!", Alert.AlertType.ERROR).show();
+                           
                         });
                     } else if (rs1 == ButtonType.NO) {
                         return;

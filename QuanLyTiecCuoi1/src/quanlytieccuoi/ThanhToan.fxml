@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="709.0" prefWidth="857.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.ThanhToanController">
+<VBox prefHeight="761.0" prefWidth="857.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.ThanhToanController">
    <children>
-      <HBox prefHeight="73.0" prefWidth="857.0">
+      <HBox prefHeight="83.0" prefWidth="857.0">
          <children>
             <Label text="Thanh Toán" />
          </children>
@@ -29,6 +29,7 @@
           <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Tên khách hàng:" GridPane.columnIndex="1" />
@@ -44,6 +45,8 @@
             <TextField fx:id="txtSanh" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Mã hóa đơn:" GridPane.columnIndex="3" />
             <Label text="Nhân viên đứng ca" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label text="Số bàn đặt:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtSoBan" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <TableView fx:id="tbThucPham" prefHeight="200.0" prefWidth="200.0" />
