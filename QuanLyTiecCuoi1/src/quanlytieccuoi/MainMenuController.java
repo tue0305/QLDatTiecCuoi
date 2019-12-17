@@ -76,7 +76,7 @@ public class MainMenuController implements Initializable {
       @FXML
     private void ActionMouseTraCuu(MouseEvent event) throws IOException {
         
-          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuu.fxml")));
+          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
           Utils.switchStageMouseClick(sce, event);
     }
 

@@ -14,14 +14,15 @@ import POJO.Sanh;
 import POJO.Thucpham;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.persistence.criteria.CriteriaBuilder;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -384,5 +385,15 @@ public final class Utils {
         Booking k = (Booking) cr.uniqueResult();
         return k;
     }
+    //Xy ly textfile la so
+     public static void KiemTraLaSo(TextField a ){
+     ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
+                            if (!newValue.matches("\\d*"))
+                              ((StringProperty) observable).set(oldValue);
+                        };
+                        a.textProperty().addListener(forceNumberListener);
+    
+}
+    
 
 }

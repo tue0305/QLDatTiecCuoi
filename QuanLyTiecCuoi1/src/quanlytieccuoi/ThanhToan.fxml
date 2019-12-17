@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="709.0" prefWidth="857.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.ThanhToanController">
+<VBox prefHeight="768.0" prefWidth="896.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.ThanhToanController">
    <children>
-      <HBox prefHeight="73.0" prefWidth="857.0">
+      <HBox prefHeight="73.0" prefWidth="857.0" styleClass="one">
          <children>
-            <Label text="Thanh Toán" />
+            <Label styleClass="title" text="THANH TOÁN" />
          </children>
       </HBox>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="141.0" prefWidth="857.0" stylesheets="@fxml.css">
@@ -31,10 +31,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Tên khách hàng:" GridPane.columnIndex="1" />
-            <Label text="Ngày đặt:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label text="Sảnh:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Ca:" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label text="Tên khách hàng:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+            <Label text="Ngày đặt:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label text="Sảnh:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="Ca:" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
             <TextField fx:id="txtTenKhach" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="2" />
             <TextField fx:id="txtNgayDat" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
@@ -42,18 +42,21 @@
             <TextField fx:id="txtNV" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="txtCa" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <TextField fx:id="txtSanh" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label text="Mã hóa đơn:" GridPane.columnIndex="3" />
-            <Label text="Nhân viên đứng ca" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label text="Mã hóa đơn:" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+            <Label text="Nhân viên đứng ca:" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <TableView fx:id="tbThucPham" prefHeight="200.0" prefWidth="200.0" />
       <TableView fx:id="tbDichVu" prefHeight="200.0" prefWidth="200.0" />
-      <HBox prefHeight="195.0" prefWidth="857.0">
+      <HBox prefHeight="183.0" prefWidth="896.0">
          <children>
-            <GridPane prefHeight="83.0" prefWidth="466.0">
+            <GridPane prefHeight="176.0" prefWidth="897.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="0.0" prefWidth="121.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="252.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.0" minWidth="10.0" prefWidth="252.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="252.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="252.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -62,18 +65,18 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Thành tiền:" />
+                  <Label text="Thành tiền:" GridPane.halignment="RIGHT" />
                   <TextField fx:id="txtThanhTien" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" />
-                  <Label text="Phí trễ:" GridPane.rowIndex="1" />
+                  <Label text="Phí trễ:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <TextField fx:id="txtPhi" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Khách trả:" GridPane.rowIndex="2" />
+                  <Label text="Khách trả:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                   <TextField fx:id="txtKhachTra" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label text=" Tổng tiền:" GridPane.rowIndex="3" />
+                  <Label text=" Tổng tiền:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
                   <TextField fx:id="txtTongTien" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" styleClass="button4" text="Xác nhận" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#backAction" styleClass="button4" text="Quay về" GridPane.columnIndex="4" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" text="Xác nhận" />
-            <Button mnemonicParsing="false" onAction="#backAction" text="Quay về" />
          </children>
       </HBox>
    </children>

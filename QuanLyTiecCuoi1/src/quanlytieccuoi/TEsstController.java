@@ -4,13 +4,19 @@
  * and open the template in the editor.
  */
 package quanlytieccuoi;
+import POJO.Booking;
 import POJO.Sanh;
 import Util.Utils;
-import java.awt.event.KeyEvent;
+import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -23,9 +29,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
@@ -80,13 +88,25 @@ public class TEsstController implements Initializable {
     @FXML
     private TableView tbDichVu;
 
+    // ThongTin KH VA SANH
     @FXML
     private ComboBox cbSanh;
     @FXML
     private TextField txtTenKH;
     @FXML
     private TextField txtSDT;
-
+    @FXML
+    private TextField txtSoBan;
+    @FXML 
+    private JFXRadioButton rdCa1;
+    @FXML 
+    private JFXRadioButton rdCa2;
+    @FXML
+    private DatePicker ngayDat;
+    @FXML
+    private TextArea taDiaChi;
+    @FXML
+    private Button nextMonAn;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -106,10 +126,10 @@ public class TEsstController implements Initializable {
         else
         if(event.getSource() ==btMonAn)
         {
-            lbStatusMIn.setText("/home/monan");
-            lbStatus.setText("Món ăn");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
-            vboxMonAn.toFront();
+                lbStatusMIn.setText("/home/monan");
+                lbStatus.setText("Món ăn");
+                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
+                vboxMonAn.toFront();
 
         }
         else if(event.getSource() ==btDichVu)
@@ -140,19 +160,81 @@ public class TEsstController implements Initializable {
    }
 
     public void init() {
-// Load danh sách DichVu
+        // SET DIA CHI THEO CHIU DOC 
+       taDiaChi.setWrapText(true);
+       // Ktra số bàn là số
+       Utils.KiemTraLaSo(txtSoBan);
 
+        
         // load Sanh "Thong tin dat tiec"
         List<Sanh> s = Utils.getSanh();
         for(Sanh q : s)
         {
             this.cbSanh.getItems().add(q.getTenSanh());
         }
+           
+                
+         //chon ngay tuong lai moi duoc
+         ngayDat.valueProperty().addListener((observable, oldDate, newDate)->{            
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
+      
+         String s1 = sdf.format(new Date());
+            if(newDate!=null){    // Ngày chọn xong rồi mới xử lý
+                
+            try {
+                
+                Date datetoday = sdf.parse(s1);
+                Date dateChoose = sdf.parse(ngayDat.getValue().toString());
+                if(dateChoose.after(datetoday)){            
+                     ngayDat.setValue(newDate);
+                    
+                     try { 
+                           
+                            
+                           List<Booking> bk = Utils.getBooking();
+                            for(Booking a : bk){   
+                                 Date daDat = sdf.parse(a.getNgayDat().toString());
+                               if((daDat.equals(dateChoose)&&a.getCa()=='1')&&(daDat.equals(dateChoose)&&a.getCa()=='2')){    //ngay có trong csdl
+                                  rdCa1.setDisable(true);
+                                  rdCa2.setDisable(true);    //cả 2 ca đã được chọn                                                                    
+                                       break;
+                                    }else{if(daDat.equals(dateChoose)&&a.getCa()=='2'){  
+                                
+                                        rdCa2.setDisable(true);
+                                        rdCa1.setDisable(false);   // ca 2 đã chọn
+                                          break;
+                                        }else{if(daDat.equals(dateChoose)&&a.getCa()=='1'){
+                                          
+                                                     rdCa1.setDisable(true);
+                                                     rdCa2.setDisable(false); // ca 1 đã chọn
+                                                     break;
+                                                       }else{
+                                                            
+                                                      rdCa1.setDisable(false);
+                                                      rdCa2.setDisable(false);
+                                                           }                                      
+                                    }                             
+                                    }
+                                    
+                            }} catch (ParseException ex) {
+                           Logger.getLogger(TEsstController.class.getName()).log(Level.SEVERE, null, ex);
+                       }
+                    
+                }else{
+                   ngayDat.setValue(null);
+                     Alert c = Utils.getAlertTC("Chỉ đặt trong tương lai!!!", Alert.AlertType.ERROR); 
+                     c.show();
+               }} catch (ParseException ex) {
+                Logger.getLogger(TEsstController.class.getName()).log(Level.SEVERE, null, ex);
+            }              
+                        }                
+         });               
+          
+                
+  
 
-        
 
-
-
+        // Load danh sách DichVu
         TableColumn clTenDV = new TableColumn("Tên dịch vụ");
         clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
         TableColumn clLoaiDV = new TableColumn("Loại dịch vụ");
@@ -172,13 +254,18 @@ public class TEsstController implements Initializable {
      public void kiemTraThemTTKH(ActionEvent event) throws IOException {
 
             // kiem tra sdt
-            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty() ) {
+            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty()||ngayDat.getValue()==null ||cbSanh.getSelectionModel().isEmpty()||taDiaChi.getText().isEmpty()|| (!rdCa1.isSelected()&&!rdCa2.isSelected() )||txtSoBan.getText().isEmpty() ) {
                 Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR); 
                 b.show();
                 } else{
- 
-                                       Alert b = Utils.getAlertTC("XONG Buoc thêm!!!", Alert.AlertType.INFORMATION);
-                                       b.show();
+                            if(event.getSource() ==nextMonAn )
+                            {
+                                lbStatusMIn.setText("/home/monan");
+                                lbStatus.setText("Món ăn");
+                                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
+                                vboxMonAn.toFront();
+                            }
+                                     
  
                     }
         }
@@ -188,13 +275,7 @@ public class TEsstController implements Initializable {
                     
                     String str = txtSDT.getText();
                     int lengthstr = str.length();
-                    // lang nghe va chi chon so nguyen
-                     ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
-                            if (!newValue.matches("\\d*"))
-                              ((StringProperty) observable).set(oldValue);
-                        };
-                    txtSDT.textProperty().addListener(forceNumberListener);   // forceNumberListener se duoc goi neu co thay doi
-                    
+                    Utils.KiemTraLaSo(txtSDT);
                     if(lengthstr<11){          //gioi han 11 so
                        txtSDT.setEditable(true);
                        }  
@@ -207,6 +288,13 @@ public class TEsstController implements Initializable {
                          }
                     
               }
+     
+     
+  
+    
+     
+     
+     
  }
      
      

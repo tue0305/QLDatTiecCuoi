@@ -2,9 +2,6 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-
-}
 
 VBox {
     
@@ -70,10 +67,7 @@ VBox.category {
     
 }
 
-GridPane.test {
-    -fx-border-color: red;
-    
-}
+
 Label.H1{
      -fx-font-size: 25;
     -fx-font-weight: bold;

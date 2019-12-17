@@ -6,6 +6,9 @@
 package quanlytieccuoi;
 
 import Util.Utils;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,12 +16,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 /**
  *
@@ -27,50 +28,35 @@ import javafx.stage.Stage;
 public class DangNhapController implements Initializable {
 
     @FXML
-    private TextField txtUsername;
+    private JFXTextField txtUsername;
     @FXML
-    private PasswordField pfPassword;
+    private JFXPasswordField pfPassword;
     @FXML
-    private TextField textField;
-
-    //
-    Alert a;
-    @FXML
-    private TextField txtPassword;
-    private DangNhapController DangNhapController;
+    private JFXTextField textField;
+   @FXML
+   private FontAwesomeIcon fontAWESOME;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        init();
+
 
     }
 
-    public void init() {
-        try {
-            String password = "";
-            getTxtUsername().setPromptText("Enter your username...");
 
-            pfPassword.setPromptText("Enter your password...");
-
-            textField.setPromptText("Enter your password...");
-
-        } catch (Exception e) {
-            System.err.print(e.getMessage());
-        }
-
-    }
-
-    public void showPW(ActionEvent e) {
+    public void showPW(MouseEvent e) {
         if (pfPassword.isVisible()) {
             textField.setText(pfPassword.getText());
             textField.setVisible(true);
             pfPassword.setVisible(false);
-            return;
+            fontAWESOME.setIconName("EYE_SLASH");
+                    
+   
         } else {
             pfPassword.setText(textField.getText());
             pfPassword.setVisible(true);
             textField.setVisible(false);
+            fontAWESOME.setIconName("EYE");
         }
 
     }
@@ -88,8 +74,8 @@ public class DangNhapController implements Initializable {
                 Utils.getAlertTC("Tài khoản trống!!!", Alert.AlertType.ERROR).showAndWait();
 
             } else if (p.isEmpty()) {
-                a = Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR);
-                a.showAndWait();
+            Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR).showAndWait();
+              
                 //Hàm kiểm tra đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
                 Utils.setUsernameText(u);
@@ -120,7 +106,7 @@ public class DangNhapController implements Initializable {
     /**
      * @param txtUsername the txtUsername to set
      */
-    public void setTxtUsername(TextField txtUsername) {
+    public void setTxtUsername(JFXTextField txtUsername) {
         this.txtUsername = txtUsername;
     }
 
