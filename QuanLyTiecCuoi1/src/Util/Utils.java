@@ -8,12 +8,18 @@ package Util;
 import POJO.Booking;
 import POJO.Dichvu;
 import POJO.Khachhang;
+import POJO.Menu;
 
 import POJO.Nhanvien;
 import POJO.Sanh;
 import POJO.Thucpham;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
@@ -35,31 +41,55 @@ import org.hibernate.criterion.Restrictions;
  * @author cohotech
  */
 public final class Utils {
-    
+
+    private Utils(){};
 //Lưu thông tin nhân viên xuyên suốt chương trình
     private static String usernameText;
-
-    private Utils() {
-    }  // Private constructor to prevent instantiation
-
+    
     public static String getUsernameText() {
         return usernameText;
     }
 
+
     public static void setUsernameText(String usernameText) {
         Utils.usernameText = usernameText;
     }
-//
     
+    public static void resetBooking()
+    {
+        Utils.payingBooking = null;
+        Utils.tienDV = 0.0;
+        Utils.tienTP = 0.0;
+    }
+    
+   
     private static Booking payingBooking;
+    private static Double tienTP = 0.0;
+    private static Double tienDV = 0.0;
+
+    
     public static Booking getPayBooking() {
         return payingBooking;
     }
-
-    public static void setPayBooking(Booking b) {
-        Utils.payingBooking = b;
+    
+    public static Double getPriceOfFoods() {
+        return tienTP;
     }
     
+    public static Double getPriceOfServices() {
+        return tienDV;
+    }
+    
+    public static void setPayBooking(Booking b) {
+        Utils.payingBooking = b;
+        for (Thucpham t : getFoodsOfBooking(b)) {
+            tienTP += t.getPrice().doubleValue() * b.getSoBan();
+        }
+        for (Dichvu d : getServicesOfBooking(b)) {
+            tienDV += d.getGia().doubleValue();
+        }
+
+    }
 
 //Hàm kiểm tra đăng nhập
     public static Boolean KiemtraTKandMK(String u, String p) {
@@ -74,11 +104,11 @@ public final class Utils {
             cr.add(Restrictions.and(cr1, cr2));
             List nv = cr.list();
 
-            if (nv.size() != 0) {
+            if (!nv.isEmpty()) {
 
                 return true;
-            } else {
-
+            }
+            else {
                 return false;
             }
 
@@ -88,18 +118,14 @@ public final class Utils {
         }
         session.close();
         return false;
-
     }
+
 //Hàm thông báo Alert
-
-    public static Alert getAlertTC(String content, Alert.AlertType type) {
-        Alert a = new Alert(type);
-        a.setContentText(content);
-
-        return a;
+    public static Alert getAlertTC(String content, Alert.AlertType type) {     
+        return new Alert(type, content);
     }
-//Hàm chuyển Stage
 
+//Hàm chuyển Stage
     public static void switchStage(Scene sce, ActionEvent e) {
         try {
             Node source = (Node) e.getSource();
@@ -364,16 +390,16 @@ public final class Utils {
         }
 
     }
-    // Hàm trả về true nếu chuỗi không phải là số
-     public static boolean isNumeric(String str)
-        {
-            for (char c : str.toCharArray())
-            {
-                if (!Character.isDigit(c)) return false;
-            }
-            return true;
-        }
 
+    // Hàm trả về true nếu chuỗi không phải là số
+    public static boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     //Tìm đơn hàng
     public static Booking findBooking(String q) {
@@ -395,5 +421,45 @@ public final class Utils {
     
 }
     
+
+    // Công thức tính hóa đơn
+    public static BigDecimal calBooking(Double nOfLateDates, BigDecimal originBill, Double charge) {
+        return originBill.add(originBill.multiply(BigDecimal.valueOf(nOfLateDates * charge)));
+    }
+    //Lấy thực phẩm của tiệc đã đặt 
+
+    public static List<Thucpham> getFoodsOfBooking(Booking b) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Menu.class);
+        cr.add(Restrictions.eq("maMenu", b.getMenu().getMaMenu()));
+        Menu k = (Menu) cr.uniqueResult();
+        return k.getThucPham();
+    }
+
+    // Lấy dịch vụ đã đặt
+    public static List<Dichvu> getServicesOfBooking(Booking b) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Booking.class);
+        cr.add(Restrictions.eq("maBooking", b.getMaBooking()));
+        Booking k = (Booking) cr.uniqueResult();
+        return k.getDichVu();
+    }
+
+    //Format Tiền tệ
+    public static String formatCurrency(Double d) {
+        Locale locale = new Locale("vi", "VN");
+        DecimalFormat format = (DecimalFormat) DecimalFormat.getCurrencyInstance(locale);
+        DecimalFormatSymbols fb = new DecimalFormatSymbols();
+        fb.setGroupingSeparator(',');
+        fb.setCurrencySymbol("");
+        format.setDecimalFormatSymbols(fb);
+        format.setRoundingMode(RoundingMode.HALF_UP);
+
+        return format.format(d);
+    }
 
 }

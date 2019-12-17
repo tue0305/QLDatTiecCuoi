@@ -49,6 +49,9 @@ public class Booking implements Serializable {
     @Column(name = "Price")
     private BigDecimal price;
     @Basic(optional = false)
+    @Column(name = "SoBan")
+    private Integer soBan;
+    @Basic(optional = false)
     @Column(name = "Ca")
     private Character ca;
     @Lob
@@ -57,10 +60,10 @@ public class Booking implements Serializable {
     @JoinTable(
             name = "booking_dichvu",
             joinColumns = {
-                @JoinColumn(name = "Mabooking")
+                @JoinColumn(name = "maBooking")
             },
             inverseJoinColumns = {
-                @JoinColumn(name = "MaDV")
+                @JoinColumn(name = "maDV")
             }
     )
     @ManyToMany(cascade = CascadeType.ALL)
@@ -87,7 +90,7 @@ public class Booking implements Serializable {
 
     public Booking(Date ngayDat, BigDecimal price, Character ca, Nhanvien nhanVien,
             Khachhang maKH, Sanh sanh, Menu menu, List<Dichvu> dichVu, Date ngayThanhToan,
-            String note) {
+            Integer soBan, String note) {
 
         this.maBooking = UUID.randomUUID().toString();
         this.ngayDat = ngayDat;
@@ -100,6 +103,8 @@ public class Booking implements Serializable {
         this.price = price;
         this.ca = ca;
         this.sanh = sanh;
+        this.soBan = soBan;
+
     }
 
     public String getNameCus() {
@@ -149,8 +154,6 @@ public class Booking implements Serializable {
     public void setGhiChu(String ghiChu) {
         this.ghiChu = ghiChu;
     }
-
-   
 
     public Khachhang getKhachHang() {
         return khachHang;
@@ -236,10 +239,24 @@ public class Booking implements Serializable {
     public void setDichVu(List<Dichvu> dichVu) {
         this.dichVu = dichVu;
     }
-    public String formatDate(Date t)
-    {
+
+    public String formatDate(Date t) {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         return f.format(t);
+    }
+
+    /**
+     * @return the soBan
+     */
+    public Integer getSoBan() {
+        return soBan;
+    }
+
+    /**
+     * @param soBan the soBan to set
+     */
+    public void setSoBan(Integer soBan) {
+        this.soBan = soBan;
     }
 
 }

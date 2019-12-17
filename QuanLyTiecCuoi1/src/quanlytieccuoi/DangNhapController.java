@@ -21,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+
 /**
  *
  * @author cohotech
@@ -40,7 +41,7 @@ public class DangNhapController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
-
+   
     }
 
 
@@ -66,7 +67,7 @@ public class DangNhapController implements Initializable {
 
         pfPassword.setVisible(true);
         textField.setVisible(false);
-        String u = getTxtUsername().getText();
+        String u = txtUsername.getText();
         String p = pfPassword.getText();
 
         try {
@@ -76,6 +77,7 @@ public class DangNhapController implements Initializable {
             } else if (p.isEmpty()) {
             Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR).showAndWait();
               
+
                 //Hàm kiểm tra đăng nhập
             } else if (Utils.KiemtraTKandMK(u, p)) {
                 Utils.setUsernameText(u);
@@ -96,18 +98,5 @@ public class DangNhapController implements Initializable {
 
     }
 
-    /**
-     * @return the txtUsername
-     */
-    public TextField getTxtUsername() {
-        return txtUsername;
-    }
-
-    /**
-     * @param txtUsername the txtUsername to set
-     */
-    public void setTxtUsername(JFXTextField txtUsername) {
-        this.txtUsername = txtUsername;
-    }
 
 }
