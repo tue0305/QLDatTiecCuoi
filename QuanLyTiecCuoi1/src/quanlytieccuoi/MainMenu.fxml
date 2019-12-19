@@ -50,7 +50,7 @@
          <center>
             <Pane prefHeight="559.0" prefWidth="707.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="503.0" fitWidth="493.0" layoutX="309.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="493.0" fitWidth="461.0" layoutX="341.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../FXML/images/—Pngtree—vector%20watercolor%20japanese%20cherry%20blossoms_3094823.png" />
                      </image>
@@ -100,7 +100,7 @@
                               <Image url="@../FXML/images/searchmain.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="51.0" layoutY="130.0" onMouseClicked="#ActionMouseTraCuu" text="Tra cứu" textFill="WHITE">
+                        <Label layoutY="135.0" onMouseClicked="#ActionMouseTraCuu" text="Tra cứu và Thanh Toán" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="14.0" />
                            </font>
@@ -185,32 +185,6 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="53.0" layoutY="495.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
-                     <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionThanhToan" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
-                        <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseHoaDon" radius="50.0" stroke="WHITE" strokeType="INSIDE">
-                           <fill>
-                              <RadialGradient centerX="0.5284090909090908" centerY="0.4951456310679611" radius="0.5">
-                                 <stops>
-                                    <Stop color="WHITE" />
-                                    <Stop color="WHITE" offset="0.322463768115942" />
-                                    <Stop color="#5da8c6" offset="1.0" />
-                                 </stops>
-                              </RadialGradient>
-                           </fill>
-                        </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../FXML/images/billlist.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="39.0" layoutY="127.0" onMouseClicked="#ActionMouseHoaDon" text="Thanh toán" textFill="WHITE">
-                           <font>
-                              <Font name="Arial Bold" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
                   <Pane layoutX="-172.0" layoutY="-118.0" prefHeight="146.0" prefWidth="867.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 70;" />
                   <Pane layoutX="53.0" layoutY="285.0" onMouseClicked="#ActionMouseThucPham" prefHeight="165.0" prefWidth="159.0" styleClass="BtPane">
                      <children>
@@ -238,6 +212,11 @@
                         </Label>
                      </children>
                   </Pane>
+                  <ImageView fitHeight="493.0" fitWidth="461.0" layoutX="351.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../FXML/images/—Pngtree—vector%20watercolor%20japanese%20cherry%20blossoms_3094823.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </center>

@@ -8,14 +8,11 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -26,20 +23,17 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="718.0" prefWidth="1152.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TEsstController">
+<HBox prefHeight="736.0" prefWidth="1205.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TEsstController">
    <children>
-      <VBox prefHeight="718.0" prefWidth="294.0" style="-fx-background-color: #FC95BB;">
+      <VBox prefHeight="719.0" prefWidth="291.0" style="-fx-background-color: #FC95BB;">
          <children>
             <Pane prefHeight="152.0" prefWidth="294.0" style="-fx-background-color: rgb(251, 91, 151);">
                <children>
                   <FontAwesomeIcon iconName="XING" layoutX="51.0" layoutY="76.0" size="3em" text="" wrappingWidth="41.7857141494751" />
-                  <Label graphicTextGap="10.0" layoutX="93.0" layoutY="36.0" prefHeight="93.0" prefWidth="196.0" styleClass="title" text="JAVAFX">
+                  <Label layoutX="93.0" layoutY="54.0" text="JAVAFX">
                      <font>
-                        <Font size="19.0" />
+                        <Font name="Book Antiqua" size="36.0" />
                      </font>
-                     <effect>
-                        <Shadow height="19.83" radius="4.4575" width="0.0" />
-                     </effect>
                   </Label>
                </children>
             </Pane>
@@ -87,9 +81,9 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="265.0" prefWidth="294.0">
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="296.0" prefWidth="286.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="73.0" prefWidth="311.0" styleClass="button3" text="Quay lại">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="92.0" prefWidth="286.0" styleClass="button3" text="Quản Lý">
                      <graphic>
                         <FontAwesomeIcon iconName="MAIL_REPLY" size="20" />
                      </graphic>
@@ -102,14 +96,15 @@
                   </Button>
                </children>
             </HBox>
-         </children></VBox>
-      <VBox alignment="TOP_RIGHT" layoutX="294.0" prefHeight="719.0" prefWidth="858.0">
+         </children>
+      </VBox>
+      <VBox alignment="TOP_RIGHT" prefHeight="736.0" prefWidth="925.0">
          <children>
-            <VBox fx:id="vboxStatus" alignment="CENTER_LEFT" prefHeight="175.0" prefWidth="858.0" style="-fx-background-color: white;">
+            <VBox fx:id="vboxStatus" alignment="CENTER_LEFT" prefHeight="152.0" prefWidth="875.0" style="-fx-background-color: white;">
                <children>
                   <Label fx:id="lbStatusMIn" text="/home/thongtin">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Book Antiqua" size="14.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -120,7 +115,7 @@
                   </Label>
                   <Label fx:id="lbStatus" styleClass="title" text="Thông tin chung">
                      <font>
-                        <Font name="System Bold" size="26.0" />
+                        <Font name="Rockwell Extra Bold" size="26.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
@@ -131,28 +126,120 @@
                   </Label>
                </children>
             </VBox>
-            <StackPane>
+            <StackPane prefHeight="597.0" prefWidth="858.0">
                <children>
+                  <VBox fx:id="vboxMonAn" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
+                     <children>
+                        <BorderPane prefHeight="627.0" prefWidth="920.0">
+                           <left>
+                              <TableView fx:id="tbThucPham" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <right>
+                              <TableView prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="61.0" prefWidth="63.0" text="Huỷ">
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/cancel.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" text="Chọn">
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/right-arrow.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                           <top>
+                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="17.0" styleClass="H1" text="Danh sách món ăn" />
+                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Món đã chọn" />
+                                 </children>
+                              </Pane>
+                           </top>
+                           <bottom>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="backTTKH" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="nextDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                  </VBox>
                   <VBox fx:id="vboxXacNhan" alignment="CENTER">
                      <children>
-                        <Label text="Xác nhận">
+                        <Label prefHeight="537.0" prefWidth="356.0" text="Xác nhận">
                            <font>
                               <Font size="88.0" />
                            </font>
                         </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
+                           <children>
+                              <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <VBox fx:id="vboxThongTin">
                      <children>
-                        <VBox prefHeight="283.0" prefWidth="893.0">
+                        <VBox prefHeight="580.0" prefWidth="920.0">
                            <children>
-                              <GridPane prefHeight="299.0" prefWidth="893.0">
+                              <GridPane prefHeight="427.0" prefWidth="920.0">
                                  <columnConstraints>
                                     <ColumnConstraints minWidth="10.0" prefWidth="82.0" />
                                     <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="225.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
                                     <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="80.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="200.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="10.0" />
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
@@ -161,6 +248,10 @@
                                     <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
@@ -176,6 +267,23 @@
                                     <TextArea fx:id="taDiaChi" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="3" />
                                     <TextField fx:id="txtSDT" layoutX="121.0" layoutY="29.0" onKeyPressed="#TextFieldKeyPressed" prefHeight="31.0" prefWidth="187.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <Label styleClass="H1" text="Thông tin khách hàng" GridPane.columnSpan="2" />
+                                    <Label prefHeight="21.0" prefWidth="278.0" styleClass="H1" text="Thông tin đặt sảnh" GridPane.columnIndex="3" GridPane.columnSpan="3" />
+                                    <Label text="Loại tiệc" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                    <TextField GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                                    <ComboBox fx:id="cbSanh" prefHeight="31.0" prefWidth="227.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ComboBox>
+                                    <Label styleClass="two" text="Sảnh" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+                                    <DatePicker fx:id="ngayDat" prefHeight="31.0" prefWidth="230.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                                    <Label text="Ngày" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+                                    <TextField fx:id="txtSoBan" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                                    <Label text="Số bàn" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+                                    <JFXRadioButton fx:id="rdCa1" text="Trưa" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                                    <JFXRadioButton fx:id="rdCa2" text="Tối" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                    <Label text="Ghi chú" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                                    <TextArea fx:id="taDiaChi1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="7" GridPane.rowSpan="3" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -183,129 +291,30 @@
                               </GridPane>
                            </children>
                         </VBox>
-                        <VBox prefHeight="307.0" prefWidth="858.0" style=": ;">
+                        <VBox alignment="BOTTOM_RIGHT" prefHeight="310.0" prefWidth="920.0" style=": ;">
                            <children>
-                              <GridPane prefHeight="358.0" prefWidth="858.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints minWidth="10.0" prefWidth="55.0" />
-                                    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="20.0" />
-                                    <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="20.0" />
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints />
-                                 </rowConstraints>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="50.0" prefWidth="920.0">
                                  <children>
-                                    <Label text="Loại tiệc" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                                    <Label styleClass="two" text="Sảnh" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
-                                    <Label text="Ngày" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                    <ComboBox fx:id="cbSanh" prefHeight="19.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                    <Button fx:id="nextMonAn" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
-                                       </cursor></ComboBox>
-                                    <DatePicker fx:id="ngayDat" prefHeight="31.0" prefWidth="196.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                                    <Label prefHeight="21.0" prefWidth="278.0" styleClass="H1" text="Thông tin đặt sảnh" GridPane.columnSpan="3" />
-                                    <TextField GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                                    <Button fx:id="nextMonAn" mnemonicParsing="false" onAction="#kiemTraThemTTKH" prefHeight="30.0" prefWidth="120.0" styleClass="button4" text="Tiếp" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor></Button>
-                                    <JFXRadioButton fx:id="rdCa1" text="Trưa" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <JFXRadioButton fx:id="rdCa2" text="Tối" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                    <Label text="Số bàn" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                    <TextField fx:id="txtSoBan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Button>
                                  </children>
-                                 <padding>
-                                    <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-                                 </padding>
-                              </GridPane>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox fx:id="VboxDichVu" alignment="CENTER">
+                  <VBox fx:id="VboxDichVu" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
                      <children>
-                        <BorderPane prefHeight="584.0" prefWidth="839.0">
+                        <BorderPane prefHeight="627.0" prefWidth="920.0">
                            <left>
-                              <TableView fx:id="tbDichVu" prefHeight="257.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                              <TableView fx:id="tbDichVu" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
                            </left>
-                           <center>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="61.0" prefWidth="63.0" text="Huỷ">
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/cancel.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" text="Chọn">
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/right-arrow.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                           </center>
-                           <bottom>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="button4" text="Tiếp" BorderPane.alignment="TOP_RIGHT">
-                                 <BorderPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                                 </BorderPane.margin></Button>
-                           </bottom>
-                           <right>
-                              <TableView prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="C1" />
-                                    <TableColumn prefWidth="75.0" text="C2" />
-                                 </columns>
-                              </TableView>
-                           </right>
-                           <top>
-                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label layoutX="62.0" layoutY="16.0" styleClass="H1" text="Danh sách dịch vụ" />
-                                    <Label layoutX="587.0" layoutY="16.0" styleClass="H1" text="Dịch vụ đã chọn" />
-                                 </children>
-                              </Pane>
-                           </top>
-                        </BorderPane>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="vboxMonAn" alignment="CENTER">
-                     <children>
-                        <BorderPane prefHeight="584.0" prefWidth="839.0">
-                           <left>
-                              <TableView prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER">
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
-                                </columns>
-                              </TableView>
-                           </left>
-                           <right>
-                              <TableView prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER">
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
-                                </columns>
-                              </TableView>
-                           </right>
                            <center>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                                  <children>
@@ -317,6 +326,9 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Button>
                                     <Button contentDisplay="TOP" mnemonicParsing="false" text="Chọn">
                                        <graphic>
@@ -326,31 +338,55 @@
                                              </image>
                                           </ImageView>
                                        </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
                                     </Button>
                                  </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
                               </VBox>
                            </center>
+                           <right>
+                              <TableView prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </right>
                            <top>
                               <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Label layoutX="78.0" layoutY="17.0" styleClass="H1" text="Danh sách món ăn" />
-                                    <Label layoutX="605.0" layoutY="16.0" styleClass="H1" text="Món đã chọn" />
+                                    <Label layoutX="78.0" layoutY="16.0" styleClass="H1" text="Danh sách dịch vụ" />
+                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Dịch vụ đã chọn" />
                                  </children>
                               </Pane>
                            </top>
                            <bottom>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" styleClass="button4" text="Tiếp" BorderPane.alignment="TOP_RIGHT">
-                                 <BorderPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
-                                 </BorderPane.margin>
-                              </Button>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Button fx:id="backMonAn" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="nextXacNhan" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
                            </bottom>
                         </BorderPane>
                      </children>
                   </VBox>
                </children>
             </StackPane>
-         </children></VBox>
- 
+         </children>
+      </VBox>
    </children>
-</AnchorPane>
+</HBox>

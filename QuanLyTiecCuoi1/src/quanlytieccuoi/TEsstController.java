@@ -107,47 +107,128 @@ public class TEsstController implements Initializable {
     private TextArea taDiaChi;
     @FXML
     private Button nextMonAn;
+    @FXML
+    private Button nextDichVu;
+    @FXML
+    private Button nextXacNhan;
+    @FXML
+    private Button backTTKH;
+    @FXML
+    private Button backDichVu;
+    @FXML
+    private Button backMonAn;
+    //Thong tin dat mon an
+    @FXML
+    private TableView tbThucPham;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 
         init();
+        kTraNhapTTKH();
+       
     }
     @FXML
     private void handleClicks(ActionEvent event){
 
-        if(event.getSource() ==btThongtin)
+//        if(event.getSource() ==btThongtin)
+//        {
+//            lbStatusMIn.setText("/home/thongtin");
+//            lbStatus.setText("Thông tin chung");
+//            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY) ));
+//            vboxThongTin.toFront();
+//        }
+//        else
+//        if(event.getSource() ==btMonAn)
+//        {
+//                lbStatusMIn.setText("/home/monan");
+//                lbStatus.setText("Món ăn");
+//                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
+//                vboxMonAn.toFront();
+//
+//        }
+//        else if(event.getSource() ==btDichVu)
+//        {
+//            lbStatusMIn.setText("/home/dichvu");
+//            lbStatus.setText("Dịch vụ");
+//            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY) ));
+//            VboxDichVu.toFront();
+//        }
+//        else if(event.getSource() ==BtXacNhan)
+//        {
+//            lbStatusMIn.setText("/home/xacnhan");
+//            lbStatus.setText("Xác nhận");
+//            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(251, 15, 80), CornerRadii.EMPTY, Insets.EMPTY) ));
+//            vboxXacNhan.toFront();
+//
+//        }
+      
+        if(event.getSource() ==nextMonAn)
         {
-            lbStatusMIn.setText("/home/thongtin");
+                      if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty()||ngayDat.getValue()==null ||cbSanh.getSelectionModel().isEmpty()||taDiaChi.getText().isEmpty()|| (!rdCa1.isSelected()&&!rdCa2.isSelected() )||txtSoBan.getText().isEmpty() ) {
+                Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR); 
+                b.show();
+                } else{
+                               
+                                lbStatusMIn.setText("/home/monan");
+                                lbStatus.setText("Món ăn");
+                                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
+                                vboxMonAn.toFront();
+                                btThongtin.setStyle("-fx-background-color:#FC95BB");
+                                btMonAn.setStyle("-fx-background-color:  #F7B3C8");
+                                
+                    }
+
+        }
+          else if(event.getSource() ==backTTKH)
+        {
+           lbStatusMIn.setText("/home/thongtin");
             lbStatus.setText("Thông tin chung");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY) ));
             vboxThongTin.toFront();
-        }
-        else
-        if(event.getSource() ==btMonAn)
-        {
-                lbStatusMIn.setText("/home/monan");
-                lbStatus.setText("Món ăn");
-                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
-                vboxMonAn.toFront();
+            btThongtin.setStyle("-fx-background-color:#F7B3C8");
+            btMonAn.setStyle("-fx-background-color:#FC95BB");
 
         }
-        else if(event.getSource() ==btDichVu)
+          else if(event.getSource() ==nextDichVu)
         {
             lbStatusMIn.setText("/home/dichvu");
             lbStatus.setText("Dịch vụ");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY) ));
             VboxDichVu.toFront();
+            btDichVu.setStyle("-fx-background-color:  #F7B3C8");
+            btMonAn.setStyle("-fx-background-color:#FC95BB");
+
         }
-        else if(event.getSource() ==BtXacNhan)
+         else if(event.getSource() ==backMonAn)
+        {
+            lbStatusMIn.setText("/home/monan");
+            lbStatus.setText("Món ăn");
+            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
+            vboxMonAn.toFront();
+            btMonAn.setStyle("-fx-background-color:  #F7B3C8");
+            btDichVu.setStyle("-fx-background-color:#FC95BB");
+
+        }
+         else if(event.getSource() ==nextXacNhan)
         {
             lbStatusMIn.setText("/home/xacnhan");
             lbStatus.setText("Xác nhận");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(251, 15, 80), CornerRadii.EMPTY, Insets.EMPTY) ));
+            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(197, 245, 226), CornerRadii.EMPTY, Insets.EMPTY) ));
             vboxXacNhan.toFront();
-
+            BtXacNhan.setStyle("-fx-background-color:  #F7B3C8");
+            btDichVu.setStyle("-fx-background-color:#FC95BB");
         }
-
+         else if(event.getSource() ==backDichVu)
+        {
+           lbStatusMIn.setText("/home/dichvu");
+            lbStatus.setText("Dịch vụ");
+            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY) ));
+            VboxDichVu.toFront();
+            btDichVu.setStyle("-fx-background-color:  #F7B3C8");
+            BtXacNhan.setStyle("-fx-background-color:#FC95BB");
+        }
     }
        @FXML
    private void ActionBack(javafx.event.ActionEvent event) throws IOException
@@ -158,23 +239,13 @@ public class TEsstController implements Initializable {
 
 
    }
-
-    public void init() {
-        // SET DIA CHI THEO CHIU DOC 
+   
+   public void kTraNhapTTKH(){
+         // SET DIA CHI THEO CHIU DOC 
        taDiaChi.setWrapText(true);
        // Ktra số bàn là số
        Utils.KiemTraLaSo(txtSoBan);
-
-        
-        // load Sanh "Thong tin dat tiec"
-        List<Sanh> s = Utils.getSanh();
-        for(Sanh q : s)
-        {
-            this.cbSanh.getItems().add(q.getTenSanh());
-        }
-           
-                
-         //chon ngay tuong lai moi duoc
+       //chon ngay tuong lai moi duoc
          ngayDat.valueProperty().addListener((observable, oldDate, newDate)->{            
          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
       
@@ -194,7 +265,7 @@ public class TEsstController implements Initializable {
                            List<Booking> bk = Utils.getBooking();
                             for(Booking a : bk){   
                                  Date daDat = sdf.parse(a.getNgayDat().toString());
-                               if((daDat.equals(dateChoose)&&a.getCa()=='1')&&(daDat.equals(dateChoose)&&a.getCa()=='2')){    //ngay có trong csdl
+                               if((daDat.equals(dateChoose)&&a.getCa()=='1')&&(daDat.equals(dateChoose)&&a.getCa()=='2')){    //ngay có trong csdl //chưa xử lý xong , chưa lấy được ca2 và ca1 full ngay
                                   rdCa1.setDisable(true);
                                   rdCa2.setDisable(true);    //cả 2 ca đã được chọn                                                                    
                                        break;
@@ -228,48 +299,50 @@ public class TEsstController implements Initializable {
                 Logger.getLogger(TEsstController.class.getName()).log(Level.SEVERE, null, ex);
             }              
                         }                
-         });               
-          
-                
-  
+         });       
+       
+       
+   }
+ 
 
-
+    public void init() {
+        //set bt thong tin dc chon
+         vboxThongTin.toFront();
+        btThongtin.setStyle("-fx-background-color:  #F7B3C8");
+        
+        // load Sanh "Thong tin dat tiec"
+        List<Sanh> s = Utils.getSanh();
+        for(Sanh q : s)
+        {
+            this.cbSanh.getItems().add(q.getTenSanh());
+        }
+           
         // Load danh sách DichVu
-        TableColumn clTenDV = new TableColumn("Tên dịch vụ");
-        clTenDV.setCellValueFactory(new PropertyValueFactory("tenDV"));
-        TableColumn clLoaiDV = new TableColumn("Loại dịch vụ");
-        clLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");
+        clTenLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
         TableColumn clPrice = new TableColumn("Giá");
         clPrice.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbDichVu.getColumns().addAll(clTenDV, clLoaiDV, clPrice, clNote);
+        this.tbDichVu.getColumns().addAll(clTenLoaiDV, clPrice, clNote);
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
-        
-        
+        // Load danh sách Thuc pham
+        TableColumn clTenTP = new TableColumn("Tên");
+        clTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
+        TableColumn clLoaiTp = new TableColumn("Loại");
+        clLoaiTp.setCellValueFactory(new PropertyValueFactory("loaiTP"));
+        TableColumn clPriceTP = new TableColumn("Giá");
+        clPriceTP.setCellValueFactory(new PropertyValueFactory("price"));
+        TableColumn clNoteTP= new TableColumn("Ghi chú");
+        clNoteTP.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+
+        this.tbThucPham.getColumns().addAll(clTenTP, clLoaiTp, clPriceTP, clNote);
+        this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
 
     }
 
-     public void kiemTraThemTTKH(ActionEvent event) throws IOException {
 
-            // kiem tra sdt
-            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty()||ngayDat.getValue()==null ||cbSanh.getSelectionModel().isEmpty()||taDiaChi.getText().isEmpty()|| (!rdCa1.isSelected()&&!rdCa2.isSelected() )||txtSoBan.getText().isEmpty() ) {
-                Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR); 
-                b.show();
-                } else{
-                            if(event.getSource() ==nextMonAn )
-                            {
-                                lbStatusMIn.setText("/home/monan");
-                                lbStatus.setText("Món ăn");
-                                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
-                                vboxMonAn.toFront();
-                            }
-                                     
- 
-                    }
-        }
-             
      // kiem trA SDT
      public void   TextFieldKeyPressed(javafx.scene.input.KeyEvent evt){
                     

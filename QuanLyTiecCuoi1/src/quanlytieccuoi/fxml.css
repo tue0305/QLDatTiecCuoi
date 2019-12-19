@@ -14,7 +14,8 @@ Label {
 Label.title {
     
   -fx-text-fill: orangered;
- 
+
+ -fx-font-family:  Arial Rounded MT Bold;
   -fx-font-size: 40;
 
   -fx-font-weight: bold;
