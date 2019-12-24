@@ -78,7 +78,6 @@ public class ThucPhamController implements Initializable {
         this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
         addPane.setVisible(false);
 // Load form thêm
-        
 
         this.tbThucPham.setRowFactory(tv -> {
             TableRow<Thucpham> row = new TableRow<>();
@@ -103,7 +102,7 @@ public class ThucPhamController implements Initializable {
         tbThucPham.getSelectionModel().clearSelection();
         addPane.setVisible(true);
         if (!addPane.isVisible()) {
-            
+
             Alert b = Utils.getAlertTC("Hãy điền thông tin cần thêm!!!", Alert.AlertType.INFORMATION);
             b.show();
         } else {
@@ -193,21 +192,19 @@ public class ThucPhamController implements Initializable {
             Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
             b.show();
         } else {
-            Alert a = Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION);
-            a.showAndWait().ifPresent(rs -> {
+            Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
 
                     if (s == null) {
-                        Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
-                        b.show();
+                        Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
+
                     } else if (Utils.deleteObject(s)) {
 
-                        Alert b = Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION);
-                        b.show();
+                        Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
 
                     } else {
-                        Alert b = Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION);
-                        a.show();
+                        Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION).show();
+
                     }
                     this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
 
@@ -215,6 +212,7 @@ public class ThucPhamController implements Initializable {
                     return;
                 }
             });
+
         }
     }
 

@@ -36,9 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Menu.findAll", query = "SELECT m FROM Menu m")
     , @NamedQuery(name = "Menu.findByMaMenu", query = "SELECT m FROM Menu m WHERE m.maMenu = :maMenu")
-    , @NamedQuery(name = "Menu.findByPrice", query = "SELECT m FROM Menu m WHERE m.price = :price")
-    , @NamedQuery(name = "Menu.findByNgayTao", query = "SELECT m FROM Menu m WHERE m.ngayTao = :ngayTao")
-    , @NamedQuery(name = "Menu.findByTenMenu", query = "SELECT m FROM Menu m WHERE m.tenMenu = :tenMenu")})
+   
+    , @NamedQuery(name = "Menu.findByNgayTao", query = "SELECT m FROM Menu m WHERE m.ngayTao = :ngayTao")})
+   
 public class Menu implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,15 +48,11 @@ public class Menu implements Serializable {
     @Column(name = "MaMenu")
     private Integer maMenu;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @Column(name = "Price")
-    private BigDecimal price;
+    
     @Column(name = "NgayTao")
     @Temporal(TemporalType.DATE)
     private Date ngayTao;
-    @Column(name = "TenMenu")
-    private String tenMenu;
-
+    
     @JoinTable(
             name = "thucpham_menu",
             joinColumns = {
@@ -71,29 +67,18 @@ public class Menu implements Serializable {
     public Menu() {
     }
 
-    public Menu(Integer maMenu) {
-        this.maMenu = maMenu;
-    }
-
-    public Menu(Integer maMenu, BigDecimal price) {
-        this.maMenu = maMenu;
-        this.price = price;
+    public Menu(List<Thucpham> ls) {
+        this.thucPham = ls;
+        this.ngayTao = new Date();
     }
 
     public Integer getMaMenu() {
         return maMenu;
+        
     }
 
     public void setMaMenu(Integer maMenu) {
         this.maMenu = maMenu;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public Date getNgayTao() {
@@ -104,13 +89,7 @@ public class Menu implements Serializable {
         this.ngayTao = ngayTao;
     }
 
-    public String getTenMenu() {
-        return tenMenu;
-    }
-
-    public void setTenMenu(String tenMenu) {
-        this.tenMenu = tenMenu;
-    }
+  
 
    
   

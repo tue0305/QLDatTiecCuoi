@@ -18,6 +18,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import javafx.beans.property.StringProperty;
@@ -210,8 +211,8 @@ public final class Utils {
 
         return ls;
     }
+    
 // tìm kiếm theo listener form TracuuVaThanhToan
-
     public static List<Booking> getBookingSearch(String kw) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -269,6 +270,16 @@ public final class Utils {
         session.close();
 
         return ls;
+    }
+    
+    public static Sanh getSanhByTypeName(String q) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+
+        Criteria cr = session.createCriteria(Sanh.class);
+        cr.add(Restrictions.eq("loaiSanh", q));
+        Sanh s = (Sanh) cr.uniqueResult();
+        return s;
     }
 
     public static List<Dichvu> getDichVu() {
@@ -460,6 +471,38 @@ public final class Utils {
         format.setRoundingMode(RoundingMode.HALF_UP);
 
         return format.format(d);
+    }
+    
+    //Transaction Đặt tiệc
+    public static boolean addBooking(Date ngayDat, Character ca, Nhanvien nv, Khachhang kh,
+            Sanh s, Menu menu, List<Dichvu> dv, Integer soBan, String ghiChu  ) {
+        SessionFactory factory = HibernateUtil.getSessionFactory();
+        Session session = factory.openSession();
+        Transaction trans = null;
+        try {
+
+            trans = session.beginTransaction();
+            
+            
+            
+            Booking b = new Booking(ngayDat, ca, nv, kh, s, menu, dv, soBan, ghiChu);
+            
+            
+           
+            session.save(menu);
+            session.save(kh);
+            session.save(b);
+            trans.commit();
+        } catch (Exception ex) {
+            if (trans != null) {
+                trans.rollback();
+            }
+            System.err.print(ex.getMessage());
+            return false;
+        } finally {
+            session.close();
+        }
+        return true;
     }
 
 }

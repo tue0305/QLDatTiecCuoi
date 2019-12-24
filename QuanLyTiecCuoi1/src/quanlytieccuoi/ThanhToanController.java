@@ -173,7 +173,7 @@ public class ThanhToanController implements Initializable {
     }
 
     public void confirmkAction(ActionEvent event) throws IOException {
-      
+
         try {
             if (txtKhachTra.getText().isEmpty()) {
                 Utils.getAlertTC("Nhập số tiền khách trả!!", Alert.AlertType.ERROR).show();
@@ -186,21 +186,21 @@ public class ThanhToanController implements Initializable {
                             if (rs2 == ButtonType.OK) {
                                 System.out.print(txtTongTien.getText());// chỗ in hóa đơn
                             }
-                            
+
                             b.setNgayThanhToan(d);
                             b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText().replace(",", ""))));
-                            if(!fee.equals(0))
+                            if (!fee.equals(0)) {
                                 b.setGhiChu(String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
-                            else
+                            } else {
                                 b.setGhiChu(String.format("Thanh toán đúng hẹn."));
-                            b.setNhanVien(n);
-                            if( Utils.addOrUpdate(b))
-                            {
-                                Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).show();
                             }
-                            else
+                            b.setNhanVien(n);
+                            if (Utils.addOrUpdate(b)) {
+                                Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).show();
+                            } else {
                                 Utils.getAlertTC("Thanh toán thất bại!!!", Alert.AlertType.ERROR).show();
-                           
+                            }
+
                         });
                     } else if (rs1 == ButtonType.NO) {
                         return;
@@ -209,6 +209,10 @@ public class ThanhToanController implements Initializable {
             }
         } catch (Exception e) {
             System.err.print(e.getMessage());
+        } finally {
+            Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
+            Utils.switchStage(sce, event);
+            Utils.resetBooking();
         }
 
     }

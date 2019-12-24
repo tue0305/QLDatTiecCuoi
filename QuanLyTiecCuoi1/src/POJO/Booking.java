@@ -34,10 +34,9 @@ public class Booking implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
 
-    @Basic(optional = false)
     @Column(name = "MaBooking")
     private String maBooking;
-    @Basic(optional = false)
+
     @Column(name = "NgayDat")
     @Temporal(TemporalType.DATE)
     private Date ngayDat;
@@ -45,13 +44,13 @@ public class Booking implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date ngayThanhToan;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
+
     @Column(name = "Price")
     private BigDecimal price;
-    @Basic(optional = false)
+
     @Column(name = "SoBan")
     private Integer soBan;
-    @Basic(optional = false)
+
     @Column(name = "Ca")
     private Character ca;
     @Lob
@@ -84,8 +83,23 @@ public class Booking implements Serializable {
     public Booking() {
     }
 
-    public Booking(String maBooking) {
-        this.maBooking = maBooking;
+    public Booking(Date ngayDat, Character ca, Nhanvien nhanVien,
+            Khachhang maKH, Sanh sanh, Menu menu, List<Dichvu> dichVu,
+            Integer soBan, String note) {
+
+        this.maBooking = UUID.randomUUID().toString();
+        this.ngayDat = ngayDat;
+
+        this.dichVu = dichVu;
+        this.menu = menu;
+        this.nhanVien = nhanVien;
+        this.khachHang = maKH;
+        this.ghiChu = note;
+
+        this.ca = ca;
+        this.sanh = sanh;
+        this.soBan = soBan;
+
     }
 
     public Booking(Date ngayDat, BigDecimal price, Character ca, Nhanvien nhanVien,

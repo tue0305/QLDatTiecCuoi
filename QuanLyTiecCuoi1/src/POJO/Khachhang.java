@@ -6,11 +6,9 @@
 package POJO;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,8 +33,11 @@ public class Khachhang implements Serializable {
     @Column(name = "TenKH")
     private String tenKH;
     @Basic(optional = false)
+    @Column(name = "DiaChi")
+    private String diaChi;
+    @Basic(optional = false)
     @Column(name = "SDT")
-    private int sdt;
+    private Integer sdt;
     
 
     public Khachhang() {
@@ -44,11 +45,12 @@ public class Khachhang implements Serializable {
 
 
 
-    public Khachhang(String tenKH, int sdt) {
+    public Khachhang(String tenKH, Integer sdt, String dc) {
        
         this.maKH = UUID.randomUUID().toString();
         this.tenKH = tenKH;
         this.sdt = sdt;
+        this.diaChi = dc;
     }
 
     public String getMaKH() {
@@ -67,24 +69,45 @@ public class Khachhang implements Serializable {
         this.tenKH = tenKH;
     }
 
-    public int getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(int sdt) {
-        this.sdt = sdt;
-    }
-
+   
     
     
 
     @Override
     public String toString() {
-        return String.format("%s, %s", this.tenKH, this.sdt);
+        return String.format("%s, %s", this.tenKH, this.getSdt());
     }
 
     public Object getTenTP() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the diaChi
+     */
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    /**
+     * @param diaChi the diaChi to set
+     */
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
+    }
+
+    /**
+     * @return the sdt
+     */
+    public Integer getSdt() {
+        return sdt;
+    }
+
+    /**
+     * @param sdt the sdt to set
+     */
+    public void setSdt(Integer sdt) {
+        this.sdt = sdt;
     }
     
 }

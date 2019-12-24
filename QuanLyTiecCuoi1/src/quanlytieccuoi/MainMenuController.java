@@ -57,7 +57,7 @@ public class MainMenuController implements Initializable {
     @FXML
     private void ActionDatSanh(javafx.event.ActionEvent event) throws IOException {
 
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TEsst.fxml")));
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DatTiec.fxml")));
         Utils.switchStage(sce, event);
     }
       @FXML
