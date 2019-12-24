@@ -17,8 +17,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,16 +52,9 @@ public class TEsstController implements Initializable {
      * Initializes the controller class.
      */
        @FXML
-    private Button btThongtin;
+    private Button btThongtin,btMonAn,btDichVu,BtXacNhan;
 
-    @FXML
-    private Button btMonAn;
 
-    @FXML
-    private Button btDichVu;
-
-    @FXML
-    private Button BtXacNhan;
 
     @FXML
     private VBox vboxStatus;
@@ -106,17 +97,8 @@ public class TEsstController implements Initializable {
     @FXML
     private TextArea taDiaChi;
     @FXML
-    private Button nextMonAn;
-    @FXML
-    private Button nextDichVu;
-    @FXML
-    private Button nextXacNhan;
-    @FXML
-    private Button backTTKH;
-    @FXML
-    private Button backDichVu;
-    @FXML
-    private Button backMonAn;
+    private Button nextMonAn,nextDichVu,nextXacNhan,backTTKH,backDichVu,backMonAn;
+
     //Thong tin dat mon an
     @FXML
     private TableView tbThucPham;
@@ -169,8 +151,9 @@ public class TEsstController implements Initializable {
                       if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty()||ngayDat.getValue()==null ||cbSanh.getSelectionModel().isEmpty()||taDiaChi.getText().isEmpty()|| (!rdCa1.isSelected()&&!rdCa2.isSelected() )||txtSoBan.getText().isEmpty() ) {
                 Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR); 
                 b.show();
-                } else{
-                               
+                } else{ 
+                                 Alert c = Utils.getAlertTC("SDT : "+txtSDT.getText(), Alert.AlertType.ERROR); 
+                                 c.show();
                                 lbStatusMIn.setText("/home/monan");
                                 lbStatus.setText("Món ăn");
                                 vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
@@ -249,10 +232,10 @@ public class TEsstController implements Initializable {
          ngayDat.valueProperty().addListener((observable, oldDate, newDate)->{            
          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); 
       
-         String s1 = sdf.format(new Date());
+         String s1 = sdf.format(new Date()); // s1 lấy ngày to dayxxx
             if(newDate!=null){    // Ngày chọn xong rồi mới xử lý
                 
-            try {
+            try {                           
                 
                 Date datetoday = sdf.parse(s1);
                 Date dateChoose = sdf.parse(ngayDat.getValue().toString());
@@ -260,32 +243,46 @@ public class TEsstController implements Initializable {
                      ngayDat.setValue(newDate);
                     
                      try { 
-                           
                             
-                           List<Booking> bk = Utils.getBooking();
+                            
+                            List<Booking> bk = Utils.getBooking();
                             for(Booking a : bk){   
-                                 Date daDat = sdf.parse(a.getNgayDat().toString());
-                               if((daDat.equals(dateChoose)&&a.getCa()=='1')&&(daDat.equals(dateChoose)&&a.getCa()=='2')){    //ngay có trong csdl //chưa xử lý xong , chưa lấy được ca2 và ca1 full ngay
-                                  rdCa1.setDisable(true);
-                                  rdCa2.setDisable(true);    //cả 2 ca đã được chọn                                                                    
-                                       break;
-                                    }else{if(daDat.equals(dateChoose)&&a.getCa()=='2'){  
-                                
-                                        rdCa2.setDisable(true);
-                                        rdCa1.setDisable(false);   // ca 2 đã chọn
-                                          break;
-                                        }else{if(daDat.equals(dateChoose)&&a.getCa()=='1'){
-                                          
-                                                     rdCa1.setDisable(true);
-                                                     rdCa2.setDisable(false); // ca 1 đã chọn
-                                                     break;
-                                                       }else{
-                                                            
-                                                      rdCa1.setDisable(false);
-                                                      rdCa2.setDisable(false);
-                                                           }                                      
-                                    }                             
-                                    }
+                            Date daDat = sdf.parse(a.getNgayDat().toString());                            
+                            int ktra=0;
+                                                   if((daDat.equals(dateChoose)&&a.getCa()=='2')||(daDat.equals(dateChoose)&&a.getCa()=='1')){ // Nếu là đã có ca1 or 2
+                                                        for(Booking b : bk){
+                                                            Date daDat1 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
+                                                            if(daDat1.equals(dateChoose)&&b.getCa()=='1'&&(daDat.equals(dateChoose)&&a.getCa()=='2')||daDat1.equals(dateChoose)&&b.getCa()=='2'&&(daDat.equals(dateChoose)&&a.getCa()=='1')){
+                                                               rdCa1.setDisable(true); 
+                                                               rdCa2.setDisable(true);                                                           
+                                                               ktra  =1;
+                                                               break;                   // ngắt lặp trog
+                                                            }
+                                                            }if(ktra ==1 )              // ngắt lặp ngoài
+                                                            {
+                                                                break;
+
+                                                            }
+                                                            if(daDat.equals(dateChoose)&&a.getCa()=='2'){   //ca2 da dc chon
+                                                                    rdCa1.setDisable(false); 
+                                                                    rdCa2.setDisable(true);  
+                                                                   
+                                                                    break;
+                                                                }else  {                    //ca 1 da dc chon
+                                                       
+                                                                        rdCa1.setDisable(true); 
+                                                                        rdCa2.setDisable(false); 
+                                                                        
+                                                                        break;
+                                                                    }
+                                                       
+                                                   }else{
+                                                                    
+                                                    rdCa1.setDisable(false); 
+                                                    rdCa2.setDisable(false);
+
+                                                    }
+                                                                             
                                     
                             }} catch (ParseException ex) {
                            Logger.getLogger(TEsstController.class.getName()).log(Level.SEVERE, null, ex);
@@ -295,6 +292,8 @@ public class TEsstController implements Initializable {
                    ngayDat.setValue(null);
                      Alert c = Utils.getAlertTC("Chỉ đặt trong tương lai!!!", Alert.AlertType.ERROR); 
                      c.show();
+                      rdCa1.setDisable(false); 
+                        rdCa2.setDisable(false);
                }} catch (ParseException ex) {
                 Logger.getLogger(TEsstController.class.getName()).log(Level.SEVERE, null, ex);
             }              

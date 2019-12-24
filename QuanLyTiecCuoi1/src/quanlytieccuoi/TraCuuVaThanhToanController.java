@@ -112,8 +112,8 @@ public class TraCuuVaThanhToanController implements Initializable {
         try {
             if (s == null) {
                 Utils.getAlertTC("Hãy chọn giá trị bên dưới!!!", Alert.AlertType.ERROR).show();
-            } else if (s.getNgayThanhToan() != null) {
-                Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
+//            } else if (s.getNgayThanhToan() != null) {
+//                Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
             } else {
                 Utils.setPayBooking(s);
 

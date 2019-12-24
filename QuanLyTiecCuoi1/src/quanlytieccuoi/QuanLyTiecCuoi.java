@@ -27,7 +27,7 @@ public class QuanLyTiecCuoi extends Application {
 
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("TEsst.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("LapBaoCao.fxml"));
 
 
        // stage.initStyle(StageStyle.TRANSPARENT);
