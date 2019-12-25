@@ -25,6 +25,7 @@ public class QuanLyTiecCuoi extends Application {
 
 
 
+
         Parent root = FXMLLoader.load(getClass().getResource("DatTiec.fxml"));
 
 

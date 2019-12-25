@@ -171,7 +171,7 @@ public class ThanhToanController implements Initializable {
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getServicesOfBooking(b)));
 
         txtThanhTien.setText(String.format(Utils.formatCurrency(thanhTien)));
-        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen)));
+        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen))+" VNĐ");
     }
 
     public void backAction(ActionEvent event) throws IOException {
@@ -206,6 +206,7 @@ public class ThanhToanController implements Initializable {
                             }
                             b.setNhanVien(n);
                             if (Utils.addOrUpdate(b)) {
+
                                 Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).showAndWait().ifPresent(rs3 -> {
                                     if (rs1 == ButtonType.OK) {
                                         try {
@@ -218,6 +219,7 @@ public class ThanhToanController implements Initializable {
                                     }
 
                                 });
+
                             } else {
                                 Utils.getAlertTC("Thanh toán thất bại!!!", Alert.AlertType.ERROR).show();
                             }

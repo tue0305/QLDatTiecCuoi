@@ -132,7 +132,7 @@ public class Booking implements Serializable {
         this.ngayThanhToan = ngayThanhToan;
         this.price =price;
     }
-
+    
     public Date getNgayDat() {
         return ngayDat;
     }
