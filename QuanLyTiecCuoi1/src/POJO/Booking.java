@@ -122,11 +122,15 @@ public class Booking implements Serializable {
     }
 
     public String getNameCus() {
-        return this.khachHang.getTenKH().toString();
+        return this.khachHang.getTenKH();
     }
 
     public String getPhoneCus() {
-        return String.format("%s", this.khachHang.getSdt());
+        return  this.khachHang.getSdt();
+    }
+    public void getNgayVaGia(Date ngayThanhToan, BigDecimal price){
+        this.ngayThanhToan = ngayThanhToan;
+        this.price =price;
     }
 
     public Date getNgayDat() {

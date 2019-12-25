@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `qltieccuoi` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `qltieccuoi`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: localhost    Database: qltieccuoi
@@ -33,7 +35,7 @@ CREATE TABLE `booking` (
   `SoBan` int(100) DEFAULT NULL,
   `Ca` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `GhiChu` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `Price` decimal(13,2) DEFAULT NULL,
+  `Price` decimal(15,2) DEFAULT NULL,
   PRIMARY KEY (`MaBooking`),
   KEY `fk_booking_nhanvien` (`MaNV`),
   KEY `fk_booking_khachhang` (`MaKH`),
@@ -41,7 +43,6 @@ CREATE TABLE `booking` (
   KEY `fk_booking_menu_idx` (`MaMenu`),
   CONSTRAINT `fk_booking_khachhang` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
   CONSTRAINT `fk_booking_menu` FOREIGN KEY (`MaMenu`) REFERENCES `menu` (`MaMenu`),
-  CONSTRAINT `fk_booking_nhanvien` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`),
   CONSTRAINT `fk_booking_sanh` FOREIGN KEY (`MaSanh`) REFERENCES `sanh` (`MaSanh`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -52,7 +53,7 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES ('DSADA44444',5,44,'ưewqee99','23156QQQQ','2019-06-08','2019-12-17',60,'1','dsadsa',52978023.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00);
+INSERT INTO `booking` VALUES ('2b1aa8cc-35c4-4f4c-a19c-163f835cd495',18,51,'fdsfdsf568','3dcd2436-0f90-4995-8307-950978f9297d','2020-02-02','2019-12-25',30,'1','Khách thanh toán trễ: 0 ngày\r\nTiền cộng thêm : 0.0000%',250000000.00),('3d90b89f-5e77-4a84-a836-5d2357cef513',5,48,'fdsfdsf568','490eed1e-2c6b-4a54-9739-cf151287bcf0','2019-12-27','2019-12-25',30,'1','Khách thanh toán trễ: -1 ngày\r\nTiền cộng thêm : -0.0100%',12285712.00),('4caab683-6c26-4abf-9b68-9d1d913f9964',17,50,'ưewqee99','47fba680-51a8-4437-8535-4fa3c34a1ca0','2020-07-02','2019-12-25',30,'2','Khách thanh toán trễ: -189 ngày\r\nTiền cộng thêm : -1.8900%',-179898664.00),('53eab04b-2064-4198-b22c-69465e59a158',5,49,'fdsfdsf568','34e26d8f-0085-4f96-a940-29699e6a7ded','2020-01-02','2019-12-25',40,'1','Khách thanh toán trễ: 0 ngày\r\nTiền cộng thêm : 0.0000%',114290927.00),('DSADA44444',5,44,'ưewqee99','23156QQQQ','2019-12-12','2019-12-20',60,'1','Khách thanh toán trễ: 8 ngày\r\nTiền cộng thêm : 0.0800%',19594611.00),('DSAE123123',5,44,'fdsfdsf568','123DSAE127','2019-06-01','2019-07-01',9,'1','dsadsa',100000000.00),('ecf44c94-9557-40ba-a968-be3bc01b9130',5,47,'fdsfdsf568','b3112a57-87e7-4413-b5f1-4ab13065976a','2019-12-26','2019-12-25',20,'2','Khách thanh toán trễ: 0 ngày\r\nTiền cộng thêm : 0.0000%',4530018.00);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +80,7 @@ CREATE TABLE `booking_dichvu` (
 
 LOCK TABLES `booking_dichvu` WRITE;
 /*!40000 ALTER TABLE `booking_dichvu` DISABLE KEYS */;
-INSERT INTO `booking_dichvu` VALUES ('DSADA44444',4),('DSADA44444',5),('DSADA44444',6);
+INSERT INTO `booking_dichvu` VALUES ('3d90b89f-5e77-4a84-a836-5d2357cef513',4),('53eab04b-2064-4198-b22c-69465e59a158',4),('DSADA44444',4),('ecf44c94-9557-40ba-a968-be3bc01b9130',4),('3d90b89f-5e77-4a84-a836-5d2357cef513',5),('53eab04b-2064-4198-b22c-69465e59a158',5),('DSADA44444',5),('ecf44c94-9557-40ba-a968-be3bc01b9130',5),('3d90b89f-5e77-4a84-a836-5d2357cef513',6),('53eab04b-2064-4198-b22c-69465e59a158',6),('DSADA44444',6);
 /*!40000 ALTER TABLE `booking_dichvu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,7 +120,8 @@ DROP TABLE IF EXISTS `khachhang`;
 CREATE TABLE `khachhang` (
   `MaKH` varchar(40) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `TenKH` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `SDT` int(11) NOT NULL,
+  `SDT` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `DiaChi` varchar(60) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`MaKH`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='			';
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -130,7 +132,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES ('123DSAE127','Nguyễn Văn A',6545666),('123QƯERWR','Lý Sơn Phi',8888888),('23156QQQQ','Long',6666666);
+INSERT INTO `khachhang` VALUES ('123DSAE127','Nguyễn Văn A','6545666',NULL),('123QƯERWR','Lý Sơn Phi','8888888',NULL),('23156QQQQ','Long','6666666',NULL),('34e26d8f-0085-4f96-a940-29699e6a7ded','Nguyễn văn quân','09605467573',''),('3dcd2436-0f90-4995-8307-950978f9297d','Nguyễn Thị Mợt','01472583699',''),('47fba680-51a8-4437-8535-4fa3c34a1ca0','Nguyễn văn tuấn','06621646765',''),('490eed1e-2c6b-4a54-9739-cf151287bcf0','Nguyễn Văn B','06216456464',''),('b3112a57-87e7-4413-b5f1-4ab13065976a','Nguyễn Văn Toàn','0902062074','');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,11 +145,9 @@ DROP TABLE IF EXISTS `menu`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menu` (
   `MaMenu` int(5) NOT NULL AUTO_INCREMENT,
-  `Price` decimal(11,2) NOT NULL,
   `NgayTao` date DEFAULT NULL,
-  `TenMenu` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`MaMenu`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -156,7 +156,7 @@ CREATE TABLE `menu` (
 
 LOCK TABLES `menu` WRITE;
 /*!40000 ALTER TABLE `menu` DISABLE KEYS */;
-INSERT INTO `menu` VALUES (44,30000.00,'2019-04-22','sad');
+INSERT INTO `menu` VALUES (44,'2019-04-22'),(47,'2019-12-25'),(48,'2019-12-25'),(49,'2019-12-25'),(50,'2019-12-25'),(51,'2019-12-25');
 /*!40000 ALTER TABLE `menu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,11 +197,11 @@ DROP TABLE IF EXISTS `sanh`;
 CREATE TABLE `sanh` (
   `MaSanh` int(5) NOT NULL AUTO_INCREMENT,
   `TenSanh` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `Gia` decimal(11,2) NOT NULL,
+  `Gia` decimal(15,2) NOT NULL,
   `LoaiSanh` enum('A','B','C','D','E') CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `GhiChu` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   PRIMARY KEY (`MaSanh`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,7 +210,7 @@ CREATE TABLE `sanh` (
 
 LOCK TABLES `sanh` WRITE;
 /*!40000 ALTER TABLE `sanh` DISABLE KEYS */;
-INSERT INTO `sanh` VALUES (5,'L',30000.00,'B','12323'),(9,'aaaa',5000000.00,'A','1111'),(10,'xxx',555555.00,'A','dsads'),(11,'xxxa',555555.00,'A','dsads');
+INSERT INTO `sanh` VALUES (5,'Bronze',100000000.00,'A','20 bàn'),(15,'Silver',150000000.00,'B','30 bàn'),(16,'Gold',175000000.00,'C','45 bàn'),(17,'Plentium',200000000.00,'D','60 bàn'),(18,'Diamond',250000000.00,'E','80 bàn');
 /*!40000 ALTER TABLE `sanh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -264,7 +264,7 @@ CREATE TABLE `thucpham_menu` (
 
 LOCK TABLES `thucpham_menu` WRITE;
 /*!40000 ALTER TABLE `thucpham_menu` DISABLE KEYS */;
-INSERT INTO `thucpham_menu` VALUES (7,44),(8,44),(9,44);
+INSERT INTO `thucpham_menu` VALUES (7,44),(8,44),(9,44),(7,47),(8,47),(7,48),(8,48),(9,48),(7,49),(8,49),(9,49),(9,50);
 /*!40000 ALTER TABLE `thucpham_menu` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -277,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-17 23:13:06
+-- Dump completed on 2019-12-25 17:08:56

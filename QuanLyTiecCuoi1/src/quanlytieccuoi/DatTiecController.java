@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package quanlytieccuoi;
 
-import javafx.event.ActionEvent;
 import POJO.Booking;
 import POJO.Dichvu;
 import POJO.Khachhang;
@@ -16,7 +10,6 @@ import POJO.Thucpham;
 import Util.Utils;
 import com.jfoenix.controls.JFXRadioButton;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,16 +56,7 @@ public class DatTiecController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private Button btThongtin;
-
-    @FXML
-    private Button btMonAn;
-
-    @FXML
-    private Button btDichVu;
-
-    @FXML
-    private Button BtXacNhan;
+    private Button btThongtin, btMonAn, btDichVu, BtXacNhan;
 
     @FXML
     private VBox vboxStatus;
@@ -115,24 +99,14 @@ public class DatTiecController implements Initializable {
     @FXML
     private JFXRadioButton rdCa2;
     @FXML
-    private DatePicker dpngayDat;
+    private DatePicker dpNgayDat;
     @FXML
     private TextArea taDiaChi;
     @FXML
     private TextArea taGhiChu;
+    @FXML
+    private Button nextMonAn, nextDichVu, nextXacNhan, backTTKH, backDichVu, backMonAn;
 
-    @FXML
-    private Button nextMonAn;
-    @FXML
-    private Button nextDichVu;
-    @FXML
-    private Button nextXacNhan;
-    @FXML
-    private Button backTTKH;
-    @FXML
-    private Button backDichVu;
-    @FXML
-    private Button backMonAn;
     //Thong tin dat mon an
     @FXML
     private TableView tbThucPham;
@@ -183,10 +157,9 @@ public class DatTiecController implements Initializable {
 //
 //        }
         if (event.getSource() == nextMonAn) {
-            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty() || dpngayDat.getValue() == null
-                    || cbSanh.getSelectionModel().isEmpty() || taDiaChi.getText().isEmpty()
-                    || (!rdCa1.isSelected() && !rdCa2.isSelected()) || txtSoBan.getText().isEmpty()) {
-                Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR).show();
+            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty() || dpNgayDat.getValue() == null || cbSanh.getSelectionModel().isEmpty() || (!rdCa1.isSelected() && !rdCa2.isSelected()) || txtSoBan.getText().isEmpty()) {
+                Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR);
+                b.show();
             } else {
 
                 lbStatusMIn.setText("/home/monan");
@@ -195,6 +168,7 @@ public class DatTiecController implements Initializable {
                 vboxMonAn.toFront();
                 btThongtin.setStyle("-fx-background-color:#FC95BB");
                 btMonAn.setStyle("-fx-background-color:  #F7B3C8");
+
             }
 
         } else if (event.getSource() == backTTKH) {
@@ -239,7 +213,7 @@ public class DatTiecController implements Initializable {
     }
 
     @FXML
-    private void ActionBack(ActionEvent event) throws IOException {
+    private void ActionBack(javafx.event.ActionEvent event) throws IOException {
 
         Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
         Utils.switchStage(sce, event);
@@ -247,51 +221,63 @@ public class DatTiecController implements Initializable {
     }
 
     public void kTraNhapTTKH() {
-// SET DIA CHI THEO CHIU DOC 
+        // SET DIA CHI THEO CHIU DOC 
         taDiaChi.setWrapText(true);
-// Ktra số bàn là số
+        // Ktra số bàn là số
         Utils.KiemTraLaSo(txtSoBan);
         //chon ngay tuong lai moi duoc
-        dpngayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
+        dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            String s1 = sdf.format(new Date());
+            String s1 = sdf.format(new Date()); // s1 lấy ngày to dayxxx
             if (newDate != null) {    // Ngày chọn xong rồi mới xử lý
 
                 try {
 
                     Date datetoday = sdf.parse(s1);
-                    Date dateChoose = sdf.parse(dpngayDat.getValue().toString());
+                    Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
                     if (dateChoose.after(datetoday)) {
-                        dpngayDat.setValue(newDate);
+                        dpNgayDat.setValue(newDate);
 
                         try {
 
                             List<Booking> bk = Utils.getBooking();
                             for (Booking a : bk) {
                                 Date daDat = sdf.parse(a.getNgayDat().toString());
-                                if ((daDat.equals(dateChoose) && a.getCa() == '1') && (daDat.equals(dateChoose) && a.getCa() == '2')) {    //ngay có trong csdl //chưa xử lý xong , chưa lấy được ca2 và ca1 full ngay
-                                    rdCa1.setDisable(true);
-                                    rdCa2.setDisable(true);    //cả 2 ca đã được chọn                                                                    
-                                    break;
-                                } else {
-                                    if (daDat.equals(dateChoose) && a.getCa() == '2') {
-
-                                        rdCa2.setDisable(true);
-                                        rdCa1.setDisable(false);   // ca 2 đã chọn
-                                        break;
-                                    } else {
-                                        if (daDat.equals(dateChoose) && a.getCa() == '1') {
-
+                                int ktra = 0;
+                                if ((daDat.equals(dateChoose) && a.getCa() == '2') || (daDat.equals(dateChoose) && a.getCa() == '1')) { // Nếu là đã có ca1 or 2
+                                    for (Booking b : bk) {
+                                        Date daDat1 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
+                                        if (daDat1.equals(dateChoose) && b.getCa() == '1' && (daDat.equals(dateChoose) && a.getCa() == '2') || daDat1.equals(dateChoose) && b.getCa() == '2' && (daDat.equals(dateChoose) && a.getCa() == '1')) {
                                             rdCa1.setDisable(true);
-                                            rdCa2.setDisable(false); // ca 1 đã chọn
-                                            break;
-                                        } else {
-
-                                            rdCa1.setDisable(false);
-                                            rdCa2.setDisable(false);
+                                            rdCa2.setDisable(true);
+                                            ktra = 1;
+                                            break;                   // ngắt lặp trog
                                         }
                                     }
+                                    if (ktra == 1) // ngắt lặp ngoài
+                                    {
+                                        break;
+
+                                    }
+                                    if (daDat.equals(dateChoose) && a.getCa() == '2') {   //ca2 da dc chon
+                                        rdCa1.setDisable(false);
+                                        rdCa2.setDisable(true);
+
+                                        break;
+                                    } else {                    //ca 1 da dc chon
+
+                                        rdCa1.setDisable(true);
+                                        rdCa2.setDisable(false);
+
+                                        break;
+                                    }
+
+                                } else {
+
+                                    rdCa1.setDisable(false);
+                                    rdCa2.setDisable(false);
+
                                 }
 
                             }
@@ -300,9 +286,11 @@ public class DatTiecController implements Initializable {
                         }
 
                     } else {
-                        dpngayDat.setValue(null);
+                        dpNgayDat.setValue(null);
                         Alert c = Utils.getAlertTC("Chỉ đặt trong tương lai!!!", Alert.AlertType.ERROR);
                         c.show();
+                        rdCa1.setDisable(false);
+                        rdCa2.setDisable(false);
                     }
                 } catch (ParseException ex) {
                     Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
@@ -317,13 +305,13 @@ public class DatTiecController implements Initializable {
         vboxThongTin.toFront();
         btThongtin.setStyle("-fx-background-color:  #F7B3C8");
 
-// load Sanh "Thong tin dat tiec"
+        // load Sanh "Thong tin dat tiec"
         List<Sanh> s = Utils.getSanh();
         for (Sanh q : s) {
             this.cbSanh.getItems().add(q.getLoaiSanh());
         }
 
-// Load danh sách DichVu
+        // Load danh sách DichVu
         TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");
         clTenLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
         TableColumn clPrice = new TableColumn("Giá");
@@ -368,26 +356,7 @@ public class DatTiecController implements Initializable {
 
     }
 
-// kiem trA SDT
-    public void TextFieldKeyPressed(javafx.scene.input.KeyEvent evt) {
-
-        String str = txtSDT.getText();
-        int lengthstr = str.length();
-        Utils.KiemTraLaSo(txtSDT);
-        if (lengthstr < 11) {          //gioi han 11 so
-            txtSDT.setEditable(true);
-        } else {
-            txtSDT.setEditable(false);
-            if (evt.getCode() == KeyCode.DELETE || evt.getCode() == KeyCode.BACK_SPACE) {
-                txtSDT.setEditable(true);
-            } else {
-                txtSDT.setEditable(false);
-            }
-        }
-
-    }
-// Chọn thực phẩm
-
+    // Chọn thực phẩm
     @FXML
     private void themTP(ActionEvent event) throws IOException {
         try {
@@ -442,38 +411,61 @@ public class DatTiecController implements Initializable {
 
     }
 
+    // kiem trA SDT
+    public void TextFieldKeyPressed(javafx.scene.input.KeyEvent evt) {
+
+        String str = txtSDT.getText();
+        int lengthstr = str.length();
+        Utils.KiemTraLaSo(txtSDT);
+        if (lengthstr < 11) {          //gioi han 11 so
+            txtSDT.setEditable(true);
+        } else {
+            txtSDT.setEditable(false);
+            if (evt.getCode() == KeyCode.DELETE || evt.getCode() == KeyCode.BACK_SPACE) {
+                txtSDT.setEditable(true);
+            } else {
+                txtSDT.setEditable(false);
+            }
+        }
+
+    }
+
     @FXML
     private void saveBooking(ActionEvent event) throws IOException {
         try {
             Utils.getAlertTC("Xác nhận đặt tiệc!!", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
-//                    Character ca;
-//                    Integer soBan = Integer.parseInt(txtSoBan.getText());
-                    Integer sdt = Integer.parseInt(txtSDT.getText());
-                    System.out.print(sdt);
-//                    LocalDate localDate = dpngayDat.getValue();
-//                    Date ngayDat = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-//
-//                    String note = String.format("%s\r\n%s", txtLoaiTiec.getText(), taGhiChu.getText());
-//                    Nhanvien nv = Utils.findStaff(Utils.getUsernameText());
-//                    Menu menu = new Menu(tbThucPhamC.getItems());
-//                    Khachhang kh = new Khachhang(txtTenKH.getText(), sdt, taDiaChi.getText());
-//                    Sanh s = Utils.getSanhByTypeName((String) cbSanh.getSelectionModel().getSelectedItem());
-//
-//                    List<Dichvu> dv = tbDichVuC.getItems();
-//
-//                    if (rdCa1.isSelected()) {
-//                        ca = '1';
-//                    } else {
-//                        ca = '2';
-//                    }
-//
-//                    if(Utils.addBooking(ngayDat, ca, nv, kh, s, menu, dv,  soBan, note))
-//                    {
-//                        Utils.getAlertTC("Đặt thành công!!!", Alert.AlertType.INFORMATION).show();
-//                    }
-//                    else 
-//                        Utils.getAlertTC("Đặt thất bại!!!", Alert.AlertType.ERROR).show();
+                    Character ca;
+                    Integer soBan = Integer.parseInt(txtSoBan.getText());
+
+                    LocalDate localDate = dpNgayDat.getValue();
+                    Date ngayDat = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+                    String note = String.format("%s\r\n%s", txtLoaiTiec.getText(), taGhiChu.getText());
+                    Nhanvien nv = Utils.findStaff(Utils.getUsernameText());
+                    Menu menu = new Menu(tbThucPhamC.getItems());
+                    Khachhang kh = new Khachhang(txtTenKH.getText(), txtSDT.getText(), taDiaChi.getText());
+                    Sanh s = Utils.getSanhByTypeName((String) cbSanh.getSelectionModel().getSelectedItem());
+                    List<Dichvu> dv = tbDichVuC.getItems();
+
+                    if (rdCa1.isSelected()) {
+                        ca = '1';
+                    } else {
+                        ca = '2';
+                    }
+
+                    if (Utils.addBooking(ngayDat, ca, nv, kh, s, menu, dv, soBan, note)) {
+                       
+                        try {                           
+                            Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DatTiec.fxml")));
+                            Utils.switchStage(sce, event);
+                        } catch (IOException ex) {
+                            Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                         Utils.getAlertTC("Đặt thành công!!!", Alert.AlertType.INFORMATION).show();
+                    } else {
+                        Utils.getAlertTC("Đặt thất bại!!!", Alert.AlertType.ERROR).show();
+                    }
                 } else if (rs == ButtonType.NO) {
                     return;
                 }
@@ -485,4 +477,5 @@ public class DatTiecController implements Initializable {
         }
 
     }
+
 }

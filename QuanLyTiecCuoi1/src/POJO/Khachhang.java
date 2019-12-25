@@ -37,7 +37,7 @@ public class Khachhang implements Serializable {
     private String diaChi;
     @Basic(optional = false)
     @Column(name = "SDT")
-    private Integer sdt;
+    private String sdt;
     
 
     public Khachhang() {
@@ -45,7 +45,7 @@ public class Khachhang implements Serializable {
 
 
 
-    public Khachhang(String tenKH, Integer sdt, String dc) {
+    public Khachhang(String tenKH, String sdt, String dc) {
        
         this.maKH = UUID.randomUUID().toString();
         this.tenKH = tenKH;
@@ -99,15 +99,17 @@ public class Khachhang implements Serializable {
     /**
      * @return the sdt
      */
-    public Integer getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
     /**
      * @param sdt the sdt to set
      */
-    public void setSdt(Integer sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
+
+    
     
 }

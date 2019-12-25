@@ -18,6 +18,8 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -36,6 +38,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
+import quanlytieccuoi.LapBaoCaoController;
 
 /**
  *
@@ -56,7 +59,7 @@ public final class Utils {
         Utils.usernameText = usernameText;
     }
     
-    public static void resetBooking()
+    public static void resetPayment()
     {
         Utils.payingBooking = null;
         Utils.tienDV = 0.0;
@@ -83,12 +86,12 @@ public final class Utils {
     
     public static void setPayBooking(Booking b) {
         Utils.payingBooking = b;
-        for (Thucpham t : getFoodsOfBooking(b)) {
+        getFoodsOfBooking(b).forEach((t) -> {
             tienTP += t.getPrice().doubleValue() * b.getSoBan();
-        }
-        for (Dichvu d : getServicesOfBooking(b)) {
+        });
+        getServicesOfBooking(b).forEach((d) -> {
             tienDV += d.getGia().doubleValue();
-        }
+        });
 
     }
 
@@ -157,6 +160,54 @@ public final class Utils {
         } catch (Exception ex) {
             System.err.print(ex.getMessage());
         }
+    }
+    
+    // Hàm tính doanh thu tháng
+    
+    public static double tinhDoanhThuThang(int thang){
+         double tongthang = 0;
+         //lay thang duoi csdl
+       
+         List<Booking> bk = Utils.getBooking();
+         for(Booking a : bk){   //Loc ds booking
+             try{ 
+                 Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
+                   Calendar cal = Calendar.getInstance();
+                   cal.setTime(date);                   //set cal = ngay thanh toan
+                   int month = cal.get(Calendar.MONTH)+1;           //lay thang
+                   if(month ==thang){                                               
+                       double ab= a.getPrice().doubleValue(); 
+                       tongthang = tongthang + ab;                          
+                   }
+             }catch(NullPointerException ex){ // su ly ngay thanh toan rong
+             }
+             
+         }
+         return tongthang;
+    }
+    
+    //Ham tinh doanh thu nam
+    
+    public static double tinhDoanhThuNam(int nam){
+         double tongNam = 0;
+         //lay thang duoi csdl
+       
+         List<Booking> bk = Utils.getBooking();
+         for(Booking a : bk){   //Loc ds booking
+             try{ 
+                 Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
+                   Calendar cal = Calendar.getInstance();
+                   cal.setTime(date);                   //set cal = ngay thanh toan
+                   int namCSDL = cal.get(Calendar.YEAR);           //lay nam
+                   if(namCSDL ==nam){                                               
+                       double ab= a.getPrice().doubleValue(); 
+                       tongNam = tongNam + ab;                          
+                   }
+             }catch(NullPointerException ex){ // su ly ngay thanh toan rong
+             }
+             
+         }
+         return tongNam;
     }
 
     public static void hideStage(Scene sce, ActionEvent e) {
@@ -424,11 +475,11 @@ public final class Utils {
     }
     //Xy ly textfile la so
      public static void KiemTraLaSo(TextField a ){
-     ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
-                            if (!newValue.matches("\\d*"))
-                              ((StringProperty) observable).set(oldValue);
-                        };
-                        a.textProperty().addListener(forceNumberListener);
+        ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
+             if (!newValue.matches("\\d*"))
+            ((StringProperty) observable).set(oldValue);
+         };
+        a.textProperty().addListener(forceNumberListener);
     
 }
     

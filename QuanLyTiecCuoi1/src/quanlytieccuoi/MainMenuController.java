@@ -63,7 +63,7 @@ public class MainMenuController implements Initializable {
       @FXML
     private void ActionMouseDatSanh(MouseEvent event) throws IOException {
         
-          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TEsst.fxml")));
+          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DatTiec.fxml")));
           Utils.switchStageMouseClick(sce, event);
     }
 

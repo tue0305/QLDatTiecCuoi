@@ -183,3 +183,8 @@ Button.button2{
     -fx-background-radius: 3, 2, 4, 0;
     -fx-prompt-text-fill: transparent;
 }
+.chart-legend {
+    -fx-background-color: #FFD5DC;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}
