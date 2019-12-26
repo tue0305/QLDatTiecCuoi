@@ -57,7 +57,7 @@
                   </ImageView>
                   <Pane layoutX="53.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionDatSanh" opacity="0.7" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#ActionMouseDatSanh" opacity="0.7" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
                         <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseDatSanh" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.48863636363636365" centerY="0.44660194174757284" radius="0.5">
@@ -69,7 +69,7 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" onMouseClicked="#ActionMouseDatSanh" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../FXML/images/datsanh.png" />
                            </image>
@@ -83,7 +83,7 @@
                   </Pane>
                   <Pane layoutX="259.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionThanhToan" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Button layoutX="-2.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#ActionMouseTraCuu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
                         <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseTraCuu" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.4602272727272727" centerY="0.5" radius="0.5">
@@ -95,7 +95,7 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" onMouseClicked="#ActionMouseTraCuu" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../FXML/images/searchmain.png" />
                            </image>
@@ -109,7 +109,7 @@
                   </Pane>
                   <Pane layoutX="458.0" layoutY="75.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionBaoCao" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#ActionMouseBaoCao" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
                         <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseBaoCao" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
@@ -121,7 +121,7 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" onMouseClicked="#ActionMouseBaoCao" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../FXML/images/BaoCao.png" />
                            </image>
@@ -135,7 +135,7 @@
                   </Pane>
                   <Pane layoutX="259.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLSanh" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" textFill="WHITE" />
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#ActionMouseSanh" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" textFill="WHITE" />
                         <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseSanh" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
@@ -147,7 +147,7 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" onMouseClicked="#ActionMouseSanh" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../FXML/images/QuanLypng.png" />
                            </image>
@@ -161,7 +161,7 @@
                   </Pane>
                   <Pane layoutX="458.0" layoutY="285.0" prefHeight="165.0" prefWidth="154.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLDichVu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Button layoutX="-1.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#ActionMouseDichVu" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
                         <Circle layoutX="78.0" layoutY="66.0" onMouseClicked="#ActionMouseDichVu" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.48863636363636365" centerY="0.48058252427184467" radius="0.5">
@@ -173,7 +173,7 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" onMouseClicked="#ActionMouseDichVu" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../FXML/images/QuanLypng.png" />
                            </image>
@@ -188,7 +188,7 @@
                   <Pane layoutX="-172.0" layoutY="-118.0" prefHeight="146.0" prefWidth="867.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 70;" />
                   <Pane layoutX="53.0" layoutY="285.0" onMouseClicked="#ActionMouseThucPham" prefHeight="165.0" prefWidth="159.0" styleClass="BtPane">
                      <children>
-                        <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ActionQLThucPham" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
+                        <Button layoutX="2.0" layoutY="-1.0" mnemonicParsing="false" onMouseClicked="#ActionMouseThucPham" opacity="0.64" prefHeight="167.0" prefWidth="158.0" styleClass="button2" />
                         <Circle layoutX="77.0" layoutY="66.0" onMouseClicked="#ActionMouseThucPham" radius="50.0" stroke="WHITE" strokeType="INSIDE">
                            <fill>
                               <RadialGradient centerX="0.49431818181818177" centerY="0.4951456310679611" radius="0.5">
@@ -200,7 +200,7 @@
                               </RadialGradient>
                            </fill>
                         </Circle>
-                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="58.0" layoutY="47.0" onMouseClicked="#ActionMouseThucPham" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../FXML/images/QuanLypng.png" />
                            </image>

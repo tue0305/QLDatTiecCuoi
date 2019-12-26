@@ -164,7 +164,7 @@ public final class Utils {
     
     // Hàm tính doanh thu tháng
     
-    public static double tinhDoanhThuThang(int thang){
+    public static double tinhDoanhThuThang(int thang, int nam){
          double tongthang = 0;
          //lay thang duoi csdl
        
@@ -174,8 +174,9 @@ public final class Utils {
                  Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
                    Calendar cal = Calendar.getInstance();
                    cal.setTime(date);                   //set cal = ngay thanh toan
-                   int month = cal.get(Calendar.MONTH)+1;           //lay thang
-                   if(month ==thang){                                               
+                   int month = cal.get(Calendar.MONTH)+1;  
+                    int year = cal.get(Calendar.YEAR);
+                   if(month ==thang&&year==nam){                                               
                        double ab= a.getPrice().doubleValue(); 
                        tongthang = tongthang + ab;                          
                    }

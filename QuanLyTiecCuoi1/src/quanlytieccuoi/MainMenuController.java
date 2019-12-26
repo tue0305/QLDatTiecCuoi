@@ -54,12 +54,6 @@ public class MainMenuController implements Initializable {
 
     }
 
-    @FXML
-    private void ActionDatSanh(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DatTiec.fxml")));
-        Utils.switchStage(sce, event);
-    }
       @FXML
     private void ActionMouseDatSanh(MouseEvent event) throws IOException {
         
@@ -67,12 +61,6 @@ public class MainMenuController implements Initializable {
           Utils.switchStageMouseClick(sce, event);
     }
 
-    @FXML
-    private void ActionTraCuu(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
-        Utils.switchStage(sce, event);
-    }
       @FXML
     private void ActionMouseTraCuu(MouseEvent event) throws IOException {
         
@@ -80,27 +68,6 @@ public class MainMenuController implements Initializable {
           Utils.switchStageMouseClick(sce, event);
     }
 
-    @FXML
-    private void ActionThanhToan(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("HoaDonThanhToan.fxml")));
-        Utils.switchStage(sce, event);
-
-    }
-    @FXML
-    private void ActionMouseHoaDon(MouseEvent event) throws IOException {
-        
-          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("HoaDonThanhToan.fxml")));
-          Utils.switchStageMouseClick(sce, event);
-    }
-
-    @FXML
-    private void ActionBaoCao(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("LapBaoCao.fxml")));
-        Utils.switchStage(sce, event);
-
-    }
      @FXML
     private void ActionMouseBaoCao(MouseEvent event) throws IOException {
         
@@ -108,13 +75,6 @@ public class MainMenuController implements Initializable {
           Utils.switchStageMouseClick(sce, event);
     }
 
-    @FXML
-    private void ActionQLSanh(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("Sanh.fxml")));
-        Utils.switchStage(sce, event);
-
-    }
      @FXML
     private void ActionMouseSanh(MouseEvent event) throws IOException {
         
@@ -123,25 +83,11 @@ public class MainMenuController implements Initializable {
     }
     
     @FXML
-    private void ActionQLDichVu(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DichVu.fxml")));
-        Utils.switchStage(sce, event);
-
-    } 
-    @FXML
     private void ActionMouseDichVu(MouseEvent event) throws IOException {
         
           Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DichVu.fxml")));
           Utils.switchStageMouseClick(sce, event);
     }
-    @FXML
-    private void ActionQLThucPham(javafx.event.ActionEvent event) throws IOException {
-
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("ThucPham.fxml")));
-        Utils.switchStage(sce, event);
-
-    } 
     @FXML
     private void ActionMouseThucPham(MouseEvent event) throws IOException {
         
