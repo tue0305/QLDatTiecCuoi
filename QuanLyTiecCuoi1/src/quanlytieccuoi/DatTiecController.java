@@ -232,70 +232,92 @@ public class DatTiecController implements Initializable {
 
     }
             private void chonTheoThuTu(){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             cbSanh.setDisable(true);
             rdCa1.setDisable(true);
             rdCa2.setDisable(true);
              dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
-                   if (newDate != null) {  
+                   if (newDate != null) {
+                       
+                       // load Sanh "Thong tin dat tiec"
+                       this.cbSanh.getItems().clear();
+                        List<Sanh> s = Utils.getSanh();
+                        for (Sanh q : s) {
+                            this.cbSanh.getItems().add(q.toString());
+                        }
+                       
+                       
                        cbSanh.setValue(null);
                        cbSanh.setDisable(false);
                            rdCa1.setSelected(false);
                            rdCa2.setSelected(false);
+                          // 
+                          
+                                                try {     
+                                                Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
+                                        
+                                                     try {
+                                                         List<Booking> bk = Utils.getBooking();
+                                                         for (Booking a : bk) {
+                                                            Date daDat1 = sdf.parse(a.getNgayDat().toString());
+                                                            int ktra = 0;
+                                                            for (Booking b : bk) {
+                                                                     Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
+                                                                     if (daDat2.equals(dateChoose) && b.getCa() == '1' &&  (daDat1.equals(dateChoose) && a.getCa() == '2')  
+                                                                             || daDat2.equals(dateChoose) && b.getCa() == '2'  && (daDat1.equals(dateChoose) && a.getCa() == '1')   ) {
+                                                                         
+                                                                         cbSanh.getItems().remove(b.getSanh().getLoaiSanh());
+                                                                         ktra = 1;
+                                                                         break;                   // ngắt lặp trog   }
+                                                                         }
+                                                                     if (ktra == 1) // ngắt lặp ngoài
+                                                                     {
+                                                                         break;
+
+                                                                     }}
+                                                        }
+                                                     } catch (ParseException ex) {
+                                                         Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                                                     }           
+                                             } catch (ParseException ex) {
+                                                 Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                                             }
+                           
+                           //
                        cbSanh.valueProperty().addListener((observable1, oldDate1, newDate1) -> {
+                           
                            if (newDate1 != null) {  
                            rdCa1.setSelected(false);
                            rdCa2.setSelected(false);
-                           
                            rdCa1.setDisable(false);
                            rdCa2.setDisable(false);
                                               
-                           
-                           
-                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                                           try {     
+
+                                               try {     
                                                  Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
                                                  cbSanh.setValue(newDate1);
                                                      try {
                                                          List<Booking> bk = Utils.getBooking();
                                                          for (Booking a : bk) {
-                                                             Date daDat1 = sdf.parse(a.getNgayDat().toString());
-                                                             int ktra = 0;
-                                                             
-                                                             if ((daDat1.equals(dateChoose) && a.getCa() == '2'&& (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) || (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) { // Nếu là đã có ca1 or 2
-                                                                 for (Booking b : bk) {
-                                                                     Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
-                                                                     if (daDat2.equals(dateChoose) && b.getCa() == '1' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '2')  && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) 
-                                                                             || daDat2.equals(dateChoose) && b.getCa() == '2' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '1')  && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {
-                                                                         rdCa1.setDisable(true);
-                                                                         rdCa2.setDisable(true);
-                                                                         ktra = 1;
-                                                                         break;                   // ngắt lặp trog   }
+                                                         Date daDat1 = sdf.parse(a.getNgayDat().toString());                                                     
+                                                             if ((daDat1.equals(dateChoose) && a.getCa() == '2'&& (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) ||
+                                                                     (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) { // Nếu là đã có ca1 or 2
+
+                                                                        if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {   //ca2 da dc chon
+                                                                                rdCa1.setDisable(false);
+                                                                                rdCa2.setDisable(true);
+                                                                                break;
+                                                                         } else {                    //ca 1 da dc chon
+                                                                                rdCa1.setDisable(true);
+                                                                                rdCa2.setDisable(false);
+                                                                                break;
                                                                          }
-                                                                 }
-                                                                 if (ktra == 1) // ngắt lặp ngoài
-                                                                     {
-                                                                         break;
-
-                                                                     }
-                                                             if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {   //ca2 da dc chon
-                                                                     rdCa1.setDisable(false);
-                                                                     rdCa2.setDisable(true);
-
-                                                                     break;
-                                                              } else {                    //ca 1 da dc chon
-
-                                                                     rdCa1.setDisable(true);
-                                                                     rdCa2.setDisable(false);
-
-                                                                     break;
-                                                              }
 
                                                              } else {
 
                                                                  rdCa1.setDisable(false);
                                                                  rdCa2.setDisable(false);
                                                             }
-
                                                          }
                                                      } catch (ParseException ex) {
                                                          Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
@@ -325,11 +347,7 @@ public class DatTiecController implements Initializable {
         vboxThongTin.toFront();
         btThongtin.setStyle("-fx-background-color:  #F7B3C8");
 
-        // load Sanh "Thong tin dat tiec"
-        List<Sanh> s = Utils.getSanh();
-        for (Sanh q : s) {
-            this.cbSanh.getItems().add(q.toString());
-        }
+        
 
         // Load danh sách DichVu
         TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");
