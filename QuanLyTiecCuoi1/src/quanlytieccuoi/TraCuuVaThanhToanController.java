@@ -64,6 +64,8 @@ public class TraCuuVaThanhToanController implements Initializable {
         clSDT.setCellValueFactory(new PropertyValueFactory("phoneCus"));
         TableColumn clNgayDat = new TableColumn("Ngày đặt");
         clNgayDat.setCellValueFactory(new PropertyValueFactory("ngayDat"));
+        TableColumn clCa = new TableColumn("Ca");
+        clCa.setCellValueFactory(new PropertyValueFactory("ca"));
 
         TableColumn clNgayThanhToan = new TableColumn("Ngày thanh toán");
         clNgayThanhToan.setCellValueFactory(new PropertyValueFactory("ngayThanhToan"));
@@ -72,7 +74,7 @@ public class TraCuuVaThanhToanController implements Initializable {
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clNgayThanhToan, clGia, clNote);
+        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clCa, clNgayThanhToan, clGia, clNote);
         this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
         // Tìm kiếm booking theo tên và số điện thoại khách hàng
         this.txtTC.textProperty().addListener(et -> {
@@ -112,8 +114,8 @@ public class TraCuuVaThanhToanController implements Initializable {
         try {
             if (s == null) {
                 Utils.getAlertTC("Hãy chọn giá trị bên dưới!!!", Alert.AlertType.ERROR).show();
-//            } else if (s.getNgayThanhToan() != null) {
-//                Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
+            } else if (s.getNgayThanhToan() != null) {
+                Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
             } else {
                 Utils.setPayBooking(s);
 

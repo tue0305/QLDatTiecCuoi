@@ -83,14 +83,14 @@ public class MainMenuController implements Initializable {
     @FXML
     private void ActionThanhToan(javafx.event.ActionEvent event) throws IOException {
 
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("HoaDonThanhToan.fxml")));
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
         Utils.switchStage(sce, event);
 
     }
     @FXML
     private void ActionMouseHoaDon(MouseEvent event) throws IOException {
         
-          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("HoaDonThanhToan.fxml")));
+          Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
           Utils.switchStageMouseClick(sce, event);
     }
 

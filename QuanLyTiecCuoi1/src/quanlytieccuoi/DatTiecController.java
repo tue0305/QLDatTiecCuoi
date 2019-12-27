@@ -15,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,12 +32,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
@@ -225,82 +228,118 @@ public class DatTiecController implements Initializable {
         taDiaChi.setWrapText(true);
         // Ktra số bàn là số
         Utils.KiemTraLaSo(txtSoBan);
-        //chon ngay tuong lai moi duoc
-        dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+// Kiểm tra ngày đặt(ẩn những ngày quá khứ và hiện tại)
+        List<Booking> ls = Utils.getBooking();
+        dpNgayDat.setDayCellFactory(picker -> new DateCell() {
 
-            String s1 = sdf.format(new Date()); // s1 lấy ngày to dayxxx
-            if (newDate != null) {    // Ngày chọn xong rồi mới xử lý
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
 
-                try {
+                
 
-                    Date datetoday = sdf.parse(s1);
-                    Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
-                    if (dateChoose.after(datetoday)) {
-                        dpNgayDat.setValue(newDate);
+//                Integer count = 0;
+//                
+//                List<Booking> ls = Utils.getBooking();
+//                for (Booking b : ls) {
+//                    LocalDate dateB = b.getNgayDat().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//                    if (dateB.compareTo(dateB) == 0) {
+//                        if (b.getCa() == '1' || b.getCa() == '2') 
+//                            count++;
+//                    }
+//                }
+//                
+//                setDisable(empty || date.compareTo(today) <= 0 || count == 2);
+//                
+//                
+//                count = 0;
+//                
 
-                        try {
-
-                            List<Booking> bk = Utils.getBooking();
-                            for (Booking a : bk) {
-                                Date daDat = sdf.parse(a.getNgayDat().toString());
-                                int ktra = 0;
-                                if ((daDat.equals(dateChoose) && a.getCa() == '2') || (daDat.equals(dateChoose) && a.getCa() == '1')) { // Nếu là đã có ca1 or 2
-                                    for (Booking b : bk) {
-                                        Date daDat1 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
-                                        if (daDat1.equals(dateChoose) && b.getCa() == '1' && (daDat.equals(dateChoose) && a.getCa() == '2') || daDat1.equals(dateChoose) && b.getCa() == '2' && (daDat.equals(dateChoose) && a.getCa() == '1')) {
-                                            rdCa1.setDisable(true);
-                                            rdCa2.setDisable(true);
-                                            ktra = 1;
-                                            break;                   // ngắt lặp trog
-                                        }
-                                    }
-                                    if (ktra == 1) // ngắt lặp ngoài
-                                    {
-                                        break;
-
-                                    }
-                                    if (daDat.equals(dateChoose) && a.getCa() == '2') {   //ca2 da dc chon
-                                        rdCa1.setDisable(false);
-                                        rdCa2.setDisable(true);
-
-                                        break;
-                                    } else {                    //ca 1 da dc chon
-
-                                        rdCa1.setDisable(true);
-                                        rdCa2.setDisable(false);
-
-                                        break;
-                                    }
-
-                                } else {
-
-                                    rdCa1.setDisable(false);
-                                    rdCa2.setDisable(false);
-
-                                }
-
-                            }
-                        } catch (ParseException ex) {
-                            Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                    } else {
-                        dpNgayDat.setValue(null);
-                        Alert c = Utils.getAlertTC("Chỉ đặt trong tương lai!!!", Alert.AlertType.ERROR);
-                        c.show();
-                        rdCa1.setDisable(false);
-                        rdCa2.setDisable(false);
-                    }
-                } catch (ParseException ex) {
-                    Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
+
         });
 
+//chon ngay tuong lai moi duoc
+//        dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//
+//            String s1 = sdf.format(new Date()); // s1 lấy ngày to dayxxx
+//            if (newDate != null) {    // Ngày chọn xong rồi mới xử lý
+//
+//                try {
+//
+//                    Date datetoday = sdf.parse(s1);
+//                    Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
+//                    if (dateChoose.after(datetoday)) {
+//                        dpNgayDat.setValue(newDate);
+//
+//                        try {
+//
+//                            List<Booking> bk = Utils.getBooking();
+//                            for (Booking a : bk) {
+//                                Date daDat = sdf.parse(a.getNgayDat().toString());
+//                                int ktra = 0;
+//                                if ((daDat.equals(dateChoose) && a.getCa() == '2') || (daDat.equals(dateChoose) && a.getCa() == '1')) { // Nếu là đã có ca1 or 2
+//                                    for (Booking b : bk) {
+//                                        Date daDat1 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
+//                                        if (daDat1.equals(dateChoose) && b.getCa() == '1' && (daDat.equals(dateChoose) && a.getCa() == '2') || daDat1.equals(dateChoose) && b.getCa() == '2' && (daDat.equals(dateChoose) && a.getCa() == '1')) {
+//                                            rdCa1.setDisable(true);
+//                                            rdCa2.setDisable(true);
+//                                            ktra = 1;
+//                                            break;                   // ngắt lặp trog
+//                                        }
+//                                    }
+//                                    if (ktra == 1) // ngắt lặp ngoài
+//                                    {
+//                                        break;
+//
+//                                    }
+//                                    if (daDat.equals(dateChoose) && a.getCa() == '2') {   //ca2 da dc chon
+//                                        rdCa1.setDisable(false);
+//                                        rdCa2.setDisable(true);
+//
+//                                        break;
+//                                    } else {                    //ca 1 da dc chon
+//
+//                                        rdCa1.setDisable(true);
+//                                        rdCa2.setDisable(false);
+//
+//                                        break;
+//                                    }
+//
+//                                } else {
+//
+//                                    rdCa1.setDisable(false);
+//                                    rdCa2.setDisable(false);
+//
+//                                }
+//
+//                            }
+//                        } catch (ParseException ex) {
+//                            Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//
+//                    } else {
+//                        dpNgayDat.setValue(null);
+//                        Alert c = Utils.getAlertTC("Chỉ đặt trong tương lai!!!", Alert.AlertType.ERROR);
+//                        c.show();
+//                        rdCa1.setDisable(false);
+//                        rdCa2.setDisable(false);
+//                    }
+//                } catch (ParseException ex) {
+//                    Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
     }
 
     public void init() {
+//Group radio button
+        ToggleGroup toggleGroup = new ToggleGroup();
+        rdCa1.setToggleGroup(toggleGroup);
+        rdCa2.setToggleGroup(toggleGroup);
+
         //set bt thong tin dc chon
         vboxThongTin.toFront();
         btThongtin.setStyle("-fx-background-color:  #F7B3C8");
@@ -308,7 +347,7 @@ public class DatTiecController implements Initializable {
         // load Sanh "Thong tin dat tiec"
         List<Sanh> s = Utils.getSanh();
         for (Sanh q : s) {
-            this.cbSanh.getItems().add(q.getLoaiSanh());
+            this.cbSanh.getItems().add(q.toString());
         }
 
         // Load danh sách DichVu
@@ -437,7 +476,7 @@ public class DatTiecController implements Initializable {
                 if (rs == ButtonType.OK) {
                     Character ca;
                     Integer soBan = Integer.parseInt(txtSoBan.getText());
-
+                    
                     LocalDate localDate = dpNgayDat.getValue();
                     Date ngayDat = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
@@ -455,14 +494,14 @@ public class DatTiecController implements Initializable {
                     }
 
                     if (Utils.addBooking(ngayDat, ca, nv, kh, s, menu, dv, soBan, note)) {
-                       
-                        try {                           
+
+                        try {
                             Scene sce = new Scene(FXMLLoader.load(getClass().getResource("DatTiec.fxml")));
                             Utils.switchStage(sce, event);
                         } catch (IOException ex) {
                             Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                         Utils.getAlertTC("Đặt thành công!!!", Alert.AlertType.INFORMATION).show();
+                        Utils.getAlertTC("Đặt thành công!!!", Alert.AlertType.INFORMATION).show();
                     } else {
                         Utils.getAlertTC("Đặt thất bại!!!", Alert.AlertType.ERROR).show();
                     }

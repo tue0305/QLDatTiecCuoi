@@ -555,5 +555,14 @@ public final class Utils {
         }
         return true;
     }
+// Kiểm tra trùng ngày
+//    public static void KiemTraLaSo(TextField a ){
+//        ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
+//             if (!newValue.matches("\\d*"))
+//            ((StringProperty) observable).set(oldValue);
+//         };
+//        a.textProperty().addListener(forceNumberListener);
+    
+
 
 }

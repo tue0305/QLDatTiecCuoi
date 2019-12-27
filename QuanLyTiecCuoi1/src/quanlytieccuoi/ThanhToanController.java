@@ -171,7 +171,7 @@ public class ThanhToanController implements Initializable {
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getServicesOfBooking(b)));
 
         txtThanhTien.setText(String.format(Utils.formatCurrency(thanhTien)));
-        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen))+" VNĐ");
+        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen) + "VNĐ"));
     }
 
     public void backAction(ActionEvent event) throws IOException {
@@ -198,9 +198,10 @@ public class ThanhToanController implements Initializable {
 
                             b.setNgayThanhToan(d);
                             b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText().replace(",", ""))));
+                            
 
                             if (!fee.equals(0)) {
-                                b.setGhiChu(String.format("Khách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
+                                b.setGhiChu( b.getGhiChu() + String.format("\r\bKhách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
                             } else {
                                 b.setGhiChu(String.format("Thanh toán đúng hẹn."));
                             }

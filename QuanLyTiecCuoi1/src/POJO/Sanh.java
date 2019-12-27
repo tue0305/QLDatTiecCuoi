@@ -102,7 +102,7 @@ public class Sanh implements Serializable {
 
     @Override
     public String toString() {
-        return this.getLoaiSanh().toString();
+        return this.getLoaiSanh();
         
     }
     
@@ -122,8 +122,6 @@ public class Sanh implements Serializable {
         this.loaiSanh = loaiSanh;
     }
 
-    public Object[] getTenSanh(List<Sanh> sanh) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
     
 }
