@@ -203,35 +203,6 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxXacNhan" alignment="CENTER">
-                     <children>
-                        <Label prefHeight="537.0" prefWidth="356.0" text="Xác nhận">
-                           <font>
-                              <Font size="88.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
-                           <children>
-                              <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
                   <VBox fx:id="vboxMonAn" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
                      <children>
                         <BorderPane prefHeight="627.0" prefWidth="920.0">
@@ -382,6 +353,35 @@
                               </HBox>
                            </children>
                         </VBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="vboxXacNhan" alignment="CENTER">
+                     <children>
+                        <Label prefHeight="537.0" prefWidth="356.0" text="Xác nhận">
+                           <font>
+                              <Font size="88.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
+                           <children>
+                              <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

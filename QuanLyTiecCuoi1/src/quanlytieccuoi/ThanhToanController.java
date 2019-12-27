@@ -171,7 +171,7 @@ public class ThanhToanController implements Initializable {
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getServicesOfBooking(b)));
 
         txtThanhTien.setText(String.format(Utils.formatCurrency(thanhTien)));
-        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen) + "VNĐ"));
+        txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen)));
     }
 
     public void backAction(ActionEvent event) throws IOException {
