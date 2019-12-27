@@ -102,7 +102,7 @@ public class LapBaoCaoController implements Initializable {
             data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, (event) -> {
                 Alert a = new Alert(Alert.AlertType.INFORMATION);
                 a.setTitle("Data");
-                a.setContentText(data.getName()+" : "+Utils.formatCurrency(data.getPieValue())  +" VNĐ");
+                a.setContentText(data.getName());
                 a.showAndWait();
                 
                 //Hieu ung piechart
@@ -123,7 +123,7 @@ public class LapBaoCaoController implements Initializable {
             });
             data.nameProperty().bind(
                         Bindings.concat(
-                                data.getName(), " \n", data.pieValueProperty(), " VNĐ"
+                                data.getName(), " \n",Utils.formatCurrency(data.pieValueProperty().getValue()), " VNĐ"
                         )
                 );
             

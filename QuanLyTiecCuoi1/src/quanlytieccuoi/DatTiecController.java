@@ -119,7 +119,7 @@ public class DatTiecController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
+        chonTheoThuTu();
         init();
         kTraNhapTTKH();
 
@@ -128,37 +128,6 @@ public class DatTiecController implements Initializable {
     @FXML
     private void handleClicks(ActionEvent event) {
 
-//        if(event.getSource() ==btThongtin)
-//        {
-//            lbStatusMIn.setText("/home/thongtin");
-//            lbStatus.setText("Thông tin chung");
-//            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY) ));
-//            vboxThongTin.toFront();
-//        }
-//        else
-//        if(event.getSource() ==btMonAn)
-//        {
-//                lbStatusMIn.setText("/home/monan");
-//                lbStatus.setText("Món ăn");
-//                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY) ));
-//                vboxMonAn.toFront();
-//
-//        }
-//        else if(event.getSource() ==btDichVu)
-//        {
-//            lbStatusMIn.setText("/home/dichvu");
-//            lbStatus.setText("Dịch vụ");
-//            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY) ));
-//            VboxDichVu.toFront();
-//        }
-//        else if(event.getSource() ==BtXacNhan)
-//        {
-//            lbStatusMIn.setText("/home/xacnhan");
-//            lbStatus.setText("Xác nhận");
-//            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(251, 15, 80), CornerRadii.EMPTY, Insets.EMPTY) ));
-//            vboxXacNhan.toFront();
-//
-//        }
         if (event.getSource() == nextMonAn) {
             if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty() || dpNgayDat.getValue() == null || cbSanh.getSelectionModel().isEmpty() || (!rdCa1.isSelected() && !rdCa2.isSelected()) || txtSoBan.getText().isEmpty()) {
                 Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR);
@@ -250,7 +219,7 @@ public class DatTiecController implements Initializable {
 //                    }
 //                }
 //                
-//                setDisable(empty || date.compareTo(today) <= 0 || count == 2);
+                       setDisable(empty || date.compareTo(today) <= 0 );
 //                
 //                
 //                count = 0;
@@ -260,79 +229,91 @@ public class DatTiecController implements Initializable {
 
         });
 
-//chon ngay tuong lai moi duoc
-//        dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//
-//            String s1 = sdf.format(new Date()); // s1 lấy ngày to dayxxx
-//            if (newDate != null) {    // Ngày chọn xong rồi mới xử lý
-//
-//                try {
-//
-//                    Date datetoday = sdf.parse(s1);
-//                    Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
-//                    if (dateChoose.after(datetoday)) {
-//                        dpNgayDat.setValue(newDate);
-//
-//                        try {
-//
-//                            List<Booking> bk = Utils.getBooking();
-//                            for (Booking a : bk) {
-//                                Date daDat = sdf.parse(a.getNgayDat().toString());
-//                                int ktra = 0;
-//                                if ((daDat.equals(dateChoose) && a.getCa() == '2') || (daDat.equals(dateChoose) && a.getCa() == '1')) { // Nếu là đã có ca1 or 2
-//                                    for (Booking b : bk) {
-//                                        Date daDat1 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
-//                                        if (daDat1.equals(dateChoose) && b.getCa() == '1' && (daDat.equals(dateChoose) && a.getCa() == '2') || daDat1.equals(dateChoose) && b.getCa() == '2' && (daDat.equals(dateChoose) && a.getCa() == '1')) {
-//                                            rdCa1.setDisable(true);
-//                                            rdCa2.setDisable(true);
-//                                            ktra = 1;
-//                                            break;                   // ngắt lặp trog
-//                                        }
-//                                    }
-//                                    if (ktra == 1) // ngắt lặp ngoài
-//                                    {
-//                                        break;
-//
-//                                    }
-//                                    if (daDat.equals(dateChoose) && a.getCa() == '2') {   //ca2 da dc chon
-//                                        rdCa1.setDisable(false);
-//                                        rdCa2.setDisable(true);
-//
-//                                        break;
-//                                    } else {                    //ca 1 da dc chon
-//
-//                                        rdCa1.setDisable(true);
-//                                        rdCa2.setDisable(false);
-//
-//                                        break;
-//                                    }
-//
-//                                } else {
-//
-//                                    rdCa1.setDisable(false);
-//                                    rdCa2.setDisable(false);
-//
-//                                }
-//
-//                            }
-//                        } catch (ParseException ex) {
-//                            Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-//
-//                    } else {
-//                        dpNgayDat.setValue(null);
-//                        Alert c = Utils.getAlertTC("Chỉ đặt trong tương lai!!!", Alert.AlertType.ERROR);
-//                        c.show();
-//                        rdCa1.setDisable(false);
-//                        rdCa2.setDisable(false);
-//                    }
-//                } catch (ParseException ex) {
-//                    Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        });
+
     }
+            private void chonTheoThuTu(){
+            cbSanh.setDisable(true);
+            rdCa1.setDisable(true);
+            rdCa2.setDisable(true);
+             dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
+                   if (newDate != null) {  
+                       cbSanh.setValue(null);
+                       cbSanh.setDisable(false);
+                           rdCa1.setSelected(false);
+                           rdCa2.setSelected(false);
+                       cbSanh.valueProperty().addListener((observable1, oldDate1, newDate1) -> {
+                           if (newDate1 != null) {  
+                           rdCa1.setSelected(false);
+                           rdCa2.setSelected(false);
+                           
+                           rdCa1.setDisable(false);
+                           rdCa2.setDisable(false);
+                                              
+                           
+                           
+                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                                           try {     
+                                                 Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
+                                                 cbSanh.setValue(newDate1);
+                                                     try {
+                                                         List<Booking> bk = Utils.getBooking();
+                                                         for (Booking a : bk) {
+                                                             Date daDat1 = sdf.parse(a.getNgayDat().toString());
+                                                             int ktra = 0;
+                                                             
+                                                             if ((daDat1.equals(dateChoose) && a.getCa() == '2'&& (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) || (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) { // Nếu là đã có ca1 or 2
+                                                                 for (Booking b : bk) {
+                                                                     Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
+                                                                     if (daDat2.equals(dateChoose) && b.getCa() == '1' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '2')  && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) 
+                                                                             || daDat2.equals(dateChoose) && b.getCa() == '2' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '1')  && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {
+                                                                         rdCa1.setDisable(true);
+                                                                         rdCa2.setDisable(true);
+                                                                         ktra = 1;
+                                                                         break;                   // ngắt lặp trog   }
+                                                                         }
+                                                                 }
+                                                                 if (ktra == 1) // ngắt lặp ngoài
+                                                                     {
+                                                                         break;
+
+                                                                     }
+                                                             if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {   //ca2 da dc chon
+                                                                     rdCa1.setDisable(false);
+                                                                     rdCa2.setDisable(true);
+
+                                                                     break;
+                                                              } else {                    //ca 1 da dc chon
+
+                                                                     rdCa1.setDisable(true);
+                                                                     rdCa2.setDisable(false);
+
+                                                                     break;
+                                                              }
+
+                                                             } else {
+
+                                                                 rdCa1.setDisable(false);
+                                                                 rdCa2.setDisable(false);
+                                                            }
+
+                                                         }
+                                                     } catch (ParseException ex) {
+                                                         Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                                                     }           
+                                             } catch (ParseException ex) {
+                                                 Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                                             }
+                           }
+    
+                       });
+                       
+                       
+                   }
+                 
+                 
+             });
+    
+}
 
     public void init() {
 //Group radio button

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTreeView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -37,7 +38,7 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="btThongtin" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="73.0" prefWidth="311.0" styleClass="button3" text="Thông tin">
+            <Button fx:id="btThongtin" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="311.0" style="-fx-background-color: #FC95BB;" text="Thông tin">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -48,7 +49,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btMonAn" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="73.0" prefWidth="311.0" styleClass="button3" text="Món ăn">
+            <Button fx:id="btMonAn" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="311.0" style="-fx-background-color: #FC95BB;" text="Món ăn">
                <padding>
                   <Insets left="50.0" />
                </padding>
@@ -59,7 +60,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btDichVu" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="73.0" prefWidth="311.0" styleClass="button3" text="Dịch vụ">
+            <Button fx:id="btDichVu" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="311.0" style="-fx-background-color: #FC95BB;" text="Dịch vụ">
                <graphic>
                   <FontAwesomeIcon iconName="BULLHORN" size="20" />
                </graphic>
@@ -70,7 +71,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="BtXacNhan" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="73.0" prefWidth="311.0" styleClass="button3" text="Xác nhận">
+            <Button fx:id="BtXacNhan" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="311.0" style="-fx-background-color: #FC95BB;" text="Xác nhận">
                <graphic>
                   <FontAwesomeIcon iconName="CHECK" size="20" />
                </graphic>
@@ -128,6 +129,69 @@
             </VBox>
             <StackPane prefHeight="597.0" prefWidth="858.0">
                <children>
+                  <VBox fx:id="vboxMonAn" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
+                     <children>
+                        <BorderPane prefHeight="627.0" prefWidth="920.0">
+                           <left>
+                              <TableView fx:id="tbThucPham" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <right>
+                              <TableView fx:id="tbThucPhamC" prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themTP" prefHeight="58.0" prefWidth="109.0" styleClass="button4" text="Chọn">
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/update-arrows.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                           <top>
+                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="17.0" styleClass="H1" text="Danh sách món ăn" />
+                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Món đã chọn" />
+                                 </children>
+                              </Pane>
+                           </top>
+                           <bottom>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="backTTKH" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="nextDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                  </VBox>
                   <VBox fx:id="VboxDichVu" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
                      <children>
                         <BorderPane prefHeight="627.0" prefWidth="920.0">
@@ -137,29 +201,20 @@
                            <center>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="61.0" prefWidth="63.0" text="Huỷ">
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/cancel.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themDV" prefHeight="58.0" prefWidth="109.0" styleClass="button4" text="Chọn">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
-                                    </Button>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themDV" text="Chọn">
                                        <graphic>
                                           <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../FXML/images/right-arrow.png" />
+                                                <Image url="@../FXML/images/update-arrows.png" />
                                              </image>
                                           </ImageView>
                                        </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
                                     </Button>
                                  </children>
                                  <padding>
@@ -203,78 +258,6 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <VBox fx:id="vboxMonAn" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
-                     <children>
-                        <BorderPane prefHeight="627.0" prefWidth="920.0">
-                           <left>
-                              <TableView fx:id="tbThucPham" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
-                           </left>
-                           <right>
-                              <TableView fx:id="tbThucPhamC" prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
-                           </right>
-                           <center>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="61.0" prefWidth="63.0" text="Huỷ">
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/cancel.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themTP" text="Chọn">
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/right-arrow.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                           </center>
-                           <top>
-                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label layoutX="78.0" layoutY="17.0" styleClass="H1" text="Danh sách món ăn" />
-                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Món đã chọn" />
-                                 </children>
-                              </Pane>
-                           </top>
-                           <bottom>
-                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button fx:id="backTTKH" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="nextDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </bottom>
-                        </BorderPane>
-                     </children>
-                  </VBox>
                   <VBox fx:id="vboxThongTin">
                      <children>
                         <VBox prefHeight="580.0" prefWidth="920.0">
@@ -286,6 +269,7 @@
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
                                     <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="80.0" />
                                     <ColumnConstraints hgrow="NEVER" minWidth="5.0" prefWidth="10.0" />
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
@@ -316,18 +300,18 @@
                                     <Label prefHeight="21.0" prefWidth="278.0" styleClass="H1" text="Thông tin đặt sảnh" GridPane.columnIndex="3" GridPane.columnSpan="3" />
                                     <Label text="Loại tiệc" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                     <TextField fx:id="txtLoaiTiec" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                                    <ComboBox fx:id="cbSanh" prefHeight="31.0" prefWidth="227.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                                    <ComboBox fx:id="cbSanh" prefHeight="31.0" prefWidth="227.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ComboBox>
-                                    <Label styleClass="two" text="Sảnh" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+                                    <Label styleClass="two" text="Sảnh" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.vgrow="SOMETIMES" />
                                     <DatePicker fx:id="dpNgayDat" prefHeight="31.0" prefWidth="230.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                                     <Label text="Ngày" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                    <TextField fx:id="txtSoBan" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                                    <Label text="Số bàn" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-                                    <JFXRadioButton fx:id="rdCa1" text="Trưa" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                                    <JFXRadioButton fx:id="rdCa2" text="Tối" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                    <TextField fx:id="txtSoBan" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                                    <Label text="Số bàn" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+                                    <JFXRadioButton fx:id="rdCa1" text="Trưa" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                                    <JFXRadioButton fx:id="rdCa2" text="Tối" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                                     <Label text="Ghi chú" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
                                     <TextArea fx:id="taGhiChu" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="7" GridPane.rowSpan="3" />
                                  </children>
@@ -357,31 +341,33 @@
                   </VBox>
                   <VBox fx:id="vboxXacNhan" alignment="CENTER">
                      <children>
-                        <Label prefHeight="537.0" prefWidth="356.0" text="Xác nhận">
-                           <font>
-                              <Font size="88.0" />
-                           </font>
-                        </Label>
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
-                           <children>
-                              <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </HBox>
+                        <BorderPane prefHeight="635.0" prefWidth="920.0">
+                           <bottom>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="179.0" styleClass="button4" text="Xác nhận đặt tiệc">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <right>
+                              <JFXTreeView BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
                      </children>
                   </VBox>
                </children>
