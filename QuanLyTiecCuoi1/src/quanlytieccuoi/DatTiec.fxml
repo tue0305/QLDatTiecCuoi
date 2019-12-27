@@ -341,33 +341,30 @@
                   </VBox>
                   <VBox fx:id="vboxXacNhan" alignment="CENTER">
                      <children>
-                        <BorderPane prefHeight="635.0" prefWidth="920.0">
-                           <bottom>
-                              <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="179.0" styleClass="button4" text="Xác nhận đặt tiệc">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </bottom>
-                           <right>
-                              <JFXTreeView BorderPane.alignment="CENTER" />
-                           </right>
-                        </BorderPane>
+
+                        <TableView fx:id="tbXacNhanDV" prefHeight="200.0" prefWidth="200.0" />
+                        <TableView fx:id="tbXacNhanTP" prefHeight="200.0" prefWidth="200.0" />
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
+                           <children>
+                              <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+
                      </children>
                   </VBox>
                </children>
