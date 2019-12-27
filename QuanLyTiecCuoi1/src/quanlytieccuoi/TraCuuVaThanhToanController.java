@@ -66,6 +66,8 @@ public class TraCuuVaThanhToanController implements Initializable {
         clNgayDat.setCellValueFactory(new PropertyValueFactory("ngayDat"));
         TableColumn clCa = new TableColumn("Ca");
         clCa.setCellValueFactory(new PropertyValueFactory("ca"));
+         TableColumn clSanh = new TableColumn("Sanh");
+        clSanh.setCellValueFactory(new PropertyValueFactory("sanh"));
 
         TableColumn clNgayThanhToan = new TableColumn("Ngày thanh toán");
         clNgayThanhToan.setCellValueFactory(new PropertyValueFactory("ngayThanhToan"));
@@ -74,7 +76,7 @@ public class TraCuuVaThanhToanController implements Initializable {
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clCa, clNgayThanhToan, clGia, clNote);
+        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clGia, clNote);
         this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
         // Tìm kiếm booking theo tên và số điện thoại khách hàng
         this.txtTC.textProperty().addListener(et -> {
