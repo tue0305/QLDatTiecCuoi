@@ -93,32 +93,39 @@ public class DichVuController implements Initializable {
     public void themDV(ActionEvent event) throws IOException {
 
         tbDichVu.getSelectionModel().clearSelection();
+        if(!txtTenDV.getText().isEmpty() || !txtGiaDV.getText().isEmpty() || !txtNote.getText().isEmpty())
+        {
+            txtTenDV.clear();
+
+            txtGiaDV.clear();
+            txtNote.clear();
+        }
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
-            Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần thêm!!!", Alert.AlertType.INFORMATION);
-            b.show();
+            Utils.getAlertTC("Hãy điền thông tin dịch vụ cần thêm!!!", Alert.AlertType.INFORMATION).show();
+           
         } else {
             if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Hãy điền đẩy đủ thông tin!!", Alert.AlertType.ERROR);
-                b.show();
+                Utils.getAlertTC("Hãy điền thông tin!!", Alert.AlertType.INFORMATION).show();
+                
             } else {
                 Dichvu s = new Dichvu(txtTenDV.getText(),
                         BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())), txtNote.getText());
 
                 if (Utils.ktTrungTenDichvu(s)) {
                     if (Utils.addOrUpdate(s)) {
-                        Alert b = Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION);
-                        b.show();
+                        Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION).show();
+                     
                         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
                         addPane.setVisible(false);
                     } else {
-                        Alert b = Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR);
-                        b.show();
+                        Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR).show();
+                        
                     }
 
                 } else {
-                    Alert b = Utils.getAlertTC("Tên dịch vụ đã có, hãy nhập thông tin mới!!!", Alert.AlertType.ERROR);
-                    b.show();
+                    Utils.getAlertTC("Tên dịch vụ đã có, hãy nhập thông tin mới!!!", Alert.AlertType.INFORMATION).show();
+                    
                     txtTenDV.clear();
 
                     txtGiaDV.clear();
@@ -134,8 +141,8 @@ public class DichVuController implements Initializable {
     public void suaDV(ActionEvent event) throws IOException {
         Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
         if (tbDichVu.getSelectionModel().getSelectedItem() == null) {
-            Alert b = Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR);
-            b.show();
+            Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR).show();
+            
         } else if (!addPane.isVisible()) {
 
             addPane.setVisible(true);
@@ -143,13 +150,13 @@ public class DichVuController implements Initializable {
             txtNote.setText(s.getGhiChu());
 
             txtGiaDV.setText(s.getGia().toString());
-            Alert b = Utils.getAlertTC("Hãy điền thông tin dịch vụ cần sửa!!!", Alert.AlertType.INFORMATION);
-            b.show();
+            Utils.getAlertTC("Hãy điền thông tin dịch vụ cần sửa!!!", Alert.AlertType.INFORMATION).show();
+            
         } else {
 
             if (txtTenDV.getText().isEmpty() || txtGiaDV.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR);
-                b.show();
+                Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR).show();
+                
             } else {
 
                 s.setLoaiDV(txtTenDV.getText());
@@ -157,13 +164,13 @@ public class DichVuController implements Initializable {
                 s.setGia(BigDecimal.valueOf(Double.parseDouble(txtGiaDV.getText())));
                 s.setGhiChu(txtNote.getText());
                 if (Utils.addOrUpdate(s) == true) {
-                    Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
-                    b.show();
+                    Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION).show();
+                    
                     addPane.setVisible(false);
                     this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
                 } else {
-                    Alert b = Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR);
-                    b.show();
+                    Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR).show();
+                    
                 }
 
             }
@@ -182,24 +189,24 @@ public class DichVuController implements Initializable {
         Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
 
         if (s == null) {
-            Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
-            b.show();
+            Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
+            
         } else {
-            Alert a = Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION);
-            a.showAndWait().ifPresent(rs -> {
+            Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs -> {
+            
                 if (rs == ButtonType.OK) {
 
                     if (s == null) {
-                        Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
-                        b.show();
+                        Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
+                        
                     } else if (Utils.deleteObject(s)) {
 
-                        Alert b = Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION);
-                        b.show();
+                        Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
+                        
 
                     } else {
-                        Alert b = Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION);
-                        a.show();
+                        Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION).show();
+                        
                     }
                     this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
 

@@ -85,6 +85,8 @@ public class DatTiecController implements Initializable {
     private TableView tbDichVu;
     @FXML
     private TableView tbDichVuC;
+    @FXML
+    private TableView tbXacNhanDV;
 
     // ThongTin KH VA SANH
     @FXML
@@ -115,6 +117,8 @@ public class DatTiecController implements Initializable {
     private TableView tbThucPham;
     @FXML
     private TableView tbThucPhamC;
+    @FXML
+    private TableView tbXacNhanTP;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -205,6 +209,8 @@ public class DatTiecController implements Initializable {
             vboxXacNhan.toFront();
             BtXacNhan.setStyle("-fx-background-color:  #F7B3C8");
             btDichVu.setStyle("-fx-background-color:#FC95BB");
+            tbXacNhanDV.setItems(tbDichVuC.getItems());
+            tbXacNhanTP.setItems(tbThucPhamC.getItems());
         } else if (event.getSource() == backDichVu) {
             lbStatusMIn.setText("/home/dichvu");
             lbStatus.setText("Dịch vụ");
@@ -250,7 +256,7 @@ public class DatTiecController implements Initializable {
 //                    }
 //                }
 //                
-//                setDisable(empty || date.compareTo(today) <= 0 || count == 2);
+                setDisable(empty || date.compareTo(today) <= 0 );
 //                
 //                
 //                count = 0;
@@ -350,7 +356,7 @@ public class DatTiecController implements Initializable {
             this.cbSanh.getItems().add(q.toString());
         }
 
-        // Load danh sách DichVu
+// Load danh sách DichVu
         TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");
         clTenLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
         TableColumn clPrice = new TableColumn("Giá");
@@ -367,8 +373,17 @@ public class DatTiecController implements Initializable {
         clPriceC.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clNoteC = new TableColumn("Ghi chú");
         clNoteC.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-
+        
         this.tbDichVuC.getColumns().addAll(clTenLoaiDVC, clPriceC, clNoteC);
+//Bảng xác nhận dịch vụ
+        TableColumn clXacNhanTenLoaiDV = new TableColumn("Tên dịch vụ");
+        clXacNhanTenLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
+        TableColumn clXacNhanPrice = new TableColumn("Giá");
+        clXacNhanPrice.setCellValueFactory(new PropertyValueFactory("gia"));
+        TableColumn clXacNhanNote = new TableColumn("Ghi chú");
+        clXacNhanNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+        
+        this.tbXacNhanDV.getColumns().addAll(clXacNhanTenLoaiDV, clXacNhanPrice, clXacNhanNote);
 // Load danh sách Thuc pham
         TableColumn clTenTP = new TableColumn("Tên");
         clTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
@@ -391,8 +406,19 @@ public class DatTiecController implements Initializable {
         clPriceTPC.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clNoteTPC = new TableColumn("Ghi chú");
         clNoteTPC.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+        
         this.tbThucPhamC.getColumns().addAll(clTenTPC, clLoaiTpC, clPriceTPC, clNoteC);
-
+//Bảng xác nhận thực phẩm
+        TableColumn clXacNhanTenTP = new TableColumn("Tên");
+        clXacNhanTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
+        TableColumn clXacNhanLoaiTp = new TableColumn("Loại");
+        clXacNhanLoaiTp.setCellValueFactory(new PropertyValueFactory("loaiTP"));
+        TableColumn clXacNhanPriceTP = new TableColumn("Giá");
+        clXacNhanPriceTP.setCellValueFactory(new PropertyValueFactory("price"));
+        TableColumn clXacNhanNoteTP = new TableColumn("Ghi chú");
+        clXacNhanNoteTP.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+        
+        this.tbThucPhamC.getColumns().addAll(clXacNhanTenTP, clXacNhanLoaiTp, clXacNhanPriceTP, clXacNhanNoteTP);
     }
 
     // Chọn thực phẩm

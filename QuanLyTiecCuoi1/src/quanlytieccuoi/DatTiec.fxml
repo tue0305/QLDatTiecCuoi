@@ -357,11 +357,8 @@
                   </VBox>
                   <VBox fx:id="vboxXacNhan" alignment="CENTER">
                      <children>
-                        <Label prefHeight="537.0" prefWidth="356.0" text="Xác nhận">
-                           <font>
-                              <Font size="88.0" />
-                           </font>
-                        </Label>
+                        <TableView fx:id="tbXacNhanDV" prefHeight="200.0" prefWidth="200.0" />
+                        <TableView fx:id="tbXacNhanTP" prefHeight="200.0" prefWidth="200.0" />
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
                            <children>
                               <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">

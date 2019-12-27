@@ -66,7 +66,7 @@ public class SanhController implements Initializable {
         this.cbSanh.getItems().add("C");
         this.cbSanh.getItems().add("D");
         this.cbSanh.getItems().add("E");
-            
+
         TableColumn clTenSanh = new TableColumn("Tên sảnh");
         clTenSanh.setCellValueFactory(new PropertyValueFactory("tenSanh"));
         TableColumn clLoaiSanh = new TableColumn("Loại sảnh");
@@ -98,46 +98,62 @@ public class SanhController implements Initializable {
             return row;
         });
     }
+
     public void themSanh(ActionEvent event) throws IOException {
 
         tbSanh.getSelectionModel().clearSelection();
         addPane.setVisible(true);
-        if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty() || cbSanh.getSelectionModel().getSelectedItem() == null) {
-            Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR);
-            b.show();
-        } else {
-            Sanh s = new Sanh(txtTenSanh.getText(), BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())),
-                    cbSanh.getSelectionModel().getSelectedItem().toString(), txtNote.getText());
+        if (!txtTenSanh.getText().isEmpty() || !txtGiaSanh.getText().isEmpty() || !txtNote.getText().isEmpty()) {
+            txtTenSanh.clear();
 
-            if (Utils.ktTrungTenSanh(s)) {
-                if (Utils.addOrUpdate(s)) {
-                    Alert b = Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION);
-                    b.show();
-                    this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
-                    addPane.setVisible(false);
-                } else {
-                    Alert b = Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR);
-                    b.show();
-                }
+            txtGiaSanh.clear();
+            txtNote.clear();
+        }
+        if (!addPane.isVisible()) {
+            addPane.setVisible(true);
+            Utils.getAlertTC("Hãy điền thông tin cần thêm!!!", Alert.AlertType.INFORMATION).show();
+
+        } else {
+            if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty() || cbSanh.getSelectionModel().getSelectedItem() == null) {
+                Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR).show();
 
             } else {
-                Alert b = Utils.getAlertTC("Tên sảnh đã có, hãy nhập lại thông tin!!!", Alert.AlertType.ERROR);
-                b.show();
-                txtTenSanh.clear();
-                cbSanh.getSelectionModel().clearSelection();
-                txtGiaSanh.clear();
-                txtNote.clear();
+                Sanh s = new Sanh(txtTenSanh.getText(), BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())),
+                        cbSanh.getSelectionModel().getSelectedItem().toString(), txtNote.getText());
+
+                if (Utils.ktTrungTenSanh(s)) {
+                    if (Utils.addOrUpdate(s)) {
+                        Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION).show();
+
+                        this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
+                        addPane.setVisible(false);
+                    } else {
+                        Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR).show();
+
+                    }
+
+                } else {
+                    Utils.getAlertTC("Tên sảnh đã có, hãy nhập lại thông tin!!!", Alert.AlertType.ERROR).show();
+
+                    txtTenSanh.clear();
+                    cbSanh.getSelectionModel().clearSelection();
+                    txtGiaSanh.clear();
+                    txtNote.clear();
+                }
+
             }
 
         }
-
     }
+
+
+    
 
     public void suaSanh(ActionEvent event) throws IOException {
         Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
         if (tbSanh.getSelectionModel().getSelectedItem() == null) {
-            Alert b = Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR);
-            b.show();
+            Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR).show();
+
         } else if (!addPane.isVisible()) {
 
             addPane.setVisible(true);
@@ -145,13 +161,13 @@ public class SanhController implements Initializable {
             txtNote.setText(s.getGhiChu());
             cbSanh.getSelectionModel().select(s.getLoaiSanh());
             txtGiaSanh.setText(s.getGia().toString());
-            Alert b = Utils.getAlertTC("Hãy điền thông tin sảnh cần sửa!!!", Alert.AlertType.INFORMATION);
-            b.show();
+            Utils.getAlertTC("Hãy điền thông tin sảnh cần sửa!!!", Alert.AlertType.INFORMATION).show();
+
         } else {
 
             if (txtTenSanh.getText().isEmpty() || txtGiaSanh.getText().isEmpty() || cbSanh.getSelectionModel().getSelectedItem() == null) {
-                Alert b = Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR);
-                b.show();
+                Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.ERROR).show();
+
             } else {
 
                 s.setTenSanh(txtTenSanh.getText());
@@ -159,13 +175,13 @@ public class SanhController implements Initializable {
                 s.setGia(BigDecimal.valueOf(Double.parseDouble(txtGiaSanh.getText())));
                 s.setGhiChu(txtNote.getText());
                 if (cbSanh.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdate(s) == true) {
-                    Alert b = Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION);
-                    b.show();
+                    Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION).show();
+
                     addPane.setVisible(false);
                     this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
                 } else {
-                    Alert b = Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR);
-                    b.show();
+                    Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR).show();
+
                 }
 
             }
@@ -184,24 +200,23 @@ public class SanhController implements Initializable {
         Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
 
         if (s == null) {
-            Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
-            b.show();
+            Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
+
         } else {
             Alert a = Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION);
             a.showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
 
                     if (s == null) {
-                        Alert b = Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR);
-                        b.show();
+                        Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
+
                     } else if (Utils.deleteObject(s)) {
 
-                        Alert b = Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION);
-                        b.show();
+                        Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
 
                     } else {
-                        Alert b = Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION);
-                        a.show();
+                        Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION).show();
+
                     }
                     this.tbSanh.setItems(FXCollections.observableArrayList(Utils.getSanh()));
 
