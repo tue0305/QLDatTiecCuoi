@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXRadioButton?>
-<?import com.jfoenix.controls.JFXTreeView?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -22,6 +23,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <HBox prefHeight="736.0" prefWidth="1205.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.DatTiecController">
@@ -341,29 +343,146 @@
                   </VBox>
                   <VBox fx:id="vboxXacNhan" alignment="CENTER">
                      <children>
-
-                        <TableView fx:id="tbXacNhanDV" prefHeight="200.0" prefWidth="200.0" />
-                        <TableView fx:id="tbXacNhanTP" prefHeight="200.0" prefWidth="200.0" />
-                        <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0">
-                           <children>
-                              <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </HBox>
+                        <BorderPane prefHeight="591.0" prefWidth="948.0">
+                           <right>
+                              <VBox prefHeight="434.0" prefWidth="343.0" BorderPane.alignment="CENTER">
+                                 <children>
+            
+                                    <TableView fx:id="tbXacNhanDV" prefHeight="310.0" prefWidth="343.0" />
+                                    <TableView fx:id="tbXacNhanTP" prefHeight="316.0" prefWidth="343.0" />
+                                 </children>
+                              </VBox>
+                           </right>
+                           <bottom>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="backDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#saveBooking" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Lưu">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <left>
+                              <GridPane prefHeight="324.0" prefWidth="577.0" BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="0.0" prefWidth="0.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="143.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="204.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="91.0" minWidth="2.0" prefWidth="59.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="58.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="8.0" prefWidth="8.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="65.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="41.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Tên khách hàng :" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Địa chỉ :" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Số điện thoại : " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Loại tiệc :" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Sảnh :" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Ngày : " GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Ca :" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Số bàn :" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="txtXNTenKH" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtXNSDT" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtXNLoaiTiec" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtXNNgay" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtXNSANH" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtXNCa" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <JFXTextField fx:id="txtXNSoBan" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="System Italic" size="18.0" />
+                                       </font></JFXTextField>
+                                    <Label prefHeight="36.0" prefWidth="206.0" text="Tiền dự kiến :" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="10">
+                                       <font>
+                                          <Font name="System Bold" size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <JFXTextField fx:id="txtXNTongTien" editable="false" focusColor="#0e4aff" prefHeight="31.0" prefWidth="262.0" unFocusColor="#1b1b1b" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
+                                    <JFXTextArea fx:id="taXNDiaChi" prefHeight="62.0" prefWidth="230.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </JFXTextArea>
+                                    <Line endX="476.29290771484375" endY="1.7928931713104248" startX="-100.0" GridPane.rowIndex="5" />
+                                 </children>
+                              </GridPane>
+                           </left>
+                        </BorderPane>
 
                      </children>
                   </VBox>

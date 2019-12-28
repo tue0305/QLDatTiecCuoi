@@ -9,13 +9,14 @@ import POJO.Sanh;
 import POJO.Thucpham;
 import Util.Utils;
 import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXTextArea;
 import java.io.IOException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import static java.time.temporal.TemporalQueries.localDate;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -119,7 +120,26 @@ public class DatTiecController implements Initializable {
     private TableView tbThucPhamC;
     @FXML
     private TableView tbXacNhanTP;
-
+    //Thong tin xac nhan
+    @FXML
+    private JFXTextField txtXNTenKH;
+    @FXML
+    private JFXTextField txtXNSDT;
+    @FXML
+    private JFXTextField txtXNLoaiTiec;
+    @FXML
+    private JFXTextField txtXNNgay;
+    @FXML
+    private JFXTextField txtXNSANH;
+    @FXML
+    private JFXTextField txtXNSoBan;
+    @FXML
+    private JFXTextField txtXNCa;
+     @FXML
+    private JFXTextField txtXNTongTien;
+    @FXML
+    private JFXTextArea  taXNDiaChi;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -172,6 +192,7 @@ public class DatTiecController implements Initializable {
             btDichVu.setStyle("-fx-background-color:#FC95BB");
 
         } else if (event.getSource() == nextXacNhan) {
+            NapThongTinXacNhan();
             lbStatusMIn.setText("/home/xacnhan");
             lbStatus.setText("Xác nhận");
             vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(197, 245, 226), CornerRadii.EMPTY, Insets.EMPTY)));
@@ -201,6 +222,8 @@ public class DatTiecController implements Initializable {
     public void kTraNhapTTKH() {
         // SET DIA CHI THEO CHIU DOC 
         taDiaChi.setWrapText(true);
+        taXNDiaChi.setWrapText(true);
+       
         // Ktra số bàn là số
         Utils.KiemTraLaSo(txtSoBan);
 // Kiểm tra ngày đặt(ẩn những ngày quá khứ và hiện tại)
@@ -260,7 +283,6 @@ public class DatTiecController implements Initializable {
                            rdCa1.setSelected(false);
                            rdCa2.setSelected(false);
                           // 
-                          
                                                 try {     
                                                 Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
                                         
@@ -300,7 +322,6 @@ public class DatTiecController implements Initializable {
                            rdCa1.setDisable(false);
                            rdCa2.setDisable(false);
                                               
-
                                                try {     
                                                  Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
                                                  cbSanh.setValue(newDate1);
@@ -309,7 +330,7 @@ public class DatTiecController implements Initializable {
                                                          for (Booking a : bk) {
                                                          Date daDat1 = sdf.parse(a.getNgayDat().toString());                                                     
                                                              if ((daDat1.equals(dateChoose) && a.getCa() == '2'&& (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) ||
-                                                                     (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) { // Nếu là đã có ca1 or 2
+                                                                 (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) { // Nếu là đã có ca1 or 2
 
                                                                         if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {   //ca2 da dc chon
                                                                                 rdCa1.setDisable(false);
@@ -542,6 +563,29 @@ public class DatTiecController implements Initializable {
 
         }
 
+    }
+    
+    
+    private void NapThongTinXacNhan(){
+        txtXNTenKH.setText(txtTenKH.getText());
+        txtXNSDT.setText(txtSDT.getText());
+        txtXNLoaiTiec.setText(txtLoaiTiec.getText());
+        txtXNSoBan.setText(txtSoBan.getText());
+        txtXNNgay.setText(dpNgayDat.getValue().toString());
+        txtXNSANH.setText(cbSanh.getValue().toString());
+        
+        if(rdCa1.isSelected()){
+            txtXNCa.setText("Trưa");
+        }else{
+            txtXNCa.setText("Tối");
+        }
+        System.out.println(taDiaChi.getText());
+        taXNDiaChi.setText(taDiaChi.getText());
+        
+        //thiếu show tổng tiền
+        //txtXNTongTien.setText(value);
+        
+        
     }
 
 }
