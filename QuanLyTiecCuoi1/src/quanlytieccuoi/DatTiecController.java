@@ -212,116 +212,92 @@ public class DatTiecController implements Initializable {
                 super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
 
-                
+                setDisable(empty || date.compareTo(today) <= 0);
+            }
+        });
 
-//                Integer count = 0;
-//                
-//                List<Booking> ls = Utils.getBooking();
-//                for (Booking b : ls) {
-//                    LocalDate dateB = b.getNgayDat().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//                    if (dateB.compareTo(dateB) == 0) {
-//                        if (b.getCa() == '1' || b.getCa() == '2') 
-//                            count++;
-//                    }
-//                }
-//                
+    }
 
-                       setDisable(empty || date.compareTo(today) <= 0 );
+    private void chonTheoThuTu() {
+        cbSanh.setDisable(true);
+        rdCa1.setDisable(true);
+        rdCa2.setDisable(true);
+        dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
+            if (newDate != null) {
+                cbSanh.setValue(null);
+                cbSanh.setDisable(false);
+                rdCa1.setSelected(false);
+                rdCa2.setSelected(false);
+                cbSanh.valueProperty().addListener((observable1, oldDate1, newDate1) -> {
+                    if (newDate1 != null) {
+                        rdCa1.setSelected(false);
+                        rdCa2.setSelected(false);
 
-//                
-//                
-//                count = 0;
-//                
+                        rdCa1.setDisable(false);
+                        rdCa2.setDisable(false);
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        try {
+                            Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
+                            cbSanh.setValue(newDate1);
+                            try {
+                                List<Booking> bk = Utils.getBooking();
+                                for (Booking a : bk) {
+                                    Date daDat1 = sdf.parse(a.getNgayDat().toString());
+                                    int ktra = 0;
+
+                                    if ((daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) || (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) { // Nếu là đã có ca1 or 2
+                                        for (Booking b : bk) {
+                                            Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
+                                            if (daDat2.equals(dateChoose) && b.getCa() == '1' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '2') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))
+                                                    || daDat2.equals(dateChoose) && b.getCa() == '2' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) {
+                                                rdCa1.setDisable(true);
+                                                rdCa2.setDisable(true);
+                                                
+                                                ktra = 1;
+                                                break;                   // ngắt lặp trog   }
+                                            }
+                                        }
+                                        if (ktra == 1) // ngắt lặp ngoài
+                                        {
+                                            break;
+
+                                        }
+                                        if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) {   //ca2 da dc chon
+                                            rdCa1.setDisable(false);
+                                            rdCa2.setDisable(true);
+
+                                            break;
+                                        } else {                    //ca 1 da dc chon
+
+                                            rdCa1.setDisable(true);
+                                            rdCa2.setDisable(false);
+
+                                            break;
+                                        }
+
+                                    } else {
+
+                                        rdCa1.setDisable(false);
+                                        rdCa2.setDisable(false);
+                                    }
+
+                                }
+                            } catch (ParseException ex) {
+                                Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        } catch (ParseException ex) {
+                            Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                });
 
             }
 
         });
 
-
     }
-            private void chonTheoThuTu(){
-            cbSanh.setDisable(true);
-            rdCa1.setDisable(true);
-            rdCa2.setDisable(true);
-             dpNgayDat.valueProperty().addListener((observable, oldDate, newDate) -> {
-                   if (newDate != null) {  
-                       cbSanh.setValue(null);
-                       cbSanh.setDisable(false);
-                           rdCa1.setSelected(false);
-                           rdCa2.setSelected(false);
-                       cbSanh.valueProperty().addListener((observable1, oldDate1, newDate1) -> {
-                           if (newDate1 != null) {  
-                           rdCa1.setSelected(false);
-                           rdCa2.setSelected(false);
-                           
-                           rdCa1.setDisable(false);
-                           rdCa2.setDisable(false);
-                                              
-                           
-                           
-                                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                                           try {     
-                                                 Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
-                                                 cbSanh.setValue(newDate1);
-                                                     try {
-                                                         List<Booking> bk = Utils.getBooking();
-                                                         for (Booking a : bk) {
-                                                             Date daDat1 = sdf.parse(a.getNgayDat().toString());
-                                                             int ktra = 0;
-                                                             
-                                                             if ((daDat1.equals(dateChoose) && a.getCa() == '2'&& (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) || (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) { // Nếu là đã có ca1 or 2
-                                                                 for (Booking b : bk) {
-                                                                     Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
-                                                                     if (daDat2.equals(dateChoose) && b.getCa() == '1' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '2')  && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) 
-                                                                             || daDat2.equals(dateChoose) && b.getCa() == '2' && (b.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) && (daDat1.equals(dateChoose) && a.getCa() == '1')  && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {
-                                                                         rdCa1.setDisable(true);
-                                                                         rdCa2.setDisable(true);
-                                                                         ktra = 1;
-                                                                         break;                   // ngắt lặp trog   }
-                                                                         }
-                                                                 }
-                                                                 if (ktra == 1) // ngắt lặp ngoài
-                                                                     {
-                                                                         break;
-
-                                                                     }
-                                                             if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())) ) {   //ca2 da dc chon
-                                                                     rdCa1.setDisable(false);
-                                                                     rdCa2.setDisable(true);
-
-                                                                     break;
-                                                              } else {                    //ca 1 da dc chon
-
-                                                                     rdCa1.setDisable(true);
-                                                                     rdCa2.setDisable(false);
-
-                                                                     break;
-                                                              }
-
-                                                             } else {
-
-                                                                 rdCa1.setDisable(false);
-                                                                 rdCa2.setDisable(false);
-                                                            }
-
-                                                         }
-                                                     } catch (ParseException ex) {
-                                                         Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
-                                                     }           
-                                             } catch (ParseException ex) {
-                                                 Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
-                                             }
-                           }
-    
-                       });
-                       
-                       
-                   }
-                 
-                 
-             });
-    
-}
 
     public void init() {
 //Group radio button
@@ -356,7 +332,7 @@ public class DatTiecController implements Initializable {
         clPriceC.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clNoteC = new TableColumn("Ghi chú");
         clNoteC.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
+
         this.tbDichVuC.getColumns().addAll(clTenLoaiDVC, clPriceC, clNoteC);
 //Bảng xác nhận dịch vụ
         TableColumn clXacNhanTenLoaiDV = new TableColumn("Tên dịch vụ");
@@ -365,7 +341,7 @@ public class DatTiecController implements Initializable {
         clXacNhanPrice.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clXacNhanNote = new TableColumn("Ghi chú");
         clXacNhanNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
+
         this.tbXacNhanDV.getColumns().addAll(clXacNhanTenLoaiDV, clXacNhanPrice, clXacNhanNote);
 // Load danh sách Thuc pham
         TableColumn clTenTP = new TableColumn("Tên");
@@ -389,8 +365,8 @@ public class DatTiecController implements Initializable {
         clPriceTPC.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clNoteTPC = new TableColumn("Ghi chú");
         clNoteTPC.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
-        this.tbThucPhamC.getColumns().addAll(clTenTPC, clLoaiTpC, clPriceTPC, clNoteC);
+
+        this.tbThucPhamC.getColumns().addAll(clTenTPC, clLoaiTpC, clPriceTPC, clNoteTPC);
 //Bảng xác nhận thực phẩm
         TableColumn clXacNhanTenTP = new TableColumn("Tên");
         clXacNhanTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
@@ -400,8 +376,8 @@ public class DatTiecController implements Initializable {
         clXacNhanPriceTP.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clXacNhanNoteTP = new TableColumn("Ghi chú");
         clXacNhanNoteTP.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
-        this.tbThucPhamC.getColumns().addAll(clXacNhanTenTP, clXacNhanLoaiTp, clXacNhanPriceTP, clXacNhanNoteTP);
+
+        this.tbXacNhanTP.getColumns().addAll(clXacNhanTenTP, clXacNhanLoaiTp, clXacNhanPriceTP, clXacNhanNoteTP);
     }
 
     // Chọn thực phẩm
@@ -485,7 +461,7 @@ public class DatTiecController implements Initializable {
                 if (rs == ButtonType.OK) {
                     Character ca;
                     Integer soBan = Integer.parseInt(txtSoBan.getText());
-                    
+
                     LocalDate localDate = dpNgayDat.getValue();
                     Date ngayDat = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 

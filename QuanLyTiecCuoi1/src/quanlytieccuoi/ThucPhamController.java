@@ -99,21 +99,24 @@ public class ThucPhamController implements Initializable {
 
     public void themTP(ActionEvent event) throws IOException {
 
-        tbThucPham.getSelectionModel().clearSelection();
-        if (!txtTenTP.getText().isEmpty() || !txtGia.getText().isEmpty() || !txtNote.getText().isEmpty()) {
+        if ((!txtTenTP.getText().isEmpty() || !txtGia.getText().isEmpty() || !txtNote.getText().isEmpty()) && 
+            !tbThucPham.getSelectionModel().isEmpty()){
+        
+            
             txtTenTP.clear();
-           
+
             txtGia.clear();
             txtNote.clear();
+            tbThucPham.getSelectionModel().clearSelection();
         }
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
             Utils.getAlertTC("Hãy điền thông tin cần thêm!!!", Alert.AlertType.INFORMATION).show();
-           
+
         } else {
             if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty() || clLoaiTP.getSelectionModel().getSelectedItem() == null) {
                 Utils.getAlertTC("Hãy điền đầy đủ thông tin!!!", Alert.AlertType.INFORMATION).show();
-               
+
             } else {
                 Thucpham s = new Thucpham(txtTenTP.getText(), clLoaiTP.getSelectionModel().getSelectedItem().toString(),
                         BigDecimal.valueOf(Double.parseDouble(txtGia.getText())), txtNote.getText());
@@ -121,17 +124,17 @@ public class ThucPhamController implements Initializable {
                 if (Utils.ktTrungTenThucPham(s)) {
                     if (Utils.addOrUpdate(s)) {
                         Utils.getAlertTC("Thêm thành công!!!", Alert.AlertType.INFORMATION).show();
-                       
+
                         this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
                         addPane.setVisible(false);
                     } else {
                         Utils.getAlertTC("Thêm thất bại!!!", Alert.AlertType.ERROR).show();
-                        
+
                     }
 
                 } else {
-                   Utils.getAlertTC("Tên thực phẩm đã tồn tại, mời nhập mới!!!", Alert.AlertType.ERROR).show();
-                    
+                    Utils.getAlertTC("Tên thực phẩm đã tồn tại, mời nhập mới!!!", Alert.AlertType.ERROR).show();
+
                     txtTenTP.clear();
                     clLoaiTP.getSelectionModel().clearSelection();
                     txtGia.clear();
@@ -147,7 +150,7 @@ public class ThucPhamController implements Initializable {
         Thucpham s = (Thucpham) tbThucPham.getSelectionModel().getSelectedItem();
         if (tbThucPham.getSelectionModel().getSelectedItem() == null) {
             Utils.getAlertTC("Không tìm thấy giá trị để sửa!!!", Alert.AlertType.ERROR).show();
-            
+
         } else if (!addPane.isVisible()) {
 
             addPane.setVisible(true);
@@ -156,12 +159,12 @@ public class ThucPhamController implements Initializable {
             clLoaiTP.getSelectionModel().select(s.getLoaiTP());
             txtGia.setText(s.getPrice().toString());
             Utils.getAlertTC("Hãy điền thông tin cần sửa!!!", Alert.AlertType.INFORMATION).show();
-            
+
         } else {
 
             if (txtTenTP.getText().isEmpty() || txtGia.getText().isEmpty() || clLoaiTP.getSelectionModel().getSelectedItem() == null) {
                 Utils.getAlertTC("!Hãy điền đầy đủ thông tin!!", Alert.AlertType.INFORMATION).show();
-                
+
             } else {
 
                 s.setTenTP(txtTenTP.getText());
@@ -170,12 +173,12 @@ public class ThucPhamController implements Initializable {
                 s.setGhiChu(txtNote.getText());
                 if (clLoaiTP.getSelectionModel().getSelectedItem() != null && Utils.addOrUpdate(s) == true) {
                     Utils.getAlertTC("Sửa thành công!!!", Alert.AlertType.INFORMATION).show();
-                    
+
                     addPane.setVisible(false);
                     this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
                 } else {
                     Utils.getAlertTC("Sửa thất bại!!!", Alert.AlertType.ERROR).show();
-                    
+
                 }
 
             }

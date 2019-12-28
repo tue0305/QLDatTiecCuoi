@@ -92,13 +92,14 @@ public class DichVuController implements Initializable {
 
     public void themDV(ActionEvent event) throws IOException {
 
-        tbDichVu.getSelectionModel().clearSelection();
-        if(!txtTenDV.getText().isEmpty() || !txtGiaDV.getText().isEmpty() || !txtNote.getText().isEmpty())
+        if((!txtTenDV.getText().isEmpty() || !txtGiaDV.getText().isEmpty() || !txtNote.getText().isEmpty()) && ! tbDichVu.getSelectionModel().isEmpty())
         {
             txtTenDV.clear();
 
             txtGiaDV.clear();
             txtNote.clear();
+            tbDichVu.getSelectionModel().clearSelection();
+
         }
         if (!addPane.isVisible()) {
             addPane.setVisible(true);

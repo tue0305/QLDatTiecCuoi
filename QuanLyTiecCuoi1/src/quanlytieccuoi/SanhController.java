@@ -101,13 +101,14 @@ public class SanhController implements Initializable {
 
     public void themSanh(ActionEvent event) throws IOException {
 
-        tbSanh.getSelectionModel().clearSelection();
-        addPane.setVisible(true);
-        if (!txtTenSanh.getText().isEmpty() || !txtGiaSanh.getText().isEmpty() || !txtNote.getText().isEmpty()) {
+       
+        if ((!txtTenSanh.getText().isEmpty() || !txtGiaSanh.getText().isEmpty() || !txtNote.getText().isEmpty()) &&  !tbSanh.getSelectionModel().isEmpty() ) {
             txtTenSanh.clear();
 
             txtGiaSanh.clear();
             txtNote.clear();
+            tbSanh.getSelectionModel().clearSelection();
+
         }
         if (!addPane.isVisible()) {
             addPane.setVisible(true);
