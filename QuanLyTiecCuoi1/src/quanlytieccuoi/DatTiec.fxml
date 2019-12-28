@@ -131,135 +131,6 @@
             </VBox>
             <StackPane prefHeight="597.0" prefWidth="858.0">
                <children>
-                  <VBox fx:id="vboxMonAn" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
-                     <children>
-                        <BorderPane prefHeight="627.0" prefWidth="920.0">
-                           <left>
-                              <TableView fx:id="tbThucPham" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
-                           </left>
-                           <right>
-                              <TableView fx:id="tbThucPhamC" prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
-                           </right>
-                           <center>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themTP" prefHeight="58.0" prefWidth="109.0" styleClass="button4" text="Chọn">
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/update-arrows.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                           </center>
-                           <top>
-                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label layoutX="78.0" layoutY="17.0" styleClass="H1" text="Danh sách món ăn" />
-                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Món đã chọn" />
-                                 </children>
-                              </Pane>
-                           </top>
-                           <bottom>
-                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button fx:id="backTTKH" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="nextDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </bottom>
-                        </BorderPane>
-                     </children>
-                  </VBox>
-                  <VBox fx:id="VboxDichVu" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
-                     <children>
-                        <BorderPane prefHeight="627.0" prefWidth="920.0">
-                           <left>
-                              <TableView fx:id="tbDichVu" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
-                           </left>
-                           <center>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themDV" prefHeight="58.0" prefWidth="109.0" styleClass="button4" text="Chọn">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                       <graphic>
-                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../FXML/images/update-arrows.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </padding>
-                              </VBox>
-                           </center>
-                           <right>
-                              <TableView fx:id="tbDichVuC" prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
-                           </right>
-                           <top>
-                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label layoutX="78.0" layoutY="16.0" styleClass="H1" text="Danh sách dịch vụ" />
-                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Dịch vụ đã chọn" />
-                                 </children>
-                              </Pane>
-                           </top>
-                           <bottom>
-                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="BOTTOM_RIGHT">
-                                 <children>
-                                    <Button fx:id="backMonAn" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                    <Button fx:id="nextXacNhan" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
-                                       <font>
-                                          <Font name="System Bold" size="15.0" />
-                                       </font>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                           </bottom>
-                        </BorderPane>
-                     </children>
-                  </VBox>
                   <VBox fx:id="vboxThongTin">
                      <children>
                         <VBox prefHeight="580.0" prefWidth="920.0">
@@ -348,7 +219,7 @@
                               <VBox prefHeight="434.0" prefWidth="343.0" BorderPane.alignment="CENTER">
                                  <children>
             
-                                    <TableView fx:id="tbXacNhanDV" prefHeight="310.0" prefWidth="343.0" />
+                                          <TableView fx:id="tbXacNhanDV" prefHeight="310.0" prefWidth="343.0" />
                                     <TableView fx:id="tbXacNhanTP" prefHeight="316.0" prefWidth="343.0" />
                                  </children>
                               </VBox>
@@ -439,41 +310,48 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextField fx:id="txtXNTenKH" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <JFXTextField fx:id="txtXNTenKH" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <JFXTextField fx:id="txtXNSDT" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <JFXTextField fx:id="txtXNLoaiTiec" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <JFXTextField fx:id="txtXNNgay" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="7">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <JFXTextField fx:id="txtXNSANH" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="8">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <JFXTextField fx:id="txtXNCa" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="8">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <JFXTextField fx:id="txtXNSoBan" editable="false" GridPane.columnIndex="4" GridPane.rowIndex="7">
                                        <font>
                                           <Font name="System Italic" size="18.0" />
-                                       </font></JFXTextField>
+                                       </font>
+                                    </JFXTextField>
                                     <Label prefHeight="36.0" prefWidth="206.0" text="Tiền dự kiến :" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="10">
                                        <font>
                                           <Font name="System Bold" size="25.0" />
                                        </font>
                                     </Label>
                                     <JFXTextField fx:id="txtXNTongTien" editable="false" focusColor="#0e4aff" prefHeight="31.0" prefWidth="262.0" unFocusColor="#1b1b1b" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="RIGHT" GridPane.rowIndex="10" />
-                                    <JFXTextArea fx:id="taXNDiaChi" prefHeight="62.0" prefWidth="230.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
+                                    <JFXTextArea fx:id="taXNDiaChi" editable="false" prefHeight="62.0" prefWidth="230.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="2">
                                        <font>
                                           <Font size="18.0" />
                                        </font>
@@ -484,6 +362,135 @@
                            </left>
                         </BorderPane>
 
+                           </children>
+                  </VBox>
+                  <VBox fx:id="vboxMonAn" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
+                     <children>
+                        <BorderPane prefHeight="627.0" prefWidth="920.0">
+                           <left>
+                              <TableView fx:id="tbThucPham" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <right>
+                              <TableView fx:id="tbThucPhamC" prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themTP" prefHeight="58.0" prefWidth="109.0" styleClass="button4" text="Chọn">
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/update-arrows.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </center>
+                           <top>
+                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="17.0" styleClass="H1" text="Danh sách món ăn" />
+                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Món đã chọn" />
+                                 </children>
+                              </Pane>
+                           </top>
+                           <bottom>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="backTTKH" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="nextDichVu" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="VboxDichVu" alignment="CENTER" prefHeight="634.0" prefWidth="920.0">
+                     <children>
+                        <BorderPane prefHeight="627.0" prefWidth="920.0">
+                           <left>
+                              <TableView fx:id="tbDichVu" prefHeight="509.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <center>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#themDV" prefHeight="58.0" prefWidth="109.0" styleClass="button4" text="Chọn">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <graphic>
+                                          <ImageView fitHeight="45.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../FXML/images/update-arrows.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </VBox>
+                           </center>
+                           <right>
+                              <TableView fx:id="tbDichVuC" prefHeight="484.0" prefWidth="363.0" BorderPane.alignment="CENTER" />
+                           </right>
+                           <top>
+                              <Pane prefHeight="48.0" prefWidth="858.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label layoutX="78.0" layoutY="16.0" styleClass="H1" text="Danh sách dịch vụ" />
+                                    <Label layoutX="648.0" layoutY="16.0" styleClass="H1" text="Dịch vụ đã chọn" />
+                                 </children>
+                              </Pane>
+                           </top>
+                           <bottom>
+                              <HBox alignment="BOTTOM_RIGHT" prefHeight="60.0" prefWidth="920.0" BorderPane.alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Button fx:id="backMonAn" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Quay lại">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                    <Button fx:id="nextXacNhan" mnemonicParsing="false" onAction="#handleClicks" prefHeight="40.0" prefWidth="120.0" styleClass="button4" text="Tiếp">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
                      </children>
                   </VBox>
                </children>

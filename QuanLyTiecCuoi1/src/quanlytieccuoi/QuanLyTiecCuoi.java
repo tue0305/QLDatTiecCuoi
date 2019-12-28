@@ -3,11 +3,16 @@
 package quanlytieccuoi;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -26,13 +31,19 @@ public class QuanLyTiecCuoi extends Application {
 
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("DatTiec.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
 
+        stage.heightProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+               double heigth =(double) newValue;
+               
+            }
+        });
 
+//        stage.initStyle(StageStyle.TRANSPARENT);
 
-       // stage.initStyle(StageStyle.TRANSPARENT);
-
-         //Lay Vi tri 
+           //Lay Vi tri 
              root.setOnMousePressed((MouseEvent event) -> {
                  xOffset = event.getSceneX();
                  yOffset = event.getSceneY();
@@ -44,8 +55,10 @@ public class QuanLyTiecCuoi extends Application {
             stage.setY(event.getScreenY() - yOffset);
         });
         Scene scene = new Scene(root);
+        stage.getIcons().add(new Image("/img/store.png"));
+        stage.setTitle("Quản lý Tiệc Cưới");
          //set transparent
-        //scene.setFill(Color.TRANSPARENT);
+//        scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

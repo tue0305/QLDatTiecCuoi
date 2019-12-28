@@ -1,9 +1,7 @@
 **Chưa làm 
-- Sửa radioButton trong đặt tiệc cho chỉ hiện 1 trong 2
-- Khi chọn trùng ngày chỉ hiện bắt sự kiện không cho chọn cùng ngày 1 lần chỉnh qua ngày khác và quay lại thì mất sự kiện
-- Chưa thiết kế form xác nhận.
-- Báo cáo chưa hoàn thành.
-- Cần bắt giới hạn số là 13 số trong txtGia tại SanhController , ThucPhamController và DichVuController
+
+
+
 
 ** Đã hoàn thành
 - Đặt tiệc . 

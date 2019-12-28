@@ -100,11 +100,7 @@ public class LapBaoCaoController implements Initializable {
         
         pieChart.getData().forEach((data) -> {
             data.getNode().addEventHandler(MouseEvent.MOUSE_CLICKED, (event) -> {
-                Alert a = new Alert(Alert.AlertType.INFORMATION);
-                a.setTitle("Data");
-                a.setContentText(data.getName());
-                a.showAndWait();
-                
+              
                 //Hieu ung piechart
                         Bounds b1 = data.getNode().getBoundsInLocal();
                         double newX = (b1.getWidth()) / 2 + b1.getMinX();

@@ -97,9 +97,9 @@
                               <TextField fx:id="txtGiaSanh" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                               <TextArea fx:id="txtNote" prefHeight="108.0" prefWidth="295.0" promptText="Ghi chú...." GridPane.columnIndex="3" GridPane.rowSpan="3" />
                               <ComboBox fx:id="cbSanh" prefHeight="31.0" prefWidth="72.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="Tên sảnh:" />
-                              <Label text="Giá sảnh:" GridPane.rowIndex="1" />
-                              <Label text="Loại sảnh:" GridPane.rowIndex="2" />
+                              <Label text="Tên sảnh:" GridPane.halignment="RIGHT" />
+                              <Label text="Giá sảnh:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <Label text="Loại sảnh:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
                            </children>
                         </GridPane>
                      </children>

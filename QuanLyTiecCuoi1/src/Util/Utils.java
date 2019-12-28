@@ -30,6 +30,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.hibernate.Criteria;
@@ -131,6 +132,22 @@ public final class Utils {
 
 //Hàm chuyển Stage
     public static void switchStage(Scene sce, ActionEvent e) {
+        try {
+            Node source = (Node) e.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+
+            stage.hide();
+            stage.setScene(sce);
+            stage.show();
+
+        } catch (Exception ex) {
+            System.err.print(ex.getMessage());
+        }
+
+    }
+    
+     public static void switchStagekeyevent(Scene sce, KeyEvent e) {
         try {
             Node source = (Node) e.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -556,14 +573,21 @@ public final class Utils {
         }
         return true;
     }
-// Kiểm tra trùng ngày
-//    public static void KiemTraLaSo(TextField a ){
-//        ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
-//             if (!newValue.matches("\\d*"))
-//            ((StringProperty) observable).set(oldValue);
-//         };
-//        a.textProperty().addListener(forceNumberListener);
-    
+ 
+    public static void gioiHanSo(int SoGioiHan, TextField n){
+        
+        ChangeListener<String> listener = ((observable, oldValue, newValue) -> {
+        
+                if(n.getLength() > SoGioiHan)
+
+                    ((StringProperty) observable).set(oldValue);
+        });
+        
+        
+       n.textProperty().addListener(listener);
+        
+        
+    }
 
 
 }

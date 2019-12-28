@@ -60,6 +60,11 @@ public class SanhController implements Initializable {
     }
 
     public void init() {
+//Gioi han 12 so gia tien
+    Utils.KiemTraLaSo(txtGiaSanh);
+    Utils.gioiHanSo(12, txtGiaSanh);
+        
+        
 // Load danh sách sảnh
         this.cbSanh.getItems().add("A");
         this.cbSanh.getItems().add("B");

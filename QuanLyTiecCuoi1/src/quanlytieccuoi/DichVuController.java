@@ -58,6 +58,9 @@ public class DichVuController implements Initializable {
     }
 
     public void init() {
+            //Gioi han 12 so gia tien
+    Utils.KiemTraLaSo(txtGiaDV);
+    Utils.gioiHanSo(12, txtGiaDV);
 // Load danh sách Dich Vu
 
         TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");

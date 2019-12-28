@@ -48,15 +48,6 @@
                   </VBox>
                   <HBox prefHeight="106.0" prefWidth="199.0" styleClass="edit">
                      <children>
-                        <Button contentDisplay="TOP" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#suaBooking" prefHeight="65.0" prefWidth="51.0" styleClass="edit" text="Sửa">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../FXML/images/edit.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
                         <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaBooking" prefHeight="65.0" prefWidth="51.0" text="Xóa">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -97,6 +88,6 @@
             </HBox>
          </children>
       </VBox>
-      <TableView fx:id="tbBooking" prefHeight="575.0" prefWidth="924.0" />
+      <TableView fx:id="tbBooking" prefHeight="688.0" prefWidth="1150.0" />
    </children>
 </VBox>

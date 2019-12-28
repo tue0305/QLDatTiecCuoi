@@ -59,6 +59,9 @@ public class ThucPhamController implements Initializable {
     }
 
     public void init() {
+        //Gioi han 12 so gia tien
+    Utils.KiemTraLaSo(txtGia);
+    Utils.gioiHanSo(12, txtGia);
 // Load danh sách sảnh
         this.clLoaiTP.getItems().add("Khai vị");
         this.clLoaiTP.getItems().add("Món chính");
