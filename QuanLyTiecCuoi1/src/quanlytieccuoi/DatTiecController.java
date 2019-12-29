@@ -56,90 +56,40 @@ import javafx.scene.paint.Color;
  */
 public class DatTiecController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
     @FXML
-    private Button btThongtin, btMonAn, btDichVu, BtXacNhan;
+    private Label lbStatusMIn, lbStatus;
 
     @FXML
-    private VBox vboxStatus;
+    private VBox vboxMonAn, VboxDichVu, vboxXacNhan, vboxThongTin, vboxStatus;
 
+// ThongTin KH VA SANH
     @FXML
-    private Label lbStatusMIn;
-
-    @FXML
-    private Label lbStatus;
-
-    @FXML
-    private VBox vboxThongTin;
-
-    @FXML
-    private VBox vboxMonAn;
-
-    @FXML
-    private VBox VboxDichVu;
-
-    @FXML
-    private VBox vboxXacNhan;
-    @FXML
-    private TableView tbDichVu;
-    @FXML
-    private TableView tbDichVuC;
-    @FXML
-    private TableView tbXacNhanDV;
-
-    // ThongTin KH VA SANH
+    private TextField txtTenKH, txtSDT, txtSoBan, txtLoaiTiec;
     @FXML
     private ComboBox cbSanh;
+// Ca
     @FXML
-    private TextField txtTenKH;
-    @FXML
-    private TextField txtSDT;
-    @FXML
-    private TextField txtSoBan;
-    @FXML
-    private TextField txtLoaiTiec;
-    @FXML
-    private JFXRadioButton rdCa1;
-    @FXML
-    private JFXRadioButton rdCa2;
+    private JFXRadioButton rdCa1, rdCa2;
+
     @FXML
     private DatePicker dpNgayDat;
     @FXML
-    private TextArea taDiaChi;
-    @FXML
-    private TextArea taGhiChu;
-    @FXML
-    private Button nextMonAn, nextDichVu, nextXacNhan, backTTKH, backDichVu, backMonAn;
+    private TextArea taDiaChi, taGhiChu, taXNDiaChi;
 
-    //Thong tin dat mon an
     @FXML
-    private TableView tbThucPham;
+    private Button nextMonAn, nextDichVu, nextXacNhan, backTTKH, backDichVu, backMonAn,
+            btThongtin, btMonAn, btDichVu, BtXacNhan;
+
+//Thong tin dat mon an
     @FXML
-    private TableView tbThucPhamC;
-    @FXML
-    private TableView tbXacNhanTP;
+    private TableView tbThucPham, tbThucPhamC, tbXacNhanTP,
+            tbDichVu, tbDichVuC, tbXacNhanDV;
+
     //Thong tin xac nhan
     @FXML
-    private JFXTextField txtXNTenKH;
-    @FXML
-    private JFXTextField txtXNSDT;
-    @FXML
-    private JFXTextField txtXNLoaiTiec;
-    @FXML
-    private JFXTextField txtXNNgay;
-    @FXML
-    private JFXTextField txtXNSANH;
-    @FXML
-    private JFXTextField txtXNSoBan;
-    @FXML
-    private JFXTextField txtXNCa;
-     @FXML
-    private JFXTextField txtXNTongTien;
-    @FXML
-    private JFXTextArea  taXNDiaChi;
-    
+    private JFXTextField txtXNTenKH, txtXNSDT, txtXNLoaiTiec, txtXNNgay,
+            txtXNSANH, txtXNSoBan, txtXNCa, txtXNTongTien;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -153,14 +103,17 @@ public class DatTiecController implements Initializable {
     private void handleClicks(ActionEvent event) {
 
         if (event.getSource() == nextMonAn) {
-            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty() || dpNgayDat.getValue() == null || cbSanh.getSelectionModel().isEmpty() || (!rdCa1.isSelected() && !rdCa2.isSelected()) || txtSoBan.getText().isEmpty()) {
-                Alert b = Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR);
-                b.show();
-            } else {
+
+            if (txtTenKH.getText().isEmpty() || txtSDT.getText().isEmpty()
+                    || dpNgayDat.getValue() == null || cbSanh.getSelectionModel().isEmpty()
+                    || (!rdCa1.isSelected() && !rdCa2.isSelected()) || txtSoBan.getText().isEmpty()) {
+                Utils.getAlertTC("Hãy điển đẩy đủ thông tin!!!", Alert.AlertType.ERROR).show();
+           } else {
 
                 lbStatusMIn.setText("/home/monan");
                 lbStatus.setText("Món ăn");
-                vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY)));
+                vboxStatus.setBackground(new Background(new BackgroundFill(
+                        Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY)));
                 vboxMonAn.toFront();
                 btThongtin.setStyle("-fx-background-color:#FC95BB");
                 btMonAn.setStyle("-fx-background-color:  #F7B3C8");
@@ -170,7 +123,8 @@ public class DatTiecController implements Initializable {
         } else if (event.getSource() == backTTKH) {
             lbStatusMIn.setText("/home/thongtin");
             lbStatus.setText("Thông tin chung");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY)));
+            vboxStatus.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY)));
             vboxThongTin.toFront();
             btThongtin.setStyle("-fx-background-color:#F7B3C8");
             btMonAn.setStyle("-fx-background-color:#FC95BB");
@@ -178,15 +132,20 @@ public class DatTiecController implements Initializable {
         } else if (event.getSource() == nextDichVu) {
             lbStatusMIn.setText("/home/dichvu");
             lbStatus.setText("Dịch vụ");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY)));
+            vboxStatus.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY)));
             VboxDichVu.toFront();
             btDichVu.setStyle("-fx-background-color:  #F7B3C8");
             btMonAn.setStyle("-fx-background-color:#FC95BB");
+            tbThucPham.getSelectionModel().clearSelection();
+            tbThucPhamC.getSelectionModel().clearSelection();
 
         } else if (event.getSource() == backMonAn) {
             lbStatusMIn.setText("/home/monan");
             lbStatus.setText("Món ăn");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY)));
+            vboxStatus.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(169, 198, 245), CornerRadii.EMPTY, Insets.EMPTY)));
+            
             vboxMonAn.toFront();
             btMonAn.setStyle("-fx-background-color:  #F7B3C8");
             btDichVu.setStyle("-fx-background-color:#FC95BB");
@@ -195,16 +154,21 @@ public class DatTiecController implements Initializable {
             NapThongTinXacNhan();
             lbStatusMIn.setText("/home/xacnhan");
             lbStatus.setText("Xác nhận");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(197, 245, 226), CornerRadii.EMPTY, Insets.EMPTY)));
+            vboxStatus.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(197, 245, 226), CornerRadii.EMPTY, Insets.EMPTY)));
+            
             vboxXacNhan.toFront();
             BtXacNhan.setStyle("-fx-background-color:  #F7B3C8");
             btDichVu.setStyle("-fx-background-color:#FC95BB");
             tbXacNhanDV.setItems(tbDichVuC.getItems());
             tbXacNhanTP.setItems(tbThucPhamC.getItems());
+            
         } else if (event.getSource() == backDichVu) {
             lbStatusMIn.setText("/home/dichvu");
             lbStatus.setText("Dịch vụ");
-            vboxStatus.setBackground(new Background(new BackgroundFill(Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY)));
+            vboxStatus.setBackground(new Background(new BackgroundFill(
+                    Color.rgb(253, 247, 162), CornerRadii.EMPTY, Insets.EMPTY)));
+            
             VboxDichVu.toFront();
             btDichVu.setStyle("-fx-background-color:  #F7B3C8");
             BtXacNhan.setStyle("-fx-background-color:#FC95BB");
@@ -223,8 +187,10 @@ public class DatTiecController implements Initializable {
         // SET DIA CHI THEO CHIU DOC 
         taDiaChi.setWrapText(true);
         taXNDiaChi.setWrapText(true);
+
        
         // Ktra số bàn là số va gioi han 3 ki tu
+
         Utils.KiemTraLaSo(txtSoBan);
         Utils.gioiHanSo(3, txtSoBan);
         
@@ -239,16 +205,12 @@ public class DatTiecController implements Initializable {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
-
-                       setDisable(empty || date.compareTo(today) <= 0 );
-           
-
+                setDisable(empty || date.compareTo(today) <= 0);
             }
-
         });
 
-
     }
+
     private void chonTheoThuTu() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         cbSanh.setDisable(true);
@@ -279,8 +241,10 @@ public class DatTiecController implements Initializable {
                             int ktra = 0;
                             for (Booking b : bk) {
                                 Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
-                                if (daDat2.equals(dateChoose) && b.getCa() == '1' && (daDat1.equals(dateChoose) && a.getCa() == '2')
-                                        || daDat2.equals(dateChoose) && b.getCa() == '2' && (daDat1.equals(dateChoose) && a.getCa() == '1')) {
+                                if (daDat2.equals(dateChoose) && b.getCa() == '1' &&
+                                        (daDat1.equals(dateChoose) && a.getCa() == '2')
+                                        || daDat2.equals(dateChoose) && b.getCa() == '2'
+                                        && (daDat1.equals(dateChoose) && a.getCa() == '1')) {
 
                                     cbSanh.getItems().remove(b.getSanh().getLoaiSanh());
                                     ktra = 1;
@@ -294,10 +258,10 @@ public class DatTiecController implements Initializable {
                             }
                         }
                     } catch (ParseException ex) {
-                        Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                        System.err.print(ex.getMessage());
                     }
                 } catch (ParseException ex) {
-                    Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                     System.err.print(ex.getMessage());
                 }
 
                 //
@@ -316,10 +280,17 @@ public class DatTiecController implements Initializable {
                                 List<Booking> bk = Utils.getBooking();
                                 for (Booking a : bk) {
                                     Date daDat1 = sdf.parse(a.getNgayDat().toString());
-                                    if ((daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString())))
-                                            || (daDat1.equals(dateChoose) && a.getCa() == '1') && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) { // Nếu là đã có ca1 or 2
+                                    if ((daDat1.equals(dateChoose) && a.getCa() == '2'
+                                            && (a.getSanh().getLoaiSanh().equals(
+                                                    cbSanh.getValue().toString())))
+                                            || (daDat1.equals(dateChoose) && a.getCa() == '1') 
+                                            && (a.getSanh().getLoaiSanh().equals(
+                                                    cbSanh.getValue().toString()))) { // Nếu là đã có ca1 or 2
 
-                                        if (daDat1.equals(dateChoose) && a.getCa() == '2' && (a.getSanh().getLoaiSanh().equals(cbSanh.getValue().toString()))) {   //ca2 da dc chon
+                                        if (daDat1.equals(dateChoose) && a.getCa()
+                                                == '2' && (a.getSanh().getLoaiSanh().equals(
+                                                        cbSanh.getValue().toString()))) {   //ca2 da dc chon
+                                            
                                             rdCa1.setDisable(false);
                                             rdCa2.setDisable(true);
                                             break;
@@ -336,10 +307,10 @@ public class DatTiecController implements Initializable {
                                     }
                                 }
                             } catch (ParseException ex) {
-                                Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                                System.err.print(ex.getMessage());
                             }
                         } catch (ParseException ex) {
-                            Logger.getLogger(DatTiecController.class.getName()).log(Level.SEVERE, null, ex);
+                             System.err.print(ex.getMessage());
                         }
                     }
 
@@ -351,6 +322,7 @@ public class DatTiecController implements Initializable {
 
     }
 
+
     public void init() {
 //Group radio button
 
@@ -358,11 +330,9 @@ public class DatTiecController implements Initializable {
         rdCa1.setToggleGroup(toggleGroup);
         rdCa2.setToggleGroup(toggleGroup);
 
-        //set bt thong tin dc chon
+//set bt thong tin dc chon
         vboxThongTin.toFront();
         btThongtin.setStyle("-fx-background-color:  #F7B3C8");
-
-        
 
 // Load danh sách DichVu
         TableColumn clTenLoaiDV = new TableColumn("Tên dịch vụ");
@@ -374,6 +344,7 @@ public class DatTiecController implements Initializable {
 
         this.tbDichVu.getColumns().addAll(clTenLoaiDV, clPrice, clNote);
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getDichVu()));
+        
 // Bảng chọn dịch vụ
         TableColumn clTenLoaiDVC = new TableColumn("Tên dịch vụ");
         clTenLoaiDVC.setCellValueFactory(new PropertyValueFactory("loaiDV"));
@@ -381,8 +352,9 @@ public class DatTiecController implements Initializable {
         clPriceC.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clNoteC = new TableColumn("Ghi chú");
         clNoteC.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
+
         this.tbDichVuC.getColumns().addAll(clTenLoaiDVC, clPriceC, clNoteC);
+        
 //Bảng xác nhận dịch vụ
         TableColumn clXacNhanTenLoaiDV = new TableColumn("Tên dịch vụ");
         clXacNhanTenLoaiDV.setCellValueFactory(new PropertyValueFactory("loaiDV"));
@@ -390,8 +362,9 @@ public class DatTiecController implements Initializable {
         clXacNhanPrice.setCellValueFactory(new PropertyValueFactory("gia"));
         TableColumn clXacNhanNote = new TableColumn("Ghi chú");
         clXacNhanNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
+
         this.tbXacNhanDV.getColumns().addAll(clXacNhanTenLoaiDV, clXacNhanPrice, clXacNhanNote);
+        
 // Load danh sách Thuc pham
         TableColumn clTenTP = new TableColumn("Tên");
         clTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
@@ -402,7 +375,7 @@ public class DatTiecController implements Initializable {
         TableColumn clNoteTP = new TableColumn("Ghi chú");
         clNoteTP.setCellValueFactory(new PropertyValueFactory("ghiChu"));
 
-        this.tbThucPham.getColumns().addAll(clTenTP, clLoaiTp, clPriceTP, clNote);
+        this.tbThucPham.getColumns().addAll(clTenTP, clLoaiTp, clPriceTP, clNoteTP);
         this.tbThucPham.setItems(FXCollections.observableArrayList(Utils.getThucPham()));
 
 //Bảng chọn thưc phẩm
@@ -414,8 +387,9 @@ public class DatTiecController implements Initializable {
         clPriceTPC.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clNoteTPC = new TableColumn("Ghi chú");
         clNoteTPC.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+
+        this.tbThucPhamC.getColumns().addAll(clTenTPC, clLoaiTpC, clPriceTPC, clNoteTPC);
         
-        this.tbThucPhamC.getColumns().addAll(clTenTPC, clLoaiTpC, clPriceTPC, clNoteC);
 //Bảng xác nhận thực phẩm
         TableColumn clXacNhanTenTP = new TableColumn("Tên");
         clXacNhanTenTP.setCellValueFactory(new PropertyValueFactory("tenTP"));
@@ -425,8 +399,9 @@ public class DatTiecController implements Initializable {
         clXacNhanPriceTP.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clXacNhanNoteTP = new TableColumn("Ghi chú");
         clXacNhanNoteTP.setCellValueFactory(new PropertyValueFactory("ghiChu"));
-        
-        this.tbThucPhamC.getColumns().addAll(clXacNhanTenTP, clXacNhanLoaiTp, clXacNhanPriceTP, clXacNhanNoteTP);
+
+        this.tbXacNhanTP.getColumns().addAll(clXacNhanTenTP, clXacNhanLoaiTp,
+                clXacNhanPriceTP, clXacNhanNoteTP);
     }
 
     // Chọn thực phẩm
@@ -435,6 +410,7 @@ public class DatTiecController implements Initializable {
         try {
             Thucpham s = (Thucpham) tbThucPham.getSelectionModel().getSelectedItem();
             if (s == null) {
+                
                 s = (Thucpham) tbThucPhamC.getSelectionModel().getSelectedItem();
                 if (s == null) {
                     Utils.getAlertTC("Hãy chọn thực phẩm!!!", Alert.AlertType.ERROR).show();
@@ -443,15 +419,16 @@ public class DatTiecController implements Initializable {
                     this.tbThucPhamC.getItems().remove(s);
                     this.tbThucPhamC.getSelectionModel().clearSelection();
                 }
+                
             } else {
 
                 this.tbThucPhamC.getItems().add(s);
                 this.tbThucPham.getItems().remove(s);
                 this.tbThucPham.getSelectionModel().clearSelection();
+                
             }
         } catch (Exception e) {
             System.err.print(e.getMessage());
-
         }
 
     }
@@ -462,21 +439,26 @@ public class DatTiecController implements Initializable {
         try {
             Dichvu s = (Dichvu) tbDichVu.getSelectionModel().getSelectedItem();
             if (s == null) {
+                
                 s = (Dichvu) tbDichVuC.getSelectionModel().getSelectedItem();
                 if (s == null) {
+                    
                     Utils.getAlertTC("Hãy chọn dịch vụ!!!", Alert.AlertType.ERROR).show();
+                    
                 } else {
+                    
                     this.tbDichVu.getItems().add(s);
                     this.tbDichVuC.getItems().remove(s);
                     this.tbDichVuC.getSelectionModel().clearSelection();
+                    
                 }
             } else {
 
                 this.tbDichVuC.getItems().add(s);
                 this.tbDichVu.getItems().remove(s);
                 this.tbDichVu.getSelectionModel().clearSelection();
+                
             }
-
         } catch (Exception e) {
             System.err.print(e.getMessage());
 
@@ -496,19 +478,30 @@ public class DatTiecController implements Initializable {
     @FXML
     private void saveBooking(ActionEvent event) throws IOException {
         try {
-            Utils.getAlertTC("Xác nhận đặt tiệc!!", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs -> {
+            Utils.getAlertTC("Xác nhận đặt tiệc!!", Alert.AlertType.CONFIRMATION)
+                    .showAndWait().ifPresent(rs -> {
                 if (rs == ButtonType.OK) {
                     Character ca;
                     Integer soBan = Integer.parseInt(txtSoBan.getText());
-                    
-                    LocalDate localDate = dpNgayDat.getValue();
-                    Date ngayDat = Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
-                    String note = String.format("%s\r\n%s", txtLoaiTiec.getText(), taGhiChu.getText());
+                    LocalDate localDate = dpNgayDat.getValue();
+                    
+                    Date ngayDat = Date.from(localDate.atStartOfDay().atZone(
+                            ZoneId.systemDefault()).toInstant());
+
+                    String note = String.format("%s\r\n%s", txtLoaiTiec.getText(),
+                            taGhiChu.getText());
+                    
                     Nhanvien nv = Utils.findStaff(Utils.getUsernameText());
+                    
                     Menu menu = new Menu(tbThucPhamC.getItems());
-                    Khachhang kh = new Khachhang(txtTenKH.getText(), txtSDT.getText(), taDiaChi.getText());
-                    Sanh s = Utils.getSanhByTypeName((String) cbSanh.getSelectionModel().getSelectedItem());
+                    
+                    Khachhang kh = new Khachhang(txtTenKH.getText(),
+                            txtSDT.getText(), taDiaChi.getText());
+                    
+                    Sanh s = Utils.getSanhByTypeName((String) cbSanh.
+                            getSelectionModel().getSelectedItem());
+                    
                     List<Dichvu> dv = tbDichVuC.getItems();
 
                     if (rdCa1.isSelected()) {
@@ -540,27 +533,44 @@ public class DatTiecController implements Initializable {
         }
 
     }
-    
-    
-    private void NapThongTinXacNhan(){
+
+    private void NapThongTinXacNhan() {
         txtXNTenKH.setText(txtTenKH.getText());
         txtXNSDT.setText(txtSDT.getText());
         txtXNLoaiTiec.setText(txtLoaiTiec.getText());
         txtXNSoBan.setText(txtSoBan.getText());
         txtXNNgay.setText(dpNgayDat.getValue().toString());
         txtXNSANH.setText(cbSanh.getValue().toString());
-        
-        if(rdCa1.isSelected()){
+
+        if (rdCa1.isSelected()) {
             txtXNCa.setText("Trưa");
-        }else{
+        } else {
             txtXNCa.setText("Tối");
         }
      
         taXNDiaChi.setText(taDiaChi.getText());
+
+// Show tổng tiền
+        Double Tong = Utils.getSanhByTypeName(txtXNSANH.getText()).getGia().doubleValue();
+        if(!tbDichVuC.getItems().isEmpty())
+        {
+            List<Dichvu> dv = tbDichVuC.getItems();
+            for(Dichvu d : dv){
+                Tong += d.getGia().doubleValue();
+            }
+
+        }
+        if(!tbThucPhamC.getItems().isEmpty())
+        {
+            List<Thucpham> tp = tbThucPhamC.getItems();
+            for(Thucpham t : tp){
+                Tong += t.getPrice().doubleValue() * Double.parseDouble(txtSoBan.getText());
+            }
+        }
         
-        //thiếu show tổng tiền
-        //txtXNTongTien.setText(value);
-      
+        
+        txtXNTongTien.setText(String.format(Utils.formatCurrency(Tong) + "VNĐ"));
+
     }
 
 }

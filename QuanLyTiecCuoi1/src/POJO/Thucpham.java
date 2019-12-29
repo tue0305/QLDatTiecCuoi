@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Thucpham.findByMaTP", query = "SELECT t FROM Thucpham t WHERE t.maTP = :maTP")
     , @NamedQuery(name = "Thucpham.findByTenTP", query = "SELECT t FROM Thucpham t WHERE t.tenTP = :tenTP")
     , @NamedQuery(name = "Thucpham.findByPrice", query = "SELECT t FROM Thucpham t WHERE t.price = :price")
+    
     , @NamedQuery(name = "Thucpham.findByLoaiTP", query = "SELECT t FROM Thucpham t WHERE t.loaiTP = :loaiTP")})
 public class Thucpham implements Serializable {
 
@@ -57,11 +58,11 @@ public class Thucpham implements Serializable {
     @Column(name = "LoaiTP")
     private String loaiTP;
 //   
+
     public Thucpham() {
     }
 
-   
-    public Thucpham( String tenTP, String loaiTP,  BigDecimal price, String ghiChu) {
+    public Thucpham(String tenTP, String loaiTP, BigDecimal price, String ghiChu) {
         this.loaiTP = loaiTP;
         this.tenTP = tenTP;
         this.price = price;
@@ -107,15 +108,10 @@ public class Thucpham implements Serializable {
     public void setLoaiTP(String loaiTP) {
         this.loaiTP = loaiTP;
     }
-
-//  
-
-   
-
-    
+ 
     @Override
     public String toString() {
         return this.getLoaiTP().toString();
     }
-    
+
 }
