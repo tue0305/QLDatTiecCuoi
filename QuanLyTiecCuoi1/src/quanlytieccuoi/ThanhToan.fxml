@@ -81,17 +81,17 @@
               </rowConstraints>
                <children>
                   <Label text="Thành tiền:" GridPane.halignment="RIGHT" />
-                  <TextField fx:id="txtThanhTien" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" />
+                  <TextField fx:id="txtThanhTien" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" />
                   <Label text="Phí trễ:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtPhi" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtPhi" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label text="Khách trả:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtKhachTra" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtKhachTra" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text=" Tổng tiền:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <font>
                         <Font size="23.0" />
                      </font></Label>
-                  <Button mnemonicParsing="false" onAction="#confirmkAction" styleClass="button4" text="Xác nhận" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onAction="#backAction" styleClass="button4" text="Quay về" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#confirmkAction" prefHeight="31.0" prefWidth="98.0" styleClass="button4" text="Xác nhận" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#backAction" prefHeight="49.0" prefWidth="78.0" styleClass="button4" text="Quay về" GridPane.columnIndex="6" GridPane.rowIndex="3" />
                   <JFXTextField fx:id="txtTongTien" editable="false" focusColor="#ff0808" prefHeight="54.0" prefWidth="184.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="25.0" />
