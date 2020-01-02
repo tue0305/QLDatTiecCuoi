@@ -39,7 +39,7 @@
                   </Button>
                   <Button alignment="CENTER" layoutX="-48.0" layoutY="679.0" mnemonicParsing="false" onAction="#ActionSignOut" opacity="0.67" prefHeight="45.0" prefWidth="205.0" styleClass="button2" text="Đăng Xuất!">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />

@@ -92,7 +92,7 @@
                      </font></Label>
                   <Button mnemonicParsing="false" onAction="#confirmkAction" prefHeight="31.0" prefWidth="98.0" styleClass="button4" text="Xác nhận" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                   <Button mnemonicParsing="false" onAction="#backAction" prefHeight="49.0" prefWidth="78.0" styleClass="button4" text="Quay về" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                  <JFXTextField fx:id="txtTongTien" editable="false" focusColor="#ff0808" prefHeight="54.0" prefWidth="184.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <JFXTextField fx:id="txtTongTien" alignment="TOP_CENTER" editable="false" focusColor="#ff0808" prefHeight="54.0" prefWidth="184.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>

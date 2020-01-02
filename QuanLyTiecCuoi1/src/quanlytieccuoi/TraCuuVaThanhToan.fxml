@@ -20,19 +20,15 @@
                   <Image url="@../FXML/images/search.png" />
                </image>
             </ImageView>
-            <HBox prefHeight="69.0" prefWidth="848.0" styleClass="one">
-               <children>
-                  <Label prefHeight="62.0" prefWidth="848.0" styleClass="title" text="TRA CỨU VÀ THANH TOÁN" />
-               </children>
-            </HBox>
+            <Label prefHeight="62.0" prefWidth="848.0" styleClass="title" text="TRA CỨU VÀ THANH TOÁN" />
          </children>
       </HBox>
-      <VBox prefHeight="366.0" prefWidth="924.0">
+      <VBox prefHeight="117.0" prefWidth="1150.0">
          <children>
             <HBox prefHeight="66.0" prefWidth="924.0">
                <children>
-                  <TextField fx:id="txtTC" prefHeight="37.0" prefWidth="449.0" promptText="Tên hoặc số điện thoại khách hàng..." />
-                  <VBox prefHeight="106.0" prefWidth="260.0">
+                  <TextField fx:id="txtTC" prefHeight="82.0" prefWidth="446.0" promptText="Tên hoặc số điện thoại khách hàng..." />
+                  <VBox prefHeight="85.0" prefWidth="205.0">
                      <children>
                         <DatePicker fx:id="dpStart" promptText="Từ ngày" styleClass="two">
                            <VBox.margin>
@@ -46,33 +42,7 @@
                         </DatePicker>
                      </children>
                   </VBox>
-                  <HBox prefHeight="106.0" prefWidth="199.0" styleClass="edit">
-                     <children>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaBooking" prefHeight="65.0" prefWidth="51.0" text="Xóa">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../FXML/images/delete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button contentDisplay="TOP" layoutX="80.0" layoutY="20.0" mnemonicParsing="false" onAction="#backAction" prefHeight="65.0" prefWidth="51.0" text="Back">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../FXML/images/left-arrow.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox prefHeight="0.0" prefWidth="924.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#payAction" prefHeight="41.0" prefWidth="220.0" styleClass="edit" text="Thanh Toán">
+                  <Button mnemonicParsing="false" onAction="#payAction" prefHeight="82.0" prefWidth="263.0" styleClass="edit" text="Thanh Toán">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -80,14 +50,30 @@
                            </image>
                         </ImageView>
                      </graphic>
-                     <HBox.margin>
-                        <Insets left="125.0" />
-                     </HBox.margin>
+                  </Button>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaBooking" prefHeight="82.0" prefWidth="120.0" text="Xóa">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../FXML/images/delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backAction" prefHeight="82.0" prefWidth="121.0" text="Back">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../FXML/images/left-arrow.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>
+            <HBox prefHeight="0.0" prefWidth="924.0" />
          </children>
       </VBox>
-      <TableView fx:id="tbBooking" prefHeight="688.0" prefWidth="1150.0" />
+      <TableView fx:id="tbBooking" prefHeight="503.0" prefWidth="1150.0" />
    </children>
 </VBox>
