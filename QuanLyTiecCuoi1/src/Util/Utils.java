@@ -39,7 +39,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
-import quanlytieccuoi.LapBaoCaoController;
+import org.hibernate.jpa.criteria.expression.BinaryArithmeticOperation;
+import org.hibernate.type.StringType;
 
 /**
  *
@@ -47,44 +48,54 @@ import quanlytieccuoi.LapBaoCaoController;
  */
 public final class Utils {
 
-    private Utils(){};
+    private Utils() {
+    }
+    ;
+// nhận biết giữa mục sửa và thanh toán
+    private static Boolean sign;
+
+    public static Boolean getSign() {
+        return Utils.sign;
+    }
+
+    public static Boolean setSign(Boolean sign) {
+        return Utils.sign = sign;
+    }
+
 //Lưu thông tin nhân viên xuyên suốt chương trình
     private static String usernameText;
-    
+
     public static String getUsernameText() {
         return usernameText;
     }
 
-
     public static void setUsernameText(String usernameText) {
         Utils.usernameText = usernameText;
     }
-    
-    public static void resetPayment()
-    {
+
+    public static void resetPayment() {
         Utils.payingBooking = null;
         Utils.tienDV = 0.0;
         Utils.tienTP = 0.0;
+        Utils.sign = false;
     }
-    
-   
+
     private static Booking payingBooking;
     private static Double tienTP = 0.0;
     private static Double tienDV = 0.0;
 
-    
     public static Booking getPayBooking() {
         return payingBooking;
     }
-    
+
     public static Double getPriceOfFoods() {
         return tienTP;
     }
-    
+
     public static Double getPriceOfServices() {
         return tienDV;
     }
-    
+
     public static void setPayBooking(Booking b) {
         Utils.payingBooking = b;
         getFoodsOfBooking(b).forEach((t) -> {
@@ -103,17 +114,18 @@ public final class Utils {
         try {
 
             Criteria cr = session.createCriteria(Nhanvien.class);
-
-            Criterion cr1 = Restrictions.eq("userName", u);
-            Criterion cr2 = Restrictions.eq("password", p);
+// Phân biệt hoa thường
+            Criterion cr1 = Restrictions.sqlRestriction("BINARY userName = BINARY ?", u, StringType.INSTANCE);
+            Criterion cr2 = Restrictions.sqlRestriction("BINARY password = BINARY ?", p, StringType.INSTANCE);
+           
             cr.add(Restrictions.and(cr1, cr2));
-            List nv = cr.list();
 
-            if (!nv.isEmpty()) {
+            Nhanvien nv = (Nhanvien) cr.uniqueResult();
+
+            if (nv != null) {
 
                 return true;
-            }
-            else {
+            } else {
                 return false;
             }
 
@@ -126,7 +138,7 @@ public final class Utils {
     }
 
 //Hàm thông báo Alert
-    public static Alert getAlertTC(String content, Alert.AlertType type) {     
+    public static Alert getAlertTC(String content, Alert.AlertType type) {
         return new Alert(type, content);
     }
 
@@ -146,8 +158,8 @@ public final class Utils {
         }
 
     }
-    
-     public static void switchStagekeyevent(Scene sce, KeyEvent e) {
+
+    public static void switchStagekeyevent(Scene sce, KeyEvent e) {
         try {
             Node source = (Node) e.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
@@ -178,54 +190,52 @@ public final class Utils {
             System.err.print(ex.getMessage());
         }
     }
-    
+
     // Hàm tính doanh thu tháng
-    
-    public static double tinhDoanhThuThang(int thang, int nam){
-         double tongthang = 0;
-         //lay thang duoi csdl
-       
-         List<Booking> bk = Utils.getBooking();
-         for(Booking a : bk){   //Loc ds booking
-             try{ 
-                 Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
-                   Calendar cal = Calendar.getInstance();
-                   cal.setTime(date);                   //set cal = ngay thanh toan
-                   int month = cal.get(Calendar.MONTH)+1;  
-                    int year = cal.get(Calendar.YEAR);
-                   if(month ==thang&&year==nam){                                               
-                       double ab= a.getPrice().doubleValue(); 
-                       tongthang = tongthang + ab;                          
-                   }
-             }catch(NullPointerException ex){ // su ly ngay thanh toan rong
-             }
-             
-         }
-         return tongthang;
+    public static double tinhDoanhThuThang(int thang, int nam) {
+        double tongthang = 0;
+        //lay thang duoi csdl
+
+        List<Booking> bk = Utils.getBooking();
+        for (Booking a : bk) {   //Loc ds booking
+            try {
+                Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);                   //set cal = ngay thanh toan
+                int month = cal.get(Calendar.MONTH) + 1;
+                int year = cal.get(Calendar.YEAR);
+                if (month == thang && year == nam) {
+                    double ab = a.getPrice().doubleValue();
+                    tongthang = tongthang + ab;
+                }
+            } catch (NullPointerException ex) { // su ly ngay thanh toan rong
+            }
+
+        }
+        return tongthang;
     }
-    
+
     //Ham tinh doanh thu nam
-    
-    public static double tinhDoanhThuNam(int nam){
-         double tongNam = 0;
-         //lay thang duoi csdl
-       
-         List<Booking> bk = Utils.getBooking();
-         for(Booking a : bk){   //Loc ds booking
-             try{ 
-                 Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
-                   Calendar cal = Calendar.getInstance();
-                   cal.setTime(date);                   //set cal = ngay thanh toan
-                   int namCSDL = cal.get(Calendar.YEAR);           //lay nam
-                   if(namCSDL ==nam){                                               
-                       double ab= a.getPrice().doubleValue(); 
-                       tongNam = tongNam + ab;                          
-                   }
-             }catch(NullPointerException ex){ // su ly ngay thanh toan rong
-             }
-             
-         }
-         return tongNam;
+    public static double tinhDoanhThuNam(int nam) {
+        double tongNam = 0;
+        //lay thang duoi csdl
+
+        List<Booking> bk = Utils.getBooking();
+        for (Booking a : bk) {   //Loc ds booking
+            try {
+                Date date = a.getNgayThanhToan();      //.lay ngay thanh toan
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);                   //set cal = ngay thanh toan
+                int namCSDL = cal.get(Calendar.YEAR);           //lay nam
+                if (namCSDL == nam) {
+                    double ab = a.getPrice().doubleValue();
+                    tongNam = tongNam + ab;
+                }
+            } catch (NullPointerException ex) { // su ly ngay thanh toan rong
+            }
+
+        }
+        return tongNam;
     }
 
     public static void hideStage(Scene sce, ActionEvent e) {
@@ -280,7 +290,7 @@ public final class Utils {
 
         return ls;
     }
-    
+
 // tìm kiếm theo listener form TracuuVaThanhToan
     public static List<Booking> getBookingSearch(String kw) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
@@ -340,7 +350,7 @@ public final class Utils {
 
         return ls;
     }
-    
+
     public static Sanh getSanhByTypeName(String q) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
@@ -491,16 +501,17 @@ public final class Utils {
         Booking k = (Booking) cr.uniqueResult();
         return k;
     }
+
     //Xy ly textfile la so
-     public static void KiemTraLaSo(TextField a ){
+    public static void KiemTraLaSo(TextField a) {
         ChangeListener<String> forceNumberListener = (observable, oldValue, newValue) -> {  //observable la gia tri thay doi
-             if (!newValue.matches("\\d*"))
-            ((StringProperty) observable).set(oldValue);
-         };
+            if (!newValue.matches("\\d*")) {
+                ((StringProperty) observable).set(oldValue);
+            }
+        };
         a.textProperty().addListener(forceNumberListener);
-    
-}
-    
+
+    }
 
     // Công thức tính hóa đơn
     public static BigDecimal calBooking(Double nOfLateDates, BigDecimal originBill, Double charge) {
@@ -541,23 +552,19 @@ public final class Utils {
 
         return format.format(d);
     }
-    
+
     //Transaction Đặt tiệc
     public static boolean addBooking(Date ngayDat, Character ca, Nhanvien nv, Khachhang kh,
-            Sanh s, Menu menu, List<Dichvu> dv, Integer soBan, String ghiChu  ) {
+            Sanh s, Menu menu, List<Dichvu> dv, Integer soBan, String ghiChu) {
         SessionFactory factory = HibernateUtil.getSessionFactory();
         Session session = factory.openSession();
         Transaction trans = null;
         try {
 
             trans = session.beginTransaction();
-            
-            
-            
+
             Booking b = new Booking(ngayDat, ca, nv, kh, s, menu, dv, soBan, ghiChu);
-            
-            
-           
+
             session.save(menu);
             session.save(kh);
             session.save(b);
@@ -573,21 +580,18 @@ public final class Utils {
         }
         return true;
     }
- 
-    public static void gioiHanSo(int SoGioiHan, TextField n){
-        
+
+    public static void gioiHanSo(int SoGioiHan, TextField n) {
+
         ChangeListener<String> listener = ((observable, oldValue, newValue) -> {
-        
-                if(n.getLength() > SoGioiHan)
 
-                    ((StringProperty) observable).set(oldValue);
+            if (n.getLength() > SoGioiHan) {
+                ((StringProperty) observable).set(oldValue);
+            }
         });
-        
-        
-       n.textProperty().addListener(listener);
-        
-        
-    }
 
+        n.textProperty().addListener(listener);
+
+    }
 
 }

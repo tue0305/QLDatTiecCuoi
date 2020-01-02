@@ -10,21 +10,28 @@ import Util.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -45,8 +52,6 @@ public class TraCuuVaThanhToanController implements Initializable {
     @FXML
     private TableView tbBooking;
 
-    @FXML
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -66,7 +71,7 @@ public class TraCuuVaThanhToanController implements Initializable {
         clNgayDat.setCellValueFactory(new PropertyValueFactory("ngayDat"));
         TableColumn clCa = new TableColumn("Ca");
         clCa.setCellValueFactory(new PropertyValueFactory("ca"));
-         TableColumn clSanh = new TableColumn("Sanh");
+        TableColumn clSanh = new TableColumn("Sanh");
         clSanh.setCellValueFactory(new PropertyValueFactory("sanh"));
 
         TableColumn clNgayThanhToan = new TableColumn("Ngày thanh toán");
@@ -75,8 +80,40 @@ public class TraCuuVaThanhToanController implements Initializable {
         clGia.setCellValueFactory(new PropertyValueFactory("price"));
         TableColumn clNote = new TableColumn("Ghi chú");
         clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+// Xem thông tin       
+        TableColumn clAction = new TableColumn();
+        clAction.setCellFactory(param -> {
+            Button btn = new Button("Xem");
+//Đang làm  
+            btn.setOnAction(et -> {
+                Utils.setSign(true);
+                try {
+                    TableCell cel = (TableCell) ((Button) et.getSource()).getParent();
+                    Booking q = (Booking) cel.getTableRow().getItem();
 
-        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clGia, clNote);
+                    Utils.setPayBooking(q);
+          
+                    Parent bla1 = FXMLLoader.load(getClass().getResource("ThanhToan.fxml"));
+                    Scene sce1 = new Scene(bla1);
+                    Stage appStage = new Stage();
+                    appStage.setScene(sce1);
+
+                    appStage.show();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(TraCuuVaThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
+                    Utils.setSign(false);
+                }
+
+            });
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+
+        });
+
+        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clGia, clNote, clAction);
+
         this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
         // Tìm kiếm booking theo tên và số điện thoại khách hàng
         this.txtTC.textProperty().addListener(et -> {

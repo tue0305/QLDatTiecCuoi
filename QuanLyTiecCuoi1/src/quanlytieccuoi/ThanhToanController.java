@@ -24,13 +24,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -67,11 +71,16 @@ public class ThanhToanController implements Initializable {
     @FXML
     private JFXTextField txtSoBan;
     @FXML
-    private TextField txtKhachTra;
+    private TextField txtStt;
     @FXML
     private TableView tbThucPham;
     @FXML
     private TableView tbDichVu;
+    @FXML
+    private Button btThanhToan;
+    @FXML
+    private Label lbTitle;
+    
 
     private Date d = new Date();
     private Long diff;
@@ -93,6 +102,17 @@ public class ThanhToanController implements Initializable {
     }
 
     public void init() {
+        if (Utils.getSign() == true) {
+            btThanhToan.setVisible(false);
+            if(Utils.getPayBooking().getNgayThanhToan() == null)
+                txtStt.setText("Chưa hoàn tất thanh toán.");
+            else {
+                txtStt.setText("Đã thanh toán.");
+            } 
+            lbTitle.setText("CHI TIẾT GIAO DỊCH");
+        }
+        else
+            lbTitle.setText("THANH TOÁN");
         //công thức thành tiền
         Double thanhTien = tienTP + tienDV + b.getSanh().getGia().doubleValue();
         // Trả về số ngày trễ
@@ -116,7 +136,7 @@ public class ThanhToanController implements Initializable {
         txtSanh.setText(b.getSanh().getLoaiSanh());
 
         txtPhi.setText(String.format("%.2f", fee));
-        txtKhachTra.setText(String.format("%d", diff));
+        
         txtSoBan.setText(b.getSoBan().toString());
 
 //      Load bảng thực phẩm
@@ -175,16 +195,25 @@ public class ThanhToanController implements Initializable {
     }
 
     public void backAction(ActionEvent event) throws IOException {
+        if (Utils.getSign()) {
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
+            Utils.resetPayment();
 
-        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
-        Utils.switchStage(sce, event);
-        Utils.resetPayment();
+        } else {
+            Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
+            Utils.switchStage(sce, event);
+
+            Utils.resetPayment();
+        }
+
     }
 
     public void confirmkAction(ActionEvent event) throws IOException {
 
         try {
-            if (txtKhachTra.getText().isEmpty()) {
+            if (txtStt.getText().isEmpty()) {
                 Utils.getAlertTC("Nhập số tiền khách trả!!", Alert.AlertType.ERROR).show();
             } else {
                 Utils.getAlertTC("Hãy kiểm tra kĩ thông tin và xác nhận thanh toán ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs1 -> {
@@ -198,10 +227,9 @@ public class ThanhToanController implements Initializable {
 
                             b.setNgayThanhToan(d);
                             b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText().replace(",", ""))));
-                            
 
                             if (!fee.equals(0)) {
-                                b.setGhiChu( b.getGhiChu() + String.format("\r\bKhách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
+                                b.setGhiChu(b.getGhiChu() + String.format("\r\bKhách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
                             } else {
                                 b.setGhiChu(String.format("Thanh toán đúng hẹn."));
                             }
