@@ -17,8 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -31,7 +29,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -44,11 +41,7 @@ public class TraCuuVaThanhToanController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private TextField txtTC;
-    @FXML
-    private DatePicker dpStart;
-    @FXML
-    private DatePicker dpEnd;
+    private TextField txtTC;   
     @FXML
     private TableView tbBooking;
 
@@ -61,8 +54,6 @@ public class TraCuuVaThanhToanController implements Initializable {
     public void init() {
         txtTC.setPromptText("Nhập tên hoặc số điện thoại khách...");
 
-        TableColumn clMaDatTiec = new TableColumn("Mã đặt tiệc");
-        clMaDatTiec.setCellValueFactory(new PropertyValueFactory("maBooking"));
         TableColumn clTenKH = new TableColumn("Tên khách hàng");
         clTenKH.setCellValueFactory(new PropertyValueFactory("nameCus"));
         TableColumn clSDT = new TableColumn("Số điện thoại");
@@ -73,55 +64,61 @@ public class TraCuuVaThanhToanController implements Initializable {
         clCa.setCellValueFactory(new PropertyValueFactory("ca"));
         TableColumn clSanh = new TableColumn("Sanh");
         clSanh.setCellValueFactory(new PropertyValueFactory("sanh"));
-
         TableColumn clNgayThanhToan = new TableColumn("Ngày thanh toán");
         clNgayThanhToan.setCellValueFactory(new PropertyValueFactory("ngayThanhToan"));
-        TableColumn clGia = new TableColumn("Tổng tiền");
-        clGia.setCellValueFactory(new PropertyValueFactory("price"));
-        TableColumn clNote = new TableColumn("Ghi chú");
-        clNote.setCellValueFactory(new PropertyValueFactory("ghiChu"));
+
 // Xem thông tin       
         TableColumn clAction = new TableColumn();
         clAction.setCellFactory(param -> {
             Button btn = new Button("Xem");
 //Đang làm  
             btn.setOnAction(et -> {
-                Utils.setSign(true);
+
                 try {
                     TableCell cel = (TableCell) ((Button) et.getSource()).getParent();
                     Booking q = (Booking) cel.getTableRow().getItem();
 
                     Utils.setPayBooking(q);
-          
-                    Parent bla1 = FXMLLoader.load(getClass().getResource("ThanhToan.fxml"));
-                    Scene sce1 = new Scene(bla1);
-                    Stage appStage = new Stage();
-                    appStage.setScene(sce1);
 
-                    appStage.show();
+                    Utils.setSign(true);
+                    Scene sce = btn.getScene();
+                    Scene sce1 = new Scene(FXMLLoader.load(getClass().getResource("ThanhToan.fxml")));
 
+                    Stage stage = (Stage) sce.getWindow();
+                    stage.close();
+
+                    stage.hide();
+                    stage.setScene(sce1);
+                    stage.show();
+
+//                    
                 } catch (IOException ex) {
                     Logger.getLogger(TraCuuVaThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
-                    Utils.setSign(false);
                 }
+               
 
             });
             TableCell cell = new TableCell();
             cell.setGraphic(btn);
             return cell;
 
-        });
+        }
+        );
 
-        this.tbBooking.getColumns().addAll(clMaDatTiec, clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clGia, clNote, clAction);
+        this.tbBooking.getColumns()
+                .addAll(clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clAction);
 
         this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
         // Tìm kiếm booking theo tên và số điện thoại khách hàng
-        this.txtTC.textProperty().addListener(et -> {
-            this.tbBooking.getItems().clear();
-            this.tbBooking.setItems(FXCollections.observableArrayList(
-                    Utils.getBookingSearch(this.txtTC.getText())));
 
-        });
+        this.txtTC.textProperty()
+                .addListener(et -> {
+                    this.tbBooking.getItems().clear();
+                    this.tbBooking.setItems(FXCollections.observableArrayList(
+                            Utils.getBookingSearch(this.txtTC.getText())));
+
+                }
+                );
 
 // Load form thêm
     }

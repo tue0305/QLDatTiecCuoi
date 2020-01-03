@@ -6,25 +6,19 @@
 package quanlytieccuoi;
 
 import POJO.Booking;
-import POJO.Dichvu;
 import POJO.Nhanvien;
-import POJO.Thucpham;
 import Util.Utils;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -34,7 +28,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -80,7 +73,6 @@ public class ThanhToanController implements Initializable {
     private Button btThanhToan;
     @FXML
     private Label lbTitle;
-    
 
     private Date d = new Date();
     private Long diff;
@@ -104,15 +96,15 @@ public class ThanhToanController implements Initializable {
     public void init() {
         if (Utils.getSign() == true) {
             btThanhToan.setVisible(false);
-            if(Utils.getPayBooking().getNgayThanhToan() == null)
+            if (Utils.getPayBooking().getNgayThanhToan() == null) {
                 txtStt.setText("Chưa hoàn tất thanh toán.");
-            else {
+            } else {
                 txtStt.setText("Đã thanh toán.");
-            } 
+            }
             lbTitle.setText("CHI TIẾT GIAO DỊCH");
-        }
-        else
+        } else {
             lbTitle.setText("THANH TOÁN");
+        }
         //công thức thành tiền
         Double thanhTien = tienTP + tienDV + b.getSanh().getGia().doubleValue();
         // Trả về số ngày trễ
@@ -136,7 +128,7 @@ public class ThanhToanController implements Initializable {
         txtSanh.setText(b.getSanh().getLoaiSanh());
 
         txtPhi.setText(String.format("%.2f", fee));
-        
+
         txtSoBan.setText(b.getSoBan().toString());
 
 //      Load bảng thực phẩm
@@ -195,70 +187,61 @@ public class ThanhToanController implements Initializable {
     }
 
     public void backAction(ActionEvent event) throws IOException {
-        if (Utils.getSign()) {
-            Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
-            stage.close();
-            Utils.resetPayment();
 
-        } else {
-            Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
-            Utils.switchStage(sce, event);
-
-            Utils.resetPayment();
-        }
+        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
+        Utils.switchStage(sce, event);
+        Utils.setSign(null);
+        Utils.resetPayment();
 
     }
 
     public void confirmkAction(ActionEvent event) throws IOException {
 
         try {
-            if (txtStt.getText().isEmpty()) {
-                Utils.getAlertTC("Nhập số tiền khách trả!!", Alert.AlertType.ERROR).show();
-            } else {
-                Utils.getAlertTC("Hãy kiểm tra kĩ thông tin và xác nhận thanh toán ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs1 -> {
 
-                    if (rs1 == ButtonType.OK) {
-                        Utils.getAlertTC("Tiến hành in hóa đơn ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs2 -> {
+            Utils.getAlertTC("Hãy kiểm tra kĩ thông tin và xác nhận thanh toán ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs1 -> {
 
-                            if (rs2 == ButtonType.OK) {
-                                System.out.print(txtTongTien.getText());// chỗ in hóa đơn
-                            }
+                if (rs1 == ButtonType.OK) {
+                    Utils.getAlertTC("Tiến hành in hóa đơn ?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs2 -> {
 
-                            b.setNgayThanhToan(d);
-                            b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText().replace(",", ""))));
+                        if (rs2 == ButtonType.OK) {
+                            System.out.print(txtTongTien.getText());// chỗ in hóa đơn
+                        }
 
-                            if (!fee.equals(0)) {
-                                b.setGhiChu(b.getGhiChu() + String.format("\r\bKhách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
-                            } else {
-                                b.setGhiChu(String.format("Thanh toán đúng hẹn."));
-                            }
-                            b.setNhanVien(n);
-                            if (Utils.addOrUpdate(b)) {
+                        b.setNgayThanhToan(d);
+                        b.setPrice(BigDecimal.valueOf(Double.parseDouble(txtTongTien.getText().replace(",", ""))));
 
-                                Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).showAndWait().ifPresent(rs3 -> {
-                                    if (rs1 == ButtonType.OK) {
-                                        try {
-                                            Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
-                                            Utils.switchStage(sce, event);
-                                            Utils.resetPayment();
-                                        } catch (IOException ex) {
-                                            System.err.print(ex.getMessage());
-                                        }
+                        if (!fee.equals(0)) {
+                            b.setGhiChu(b.getGhiChu() + String.format("\r\bKhách thanh toán trễ: %d ngày\r\nTiền cộng thêm : %.4f%%", diff, diff * CHARGE));
+                        } else {
+                            b.setGhiChu(String.format("Thanh toán đúng hẹn."));
+                        }
+                        b.setNhanVien(n);
+                        if (Utils.addOrUpdate(b)) {
+
+                            Utils.getAlertTC("Thanh toán thành công!!!", Alert.AlertType.INFORMATION).showAndWait().ifPresent(rs3 -> {
+                                if (rs1 == ButtonType.OK) {
+                                    try {
+                                        Scene sce = new Scene(FXMLLoader.load(getClass().getResource("TraCuuVaThanhToan.fxml")));
+                                        Utils.switchStage(sce, event);
+                                        Utils.resetPayment();
+                                    } catch (IOException ex) {
+                                        System.err.print(ex.getMessage());
                                     }
+                                }
 
-                                });
+                            });
 
-                            } else {
-                                Utils.getAlertTC("Thanh toán thất bại!!!", Alert.AlertType.ERROR).show();
-                            }
+                        } else {
+                            Utils.getAlertTC("Thanh toán thất bại!!!", Alert.AlertType.ERROR).show();
+                        }
 
-                        });
-                    } else if (rs1 == ButtonType.NO) {
-                        return;
-                    }
-                });
-            }
+                    });
+                } else if (rs1 == ButtonType.NO) {
+                    return;
+                }
+            });
+
         } catch (Exception e) {
             System.err.print(e.getMessage());
 

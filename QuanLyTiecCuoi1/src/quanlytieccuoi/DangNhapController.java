@@ -89,7 +89,7 @@ public class DangNhapController implements Initializable {
 
             } else {
                 
-                Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR).showAndWait();
+                Utils.getAlertTC("Tài khoản hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR).showAndWait();
 
                 
             }
