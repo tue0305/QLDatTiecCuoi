@@ -56,15 +56,15 @@ public class ThanhToanController implements Initializable {
     @FXML
     private JFXTextField txtCa;
     @FXML
-    private TextField txtThanhTien;
+    private Label txtThanhTien;
     @FXML
-    private JFXTextField txtTongTien;
+    private Label txtTongTien;
     @FXML
-    private TextField txtPhi;
+    private Label txtPhi;
     @FXML
     private JFXTextField txtSoBan;
     @FXML
-    private TextField txtStt;
+    private Label txtStt;
     @FXML
     private TableView tbThucPham;
     @FXML
@@ -97,9 +97,9 @@ public class ThanhToanController implements Initializable {
         if (Utils.getSign() == true) {
             btThanhToan.setVisible(false);
             if (Utils.getPayBooking().getNgayThanhToan() == null) {
-                txtStt.setText("Chưa hoàn tất thanh toán.");
+                txtStt.setText("Chưa hoàn tất thanh toán");
             } else {
-                txtStt.setText("Đã thanh toán.");
+                txtStt.setText("Đã thanh toán");
             }
             lbTitle.setText("CHI TIẾT GIAO DỊCH");
         } else {
@@ -127,7 +127,7 @@ public class ThanhToanController implements Initializable {
         txtMaDat.setText(b.getMaBooking());
         txtSanh.setText(b.getSanh().getLoaiSanh());
 
-        txtPhi.setText(String.format("%.2f", fee));
+        txtPhi.setText(String.format("%.2f", fee)+"(%)");
 
         txtSoBan.setText(b.getSoBan().toString());
 
@@ -182,7 +182,7 @@ public class ThanhToanController implements Initializable {
 
         this.tbDichVu.setItems(FXCollections.observableArrayList(Utils.getServicesOfBooking(b)));
 
-        txtThanhTien.setText(String.format(Utils.formatCurrency(thanhTien)));
+        txtThanhTien.setText(String.format(Utils.formatCurrency(thanhTien))+"VNĐ");
         txtTongTien.setText(String.format(Utils.formatCurrency(tongTIen)));
     }
 

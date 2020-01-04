@@ -102,6 +102,7 @@ public class ThucPhamController implements Initializable {
 
     public void themTP(ActionEvent event) throws IOException {
 
+        //?
         if ((!txtTenTP.getText().isEmpty() || !txtGia.getText().isEmpty() || !txtNote.getText().isEmpty()) && 
             !tbThucPham.getSelectionModel().isEmpty()){
         

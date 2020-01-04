@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,21 +11,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="786.0" prefWidth="967.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.ThanhToanController">
+<VBox prefHeight="825.0" prefWidth="971.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.ThanhToanController">
    <children>
-      <HBox alignment="CENTER" prefHeight="93.0" prefWidth="967.0" styleClass="one">
+      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="971.0" styleClass="one">
 
          <children>
             <Label fx:id="lbTitle" styleClass="title" />
          </children>
       </HBox>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="857.0" stylesheets="@fxml.css">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="971.0" stylesheets="@fxml.css">
         <columnConstraints>
           <ColumnConstraints />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="114.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="168.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="10.0" prefWidth="269.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="162.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="154.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="136.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="10.0" prefWidth="82.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="179.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="253.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="144.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="0.0" prefWidth="0.0" />
@@ -39,22 +38,64 @@
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Tên khách hàng:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-            <Label text="Ngày đặt:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label text="Sảnh:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="Tên khách hàng:" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <Label text="Ngày đặt:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <Label text="Sảnh:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
 
-            <Label text="Ca:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label text="Ca:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
 
-            <Label text="Mã hóa đơn:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-            <Label text="Nhân viên đứng ca:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label text="Số bàn đặt:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="txtTenKhach" editable="false" GridPane.columnIndex="2" />
-            <JFXTextField fx:id="txtSanh" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="txtNgayDat" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <JFXTextField fx:id="txtSoBan" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <JFXTextField fx:id="txtMaDat" editable="false" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2" />
-            <JFXTextField fx:id="txtNV" editable="false" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-            <JFXTextField fx:id="txtCa" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Label text="Mã hóa đơn:" GridPane.columnIndex="4" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <Label text="Nhân viên đứng ca:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <Label text="Số bàn đặt:" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font></Label>
+            <JFXTextField fx:id="txtTenKhach" editable="false" GridPane.columnIndex="2" GridPane.columnSpan="2">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="txtSanh" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="txtNgayDat" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="txtSoBan" editable="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="txtMaDat" editable="false" prefHeight="31.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.columnSpan="2">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="txtNV" editable="false" GridPane.columnIndex="5" GridPane.columnSpan="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
+            <JFXTextField fx:id="txtCa" editable="false" GridPane.columnIndex="5" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font></JFXTextField>
 
 
          </children>
@@ -65,11 +106,10 @@
          <children>
             <GridPane prefHeight="291.0" prefWidth="967.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="0.0" prefWidth="121.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="252.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="109.0" />
-                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="237.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="10.0" prefWidth="66.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="148.0" minWidth="0.0" prefWidth="108.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="10.0" prefWidth="223.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="129.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="271.0" minWidth="10.0" prefWidth="264.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="84.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="78.0" />
               </columnConstraints>
@@ -80,26 +120,47 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Thành tiền:" GridPane.halignment="RIGHT" />
-                  <TextField fx:id="txtThanhTien" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" />
-                  <Label text="Phí trễ:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                  <TextField fx:id="txtPhi" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Trạng thái:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                  <TextField fx:id="txtStt" editable="false" prefHeight="31.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="Thành tiền:" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font></Label>
+                  <Label text="Phí trễ:" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font></Label>
+                  <Label text="Trạng thái:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
+                     </font></Label>
                   <Label text=" Tổng tiền:" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <font>
-                        <Font size="23.0" />
+                        <Font name="System Bold" size="25.0" />
                      </font></Label>
-                  <Button fx:id="btThanhToan" mnemonicParsing="false" onAction="#confirmkAction" prefHeight="31.0" prefWidth="98.0" styleClass="button4" text="Xác nhận" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" onAction="#backAction" prefHeight="49.0" prefWidth="78.0" styleClass="button4" text="Quay về" GridPane.columnIndex="6" GridPane.rowIndex="3" />
-                  <JFXTextField fx:id="txtTongTien" alignment="TOP_CENTER" editable="false" focusColor="#ff0808" prefHeight="54.0" prefWidth="184.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                  <Button fx:id="btThanhToan" mnemonicParsing="false" onAction="#confirmkAction" prefHeight="56.0" prefWidth="106.0" styleClass="button4" text="Xác nhận" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#backAction" prefHeight="33.0" prefWidth="100.0" styleClass="button4" text="Quay về" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                  <Label style="-fx-text-fill: red;" text="VNĐ" GridPane.columnIndex="4" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
-                  </JFXTextField>
-                  <Label text="VNĐ" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                  </Label>
+                  <Label fx:id="txtTongTien" prefHeight="45.0" prefWidth="220.0" style="-fx-text-fill: red;" text="###" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
-                        <Font name="System Bold" size="25.0" />
+                        <Font name="System Bold" size="33.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtStt" style="-fx-text-fill: blue;" text="###" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtPhi" style="-fx-text-fill: blue;" text="###" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtThanhTien" style="-fx-text-fill: blue;" text="###" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="21.0" />
                      </font>
                   </Label>
                </children>

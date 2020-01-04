@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.BorderPane?>
@@ -18,7 +19,7 @@
                <children>
                   <StackPane prefHeight="60.0" prefWidth="981.0">
                      <children>
-                        <Button fx:id="btQuanLy" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #FFD5DC;" text="Quản Lý" StackPane.alignment="CENTER_LEFT">
+                        <Button fx:id="btQuanLy" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #FFD5DC;" styleClass="button4" text="Quản Lý" StackPane.alignment="CENTER_LEFT">
                            <graphic>
                               <FontAwesomeIcon iconName="MAIL_REPLY" size="20" />
                            </graphic>
@@ -28,8 +29,11 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
-                        <Button fx:id="btQuayLai" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBackBarChart" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #FFD5DC;" text="Quay Lại" StackPane.alignment="CENTER_LEFT">
+                        <Button fx:id="btQuayLai" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBackBarChart" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #FFD5DC;" styleClass="button4" text="Quay Lại" StackPane.alignment="CENTER_LEFT">
                            <graphic>
                               <FontAwesomeIcon iconName="MAIL_REPLY" size="20" />
                            </graphic>
@@ -39,6 +43,9 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                   </StackPane>

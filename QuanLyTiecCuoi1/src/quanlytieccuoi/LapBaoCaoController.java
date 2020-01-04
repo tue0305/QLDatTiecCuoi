@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -168,6 +169,7 @@ public class LapBaoCaoController implements Initializable {
              }catch(NullPointerException ex){ // su ly ngay thanh toan rong
              }
         });
+         Collections.sort(dsNamDaLoc);
          // lay ds nam da loc duoi csdl de add vao 
         series1.setName("Năm");
         dsNamDaLoc.forEach( n -> {

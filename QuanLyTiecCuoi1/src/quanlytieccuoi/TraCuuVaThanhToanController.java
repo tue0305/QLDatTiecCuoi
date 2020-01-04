@@ -158,7 +158,7 @@ public class TraCuuVaThanhToanController implements Initializable {
                 Scene sce = new Scene(FXMLLoader.load(getClass().getResource("ThanhToan.fxml")));
                 Utils.switchStage(sce, event);
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage());
         }
 
