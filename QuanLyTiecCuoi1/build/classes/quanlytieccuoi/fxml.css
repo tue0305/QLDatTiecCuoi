@@ -1,0 +1,191 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+
+VBox {
+    
+    -fx-background-color:  #FFD5DC  ;
+}
+Label {
+    -fx-text-fill:   #000000;
+    
+}
+Label.title {
+    
+  -fx-text-fill: orangered;
+
+ -fx-font-family:  Arial Rounded MT Bold;
+  -fx-font-size: 40;
+
+  -fx-font-weight: bold;
+  -fx-label-padding: 5;
+  
+ 
+}  
+HBox.one {
+    -fx-background-color: whitesmoke;
+    -fx-alignment: CENTER;
+    
+}
+
+GridPane {
+    -fx-vgap: 10;
+    -fx-hgap: 15;
+}
+GridPane > Label  {
+    
+     -fx-halignment: right;
+    
+}
+RadioButton {
+    
+   -fx-text-fill: black;
+    -fx-padding: 10;
+    
+}
+HBox.edit {
+    -fx-spacing: 10;
+    -fx-padding: 10;    
+}
+HBox.login {
+    
+    -fx-alignment: CENTER;
+    -fx-font-family: Tahoma;
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+
+}
+ 
+GridPane.dangnnhap {
+  
+    -fx-vgap: 10;
+    -fx-hgap: 15;
+}
+VBox.category {
+    
+    -fx-spacing: 10;
+    
+}
+
+
+Label.H1{
+     -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+Button.button4{
+    -fx-background-color :linear-gradient(to top left, #FC95BB, #FFFFFF);
+    -fx-background-radius :  30 30 30 30;
+}
+Button.button4:hover {
+    -fx-background-color :linear-gradient(to top left, #FFFFFF, #FC95BB);
+    -fx-background-radius :  30 30 30 30;
+}
+.button4:pressed
+{
+    -fx-background-color :linear-gradient(to top left, #FC95BB, #FFFFFF);
+    -fx-background-radius :  30 30 30 30;
+}
+Button.button2{
+
+ -fx-background-color:#FC95BB ;
+ -fx-background-radius: 20;
+
+}
+.button2:hover{
+    -fx-background-color:  #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-text-fill: black;
+}
+.button2:pressed{
+   -fx-background-color :  #FC95BB;
+   -fx-background-radius :  20;
+   
+}
+.button3{
+
+ -fx-background-color:#FC95BB ;
+ 
+
+}
+.button3:hover{
+    -fx-background-color:  #F7B3C8;
+    -fx-text-fill: black;
+}
+.button3:pressed{
+   -fx-background-color :  #FC95BB;
+   -fx-background-radius :  20;
+   
+}
+.button1
+{
+-fx-background-color :#FFFFFF  ;
+-fx-background-radius :  30 0 0 30;
+-fx-text-fill: #000000; 
+}
+.button1:hover
+{
+-fx-background-color : #524A7B ;
+-fx-background-radius :  30 0 0 30;
+}
+.button1:pressed
+{
+-fx-background-color : #2F2B43 ;
+-fx-background-radius :  30 0 0 30;
+}
+
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size : 20;
+    -fx-background-color:   #FC95BB;
+}
+.table-view .column-header .label{
+
+   -fx-text-fill: white;
+   -fx-font-weight: bold;
+   -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+   -fx-cell-size: 30;
+  -fx-alignment: center-left;
+  -fx-text-fill: #000000;
+}
+
+.table-row-cell:selected {
+    -fx-background-color:  rgb(127, 172, 243);
+ }
+ .table-row-cell:selected .text {
+        -fx-fill : white ;
+
+ }
+ 
+ 
+ Pane.BtPane{
+     -fx-cursor: hand;
+     
+ }
+ 
+ .text-field.error {  
+
+
+-fx-focus-color: #d35244;
+    -fx-faint-focus-color: #d3524422;
+
+    -fx-highlight-fill: -fx-accent;
+    -fx-highlight-text-fill: white;
+    -fx-background-color:
+        -fx-focus-color,
+        -fx-control-inner-background,
+        -fx-faint-focus-color,
+        linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
+    -fx-background-insets: -0.2, 1, -1.4, 3;
+    -fx-background-radius: 3, 2, 4, 0;
+    -fx-prompt-text-fill: transparent;
+}
+.chart-legend {
+    -fx-background-color: #FFD5DC;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+}

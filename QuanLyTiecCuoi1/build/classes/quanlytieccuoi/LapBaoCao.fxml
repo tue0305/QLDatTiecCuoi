@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="972.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.LapBaoCaoController">
+   <children>
+      <BorderPane prefHeight="644.0" prefWidth="972.0">
+         <bottom>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="972.0" BorderPane.alignment="CENTER">
+               <children>
+                  <StackPane prefHeight="60.0" prefWidth="981.0">
+                     <children>
+                        <Button fx:id="btQuanLy" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBack" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #FFD5DC;" styleClass="button4" text="Quản Lý" StackPane.alignment="CENTER_LEFT">
+                           <graphic>
+                              <FontAwesomeIcon iconName="MAIL_REPLY" size="20" />
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btQuayLai" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#ActionBackBarChart" prefHeight="58.0" prefWidth="175.0" style="-fx-background-color: #FFD5DC;" styleClass="button4" text="Quay Lại" StackPane.alignment="CENTER_LEFT">
+                           <graphic>
+                              <FontAwesomeIcon iconName="MAIL_REPLY" size="20" />
+                           </graphic>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox fx:id="vboxBarChart" prefHeight="200.0" prefWidth="972.0" />
+                  <VBox fx:id="vboxPieChart" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <PieChart fx:id="pieChart" prefHeight="597.0" prefWidth="972.0" styleClass="chart-legend" title="Doanh thu theo tháng" />
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+   </children>
+</VBox>
