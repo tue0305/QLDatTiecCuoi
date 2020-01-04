@@ -26,24 +26,7 @@
             <HBox prefHeight="66.0" prefWidth="924.0">
                <children>
                   <TextField fx:id="txtTC" prefHeight="82.0" prefWidth="446.0" promptText="Tên hoặc số điện thoại khách hàng..." />
-                  <Button mnemonicParsing="false" onAction="#payAction" prefHeight="82.0" prefWidth="263.0" styleClass="edit" text="Thanh Toán">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../FXML/images/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaBooking" prefHeight="82.0" prefWidth="120.0" text="Xóa">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../FXML/images/delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <VBox prefHeight="85.0" prefWidth="205.0" />
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backAction" prefHeight="82.0" prefWidth="121.0" text="Back">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">

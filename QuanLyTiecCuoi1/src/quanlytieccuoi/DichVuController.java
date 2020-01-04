@@ -58,6 +58,7 @@ public class DichVuController implements Initializable {
     }
 
     public void init() {
+    tbDichVu.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             //Gioi han 12 so gia tien
     Utils.KiemTraLaSo(txtGiaDV);
     Utils.gioiHanSo(12, txtGiaDV);

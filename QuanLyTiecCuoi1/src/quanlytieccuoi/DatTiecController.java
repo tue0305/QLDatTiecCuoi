@@ -324,6 +324,14 @@ public class DatTiecController implements Initializable {
 
 
     public void init() {
+        
+// 
+    tbDichVu.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    tbDichVuC.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    tbXacNhanDV.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    tbThucPham.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    tbThucPhamC.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+    tbXacNhanTP.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 //Group radio button
 
         ToggleGroup toggleGroup = new ToggleGroup();

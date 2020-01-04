@@ -60,11 +60,11 @@ public class SanhController implements Initializable {
     }
 
     public void init() {
+        tbSanh.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 //Gioi han 12 so gia tien
-    Utils.KiemTraLaSo(txtGiaSanh);
-    Utils.gioiHanSo(12, txtGiaSanh);
-        
-        
+        Utils.KiemTraLaSo(txtGiaSanh);
+        Utils.gioiHanSo(12, txtGiaSanh);
+
 // Load danh sách sảnh
         this.cbSanh.getItems().add("A");
         this.cbSanh.getItems().add("B");
@@ -106,8 +106,7 @@ public class SanhController implements Initializable {
 
     public void themSanh(ActionEvent event) throws IOException {
 
-       
-        if ((!txtTenSanh.getText().isEmpty() || !txtGiaSanh.getText().isEmpty() || !txtNote.getText().isEmpty()) &&  !tbSanh.getSelectionModel().isEmpty() ) {
+        if ((!txtTenSanh.getText().isEmpty() || !txtGiaSanh.getText().isEmpty() || !txtNote.getText().isEmpty()) && !tbSanh.getSelectionModel().isEmpty()) {
             txtTenSanh.clear();
 
             txtGiaSanh.clear();
@@ -151,9 +150,6 @@ public class SanhController implements Initializable {
 
         }
     }
-
-
-    
 
     public void suaSanh(ActionEvent event) throws IOException {
         Sanh s = (Sanh) tbSanh.getSelectionModel().getSelectedItem();
