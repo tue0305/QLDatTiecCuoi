@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
@@ -8,68 +9,36 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="965.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuVaThanhToanController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="685.0" prefWidth="1150.0" stylesheets="@fxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quanlytieccuoi.TraCuuVaThanhToanController">
    <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="one">
+      <HBox prefHeight="74.0" prefWidth="870.0" styleClass="one">
          <children>
             <ImageView fitHeight="76.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../FXML/images/search.png" />
                </image>
             </ImageView>
-            <Label prefHeight="62.0" prefWidth="1123.0" styleClass="title" text="TRA CỨU VÀ THANH TOÁN" />
+            <Label prefHeight="62.0" prefWidth="1083.0" styleClass="title" text="TRA CỨU VÀ THANH TOÁN" />
          </children>
       </HBox>
-      <VBox prefHeight="117.0" prefWidth="1150.0">
+      <HBox prefHeight="48.0" prefWidth="1150.0">
          <children>
-            <HBox prefHeight="66.0" prefWidth="924.0">
-               <children>
-                  <TextField fx:id="txtTC" prefHeight="82.0" prefWidth="446.0" promptText="Tên hoặc số điện thoại khách hàng..." />
-                  <VBox prefHeight="85.0" prefWidth="205.0" />
-                  <TextField fx:id="txtTC" prefHeight="66.0" prefWidth="697.0" promptText="Tên hoặc số điện thoại khách hàng..." />
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#payAction" prefHeight="66.0" prefWidth="214.0" styleClass="edit" text="Thanh Toán">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../FXML/images/search.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#xoaBooking" prefHeight="82.0" prefWidth="121.0" text="Xóa">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../FXML/images/delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backAction" prefHeight="82.0" prefWidth="121.0" text="Back">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../FXML/images/left-arrow.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-            <HBox prefHeight="0.0" prefWidth="924.0" />
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#backAction" prefHeight="100.0" prefWidth="169.0" text="Back">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../FXML/images/left-arrow.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextField fx:id="txtTC" prefHeight="117.0" prefWidth="1066.0" promptText="Tên hoặc số điện thoại khách hàng..." />
          </children>
-      </VBox>
+         <VBox.margin>
+            <Insets bottom="10.0" top="11.0" />
+         </VBox.margin>
+      </HBox>
       <TableView fx:id="tbBooking" prefHeight="503.0" prefWidth="1150.0" />
    </children>
 </VBox>
