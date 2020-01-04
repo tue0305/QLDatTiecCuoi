@@ -59,9 +59,10 @@ public class ThucPhamController implements Initializable {
     }
 
     public void init() {
-        //Gioi han 12 so gia tien
-    Utils.KiemTraLaSo(txtGia);
-    Utils.gioiHanSo(12, txtGia);
+        tbThucPham.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//Gioi han 12 so gia tien
+        Utils.KiemTraLaSo(txtGia);
+        Utils.gioiHanSo(12, txtGia);
 // Load danh sách sảnh
         this.clLoaiTP.getItems().add("Khai vị");
         this.clLoaiTP.getItems().add("Món chính");
@@ -102,11 +103,9 @@ public class ThucPhamController implements Initializable {
 
     public void themTP(ActionEvent event) throws IOException {
 
-        //?
-        if ((!txtTenTP.getText().isEmpty() || !txtGia.getText().isEmpty() || !txtNote.getText().isEmpty()) && 
-            !tbThucPham.getSelectionModel().isEmpty()){
-        
-            
+        if ((!txtTenTP.getText().isEmpty() || !txtGia.getText().isEmpty() || !txtNote.getText().isEmpty())
+                && !tbThucPham.getSelectionModel().isEmpty()) {
+
             txtTenTP.clear();
 
             txtGia.clear();

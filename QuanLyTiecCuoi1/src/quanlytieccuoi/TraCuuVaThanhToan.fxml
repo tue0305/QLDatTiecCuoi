@@ -26,6 +26,8 @@
          <children>
             <HBox prefHeight="66.0" prefWidth="924.0">
                <children>
+                  <TextField fx:id="txtTC" prefHeight="82.0" prefWidth="446.0" promptText="Tên hoặc số điện thoại khách hàng..." />
+                  <VBox prefHeight="85.0" prefWidth="205.0" />
                   <TextField fx:id="txtTC" prefHeight="66.0" prefWidth="697.0" promptText="Tên hoặc số điện thoại khách hàng..." />
                   <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#payAction" prefHeight="66.0" prefWidth="214.0" styleClass="edit" text="Thanh Toán">
                      <graphic>

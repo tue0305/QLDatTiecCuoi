@@ -21,13 +21,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -41,7 +39,7 @@ public class TraCuuVaThanhToanController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private TextField txtTC;   
+    private TextField txtTC;
     @FXML
     private TableView tbBooking;
 
@@ -53,6 +51,7 @@ public class TraCuuVaThanhToanController implements Initializable {
 
     public void init() {
         txtTC.setPromptText("Nhập tên hoặc số điện thoại khách...");
+        tbBooking.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         TableColumn clTenKH = new TableColumn("Tên khách hàng");
         clTenKH.setCellValueFactory(new PropertyValueFactory("nameCus"));
@@ -68,10 +67,10 @@ public class TraCuuVaThanhToanController implements Initializable {
         clNgayThanhToan.setCellValueFactory(new PropertyValueFactory("ngayThanhToan"));
 
 // Xem thông tin       
-        TableColumn clAction = new TableColumn();
-        clAction.setCellFactory(param -> {
+        TableColumn clWatch = new TableColumn();
+
+        clWatch.setCellFactory(param -> {
             Button btn = new Button("Xem");
-//Đang làm  
             btn.setOnAction(et -> {
 
                 try {
@@ -91,11 +90,9 @@ public class TraCuuVaThanhToanController implements Initializable {
                     stage.setScene(sce1);
                     stage.show();
 
-//                    
                 } catch (IOException ex) {
                     Logger.getLogger(TraCuuVaThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
 
             });
             TableCell cell = new TableCell();
@@ -104,9 +101,83 @@ public class TraCuuVaThanhToanController implements Initializable {
 
         }
         );
+// Thanh Toán
+        TableColumn clPay = new TableColumn();
+
+        clPay.setCellFactory(param -> {
+            Button btn = new Button("Thanh toán");
+
+            btn.setOnAction(et -> {
+
+                try {
+
+                    TableCell cel = (TableCell) ((Button) et.getSource()).getParent();
+                    Booking q = (Booking) cel.getTableRow().getItem();
+                    if (q.getNgayThanhToan() != null) {
+                        Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
+                    } else {
+
+                        Utils.setPayBooking(q);
+
+                        Utils.setSign(false);
+                        Scene sce = btn.getScene();
+                        Scene sce1 = new Scene(FXMLLoader.load(getClass().getResource("ThanhToan.fxml")));
+
+                        Stage stage = (Stage) sce.getWindow();
+                        stage.close();
+
+                        stage.hide();
+                        stage.setScene(sce1);
+                        stage.show();
+                    }
+
+                } catch (IOException ex) {
+                    Logger.getLogger(TraCuuVaThanhToanController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            });
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+
+        }
+        );
+// Column xóa 
+
+        TableColumn clDel = new TableColumn();
+
+        clDel.setCellFactory(param -> {
+            Button btn = new Button("Xóa");
+
+            btn.setOnAction(et -> {
+
+                TableCell cel = (TableCell) ((Button) et.getSource()).getParent();
+                Booking q = (Booking) cel.getTableRow().getItem();
+
+                Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION).showAndWait().ifPresent(rs -> {
+                    if (rs == ButtonType.OK) {
+                        if (Utils.deleteObject(q)) {
+                            Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
+
+                        } else {
+                            Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION).show();
+                        }
+                        this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
+
+                    } else if (rs == ButtonType.NO) {
+                        return;
+                    }
+                });
+
+            });
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+
+        });
 
         this.tbBooking.getColumns()
-                .addAll(clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clAction);
+                .addAll(clTenKH, clSDT, clNgayDat, clCa, clSanh, clNgayThanhToan, clWatch, clPay, clDel);
 
         this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
         // Tìm kiếm booking theo tên và số điện thoại khách hàng
@@ -123,75 +194,11 @@ public class TraCuuVaThanhToanController implements Initializable {
 // Load form thêm
     }
 
-    // => chưa hoàn thành
-    public void suaBooking(ActionEvent event) throws IOException {
-        TextField txttenKH = new TextField();
-        txttenKH.setPromptText("Tên khách hàng...");
-        TextField txtSDT = new TextField();
-        txtSDT.setPromptText("Số điện thoại...");
-        StackPane update = new StackPane();
-        txtSDT.setPromptText("Số điện thoại...");
-
-        Stage s = new Stage();
-        s.setTitle("Cập nhập thông tin");
-
-    }
-
     public void backAction(ActionEvent event) throws IOException {
 
         Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
         Utils.switchStage(sce, event);
 
-    }
-
-    //Thanh toan
-    public void payAction(ActionEvent event) throws IOException {
-        Booking s = (Booking) tbBooking.getSelectionModel().getSelectedItem();
-        try {
-            if (s == null) {
-                Utils.getAlertTC("Hãy chọn giá trị bên dưới!!!", Alert.AlertType.ERROR).show();
-            } else if (s.getNgayThanhToan() != null) {
-                Utils.getAlertTC("Đơn đặt đã thanh toán!!!", Alert.AlertType.ERROR).show();
-            } else {
-                Utils.setPayBooking(s);
-
-                Scene sce = new Scene(FXMLLoader.load(getClass().getResource("ThanhToan.fxml")));
-                Utils.switchStage(sce, event);
-            }
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-
-    }
-
-    public void xoaBooking(ActionEvent event) throws IOException {
-        Booking s = (Booking) tbBooking.getSelectionModel().getSelectedItem();
-
-        if (s == null) {
-            Utils.getAlertTC("Hãy chọn giá trị bên dưới!!", Alert.AlertType.ERROR).show();
-
-        } else {
-            Alert a = Utils.getAlertTC("Bạn có chắc chắn xóa không?", Alert.AlertType.CONFIRMATION);
-            a.showAndWait().ifPresent(rs -> {
-                if (rs == ButtonType.OK) {
-
-                    if (s == null) {
-                        Utils.getAlertTC("Không tìm thấy giá trị để xóa!!!", Alert.AlertType.ERROR).show();
-                    } else if (Utils.deleteObject(s)) {
-
-                        Utils.getAlertTC("Xóa thành công!!!", Alert.AlertType.INFORMATION).show();
-
-                    } else {
-                        Utils.getAlertTC("Xóa thất bại!!!", Alert.AlertType.INFORMATION).show();
-
-                    }
-                    this.tbBooking.setItems(FXCollections.observableArrayList(Utils.getBooking()));
-
-                } else if (rs == ButtonType.NO) {
-                    return;
-                }
-            });
-        }
     }
 
 }

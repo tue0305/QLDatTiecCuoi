@@ -94,6 +94,8 @@ public class ThanhToanController implements Initializable {
     }
 
     public void init() {
+        tbThucPham.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        tbDichVu.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         if (Utils.getSign() == true) {
             btThanhToan.setVisible(false);
             if (Utils.getPayBooking().getNgayThanhToan() == null) {
