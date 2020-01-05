@@ -29,7 +29,7 @@ public class QuanLyTiecCuoi extends Application {
 
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("DangNhap.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("DatTiec.fxml"));
 
         stage.heightProperty().addListener(new ChangeListener() {
             @Override

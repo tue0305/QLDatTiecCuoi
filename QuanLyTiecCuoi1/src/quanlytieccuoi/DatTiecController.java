@@ -230,6 +230,8 @@ public class DatTiecController implements Initializable {
                 cbSanh.setDisable(false);
                 rdCa1.setSelected(false);
                 rdCa2.setSelected(false);
+                rdCa1.setDisable(true);  
+                rdCa2.setDisable(true);
                 // 
                 try {
                     Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());
@@ -238,23 +240,14 @@ public class DatTiecController implements Initializable {
                         List<Booking> bk = Utils.getBooking();
                         for (Booking a : bk) {
                             Date daDat1 = sdf.parse(a.getNgayDat().toString());
-                            int ktra = 0;
                             for (Booking b : bk) {
                                 Date daDat2 = sdf.parse(b.getNgayDat().toString());         //lap lại để xác định có 2 ca đã chọn
-                                if (daDat2.equals(dateChoose) && b.getCa() == '1' &&
-                                        (daDat1.equals(dateChoose) && a.getCa() == '2')
-                                        || daDat2.equals(dateChoose) && b.getCa() == '2'
-                                        && (daDat1.equals(dateChoose) && a.getCa() == '1')) {
-
+                                if (daDat2.equals(dateChoose) && b.getCa() == '1' && (daDat1.equals(dateChoose) && a.getCa() == '2') && a.getSanh()==b.getSanh()
+                                        || daDat2.equals(dateChoose) && b.getCa() == '2'&& (daDat1.equals(dateChoose) && a.getCa() == '1')& a.getSanh()==b.getSanh()) {
                                     cbSanh.getItems().remove(b.getSanh().getLoaiSanh());
-                                    ktra = 1;
                                     break;                   // ngắt lặp trog   }
                                 }
-                                if (ktra == 1) // ngắt lặp ngoài
-                                {
-                                    break;
-
-                                }
+                                
                             }
                         }
                     } catch (ParseException ex) {
@@ -270,8 +263,8 @@ public class DatTiecController implements Initializable {
                     if (newDate1 != null) {
                         rdCa1.setSelected(false);
                         rdCa2.setSelected(false);
-                        rdCa1.setDisable(false);
-                        rdCa2.setDisable(false);
+                        rdCa1.setDisable(true);
+                        rdCa2.setDisable(true);
 
                         try {
                             Date dateChoose = sdf.parse(dpNgayDat.getValue().toString());

@@ -39,6 +39,6 @@
             <Insets bottom="10.0" top="11.0" />
          </VBox.margin>
       </HBox>
-      <TableView fx:id="tbBooking" prefHeight="503.0" prefWidth="1150.0" />
+      <TableView fx:id="tbBooking" prefHeight="534.0" prefWidth="1150.0" />
    </children>
 </VBox>
