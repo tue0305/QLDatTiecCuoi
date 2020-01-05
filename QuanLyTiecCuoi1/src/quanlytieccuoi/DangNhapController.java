@@ -99,35 +99,35 @@ public class DangNhapController implements Initializable {
 
     public void TextFieldKeyPressed(javafx.scene.input.KeyEvent evt) {
 
-        if (evt.getCode() == KeyCode.ENTER) {
-            String u = txtUsername.getText();
-            String p = pfPassword.getText();
+        
+        pfPassword.setText(textField.getText());
+        String u = txtUsername.getText();
+        String p = pfPassword.getText();
 
-            try {
-                if (u.isEmpty()) {
-                    Utils.getAlertTC("Tài khoản trống!!!", Alert.AlertType.ERROR).showAndWait();
+        try {
+            if (u.isEmpty()) {
+                Utils.getAlertTC("Tài khoản trống!!!", Alert.AlertType.ERROR).showAndWait();
 
-                } else if (p.isEmpty()) {
-                    Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR).showAndWait();
+            } else if (p.isEmpty()) {
+                Utils.getAlertTC("Mật khẩu trống!!!", Alert.AlertType.ERROR).showAndWait();
 
-                    //Hàm kiểm tra đăng nhập
-                } else if (Utils.KiemtraTKandMK(u, p)) {
-                    Utils.setUsernameText(u);
-                    Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
+                //Hàm kiểm tra đăng nhập
+            } else if (Utils.KiemtraTKandMK(u, p)) {
+                Utils.setUsernameText(u);
+                Scene sce = new Scene(FXMLLoader.load(getClass().getResource("MainMenu.fxml")));
 
-                    Utils.switchStagekeyevent(sce, evt);
+                Utils.switchStagekeyevent(sce, evt);
 
-                } else {
+            } else {
 
-                    Utils.getAlertTC("Tài khoẳn hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR).showAndWait();
+                Utils.getAlertTC("Tài khoản hoặc mật khẩu không đúng!!!", Alert.AlertType.ERROR).showAndWait();
 
-                }
-
-            } catch (Exception e) {
-                System.err.print(e.getMessage());
             }
 
+        } catch (Exception e) {
+            System.err.print(e.getMessage());
         }
+
 
     }
 
